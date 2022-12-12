@@ -2,5 +2,9 @@ import * as React from 'react';
 import Layout from '../components/Layout';
 
 export default function Home() {
-  return <Layout></Layout>;
+  return (
+    <Layout>
+      <h2>home</h2>
+    </Layout>
+  );
 }

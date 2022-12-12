@@ -12,7 +12,7 @@ export const StyledSideMenu = styled.nav`
   position: absolute;
   top: 0;
   left: 0;
-  overflow-y: hidden;
+  overflow-y: ${open => (open ? 'hidden' : '')};
   transition: ${({ theme }) => theme.animations.transition};
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
 
@@ -25,7 +25,6 @@ export const StyledSideMenu = styled.nav`
     text-transform: uppercase;
     padding: 2rem 0;
     font-weight: bold;
-    letter-spacing: 0.5rem;
     color: ${({ theme }) => theme.primaryDark};
     text-decoration: none;
     transition: color 0.3s linear;
