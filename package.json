@@ -13,6 +13,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "babel-plugin-remove-graphql-queries": "^2.16.1",
     "babel-plugin-styled-components": "^2.0.7",
     "gatsby": "^5.2.0",
     "gatsby-plugin-image": "^0.7.2",
