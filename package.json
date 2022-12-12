@@ -22,7 +22,8 @@
     "gatsby-transformer-sharp": "^2.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.7.1"
+    "react-icons": "^4.7.1",
+    "styled-components": "^5.3.6"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=19.0.0",
+    "npm": ">= 8"
   }
 }
