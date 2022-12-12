@@ -32,6 +32,7 @@ export const NavLinks = styled.div`
   display: flex;
   width: 100%;
   min-width: 35rem;
+  margin-left: 3rem;
 
   transition: ${({ theme }) => theme.animations.transition};
 

@@ -25,7 +25,15 @@ a {
   letter-spacing: 1px;
 
 } 
-.img {
+/* img {
   object-fit: cover;
-} 
+}  */
+
+.page {
+  width: 90vw;
+  margin: 0 auto;
+}
+.page {
+  min-height: calc(100vh - (6rem + 4rem));
+}
 `;

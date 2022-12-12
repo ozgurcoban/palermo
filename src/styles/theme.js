@@ -13,6 +13,12 @@ const Theme = {
     tablet: '768px',
     laptop: '1024px',
   },
+
+  page: {
+    width: '90vw',
+    margin: `0 auto`,
+    minHeight: '100vh',
+  },
 };
 
 export default Theme;
