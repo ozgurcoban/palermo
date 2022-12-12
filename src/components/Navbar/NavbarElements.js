@@ -31,6 +31,7 @@ export const NavHeader = styled.div`
 export const NavLinks = styled.div`
   display: flex;
   width: 100%;
+  min-width: 35rem;
 
   transition: ${({ theme }) => theme.animations.transition};
 
@@ -54,6 +55,6 @@ export const MenuButton = styled.button`
 `;
 
 export const Logo = styled.img`
-  width: 30%;
-  padding-top: 4rem;
+  max-width: 10rem;
+  padding-top: 1rem;
 `;
