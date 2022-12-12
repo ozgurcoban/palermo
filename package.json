@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.0.7",
-    "gatsby": "^2.32.7",
+    "gatsby": "^5.2.0",
     "gatsby-plugin-image": "^0.7.2",
     "gatsby-plugin-sharp": "^2.14.4",
     "gatsby-plugin-styled-components": "^3.10.0",
@@ -31,9 +31,5 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">= 8"
   }
 }
