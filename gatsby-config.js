@@ -8,5 +8,5 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
-  plugins: [`gatsby-plugin-styled-components`],
+  plugins: [`gatsby-plugin-styled-components`, 'gatsby-plugin-netlify'],
 };
