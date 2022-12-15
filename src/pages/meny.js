@@ -13,7 +13,7 @@ const Menu = () => {
 };
 
 const Page = styled.main`
-  min-height: ${({ theme }) => theme.page.minHeigh};
+  min-height: ${({ theme }) => theme.page.minHeight};
 `;
 
 export default Menu;

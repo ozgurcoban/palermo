@@ -13,5 +13,5 @@ export default function Home() {
 }
 
 const Page = styled.main`
-  min-height: ${({ theme }) => theme.page.minHeigh};
+  min-height: ${({ theme }) => theme.page.minHeight};
 `;

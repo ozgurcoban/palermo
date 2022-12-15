@@ -1,37 +1,39 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
-  "version": "0.1.0",
-  "license": "0BSD",
+  "name": "palermo",
+  "version": "1.0.0",
+  "description": "<!-- AUTO-GENERATED-CONTENT:START (STARTER) --> <p align=\"center\">   <a href=\"https://www.gatsbyjs.com\">     <img alt=\"Gatsby\" src=\"https://www.gatsbyjs.com/Gatsby-Monogram.svg\" width=\"60\" />   </a> </p> <h1 align=\"center\">   Gatsby's hello-world starter </h1>",
+  "main": "gatsby-config.js",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
-  "dependencies": {
-    "babel-plugin-styled-components": "^2.0.7",
-    "gatsby": "^5.2.0",
-    "gatsby-plugin-image": "^3.2.0",
-    "gatsby-plugin-sharp": "^5.2.0",
-    "gatsby-plugin-styled-components": "^6.2.0",
-    "gatsby-source-filesystem": "^5.2.0",
-    "gatsby-transformer-sharp": "^5.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.7.1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/palermo"
+    "url": "git+https://github.com/ozgurcoban/palermo.git"
   },
+  "author": "",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/ozgurcoban/palermo/issues"
   },
-  "engines": {
-    "node": ">=^18"
+  "homepage": "https://github.com/ozgurcoban/palermo#readme",
+  "dependencies": {
+    "babel-plugin-remove-graphql-queries": "^5.3.1",
+    "babel-plugin-styled-components": "^2.0.7",
+    "create-react-app": "^1.2.1",
+    "gatsby": "^5.3.2",
+    "gatsby-core-utils": "^4.3.1",
+    "gatsby-plugin-image": "^0.7.2",
+    "gatsby-plugin-manifest": "^5.3.1",
+    "gatsby-plugin-sharp": "^2.14.4",
+    "gatsby-plugin-styled-components": "^6.3.0",
+    "gatsby-source-filesystem": "^2.11.1",
+    "gatsby-transformer-sharp": "^2.12.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.6"
+  },
+  "devDependencies": {
+    "react-server-dom-webpack": "^0.0.1",
+    "web-vitals": "^3.1.0"
   }
 }
