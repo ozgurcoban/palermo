@@ -13,7 +13,6 @@ html, body {
 }
 
 main {
-height: 100vh;
 max-width: 1120px;
 }
 
@@ -21,11 +20,32 @@ ul {
   padding: 0;
   list-style-type: none;
 }
+
+h2 {
+  font-size: 2.5rem;
+  text-transform: capitalize;
+}
+
+h3 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  line-height: 3rem;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 2rem;
+  line-height: 1.7em;
+}
+
 a {
   text-decoration: none;
   letter-spacing: 1px;
-
+  text-transform: capitalize;
 } 
+
 /* img {
   object-fit: cover;
 }  */
@@ -34,7 +54,15 @@ a {
   width: 90vw;
   margin: 0 auto;
 }
+
 .page {
   min-height: calc(100vh - (6rem + 4rem));
+}
+
+.btn {
+  padding: 0.7rem 1rem;
+  font-size: 1.2rem;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  text-align: center;
 }
 `;

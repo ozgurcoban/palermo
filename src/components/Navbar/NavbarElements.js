@@ -93,7 +93,7 @@ export const MenuLink = styled(NavLink)`
 
 export const NavBtn = styled.button`
   padding: 0.7rem 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   align-self: center;
   appearance: none;
   border: none;

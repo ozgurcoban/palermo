@@ -15,7 +15,7 @@ const Hero = () => {
       <HeroContainer>
         <HeroText>
           <Headline>Palermo</Headline>
-          <Tagline>en plats att umgås</Tagline>
+          <Tagline>uppsalas naturligaste mötesplats</Tagline>
         </HeroText>
       </HeroContainer>
     </StyledHero>
@@ -25,7 +25,7 @@ const Hero = () => {
 export const StyledHero = styled.header`
   height: 40vh;
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 
   .hero-img {
     height: 100%;
@@ -55,6 +55,7 @@ export const HeroText = styled.div`
 
   /* position: absolute; */
   color: black;
+  text-align: center;
 `;
 
 export const Headline = styled.h1`
