@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledBurger = styled.button`
-  position: absolute;
-  top: 5%;
-  left: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -33,16 +30,21 @@ export const StyledBurger = styled.button`
     }
 
     :first-child {
-      transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
+      transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0deg)')};
     }
 
     :nth-child(2) {
       opacity: ${({ open }) => (open ? '0' : '1')};
-      transform: ${({ open }) => (open ? 'translateX(20px)' : 'translateX(0)')};
+      transform: ${({ open }) =>
+        open ? 'translateX(-45deg)' : 'translateX(90deg)'};
     }
 
     :nth-child(3) {
-      transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
+      transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0deg)')};
     }
+  }
+
+  @media (min-width: 992px) {
+    display: none;
   }
 `;

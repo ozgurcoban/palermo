@@ -14,6 +14,7 @@ html, body {
 main {
 background: #f4f4f4;
 height: 100vh;
+max-width: 1120px;
 }
 
 ul {

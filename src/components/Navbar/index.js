@@ -1,32 +1,98 @@
-import React from 'react';
+import React, { useState } from 'react';
+import logoImg from '../../assets/images/logo.png';
+import Burger from './Burger';
 import { Link } from 'gatsby';
+
 import {
-  StyledNavbar,
+  NavbarContainer,
+  LeftContainer,
+  RightContainer,
+  NavbarInnerContainer,
+  NavbarLinkContainer,
+  NavbarLink,
+  NavbarLinkExtended,
+  Logo,
+  NavbarExtendedContainer,
+  OpenLinkButton,
+  Nav,
   NavCenter,
   NavHeader,
+  NavBtn,
   NavLinks,
-  MenuButton,
-  Logo,
+  NavLink,
+  MenuLink,
 } from './NavbarElements';
-import logo from '../../assets/images/logo.png';
 
-const Navbar = () => {
+export const Navbar = () => {
+  const [extendNavbar, setExtendNavbar] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const toggle = () => {
+    setOpen(!open);
+  };
+
   return (
-    <StyledNavbar>
+    <Nav id='navbar' open={open}>
       <NavCenter>
         <NavHeader>
-          <Logo src={logo} alt='palermo'></Logo>
+          <Link to='/'>
+            <Logo src={logoImg} />
+          </Link>
+          <Burger open={open} setOpen={setOpen} />
         </NavHeader>
-        <NavLinks className='links'>
-          <Link to='/'>start</Link>
-          <Link to='/meny'>meny</Link>
-          <Link to='/om-palermo'>om palermo</Link>
-          <Link to='/kontakt'>kontakta oss</Link>
+        <NavLinks open={open}>
+          <NavLink>om palermo</NavLink>
+          <NavLink>kontakt</NavLink>
+          <MenuLink>
+            <NavBtn>Meny</NavBtn>
+          </MenuLink>
         </NavLinks>
-        <MenuButton>se meny</MenuButton>
       </NavCenter>
-    </StyledNavbar>
+    </Nav>
   );
 };
 
 export default Navbar;
+
+// export const Navbar = () => {
+//   const [extendNavbar, setExtendNavbar] = useState(false);
+//   const [open, setOpen] = useState(false);
+
+//   const toggle = () => {
+//     setOpen(!open);
+//   };
+
+//   return (
+//     <NavbarContainer id='navbar' open={open}>
+//       <NavbarInnerContainer>
+//         <LeftContainer>
+//           <NavbarLinkContainer>
+//             <NavbarLink to='/'>start</NavbarLink>
+//             <NavbarLink to='/meny'>meny</NavbarLink>
+//             {/* <NavbarLink to='/om-palermo'>om oss</NavbarLink>
+//             <NavbarLink to='/kontakt'>kontakta oss</NavbarLink> */}
+
+//             <Burger open={open} setOpen={setOpen} />
+//           </NavbarLinkContainer>
+//         </LeftContainer>
+//         <RightContainer>
+//           <Logo src={logoImg}></Logo>
+//         </RightContainer>
+//       </NavbarInnerContainer>
+//       {open && (
+//         <NavbarExtendedContainer>
+//           <NavbarLinkExtended onClick={() => setOpen(!open)} to='/'>
+//             start
+//           </NavbarLinkExtended>
+//           <NavbarLinkExtended onClick={() => setOpen(!open)} to='/meny'>
+//             meny
+//           </NavbarLinkExtended>
+//           {/* <NavbarLinkExtended to='/om-palermo'>om oss</NavbarLinkExtended>
+//           <NavbarLinkExtended to='/kontakt'>kontakta oss</NavbarLinkExtended> */}
+//         </NavbarExtendedContainer>
+//       )}
+//     </NavbarContainer>
+//   );
+// };
+
+// export default Navbar;

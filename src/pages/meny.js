@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Menu = () => {
   return (
     <Layout>
-      <Page>
+      <Page className='page'>
         <h2>Menu page</h2>
       </Page>
     </Layout>

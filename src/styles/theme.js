@@ -3,6 +3,8 @@ const Theme = {
   primaryLight: '#EFFFFA',
   primaryHover: '#343078',
   mobile: '576px',
+  borderRadius: '0.2rem',
+  letterSpacing: '1px',
 
   animations: {
     transition: `all 0.3s linear`,
