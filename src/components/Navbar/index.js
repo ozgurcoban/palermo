@@ -4,16 +4,7 @@ import Burger from './Burger';
 import { Link } from 'gatsby';
 
 import {
-  NavbarContainer,
-  LeftContainer,
-  RightContainer,
-  NavbarInnerContainer,
-  NavbarLinkContainer,
-  NavbarLink,
-  NavbarLinkExtended,
   Logo,
-  NavbarExtendedContainer,
-  OpenLinkButton,
   Nav,
   NavCenter,
   NavHeader,
@@ -24,12 +15,11 @@ import {
 } from './NavbarElements';
 
 export const Navbar = () => {
-  const [extendNavbar, setExtendNavbar] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const toggle = () => {
-    setOpen(!open);
-  };
+  // const toggle = () => {
+  //   setOpen(!open);
+  // };
 
   return (
     <Nav id='navbar' open={open}>
@@ -41,9 +31,14 @@ export const Navbar = () => {
           <Burger open={open} setOpen={setOpen} />
         </NavHeader>
         <NavLinks open={open}>
-          <NavLink>om palermo</NavLink>
+          <NavLink onClick={() => setOpen(!open)} to='/'>
+            start
+          </NavLink>
+          <NavLink onClick={() => setOpen(!open)} to='/om-palermo'>
+            om palermo
+          </NavLink>
           <NavLink>kontakt</NavLink>
-          <MenuLink>
+          <MenuLink to='/meny'>
             <NavBtn>Meny</NavBtn>
           </MenuLink>
         </NavLinks>
