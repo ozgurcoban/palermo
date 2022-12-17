@@ -12,13 +12,22 @@ const About = () => {
           <Tagline>
             Upplev avslappnad atmosfär och smakfull mat på Restaurang Palermo
           </Tagline>
-          <AboutText>
-            Välkommen till Restaurang Palermo i Uppsala! Vi serverar god mat i
-            en trivsam miljö och har en meny full av olika rätter, från
-            pastarätter, pizza och till klassiska specialiteter. Vår
-            dryckeslista är också väl värd att upptäcka. Vi ser fram emot att få
-            välkomna dig som gäst!
-          </AboutText>
+          <P>
+            Välkommen till Restaurang Palermo i Uppsala! Vi är stolta över att
+            kunna erbjuda en riktigt god matupplevelse i en trivsam och
+            avslappnad miljö. Vårt kök team består av passionerade kockar som
+            alltid strävar efter att servera de bästa råvarorna och skapa nya,
+            spännande rätter.
+          </P>
+          <P>
+            Vår meny innehåller en mängd olika rätter, allt från klassiska
+            pastarätter till grillade specialiteter. Vi har också en fantastisk
+            vinlista som vi gärna delar med oss av våra gäster.
+          </P>
+          <P>
+            Vi hoppas att du kommer att trivas hos oss på Restaurang Palermo och
+            vi ser fram emot att få välkomna dig som gäst!
+          </P>
           <Link to='/meny' className='btn'>
             till meny
           </Link>
@@ -69,9 +78,8 @@ const Headline = styled.h2`
 `;
 const Tagline = styled.h3``;
 
-const AboutText = styled.p`
-  font-weight: 300;
-  max-width: 30rem;
+const P = styled.p`
+  font-weight: 500;
 `;
 
 export default About;
