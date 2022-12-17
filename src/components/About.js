@@ -13,21 +13,13 @@ const About = () => {
             Upplev avslappnad atmosfär och smakfull mat på Restaurang Palermo
           </Tagline>
           <P>
-            Välkommen till Restaurang Palermo i Uppsala! Vi är stolta över att
-            kunna erbjuda en riktigt god matupplevelse i en trivsam och
-            avslappnad miljö. Vårt kök team består av passionerade kockar som
-            alltid strävar efter att servera de bästa råvarorna och skapa nya,
-            spännande rätter.
+            Valkommen till restaurang palermo i uppsala! Vi serverar god mat i
+            en trivsam miljo och har en meny full av olika ratter, fran
+            pastaratter, pizza och till klassiska specialiteter. Var
+            dryckeslista ar ocksa val vard att upptacka. Vi ser fram emot att fa
+            valkomna dig som gast!
           </P>
-          <P>
-            Vår meny innehåller en mängd olika rätter, allt från klassiska
-            pastarätter till grillade specialiteter. Vi har också en fantastisk
-            vinlista som vi gärna delar med oss av våra gäster.
-          </P>
-          <P>
-            Vi hoppas att du kommer att trivas hos oss på Restaurang Palermo och
-            vi ser fram emot att få välkomna dig som gäst!
-          </P>
+
           <Link to='/meny' className='btn'>
             till meny
           </Link>
@@ -37,6 +29,8 @@ const About = () => {
           alt='Person Pouring Salt in Bowl'
           className='about-img'
           placeholder='blurred'
+          height={1000}
+          width={1000}
         />
       </AboutWrapper>
     </AboutContainer>
@@ -46,7 +40,7 @@ const About = () => {
 const AboutContainer = styled.section`
   .about-img {
     border-radius: ${({ theme }) => theme.borderRadius};
-    grid-row: ;
+    height: 500px;
   }
 
   .btn {
