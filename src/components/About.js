@@ -71,7 +71,7 @@ const Tagline = styled.h3``;
 
 const AboutText = styled.p`
   font-weight: 300;
-  max-width: 40rem;
+  max-width: 30rem;
 `;
 
 export default About;
