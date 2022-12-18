@@ -6,6 +6,7 @@ html, body {
   margin: 0;
   padding: 0;
   background: #f4f4f4;
+  line-height: 1.7em;
 }
 
 *, *::after, *::before {
@@ -19,6 +20,13 @@ max-width: 1120px;
 ul {
   padding: 0;
   list-style-type: none;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  line-height: 3rem;
 }
 
 h2 {
@@ -37,7 +45,7 @@ h3 {
 
 p {
   margin-bottom: 2rem;
-  line-height: 1.7em;
+  
 }
 
 a {

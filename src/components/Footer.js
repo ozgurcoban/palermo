@@ -93,7 +93,7 @@ const FooterContainer = styled.footer`
 
 const FooterWrapper = styled.div`
   padding: 3rem;
-  max-width: 800px;
+  max-width: 1120px;
   margin: 0 auto;
   /* @media screen and (min-width: 768px) {
     flex-direction: row;
@@ -132,8 +132,11 @@ const FooterContactWrapper = styled.div`
 const FooterContactItems = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
   grid-gap: 1rem;
+  @media (min-width: 992px) {
+    justify-items: center;
+  }
 `;
 
 const FooterLinksWrapper = styled.div``;

@@ -15,11 +15,11 @@ const About = () => {
             </Tagline>
             <P>
               Välkommen till restaurang Palermo i Uppsala! Vi serverar god mat i
-              en trivsam miljö och har en meny full av olika rätter, från
-              pastarätter, sallader, pizza till klassiska specialiteter. Vår
-              dryckeslista är ocksa väl värd att upptäcka. Vi ser fram emot att
-              få välkomna dig som gäst!
+              en trivsam miljö och har en meny full av olika rätter; allt ifrån
+              pastarätter, sallader och pizza, till klassiska kötträtter. Vår
+              dryckeslista är också väl värd att upptäcka.
             </P>
+            <P>Vi ser fram emot att få välkomna dig som gäst!</P>
           </div>
           <div>
             <h3>Öppettider</h3>
