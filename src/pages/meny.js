@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Menu = () => {
   return (
     <Layout>
-      <Page className='page'>
+      <Page>
         <h2>Menu page</h2>
       </Page>
     </Layout>
@@ -14,6 +14,8 @@ const Menu = () => {
 
 const Page = styled.main`
   min-height: ${({ theme }) => theme.page.minHeight};
+  width: 90vw;
+  margin: 0 auto;
 `;
 
 export default Menu;

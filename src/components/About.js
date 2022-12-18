@@ -9,19 +9,37 @@ const About = () => {
       <Headline>om palermo</Headline>
       <AboutWrapper>
         <article>
-          <Tagline>
-            Upplev avslappnad atmosfär och smakfull mat på Restaurang Palermo
-          </Tagline>
-          <P>
-            Valkommen till restaurang palermo i uppsala! Vi serverar god mat i
-            en trivsam miljo och har en meny full av olika ratter, fran
-            pastaratter, pizza och till klassiska specialiteter. Var
-            dryckeslista ar ocksa val vard att upptacka. Vi ser fram emot att fa
-            valkomna dig som gast!
-          </P>
-
+          <div>
+            <Tagline>
+              Upplev avslappnad atmosfär och smakfull mat på Restaurang Palermo
+            </Tagline>
+            <P>
+              Välkommen till restaurang Palermo i Uppsala! Vi serverar god mat i
+              en trivsam miljö och har en meny full av olika rätter, från
+              pastarätter, sallader, pizza till klassiska specialiteter. Vår
+              dryckeslista är ocksa väl värd att upptäcka. Vi ser fram emot att
+              få välkomna dig som gäst!
+            </P>
+          </div>
+          <div>
+            <h3>Öppettider</h3>
+            <Table style={{ width: '100%' }}>
+              <tr>
+                <td>Måndag</td>
+                <td>13:00 - 01:00</td>
+              </tr>
+              <tr>
+                <td>Tisdag - Lördag</td>
+                <td>11:00 - 03:00</td>
+              </tr>
+              <tr>
+                <td>Söndag</td>
+                <td>12:00 - 01:00</td>
+              </tr>
+            </Table>
+          </div>
           <Link to='/meny' className='btn'>
-            till meny
+            till menyn
           </Link>
         </article>
         <StaticImage
@@ -29,8 +47,6 @@ const About = () => {
           alt='Person Pouring Salt in Bowl'
           className='about-img'
           placeholder='blurred'
-          height={1000}
-          width={1000}
         />
       </AboutWrapper>
     </AboutContainer>
@@ -40,7 +56,6 @@ const About = () => {
 const AboutContainer = styled.section`
   .about-img {
     border-radius: ${({ theme }) => theme.borderRadius};
-    height: 500px;
   }
 
   .btn {
@@ -74,6 +89,12 @@ const Tagline = styled.h3``;
 
 const P = styled.p`
   font-weight: 500;
+`;
+
+const Table = styled.table`
+  width: 100%;
+  max-width: 20rem;
+  margin-bottom: 2rem;
 `;
 
 export default About;

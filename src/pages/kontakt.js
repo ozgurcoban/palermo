@@ -16,6 +16,8 @@ const Contact = () => {
 
 const Page = styled.main`
   min-height: ${({ theme }) => theme.page.minHeight};
+  width: 90vw;
+  margin: 0 auto;
 `;
 
 export default Contact;

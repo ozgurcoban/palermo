@@ -7,7 +7,7 @@ import About from '../components/About';
 export default function Home() {
   return (
     <Layout>
-      <Page className='page'>
+      <Page>
         <Hero />
         <About />
       </Page>
@@ -16,5 +16,6 @@ export default function Home() {
 }
 
 const Page = styled.main`
-  min-height: ${({ theme }) => theme.page.minHeight};
+  width: 90vw;
+  margin: 0 auto;
 `;

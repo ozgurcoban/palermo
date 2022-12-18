@@ -50,14 +50,14 @@ a {
   object-fit: cover;
 }  */
 
-.page {
+/* .page {
   width: 90vw;
   margin: 0 auto;
 }
 
 .page {
   min-height: calc(100vh - (6rem + 4rem));
-}
+} */
 
 .btn {
   padding: 0.7rem 1rem;

@@ -13,7 +13,9 @@ const About = () => {
 };
 
 const Page = styled.main`
-  min-height: ${({ theme }) => theme.page.minHeigh};
+  min-height: ${({ theme }) => theme.page.minHeight};
+  width: 90vw;
+  margin: 0 auto;
 `;
 
 export default About;

@@ -7,9 +7,6 @@ import Theme from '../styles/theme';
 import { ThemeProvider } from 'styled-components';
 
 const Layout = ({ children }) => {
-  const [open, setOpen] = useState(false);
-  const node = useRef();
-
   return (
     <>
       <ThemeProvider theme={Theme}>
