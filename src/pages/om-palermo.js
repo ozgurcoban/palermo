@@ -13,28 +13,38 @@ const About = () => {
           </PageHeaderCenter>
         </PageHeader>
         <PageContent>
-          <article>
+          <Column1>
             <h3>Historien om den där Palermo</h3>
-            <p>
-              Välkommen till Restaurang Palermo i Uppsala, en trivsam och
-              välkomnande restaurang med passionerad personal. Vi erbjuder en
-              mängd olika rätter, från pastarätter och pizza till grillade
-              specialiteter, samt en uppskattad dryckesmeny.
-            </p>
-            <p>
-              Vår restaurang har en kvarterkrogskänsla och en härlig blandning
-              av gäster, inklusive knegare, vinsmuttande damer och herrar och
-              studenter.
-            </p>
-            <p>
-              Vid behov kan du också sitta i vår intima källare som även går att
-              abonera för större sällskap. Det finns en uteservering som är
-              inglasad och isolerad som håller gäster svala sommartid och varma
-              under vintern. Vid större sportevenemang visar vi även
-              storbildsvisning.
-            </p>
-          </article>
-          <ImageContainer>
+            <StaticImage
+              alt='crowded bar'
+              src='../assets/images/busy-bar.jpg'
+              className='img'
+              placeholder='blurred'
+            />
+            <article>
+              <div>
+                <p>
+                  Välkommen till Restaurang Palermo i Uppsala, en trivsam och
+                  välkomnande restaurang med passionerad personal. Vi erbjuder
+                  en mängd olika rätter, från pastarätter och pizza till
+                  grillade specialiteter, samt en uppskattad dryckesmeny.
+                </p>
+                <p>
+                  Vår restaurang har en kvarterkrogskänsla och en härlig
+                  blandning av gäster, inklusive knegare, vinsmuttande damer och
+                  herrar och studenter.
+                </p>
+                <p>
+                  Vid behov kan du också sitta i vår intima källare som även går
+                  att abonera för större sällskap. Det finns en uteservering som
+                  är inglasad och isolerad som håller gäster svala sommartid och
+                  varma under vintern. Vid större sportevenemang visar vi även
+                  storbildsvisning.
+                </p>
+              </div>
+            </article>
+          </Column1>
+          <Column2>
             <StaticImage
               alt='interior of Palermo'
               src='../assets/images/indoor.jpg'
@@ -59,7 +69,7 @@ const About = () => {
               className='img'
               placeholder='blurred'
             />
-          </ImageContainer>
+          </Column2>
         </PageContent>
       </Page>
     </Layout>
@@ -67,8 +77,6 @@ const About = () => {
 };
 
 const Page = styled.main`
-  min-height: 100vh;
-
   .img {
     border-radius: ${({ theme }) => theme.borderRadius};
     width: 100%;
@@ -118,7 +126,7 @@ const PageHeaderCenter = styled.div`
 
 const PageContent = styled.div`
   width: 90vw;
-  margin: 0 auto;
+  margin: 8rem auto;
   max-width: 1120px;
 
   display: grid;
@@ -127,13 +135,21 @@ const PageContent = styled.div`
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
 
-const ImageContainer = styled.div`
+const Column1 = styled.div``;
+
+const Column2 = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
   grid-gap: 2rem 2rem;
+  padding: 1rem;
 `;
 
 export default About;
