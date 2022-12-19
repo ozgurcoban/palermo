@@ -18,4 +18,5 @@ export default function Home() {
 const Page = styled.main`
   width: 90vw;
   margin: 0 auto;
+  max-width: 1120px;
 `;

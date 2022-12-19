@@ -7,6 +7,7 @@ html, body {
   padding: 0;
   background: #f4f4f4;
   line-height: 1.7em;
+  /* letter-spacing: 1px; */
 }
 
 *, *::after, *::before {
@@ -14,7 +15,6 @@ html, body {
 }
 
 main {
-max-width: 1120px;
 }
 
 ul {
@@ -50,8 +50,7 @@ p {
 
 a {
   text-decoration: none;
-  letter-spacing: 1px;
-  text-transform: capitalize;
+  
 } 
 
 /* img {

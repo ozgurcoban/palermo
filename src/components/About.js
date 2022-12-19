@@ -6,21 +6,24 @@ import { Link } from 'gatsby';
 const About = () => {
   return (
     <AboutContainer>
-      <Headline>om palermo</Headline>
+      <Headline>välkommen</Headline>
       <AboutWrapper>
         <article>
-          <div>
+          <AboutText>
             <Tagline>
               Upplev avslappnad atmosfär och smakfull mat på Restaurang Palermo
             </Tagline>
             <P>
-              Välkommen till restaurang Palermo i Uppsala! Vi serverar god mat i
+              Välkommen till Restaurang Palermo i Uppsala! Vi serverar god mat i
               en trivsam miljö och har en meny full av olika rätter; allt ifrån
               pastarätter, sallader och pizza, till klassiska kötträtter. Vår
               dryckeslista är också väl värd att upptäcka.
             </P>
             <P>Vi ser fram emot att få välkomna dig som gäst!</P>
-          </div>
+            <Link className='link' to='/om-palermo'>
+              Mer om Palermo...
+            </Link>
+          </AboutText>
           <div>
             <h3>Öppettider</h3>
             <Table style={{ width: '100%' }}>
@@ -64,11 +67,18 @@ const AboutContainer = styled.section`
   }
 
   article {
+    display: grid;
     order: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
+
+  .link {
+    color: ${({ theme }) => theme.primaryDark};
+    text-decoration: underline;
+  }
+`;
+
+const AboutText = styled.div`
+  margin-bottom: 3rem;
 `;
 
 const AboutWrapper = styled.div`
