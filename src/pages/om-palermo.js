@@ -149,7 +149,10 @@ const Column2 = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem 2rem;
-  padding: 1rem;
+
+  @media (min-width: ${({ theme }) => theme.sizes.tablet}) {
+    padding: 1rem;
+  }
 `;
 
 export default About;
