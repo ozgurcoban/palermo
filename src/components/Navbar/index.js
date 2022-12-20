@@ -37,7 +37,9 @@ export const Navbar = () => {
           <NavLink onClick={() => setOpen(!open)} to='/om-palermo'>
             om palermo
           </NavLink>
-          <NavLink>kontakta oss</NavLink>
+          <NavLink onClick={() => setOpen(!open)} to='/kontakt'>
+            kontakta oss
+          </NavLink>
           <MenuLink to='/meny'>
             <NavBtn>meny</NavBtn>
           </MenuLink>

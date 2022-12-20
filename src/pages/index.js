@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Hero from '../components/Hero';
 import About from '../components/About';
+import Services from '../components/Services';
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Page>
         <Hero />
         <About />
+        {/* <Services /> */}
       </Page>
     </Layout>
   );
