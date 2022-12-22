@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
-import ContactForm from '../components/ContactForm';
+import ContactForm from '../components/Form/ContactForm';
 
 const Contact = () => {
   return (
@@ -70,5 +70,11 @@ const PageContent = styled.div`
   margin: 3rem auto;
   max-width: 1120px;
 `;
+
+const ColumnRow = styled.div``;
+
+const Column1 = styled.div``;
+
+const Column2 = styled.article``;
 
 export default Contact;

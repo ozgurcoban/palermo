@@ -10,7 +10,7 @@ const Hero = () => {
         alt='bar'
         className='hero-img'
         placeholder='blurred'
-        layout='full-width'
+        layout='fullWidth'
       ></StaticImage>
       <HeroContainer>
         <HeroText>

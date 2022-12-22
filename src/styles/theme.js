@@ -5,6 +5,7 @@ const Theme = {
   mobile: '576px',
   borderRadius: '0.2rem',
   letterSpacing: '1px',
+  transition: `all 0.3s linear`,
 
   animations: {
     transition: `all 0.3s linear`,
