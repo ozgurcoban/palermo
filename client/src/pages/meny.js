@@ -1,27 +1,42 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
-import ContactForm from '../components/Form/ContactForm';
+import Menu from '../components/Menu/Menu';
 
-const Contact = () => {
+const MenuPage = () => {
   return (
     <Layout>
       <Page>
         <PageHeader>
           <PageHeaderCenter>
-            <h2>Contact Page</h2>
+            <h2>meny</h2>
           </PageHeaderCenter>
         </PageHeader>
         <PageContent>
-          <ContactForm />
+          <h3>Upptäck vår mat och dryckesmeny</h3>
+          <p>
+            Ring oss på&nbsp;
+            <a href='tel:018-018-131820'>018-131820</a> eller skicka mail
+            till&nbsp;
+            <a href='mailto:info@palermo-uppsala.se'>info@palermo-uppsala.se</a>
+            &nbsp;om du har några frågor eller funderingar.
+          </p>
+          <Underline />
+          <Menu />
         </PageContent>
       </Page>
     </Layout>
   );
 };
 
-const Page = styled.main`
-  min-height: ${({ theme }) => theme.page.minHeight};
+const Page = styled.main``;
+
+export default MenuPage;
+
+const Underline = styled.div`
+  width: 5rem;
+  border: 2px solid #afacaf;
+  margin: 0 auto;
 `;
 
 const PageHeader = styled.section`
@@ -63,18 +78,23 @@ const PageHeaderCenter = styled.div`
   justify-content: flex-start;
   align-items: center;
   max-width: 1120px;
+
+  @media screen and (min-width: 584px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const PageContent = styled.div`
   width: 90vw;
   margin: 3rem auto;
   max-width: 1120px;
+
+  p {
+    margin-bottom: 2rem;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.mobile}) {
+    width: 90vw;
+  }
 `;
-
-const ColumnRow = styled.div``;
-
-const Column1 = styled.div``;
-
-const Column2 = styled.article``;
-
-export default Contact;

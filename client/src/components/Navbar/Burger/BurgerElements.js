@@ -21,7 +21,7 @@ export const StyledBurger = styled.button`
     height: 0.25rem;
     background: ${({ theme }) => theme.primaryDark};
     border-radius: 10px;
-    transition: ${({ theme }) => theme.animations.transition};
+    transition: ${({ theme }) => theme.transition};
     position: relative;
     transform-origin: 1px;
 

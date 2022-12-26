@@ -13,7 +13,7 @@ export default function Home() {
         <Hero />
         <About />
         {/* <Services /> */}
-        <ContactForm />
+        {/* <ContactForm /> */}
       </Page>
     </Layout>
   );
@@ -24,3 +24,15 @@ const Page = styled.main`
   margin: 0 auto;
   max-width: 1120px;
 `;
+
+export const Head = () => {
+  return (
+    <>
+      <title>Palermo i Uppsala</title>
+      <link
+        rel='stylesheet'
+        href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+      />
+    </>
+  );
+};
