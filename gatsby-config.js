@@ -13,5 +13,13 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          'G-QJK285TFJ0', // Google Analytics 4
+        ],
+      },
+    },
   ],
 };

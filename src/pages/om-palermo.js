@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 const About = () => {
   return (
@@ -65,22 +66,24 @@ const About = () => {
               </div>
               <div>
                 <h4>Kom i kontakt</h4>
-                <a
+                <OutboundLink
                   href='http://maps.google.com/?q=Palermo Sysslomansgatan 7, 753 11 Uppsala'
                   target='_blank'
                 >
                   Sysslomansgatan 7 <br /> 753 11 Uppsala
                   <ul>
                     <li>
-                      <a href='tel:018131820'>018-131820</a>
+                      <OutboundLink href='tel:018131820'>
+                        018-131820
+                      </OutboundLink>
                     </li>
                     <li>
-                      <a href='mailto:info@palermo-uppsala.se'>
+                      <OutboundLink href='mailto:info@palermo-uppsala.se'>
                         info@palermo-uppsala.se
-                      </a>
+                      </OutboundLink>
                     </li>
                   </ul>
-                </a>
+                </OutboundLink>
               </div>
               <StaticImage
                 alt='pizza'

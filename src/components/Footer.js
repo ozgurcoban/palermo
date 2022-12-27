@@ -3,6 +3,7 @@ import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram';
 import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 export const Footer = () => {
   return (
@@ -34,12 +35,12 @@ export const Footer = () => {
             </SocialMedia>
             <Adress>
               <Headline>hitta oss</Headline>
-              <a
+              <OutboundLink
                 href='http://maps.google.com/?q=Palermo Sysslomansgatan 7, 753 11 Uppsala'
                 target='_blank'
               >
                 Sysslomansgatan 7 <br /> 753 11 Uppsala
-              </a>
+              </OutboundLink>
             </Adress>
             <Adress>
               <Headline>kontakta oss</Headline>
@@ -71,9 +72,9 @@ export const Footer = () => {
           © Palermo, Uppsala.&nbsp;{new Date().getFullYear()}&nbsp;
           <P>
             Built by Öz and powered by
-            <a href='https://www.gatsbyjs.com/' target='_blank'>
+            <OutboundLink href='https://www.gatsbyjs.com/' target='_blank'>
               &nbsp;Gatsby
-            </a>
+            </OutboundLink>
           </P>
         </WebsiteRights>
       </WebsiteRightWrapper>
@@ -114,7 +115,7 @@ const Headline = styled.h5`
   white-space: nowrap;
 `;
 
-const ContactItem = styled.a`
+const ContactItem = styled(OutboundLink)`
   text-decoration: none;
   cursor: pointer;
   color: ${({ theme }) => theme.primaryLight};
@@ -168,7 +169,7 @@ const SocialIcons = styled.div`
   /* width: 240px; */
 `;
 
-const SocialIconLink = styled.a`
+const SocialIconLink = styled(OutboundLink)`
   font-size: 1.5rem;
   color: ${({ theme }) => theme.primaryLight};
   transition: all 0.3s ease-in-out;

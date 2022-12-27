@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Menu from '../components/Menu/Menu';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 const MenuPage = () => {
   return (
@@ -16,9 +17,13 @@ const MenuPage = () => {
           <h3>Upptäck vår mat och dryckesmeny</h3>
           <p>
             Ring oss på&nbsp;
-            <a href='tel:018-018-131820'>018-131820</a> eller skicka mail
-            till&nbsp;
-            <a href='mailto:info@palermo-uppsala.se'>info@palermo-uppsala.se</a>
+            <OutboundLink href='tel:018-018-131820'>
+              018-131820
+            </OutboundLink>{' '}
+            eller skicka mail till&nbsp;
+            <OutboundLink href='mailto:info@palermo-uppsala.se'>
+              info@palermo-uppsala.se
+            </OutboundLink>
             &nbsp;om du har några frågor eller funderingar.
           </p>
           <Underline />
@@ -40,7 +45,7 @@ const Underline = styled.div`
 `;
 
 const PageHeader = styled.section`
-  height: 30vh;
+  height: 40vh;
   background: hsla(300, 2%, 56%, 1);
   display: grid;
   place-items: center;
