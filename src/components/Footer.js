@@ -59,9 +59,9 @@ export const Footer = () => {
               <li>
                 <FooterLink to='/om-palermo'>om palermo</FooterLink>
               </li>
-              <li>
+              {/* <li>
                 <FooterLink to='/kontakt'>kontakta oss</FooterLink>
-              </li>
+              </li> */}
             </FooterLinksItems>
           </FooterContactItems>
           <FooterLinksWrapper></FooterLinksWrapper>
@@ -71,7 +71,7 @@ export const Footer = () => {
         <WebsiteRights>
           © Palermo, Uppsala.&nbsp;{new Date().getFullYear()}&nbsp;
           <P>
-            Built by Öz and powered by
+            Powered by
             <OutboundLink href='https://www.gatsbyjs.com/' target='_blank'>
               &nbsp;Gatsby
             </OutboundLink>

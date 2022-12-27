@@ -28,16 +28,20 @@ const About = () => {
             <h3>Öppettider</h3>
             <Table style={{ width: '100%' }}>
               <tr>
-                <td>Måndag</td>
-                <td>13:00 - 01:00</td>
+                <td>Måndag - Torsdag</td>
+                <td>11:00 - 02:00</td>
               </tr>
               <tr>
-                <td>Tisdag - Lördag</td>
+                <td>Fredag</td>
                 <td>11:00 - 03:00</td>
               </tr>
               <tr>
+                <td>Lördag</td>
+                <td>12:00 - 03:00</td>
+              </tr>
+              <tr>
                 <td>Söndag</td>
-                <td>12:00 - 01:00</td>
+                <td>12:00 - 02:00</td>
               </tr>
             </Table>
           </div>

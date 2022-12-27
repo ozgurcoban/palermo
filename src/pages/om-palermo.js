@@ -14,7 +14,10 @@ const About = () => {
           </PageHeaderCenter>
         </PageHeader>
         <PageContent>
-          <h3>Historien om den där Palermo</h3>
+          <h3>
+            Upplev en kvarterkrogskänsla på Restaurang Palermo i Uppsala - med
+            en härlig blandning av gäster och rätter för alla smaker
+          </h3>
           <ColumnRow>
             <Column1>
               <StaticImage

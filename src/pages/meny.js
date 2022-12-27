@@ -93,13 +93,9 @@ const PageHeaderCenter = styled.div`
 const PageContent = styled.div`
   width: 90vw;
   margin: 3rem auto;
-  max-width: 1120px;
+  max-width: 800px;
 
   p {
     margin-bottom: 2rem;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.sizes.mobile}) {
-    width: 90vw;
   }
 `;
