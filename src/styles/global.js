@@ -44,12 +44,14 @@ h3 {
 }
 
 p {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05rem;
   
 }
 
 a {
   text-decoration: none;
+  color: ${({ theme }) => theme.primaryDark}
   
 } 
 

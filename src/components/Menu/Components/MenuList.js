@@ -1,18 +1,5 @@
 import React from 'react';
-
-import {
-  MenuItem,
-  SubCategory,
-  Item,
-  Header,
-  Description,
-  Name,
-  Price,
-  TakeAwayPrice,
-  CategoryDesc,
-  ItemWrapper,
-  PriceWrapper,
-} from './MenuListElements';
+import styled from 'styled-components';
 
 const MenuList = ({ items }) => {
   const id = items.map;
@@ -29,8 +16,10 @@ const MenuList = ({ items }) => {
 
         return (
           <MenuItem key={id}>
-            <SubCategory>{subcategory}</SubCategory>
-            <CategoryDesc>{description}</CategoryDesc>
+            <CategoryWrapper>
+              <SubCategory>{subcategory}</SubCategory>
+              <CategoryDesc>{description}</CategoryDesc>
+            </CategoryWrapper>
             <ItemWrapper>
               {menuItem.items.map(submenu => {
                 const { id, name, price, description, takeawayprice } = submenu;
@@ -61,31 +50,106 @@ const MenuList = ({ items }) => {
 
 export default MenuList;
 
-// import React, { useState, useEffect } from 'react';
+const Underline = styled.div`
+  width: 7rem;
+  margin: 0 auto;
+  border: 1px solid red;
+`;
 
-// const data = {
-//   key1: {
-//     subkey1: 'value1',
-//     subkey2: 'value2',
-//   },
-//   key2: {
-//     subkey1: 'value3',
-//     subkey2: 'value4',
-//   },
-// };
+const MenuItem = styled.div`
+  /* padding: 1rem; */
+  border-radius: ${({ theme }) => theme.borderRadius};
+  /* max-width: 990px; */
+  margin: 0 auto;
+`;
 
-// const MyComponent = () => {
-//   const [elements, setElements] = useState([]);
+const CategoryWrapper = styled.div`
+  padding: 1rem;
+  border-radius: ${({ theme }) => theme.borderRadius};
+`;
 
-//   useEffect(() => {
-//     const filteredElements = data.map((value, key) => {
-//       if (value.subkey1 === 'value1') {
-//         return <p key={key}>{value.subkey1}</p>;
-//       }
-//     });
+const SubCategory = styled.h3`
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+`;
 
-//     setElements(filteredElements);
-//   }, []);
+const ItemWrapper = styled.div`
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-gap: 1rem;
+  /* width: 90vw; */
+  margin: 0 auto;
+`;
 
-//   return <div>{elements}</div>;
-// };
+const Item = styled.article`
+  border-radius: ${({ theme }) => theme.borderRadius};
+  margin-bottom: 0.5rem;
+  display: flex;
+  border-top: 0.1px solid gray;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+
+  &:last-child {
+    border-bottom: 0.1px solid gray;
+  }
+
+  @media (min-width: ${({ theme }) => theme.sizes.tablet}) {
+    min-height: 300px;
+  }
+`;
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0;
+  align-items: start;
+`;
+
+const CategoryDesc = styled.p`
+  &:first-letter {
+    text-transform: uppercase;
+  }
+`;
+
+const Name = styled.h4`
+  font-weight: 100;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  max-width: 16ch;
+  /* &:first-letter {
+    text-transform: uppercase;
+    font-size: 1.7em;
+    font-weight: 500;
+  } */
+`;
+
+const Price = styled.p`
+  text-transform: capitalize;
+  margin: 0;
+  font-weight: 600;
+  margin-bottom: 1rem;
+`;
+
+const TakeAwayPrice = styled.p``;
+
+const Description = styled.p`
+  &:first-letter {
+    text-transform: capitalize;
+  }
+  width: clamp(30ch, 50%, 55ch);
+  line-height: 1.8em;
+`;
+
+const PriceWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  line-height: 1.1em;
+`;

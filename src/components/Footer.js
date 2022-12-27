@@ -43,15 +43,11 @@ export const Footer = () => {
             </Adress>
             <Adress>
               <Headline>kontakta oss</Headline>
-              <ContactItem href='tel:018-508800'>
-                018-508800
-                <br />
-              </ContactItem>
               <ContactItem href='tel:018-018-131820'>
-                018 - 13 18 20 <br />
+                018 - 131820 <br />
               </ContactItem>
-              <ContactItem href='mailto:info@miklagarduppsala.se'>
-                info@palermouppsala.se
+              <ContactItem href='mailto:info@palermo-uppsala.se'>
+                info@palermo-uppsala.se
               </ContactItem>
             </Adress>
             <FooterLinksItems>
@@ -147,6 +143,7 @@ const FooterLinksItems = styled.ul`
 
 const FooterLink = styled(Link)`
   color: ${({ theme }) => theme.primaryLight};
+  text-transform: capitalize;
 `;
 
 const SocialMedia = styled.div`
@@ -197,11 +194,12 @@ const P = styled.p`
   margin-bottom: 0;
   font-size: 8px;
   font-weight: 300;
-  padding: 0.3rem 0;
+  padding: 0.1rem 0;
   color: ${({ theme }) => theme.primaryDark};
 
   a {
     font-weight: bold;
+    color: #7026b9;
   }
 `;
 

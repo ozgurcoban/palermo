@@ -23,29 +23,11 @@ const Menu = () => {
   };
 
   return (
-    <Page>
-      <PageText>
-        <h2>Se vad vi har att erbjuda</h2>
-        <p>
-          Här hittar du ett urval av vad vi har att erbjuda. I menyn finns våra
-          omtyckta pizzor, varmrätter såsom klassiska Filé Oscar eller varför
-          inte testa våra pastor?
-        </p>
-        <p>Man hittar något för alla tillfällen, välkomna in på en bit!</p>
-      </PageText>
+    <>
       <Categories categories={categories} filterItems={filterItems} />
       <MenuList key={categoryId} items={menuItems} />
-    </Page>
+    </>
   );
 };
-
-const Page = styled.main`
-  min-height: ${({ theme }) => theme.page.minHeight};
-  width: 90vw;
-  max-width: 990px;
-  margin: 0 auto;
-`;
-
-const PageText = styled.div``;
 
 export default Menu;
