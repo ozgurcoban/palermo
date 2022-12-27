@@ -8,8 +8,9 @@ const About = () => {
     <Layout>
       <Page>
         <PageHeader>
-          <h2>om palermo</h2>
-          <PageHeaderCenter></PageHeaderCenter>
+          <PageHeaderCenter>
+            <h2>om palermo</h2>
+          </PageHeaderCenter>
         </PageHeader>
         <PageContent>
           <h3>Historien om den där Palermo</h3>
@@ -167,7 +168,7 @@ const Page = styled.main`
 `;
 
 const PageHeader = styled.section`
-  height: 30vh;
+  height: 40vh;
   background: hsla(300, 2%, 56%, 1);
   display: grid;
   place-items: center;
