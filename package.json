@@ -17,12 +17,8 @@
   },
   "homepage": "https://github.com/ozgurcoban/palermo#readme",
   "dependencies": {
-    "@gatsbyjs/parcel-namer-relative-to-cwd": "^2.3.1",
     "@react-icons/all-files": "^4.1.0",
-    "babel-plugin-remove-graphql-queries": "^5.3.1",
     "babel-plugin-styled-components": "^2.0.7",
-    "babel-preset-gatsby": "^3.3.1",
-    "create-react-app": "^1.2.1",
     "formik": "^2.2.9",
     "gatsby": "^5.3.3",
     "gatsby-core-utils": "^4.3.1",
@@ -37,9 +33,5 @@
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.6",
     "yup": "^0.32.11"
-  },
-  "devDependencies": {
-    "react-server-dom-webpack": "^0.0.1",
-    "web-vitals": "^3.1.0"
   }
 }
