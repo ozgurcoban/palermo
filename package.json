@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ozgurcoban/palermo#readme",
   "dependencies": {
+    "@emailjs/browser": "^3.10.0",
     "@react-icons/all-files": "^4.1.0",
     "babel-plugin-styled-components": "^2.0.7",
     "formik": "^2.2.9",
@@ -31,6 +32,10 @@
     "gatsby-transformer-sharp": "^5.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "styled-components": "^5.3.6",
     "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^8.0.1"
   }
 }

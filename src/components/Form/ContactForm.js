@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
+import emailjs from '@emailjs/browser';
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -84,6 +85,12 @@ const ContactForm = () => {
         onSubmit={(values, { setSubmitting, resetForm, setStatus }) => {
           setTimeout(() => {
             // alert(JSON.stringify(values, null, 2));
+            emailjs.send(
+              'service_bjmv7th',
+              'template_hhp52cr',
+              values,
+              '1uuAXH_fgWH5SjGsT'
+            );
             setSubmitting(false);
             setStatus({ success: 'Ditt meddelande har skickats!' });
           }, 1500);

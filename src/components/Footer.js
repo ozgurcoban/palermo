@@ -59,9 +59,9 @@ export const Footer = () => {
               <li>
                 <FooterLink to='/om-palermo'>om palermo</FooterLink>
               </li>
-              {/* <li>
+              <li>
                 <FooterLink to='/kontakt'>kontakta oss</FooterLink>
-              </li> */}
+              </li>
             </FooterLinksItems>
           </FooterContactItems>
           <FooterLinksWrapper></FooterLinksWrapper>
