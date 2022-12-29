@@ -86,10 +86,10 @@ const ContactForm = () => {
           setTimeout(() => {
             // alert(JSON.stringify(values, null, 2));
             emailjs.send(
-              process.env.SERVICE_ID,
-              process.env.TEMPLATE_ID,
+              process.env.GATSBY_SERVICE_ID,
+              process.env.GATSBY_TEMPLATE_ID,
               values,
-              process.env.USER_ID
+              process.env.GATSBY_USER_ID
             );
             setSubmitting(false);
             setStatus({ success: 'Ditt meddelande har skickats!' });
