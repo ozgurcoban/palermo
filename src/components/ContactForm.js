@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { Formik, Form, useField } from 'formik';
@@ -50,10 +50,15 @@ const TextArea = ({ label, ...props }) => {
 };
 
 const ContactForm = () => {
+  const wrapperRef = useRef(null);
+  useEffect(() => {
+    wrapperRef.current.style.zoom = '90%';
+  }, []);
+
   const phoneRegExp =
     /^((\+[1-9]{1,4}[ \-]*)|(\+\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
   return (
-    <FormContainer>
+    <FormContainer ref={wrapperRef}>
       <Formik
         validateOnChange={true}
         validateOnBlur={false}
@@ -182,6 +187,7 @@ const ContactForm = () => {
 };
 
 const FormContainer = styled.div`
+  width: 100%;
   .form-wrapper {
     max-width: 30rem;
   }

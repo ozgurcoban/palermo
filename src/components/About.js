@@ -35,9 +35,6 @@ const About = () => {
               dryckeslista är också väl värd att upptäcka.
             </P>
             <P>Vi ser fram emot att få välkomna dig som gäst!</P>
-            <Link className='link' to='/om-palermo'>
-              Mer om Palermo...
-            </Link>
           </AboutText>
           <div>
             <h3>Öppettider</h3>
@@ -110,11 +107,8 @@ const AboutWrapper = styled.div`
 `;
 
 const Headline = styled.h2`
-  &::first-letter {
-    text-transform: capitalize;
-  }
   min-height: 23rem;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 `;
 const Tagline = styled.h3``;
 
