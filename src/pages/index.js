@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Services from '../components/Services';
-import ContactForm from '../components/Form/ContactForm';
+import ContactForm from '../components/ContactForm';
 
 export default function Home() {
   return (

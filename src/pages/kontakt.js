@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
-import ContactForm from '../components/Form/ContactForm';
+import ContactForm from '../components/ContactForm';
 
 const Contact = () => {
   return (
