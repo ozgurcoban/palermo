@@ -1,3 +1,5 @@
+.gitignore.com/
+.npmrc
 # Logs
 logs
 *.log
@@ -33,8 +35,11 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
-jspm_packages/
+node_modules
+integration-tests/gatsby-cli/execution-folder/*
+*.un~
+dist
+bin/published.js
 
 # Typescript v1 declaration files
 typings/
@@ -68,4 +73,24 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 debug.log
-sendgrid.env
+
+# IDE specific
+.idea/
+.vscode/
+*.sw*
+
+# misc
+.serverless/
+.eslintcache
+scripts/.env
+
+# lock files
+yarn.lock
+package-lock.json
+# ignore any lock file other than main lock file
+!/yarn.lock
+
+# starters are special; we want to persist the lock files
+!starters/*/package-lock.json
+
+.parcel-cache
