@@ -86,10 +86,10 @@ const ContactForm = () => {
           setTimeout(() => {
             // alert(JSON.stringify(values, null, 2));
             emailjs.send(
-              'service_bjmv7th',
-              'template_hhp52cr',
+              process.env.SERVICE_ID,
+              process.env.TEMPLATE_ID,
               values,
-              '1uuAXH_fgWH5SjGsT'
+              process.env.USER_ID
             );
             setSubmitting(false);
             setStatus({ success: 'Ditt meddelande har skickats!' });
@@ -216,7 +216,7 @@ const FormContainer = styled.div`
         font-family: 'Font Awesome 5 Free';
         font-weight: 600;
         content: ' \f069';
-        font-size: 0.4rem;
+        font-size: 0.3rem;
         color: ${({ theme }) => theme.primaryDark};
         position: relative;
         top: -6px;
