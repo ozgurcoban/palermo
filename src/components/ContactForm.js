@@ -194,7 +194,7 @@ const FormContainer = styled.div`
   .checkbox-wrapper {
     label {
       position: relative;
-      top: -4px;
+      top: 3px;
       /* margin-right: 0.2rem; */
       padding-right: 0.3rem;
     }
