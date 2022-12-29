@@ -23,24 +23,24 @@ ul {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: clamp(3rem, 8vw, 6rem);
   letter-spacing: 4px;
   text-transform: uppercase;
   line-height: 3rem;
 }
 
 h2 {
-  font-size: 2.5rem;
-  text-transform: capitalize;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1.5;
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   letter-spacing: 1px;
   line-height: 3rem;
   font-weight: 500;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 p {

@@ -2,16 +2,31 @@ import React from 'react';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
+import { Typewriter } from 'react-simple-typewriter';
 
 const About = () => {
   return (
     <AboutContainer>
-      <Headline>välkommen</Headline>
+      <Headline>
+        Sammanträffa med vänner och njut av&nbsp;
+        <span>
+          <Typewriter
+            words={['god mat', 'läskande dryck', 'härlig stämning']}
+            loop={false}
+            cursor
+            cursorStyle='_'
+            typeSpeed={200}
+            deleteSpeed={200}
+            delaySpeed={2500}
+          />
+        </span>
+        &nbsp;på Restaurang Palermo
+      </Headline>
       <AboutWrapper>
         <article>
           <AboutText>
             <Tagline>
-              Upplev avslappnad atmosfär och smakfull mat på Restaurang Palermo
+              Ta ett avbrott från vardagen och upplev avslappnad atmosfär
             </Tagline>
             <P>
               Välkommen till Restaurang Palermo i Uppsala! Vi serverar god mat i
@@ -95,9 +110,11 @@ const AboutWrapper = styled.div`
 `;
 
 const Headline = styled.h2`
-  text-align: center;
-
-  text-transform: uppercase;
+  &::first-letter {
+    text-transform: capitalize;
+  }
+  min-height: 23rem;
+  margin-bottom: 2rem;
 `;
 const Tagline = styled.h3``;
 

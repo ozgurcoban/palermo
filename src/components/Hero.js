@@ -25,7 +25,7 @@ const Hero = () => {
 export const StyledHero = styled.header`
   height: 40vh;
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 
   .hero-img {
     height: 100%;
@@ -59,7 +59,6 @@ export const HeroText = styled.div`
 `;
 
 export const Headline = styled.h1`
-  font-size: 3rem;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: ${({ theme }) => theme.primaryLight};

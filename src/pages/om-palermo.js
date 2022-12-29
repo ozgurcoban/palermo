@@ -165,7 +165,7 @@ const Page = styled.main`
 
   h3 {
     margin-bottom: 2rem;
-    text-align: center;
+    max-width: 45ch;
   }
 
   h4 {
@@ -215,8 +215,12 @@ const PageHeaderCenter = styled.div`
 
 const PageContent = styled.div`
   width: 90vw;
-  margin: 4rem auto;
+  margin: 2.5rem auto;
   max-width: 1120px;
+
+  h3 {
+    /* width: clamp(20ch, 50%, 45ch); */
+  }
 `;
 
 const ColumnRow = styled.div`
