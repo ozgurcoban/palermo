@@ -52,12 +52,10 @@ const TextArea = ({ label, ...props }) => {
 const ContactForm = () => {
   const wrapperRef = useRef(null);
 
-  console.log(wrapperRef);
-
   const phoneRegExp =
     /^((\+[1-9]{1,4}[ \-]*)|(\+\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
   return (
-    <FormContainer ref={wrapperRef}>
+    <FormContainer>
       <Formik
         validateOnChange={true}
         validateOnBlur={false}
@@ -97,7 +95,8 @@ const ContactForm = () => {
             //   values,
             //   process.env.GATSBY_USER_ID
             // );
-            wrapperRef.current.style.zoom = '90%';
+            wrapperRef.current.style.zoom = '100%';
+            console.log(wrapperRef);
             setSubmitting(false);
             toast.success('Ditt meddelande har skickats!', {
               position: toast.POSITION.TOP_RIGHT,
@@ -173,10 +172,6 @@ const ContactForm = () => {
               <SubmitButton type='submit' disabled={!(dirty && isValid)}>
                 {isSubmitting ? 'Skickar...' : 'Skicka'}
               </SubmitButton>
-
-              {status && status.success ? (
-                <div className='success'>{status.success}</div>
-              ) : null}
               <ToastContainer />
             </Form>
           );
@@ -187,7 +182,6 @@ const ContactForm = () => {
 };
 
 const FormContainer = styled.div`
-  width: 100%;
   .form-wrapper {
     max-width: 30rem;
   }
@@ -226,6 +220,7 @@ const FormContainer = styled.div`
   }
 
   .form {
+    width: 100%;
     div:nth-child(1) > label,
     div:nth-child(2) > label,
     div:nth-child(4) > label,
