@@ -51,9 +51,8 @@ const TextArea = ({ label, ...props }) => {
 
 const ContactForm = () => {
   const wrapperRef = useRef(null);
-  useEffect(() => {
-    wrapperRef.current.style.zoom = '90%';
-  }, []);
+
+  console.log(wrapperRef);
 
   const phoneRegExp =
     /^((\+[1-9]{1,4}[ \-]*)|(\+\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
@@ -98,6 +97,7 @@ const ContactForm = () => {
             //   values,
             //   process.env.GATSBY_USER_ID
             // );
+            wrapperRef.current.style.zoom = '90%';
             setSubmitting(false);
             toast.success('Ditt meddelande har skickats!', {
               position: toast.POSITION.TOP_RIGHT,
@@ -112,7 +112,7 @@ const ContactForm = () => {
       >
         {({ isValid, isSubmitting, dirty, status }) => {
           return (
-            <Form className='form'>
+            <Form ref={wrapperRef} className='form'>
               <Div>
                 <TextInput
                   label='Förnamn'
