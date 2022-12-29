@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { Formik, Form, useField } from 'formik';
@@ -50,8 +50,6 @@ const TextArea = ({ label, ...props }) => {
 };
 
 const ContactForm = () => {
-  const wrapperRef = useRef(null);
-
   const phoneRegExp =
     /^((\+[1-9]{1,4}[ \-]*)|(\+\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
   return (
@@ -95,8 +93,7 @@ const ContactForm = () => {
             //   values,
             //   process.env.GATSBY_USER_ID
             // );
-            wrapperRef.current.style.zoom = '80%';
-            console.log(wrapperRef);
+
             setSubmitting(false);
             toast.success('Ditt meddelande har skickats!', {
               position: toast.POSITION.TOP_RIGHT,
@@ -111,7 +108,7 @@ const ContactForm = () => {
       >
         {({ isValid, isSubmitting, dirty, status }) => {
           return (
-            <Form ref={wrapperRef} className='form'>
+            <Form className='form'>
               <Div>
                 <TextInput
                   label='Förnamn'
