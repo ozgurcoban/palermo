@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -85,14 +87,17 @@ const ContactForm = () => {
         onSubmit={(values, { setSubmitting, resetForm, setStatus }) => {
           setTimeout(() => {
             // alert(JSON.stringify(values, null, 2));
-            emailjs.send(
-              process.env.GATSBY_SERVICE_ID,
-              process.env.GATSBY_TEMPLATE_ID,
-              values,
-              process.env.GATSBY_USER_ID
-            );
+            // emailjs.send(
+            //   process.env.GATSBY_SERVICE_ID,
+            //   process.env.GATSBY_TEMPLATE_ID,
+            //   values,
+            //   process.env.GATSBY_USER_ID
+            // );
             setSubmitting(false);
-            setStatus({ success: 'Ditt meddelande har skickats!' });
+            toast.success('Ditt meddelande har skickats!', {
+              position: toast.POSITION.TOP_RIGHT,
+              className: 'toast-message',
+            });
           }, 1500);
           setTimeout(() => {
             resetForm({ values: '' });
@@ -110,6 +115,7 @@ const ContactForm = () => {
                   type='text'
                   placeholder='Janne'
                   TextInput
+                  className='text-input'
                 />
               </Div>
               <Div>
@@ -118,6 +124,7 @@ const ContactForm = () => {
                   name='lastName'
                   type='text'
                   placeholder='Doe'
+                  className='text-input'
                 />
               </Div>
               <Div>
@@ -126,6 +133,7 @@ const ContactForm = () => {
                   name='phone'
                   type='text'
                   placeholder='0701234567...'
+                  className='text-input'
                 />
               </Div>
               <Div>
@@ -134,6 +142,7 @@ const ContactForm = () => {
                   name='email'
                   type='email'
                   placeholder='janne@doe.com...'
+                  className='text-input'
                 />
               </Div>
               <Div>
@@ -142,6 +151,7 @@ const ContactForm = () => {
                   name='message'
                   rows='6'
                   placeholder='Skriv ditt meddelande här'
+                  className='text-input'
                 />
               </Div>
 
@@ -162,6 +172,7 @@ const ContactForm = () => {
               {status && status.success ? (
                 <div className='success'>{status.success}</div>
               ) : null}
+              <ToastContainer />
             </Form>
           );
         }}
@@ -186,8 +197,9 @@ const FormContainer = styled.div`
   .checkbox-wrapper {
     label {
       position: relative;
-      top: 2px;
-      margin-right: 0.2rem;
+      top: 0;
+      /* margin-right: 0.2rem; */
+      padding-right: 0.3rem;
     }
 
     span {
@@ -223,6 +235,19 @@ const FormContainer = styled.div`
       }
     }
   }
+
+  .text-input {
+    &:not(:last-child) {
+      height: 3.5rem;
+    }
+  }
+
+  .toast-message {
+    background: ${({ theme }) => theme.primaryDark};
+    color: ${({ theme }) => theme.primaryLight};
+    font-size: 20px;
+    padding: 30px 20px;
+  }
 `;
 
 const Div = styled.div`
@@ -253,6 +278,7 @@ const Textarea = styled.textarea`
 const SubmitButton = styled.button`
   margin: 1rem 0;
   padding: 1rem;
+  height: 3.5rem;
   width: 100%;
   background-color: #7491aa;
   border: none;
