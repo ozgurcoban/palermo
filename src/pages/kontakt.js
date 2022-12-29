@@ -83,3 +83,7 @@ const Column1 = styled.div``;
 const Column2 = styled.article``;
 
 export default Contact;
+
+export function Head() {
+  return <title>Kontakta oss</title>;
+}

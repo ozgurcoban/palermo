@@ -99,3 +99,11 @@ const PageContent = styled.div`
     margin-bottom: 2rem;
   }
 `;
+
+export const Head = () => {
+  return (
+    <>
+      <title>Meny</title>
+    </>
+  );
+};

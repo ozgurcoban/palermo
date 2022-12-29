@@ -274,3 +274,11 @@ const ContactWrapper = styled.div`
 `;
 
 export default About;
+
+export const Head = () => {
+  return (
+    <>
+      <title>Om Palermo</title>
+    </>
+  );
+};
