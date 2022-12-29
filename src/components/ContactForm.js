@@ -95,7 +95,7 @@ const ContactForm = () => {
             //   values,
             //   process.env.GATSBY_USER_ID
             // );
-            wrapperRef.current.style.zoom = '100%';
+            wrapperRef.current.style.zoom = '80%';
             console.log(wrapperRef);
             setSubmitting(false);
             toast.success('Ditt meddelande har skickats!', {
