@@ -43,7 +43,7 @@ const Page = styled.main`
 `;
 
 const PageHeader = styled.section`
-  height: 30vh;
+  height: 40vh;
   background: hsla(300, 2%, 56%, 1);
   display: grid;
   place-items: center;

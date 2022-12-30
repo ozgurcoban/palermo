@@ -63,7 +63,7 @@ export const NavLinks = styled.div`
 `;
 
 export const NavLink = styled(Link)`
-  font-size: clamp(1.1rem, 5vw, 1.7rem);
+  font-size: clamp(1.1rem, 5vw, 1.4rem);
   font-weight: 300;
   /* display: block; */
   text-align: center;
@@ -147,14 +147,14 @@ export const NavBtn = styled.button`
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 
-  border-color: #3498db;
+  border-color: #009ffd;
   color: #fff;
-  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  box-shadow: 0 0 40px 40px #009ffd inset, 0 0 0 0 #009ffd;
   -webkit-transition: all 150ms ease-in-out;
   transition: all 150ms ease-in-out;
 
   &:hover {
-    box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+    box-shadow: 0 0 10px 0 #009ffd inset, 0 0 10px 4px #009ffd;
     color: black;
   }
 `;

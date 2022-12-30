@@ -17,14 +17,14 @@ export const Footer = () => {
                 <Headline>följ oss</Headline>
                 <SocialIcons>
                   <SocialIconLink
-                    href='//https://www.facebook.com/https://www.facebook.com/profile.php?id=100046443356150profile.php?id=100046443356150a'
+                    href='https://www.facebook.com/profile.php?id=100046443356150'
                     target='_blank'
                     aria-label='Facebook'
                   >
                     <FaFacebook />
                   </SocialIconLink>
                   <SocialIconLink
-                    href='//https://www.instagram.com/palermo_uppsala'
+                    href='https://www.instagram.com/palermo_uppsala'
                     target='_blank'
                     aria-label='Instagram'
                   >
