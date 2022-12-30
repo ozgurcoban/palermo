@@ -31,13 +31,25 @@ export const Navbar = () => {
           <Burger open={open} setOpen={setOpen} />
         </NavHeader>
         <NavLinks open={open}>
-          <NavLink onClick={() => setOpen(!open)} to='/'>
+          <NavLink
+            onClick={() => setOpen(!open)}
+            to='/'
+            activeClassName='active-link'
+          >
             start
           </NavLink>
-          <NavLink onClick={() => setOpen(!open)} to='/om-palermo'>
+          <NavLink
+            onClick={() => setOpen(!open)}
+            to='/om-palermo'
+            activeClassName='active-link'
+          >
             om palermo
           </NavLink>
-          <NavLink onClick={() => setOpen(!open)} to='/kontakt'>
+          <NavLink
+            onClick={() => setOpen(!open)}
+            to='/kontakt'
+            activeClassName='active-link'
+          >
             kontakta oss
           </NavLink>
           <MenuLink to='/meny'>

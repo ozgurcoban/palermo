@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
+import Contact from '../components/ContactSection';
 
 const About = () => {
   return (
@@ -141,6 +142,7 @@ const About = () => {
               />
             </ContactWrapper>
           </ColumnRow> */}
+          <Contact />
         </PageContent>
       </Page>
     </Layout>

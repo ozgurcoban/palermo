@@ -17,7 +17,20 @@ const Contact = () => {
             <Column1>
               <ContactForm />
             </Column1>
-            <Column2></Column2>
+            <Column2>
+              <h3>Vi vill gärna höra från dig!</h3>
+              <p>
+                Om du har några frågor, förslag eller feedback är du varmt
+                välkommen att kontakta oss. Vi på Palermo i Uppsala ser fram
+                emot att höra från dig och göra vårt yttersta för att du ska få
+                en minnesvärd kväll hos oss.
+              </p>
+              <p>
+                Vänligen använd formuläret nedan för att skicka oss ett
+                meddelande eller ring oss på det angivna telefonnumret. Vi
+                återkommer så snart som möjligt.
+              </p>
+            </Column2>
           </ColumnRow>
         </PageContent>
       </Page>
@@ -76,9 +89,19 @@ const PageContent = styled.div`
   max-width: 1120px;
 `;
 
-const ColumnRow = styled.div``;
+const ColumnRow = styled.div`
+  display: grid;
+  grid-gap: 2rem 4rem;
+  margin: 0 auto;
 
-const Column1 = styled.div``;
+  @media screen and (min-width: ${({ theme }) => theme.sizes.tablet}) {
+    width: 50%;
+  }
+`;
+
+const Column1 = styled.div`
+  order: 1;
+`;
 
 const Column2 = styled.article``;
 

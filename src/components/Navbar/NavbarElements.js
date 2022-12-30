@@ -7,7 +7,11 @@ export const Nav = styled.nav`
   justify-content: center;
 
   @media (min-width: 992px) {
-    height: 6rem;
+    height: 8rem;
+  }
+
+  .active-link {
+    font-weight: 700;
   }
 `;
 
@@ -37,8 +41,8 @@ export const NavHeader = styled.div`
 
 export const Logo = styled.img`
   margin-left: -6px;
-  margin-bottom: -9px;
-  width: 4rem;
+  margin-bottom: -15px;
+  width: 5rem;
 `;
 
 export const NavLinks = styled.div`
@@ -59,23 +63,47 @@ export const NavLinks = styled.div`
 `;
 
 export const NavLink = styled(Link)`
-  display: block;
+  font-size: clamp(1.1rem, 5vw, 1.7rem);
+  font-weight: 300;
+  /* display: block; */
   text-align: center;
   color: #333;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   white-space: nowrap;
   cursor: pointer;
   border-top: 1px solid lightGray;
-  font-size: 1.5rem;
   text-transform: capitalize;
-  letter-spacing: ${({ theme }) => theme.letterSpacing};
-  transition: ${({ theme }) => theme.animations.transition};
+  z-index: 1;
+  position: relative;
+
+  &:last-child {
+    cursor: default;
+  }
+
+  &:not(:last-child) {
+    @media screen and (min-width: 768px) {
+      &:before {
+        background: #c3c1c3;
+        content: '';
+        inset: 0;
+        position: absolute;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s ease-in-out;
+        z-index: -1;
+      }
+
+      &:hover::before {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
 
   @media (min-width: 992px) {
     padding: 0;
     border-top: none;
     margin-right: 1rem;
-    font-size: 1rem;
   }
 `;
 
@@ -92,16 +120,41 @@ export const MenuLink = styled(NavLink)`
 `;
 
 export const NavBtn = styled.button`
-  padding: 0.7rem 1rem;
-  font-size: 1.2rem;
-  align-self: center;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
-  border: none;
+  background-color: transparent;
+  border: 2px solid #e74c3c;
+  border-radius: 0.6em;
+  color: #e74c3c;
   cursor: pointer;
-  background-color: #7491aa;
-  color: aliceblue;
-  border-radius: ${({ theme }) => theme.borderRadius};
-  @media (min-width: 992px) {
-    /* display: none; */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+    color: black;
   }
 `;

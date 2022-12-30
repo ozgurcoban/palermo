@@ -5,6 +5,7 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import Services from '../components/Services';
 import ContactForm from '../components/ContactForm';
+import Contact from '../components/ContactSection';
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         <Hero />
         <About />
         {/* <Services /> */}
-        {/* <ContactForm /> */}
+        <Contact />
       </Page>
     </Layout>
   );

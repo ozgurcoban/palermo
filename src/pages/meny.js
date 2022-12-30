@@ -14,7 +14,8 @@ const MenuPage = () => {
           </PageHeaderCenter>
         </PageHeader>
         <PageContent>
-          <h3>Upptäck vår mat och dryckesmeny</h3>
+          <h3>Upptäck vår meny</h3>
+          {/* TODO: Ändra till Upptäck vår mat och dryckesmeny när dricka är inlagt */}
           <p>
             Ring oss på&nbsp;
             <OutboundLink href='tel:018-018-131820'>

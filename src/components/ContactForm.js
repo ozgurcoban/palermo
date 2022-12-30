@@ -87,12 +87,12 @@ const ContactForm = () => {
         onSubmit={(values, { setSubmitting, resetForm, setStatus }) => {
           setTimeout(() => {
             // alert(JSON.stringify(values, null, 2));
-            // emailjs.send(
-            //   process.env.GATSBY_SERVICE_ID,
-            //   process.env.GATSBY_TEMPLATE_ID,
-            //   values,
-            //   process.env.GATSBY_USER_ID
-            // );
+            emailjs.send(
+              process.env.GATSBY_SERVICE_ID,
+              process.env.GATSBY_TEMPLATE_ID,
+              values,
+              process.env.GATSBY_USER_ID
+            );
 
             setSubmitting(false);
             toast.success('Ditt meddelande har skickats!', {
@@ -245,6 +245,7 @@ const FormContainer = styled.div`
     color: ${({ theme }) => theme.primaryLight};
     font-size: 20px;
     padding: 30px 20px;
+    border-radius: ${({ theme }) => theme.borderRadius};
   }
 `;
 

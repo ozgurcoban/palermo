@@ -26,7 +26,7 @@ const About = () => {
         <article>
           <AboutText>
             <Tagline>
-              Ta ett avbrott från vardagen och upplev avslappnad atmosfär
+              Ta ett avbrott från vardagen och upplev en avslappnad atmosfär
             </Tagline>
             <P>
               Välkommen till Restaurang Palermo i Uppsala! Vi serverar god mat i
@@ -73,6 +73,7 @@ const About = () => {
 };
 
 const AboutContainer = styled.section`
+  margin-bottom: 4rem;
   .about-img {
     border-radius: ${({ theme }) => theme.borderRadius};
   }
@@ -107,7 +108,12 @@ const AboutWrapper = styled.div`
 `;
 
 const Headline = styled.h2`
-  min-height: 23rem;
+  min-height: 20rem;
+  font-weight: 500;
+  margin: 4rem 0;
+  span {
+    font-weight: 700;
+  }
   /* margin-bottom: 2rem; */
 `;
 const Tagline = styled.h3``;

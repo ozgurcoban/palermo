@@ -44,9 +44,9 @@ h3 {
 }
 
 p {
+   font-size: clamp(1rem, 5vw, 1.3rem);
   margin-bottom: 1rem;
   letter-spacing: 0.05rem;
-  
 }
 
 a {
@@ -70,8 +70,11 @@ a {
 
 .btn {
   padding: 0.7rem 1rem;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 5vw, 1.1rem);
   border-radius: ${({ theme }) => theme.borderRadius};
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 300;
 }
 `;
