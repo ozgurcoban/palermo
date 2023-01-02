@@ -23,7 +23,6 @@ const HappyHourBanner = () => {
           </ParallaxBannerLayer>
           <ParallaxBannerLayer
             opacity={[0, 1]}
-            scale={[0.7, 1.1]}
             className='parallax-banner-layer'
             speed={8}
           >
