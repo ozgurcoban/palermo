@@ -12,22 +12,39 @@ const HappyHourBanner = () => {
     <ParallaxContainer>
       <ParallaxProvider>
         <ParallaxBanner className='parallax-banner'>
-          <ParallaxBannerLayer speed={-30} style>
-            <StaticImage
-              className='bg-img'
-              src='../assets/images/three-chairs.jpg'
-              placeholder='blurred'
-              layout='fullWidth'
-              alt='three bar stools'
-            />
-
-            <ParallaxBannerLayer className='parallax-banner-layer' speed={-20}>
-              <h2>Happy hour varje dag kl 15-22</h2>
-            </ParallaxBannerLayer>
+          <ParallaxBannerLayer speed={-15}></ParallaxBannerLayer>
+          <StaticImage
+            className='bg-img'
+            src='../assets/images/three-chairs.jpg'
+            placeholder='blurred'
+            layout='fullWidth'
+            alt='three bar stools'
+          />
+          <ParallaxBannerLayer className='parallax-banner-layer' speed={-5}>
+            <h2>Happy hour varje dag kl 15-22</h2>
           </ParallaxBannerLayer>
         </ParallaxBanner>
       </ParallaxProvider>
     </ParallaxContainer>
+
+    // <ParallaxContainer>
+    //   <ParallaxProvider>
+    //     <ParallaxBanner className='parallax-banner'>
+    //       <ParallaxBannerLayer speed={-15}>
+    //         <StaticImage
+    //           className='bg-img'
+    //           src='../assets/images/three-chairs.jpg'
+    //           placeholder='blurred'
+    //           layout='fullWidth'
+    //           alt='three bar stools'
+    //         />
+    //         <ParallaxBannerLayer className='parallax-banner-layer' speed={-5}>
+    //           <h2>Happy hour varje dag kl 15-22</h2>
+    //         </ParallaxBannerLayer>
+    //       </ParallaxBannerLayer>
+    //     </ParallaxBanner>
+    //   </ParallaxProvider>
+    // </ParallaxContainer>
   );
 };
 
