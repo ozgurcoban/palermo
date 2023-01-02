@@ -43,6 +43,7 @@ export const Logo = styled.img`
   margin-left: -6px;
   margin-bottom: -15px;
   width: 5rem;
+  height: 5rem;
 `;
 
 export const NavLinks = styled.div`

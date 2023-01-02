@@ -39,7 +39,7 @@ module.exports = {
           },
           {
             name: `Nanum Myeongjo`,
-            file: `ttps://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap`,
+            file: `https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap`,
           },
         ],
       },

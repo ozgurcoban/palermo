@@ -73,7 +73,8 @@ const About = () => {
 };
 
 const AboutContainer = styled.section`
-  margin-bottom: 4rem;
+  padding-top: 4rem;
+
   .about-img {
     border-radius: ${({ theme }) => theme.borderRadius};
   }
@@ -108,11 +109,11 @@ const AboutWrapper = styled.div`
 `;
 
 const Headline = styled.h2`
-  min-height: 23rem;
+  min-height: 20rem;
   font-weight: 500;
-  margin: 4rem 0;
+  margin: 0;
   span {
-    font-weight: 700;
+    font-weight: 800;
   }
   @media screen and (min-width: ${({ theme }) => theme.sizes.laptop}) {
     min-height: 30rem;
@@ -120,9 +121,7 @@ const Headline = styled.h2`
 `;
 const Tagline = styled.h3``;
 
-const P = styled.p`
-  font-weight: 500;
-`;
+const P = styled.p``;
 
 const Table = styled.table`
   width: 100%;

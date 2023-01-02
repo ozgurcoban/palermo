@@ -25,7 +25,6 @@ const Hero = () => {
 export const StyledHero = styled.header`
   height: 40vh;
   position: relative;
-  margin-bottom: 2rem;
 
   .hero-img {
     height: 100%;

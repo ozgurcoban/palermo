@@ -133,7 +133,7 @@ const ContactForm = () => {
                   label='Telefonnummer'
                   name='phone'
                   type='text'
-                  placeholder='0701234567...'
+                  placeholder='0701234567'
                   className='text-input'
                 />
               </Div>
@@ -142,7 +142,7 @@ const ContactForm = () => {
                   label='Email'
                   name='email'
                   type='email'
-                  placeholder='janne@doe.com...'
+                  placeholder='janne@doe.com'
                   className='text-input'
                 />
               </Div>
@@ -226,15 +226,16 @@ const FormContainer = styled.div`
         font-family: 'Font Awesome 5 Free';
         font-weight: 600;
         content: ' \f069';
-        font-size: 0.3rem;
+        font-size: clamp(0.25rem, 1vw, 0.4rem);
         color: ${({ theme }) => theme.primaryDark};
         position: relative;
-        top: -6px;
+        top: -12px;
       }
     }
   }
 
   .text-input {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
     &:not(:last-child) {
       height: 3.5rem;
     }
@@ -254,10 +255,7 @@ const Div = styled.div`
   flex-direction: column;
 `;
 
-const Label = styled.label`
-  margin-bottom: 0.3rem;
-  font-size: 0.875rem;
-`;
+const Label = styled.label``;
 
 const Input = styled.input`
   margin-bottom: 1.5rem;

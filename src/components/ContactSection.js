@@ -31,7 +31,7 @@ const ContactContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem 4rem;
-
+  padding-top: 6rem;
   margin: 0 auto;
 
   @media screen and (min-width: ${({ theme }) => theme.sizes.laptop}) {

@@ -45,9 +45,14 @@ h3 {
 }
 
 p {
-   font-size: clamp(1rem, 5vw, 1.3rem);
+   font-size: clamp(1rem, 2vw, 1.3rem);
   margin-bottom: 1rem;
   letter-spacing: 0.05rem;
+}
+
+label {
+  font-size: clamp(0.875rem, 1.5vw, 1.1rem);
+   margin-bottom: 0.3rem; 
 }
 
 a {
