@@ -11,7 +11,7 @@ const About = () => {
         Sammanträffa med vänner och njut av&nbsp;
         <span>
           <Typewriter
-            words={['god mat', 'läskande dryck', 'härlig stämning']}
+            words={['god mat', 'kall öl', 'härlig stämning']}
             loop={false}
             cursor
             cursorStyle='_'
@@ -79,7 +79,7 @@ const AboutContainer = styled.section`
   }
 
   .btn {
-    background-color: #7491aa;
+    background-color: #455d73;
     color: aliceblue;
   }
 
@@ -108,13 +108,15 @@ const AboutWrapper = styled.div`
 `;
 
 const Headline = styled.h2`
-  min-height: 20rem;
+  min-height: 23rem;
   font-weight: 500;
   margin: 4rem 0;
   span {
     font-weight: 700;
   }
-  /* margin-bottom: 2rem; */
+  @media screen and (min-width: ${({ theme }) => theme.sizes.laptop}) {
+    min-height: 30rem;
+  }
 `;
 const Tagline = styled.h3``;
 

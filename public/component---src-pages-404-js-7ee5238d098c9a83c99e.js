@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpalermo=self.webpackChunkpalermo||[]).push([[883],{429:function(e,l,t){t.r(l);var n=t(7294);l.default=()=>n.createElement("div",null,n.createElement("h2",null,"404"),n.createElement("p",null,"sidan hittades inte"))}}]);
-//# sourceMappingURL=component---src-pages-404-js-7ee5238d098c9a83c99e.js.map

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Services from '../components/Services';
-import ContactForm from '../components/ContactForm';
-import Contact from '../components/ContactSection';
+import HappyHourBanner from '../components/HappyHourBanner';
+import ContactSection from '../components/ContactSection';
 
 export default function Home() {
   return (
@@ -14,7 +14,8 @@ export default function Home() {
         <Hero />
         <About />
         {/* <Services /> */}
-        <Contact />
+        <HappyHourBanner />
+        <ContactSection />
       </Page>
     </Layout>
   );
@@ -24,6 +25,11 @@ const Page = styled.main`
   width: 90vw;
   margin: 0 auto;
   max-width: 1120px;
+`;
+
+const TemporaryBanner = styled.div`
+  height: 70vh;
+  background-color: bisque;
 `;
 
 export const Head = () => {

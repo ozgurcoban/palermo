@@ -7,6 +7,7 @@ html, body {
   padding: 0;
   background: #f4f4f4;
   line-height: 1.7em;
+  font-family: 'Raleway', sans-serif;
   /* letter-spacing: 1px; */
 }
 

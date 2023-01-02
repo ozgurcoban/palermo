@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import ContactForm from '../components/ContactForm';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 const Contact = () => {
   return (
@@ -23,12 +24,19 @@ const Contact = () => {
                 Om du har några frågor, förslag eller feedback är du varmt
                 välkommen att kontakta oss. Vi på Palermo i Uppsala ser fram
                 emot att höra från dig och göra vårt yttersta för att du ska få
-                en minnesvärd kväll hos oss.
+                ett minnesvärt besök hos oss.
               </p>
               <p>
                 Vänligen använd formuläret nedan för att skicka oss ett
-                meddelande eller ring oss på det angivna telefonnumret. Vi
-                återkommer så snart som möjligt.
+                meddelande ring oss på nummer&nbsp;
+                <OutboundLink href='tel:018131820'>
+                  <strong>018-131820&nbsp;</strong>
+                </OutboundLink>
+                eller skicka mail till&nbsp;
+                <OutboundLink href='mailto:info@palermo-uppsala.se'>
+                  <strong>info@palermo-uppsala.se</strong>
+                </OutboundLink>
+                . Vi återkommer så snart som möjligt.
               </p>
             </Column2>
           </ColumnRow>

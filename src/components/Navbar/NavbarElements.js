@@ -126,7 +126,7 @@ export const NavBtn = styled.button`
   appearance: none;
   background-color: transparent;
   border: 2px solid #e74c3c;
-  border-radius: 0.6em;
+  border-radius: ${({ theme }) => theme.borderRadius};
   color: #e74c3c;
   cursor: pointer;
   display: -webkit-box;
@@ -144,17 +144,16 @@ export const NavBtn = styled.button`
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 
-  border-color: #009ffd;
+  border-color: #455d73;
   color: #fff;
-  box-shadow: 0 0 40px 40px #009ffd inset, 0 0 0 0 #009ffd;
+  box-shadow: 0 0 40px 40px #455d73 inset, 0 0 0 0 #455d73;
   -webkit-transition: all 150ms ease-in-out;
   transition: all 150ms ease-in-out;
 
   &:hover {
-    box-shadow: 0 0 10px 0 #009ffd inset, 0 0 10px 4px #009ffd;
+    box-shadow: 0 0 10px 0 #455d73 inset, 0 0 10px 4px #455d73;
     color: black;
   }
 `;

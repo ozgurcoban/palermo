@@ -11,7 +11,7 @@ const Hero = () => {
         className='hero-img'
         placeholder='blurred'
         layout='fullWidth'
-      ></StaticImage>
+      />
       <HeroContainer>
         <HeroText>
           <Headline>Palermo</Headline>
@@ -62,6 +62,7 @@ export const Headline = styled.h1`
   letter-spacing: 4px;
   text-transform: uppercase;
   color: ${({ theme }) => theme.primaryLight};
+  font-family: 'Nanum Myeongjo', serif;
 `;
 
 export const Tagline = styled.h4`

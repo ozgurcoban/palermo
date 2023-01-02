@@ -1,33 +1,42 @@
 import React from 'react';
-import styled from 'styled-components';
 import ContactForm from './ContactForm';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
+import styled from 'styled-components';
 
-const Contact = () => {
+const ContactSection = () => {
   return (
     <ContactContainer>
-      <h3>Kontakta oss</h3>
-      <p>
-        Om du har några frågor eller kommentarer, tveka inte att kontakta oss.
-        Du kan nå oss genom att fylla i formuläret nedan eller genom att skicka
-        ett mejl till&nbsp;
-        <OutboundLink href='mailto:info@palermo-uppsala.se'>
-          info@palermo-uppsala.se
-        </OutboundLink>
-        . Vi ser fram emot att höra från dig!
-      </p>
+      <article>
+        <h3>Kontakta oss</h3>
+        <p>
+          Om du har några frågor eller kommentarer, tveka inte att kontakta oss.
+          Du kan nå oss genom att fylla i formuläret nedan eller genom att
+          skicka ett mejl till&nbsp;
+          <OutboundLink href='mailto:info@palermo-uppsala.se'>
+            <strong>info@palermo-uppsala.se</strong>
+          </OutboundLink>
+          &nbsp;eller ringa&nbsp;
+          <OutboundLink href='tel:018131820'>
+            <strong>018-131820</strong>
+          </OutboundLink>
+          . Vi ser fram emot att höra från dig!
+        </p>
+      </article>
       <ContactForm />
     </ContactContainer>
   );
 };
 
 const ContactContainer = styled.div`
-  width: 90vw;
-  margin: 10rem auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem 4rem;
 
-  @media screen and (min-width: ${({ theme }) => theme.sizes.tablet}) {
-    max-width: 50%;
+  margin: 0 auto;
+
+  @media screen and (min-width: ${({ theme }) => theme.sizes.laptop}) {
+    width: 50%;
   }
 `;
 
-export default Contact;
+export default ContactSection;
