@@ -12,14 +12,15 @@ const HappyHourBanner = () => {
     <ParallaxContainer>
       <ParallaxProvider>
         <ParallaxBanner className='parallax-banner'>
-          <ParallaxBannerLayer speed={-15}></ParallaxBannerLayer>
-          <StaticImage
-            className='bg-img'
-            src='../assets/images/three-chairs.jpg'
-            placeholder='blurred'
-            layout='fullWidth'
-            alt='three bar stools'
-          />
+          <ParallaxBannerLayer speed={-20}>
+            <StaticImage
+              className='bg-img'
+              src='../assets/images/three-chairs.jpg'
+              placeholder='blurred'
+              layout='fullWidth'
+              alt='three bar stools'
+            />
+          </ParallaxBannerLayer>
           <ParallaxBannerLayer className='parallax-banner-layer' speed={-5}>
             <h2>Happy hour varje dag kl 15-22</h2>
           </ParallaxBannerLayer>
