@@ -41,7 +41,7 @@ const About = () => {
             <Table style={{ width: '100%' }}>
               <tr>
                 <td>Måndag - Torsdag</td>
-                <td>11:00 - 02:00</td>
+                <td>11:00 - 01:00</td>
               </tr>
               <tr>
                 <td>Fredag</td>
@@ -53,7 +53,7 @@ const About = () => {
               </tr>
               <tr>
                 <td>Söndag</td>
-                <td>12:00 - 02:00</td>
+                <td>12:00 - 01:00</td>
               </tr>
             </Table>
           </div>
