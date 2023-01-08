@@ -2,11 +2,11 @@ import * as React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 
-const anvandarvillkor = () => {
+const sekretesspolicy = () => {
   return (
     <Layout>
       <PolicyContainer>
-        <h2>Användarvillkor</h2>
+        <h2>Sekretesspolicy</h2>
         <ol>
           <li>
             Genom att skicka in ett meddelande på vår webbplats godkänner du att
@@ -55,4 +55,13 @@ const PolicyContainer = styled.div`
   }
 `;
 
-export default anvandarvillkor;
+export default sekretesspolicy;
+
+export const Head = () => {
+  return (
+    <>
+      <title>sekretesspolicy</title>
+      <meta name='robots' content='noindex'></meta>
+    </>
+  );
+};

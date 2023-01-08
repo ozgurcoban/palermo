@@ -115,7 +115,6 @@ const ContactForm = () => {
                   name='firstName'
                   type='text'
                   placeholder='Janne'
-                  TextInput
                   className='text-input'
                 />
               </Div>
@@ -160,7 +159,7 @@ const ContactForm = () => {
                 <Checkbox className='checkbox' name='acceptedTerms'></Checkbox>
                 <span>
                   Jag accepterar&nbsp;
-                  <Link className='link' to='/anvandarvillkor' target='blank'>
+                  <Link className='link' to='/sekretesspolicy' target='blank'>
                     användarvillkoren
                   </Link>
                 </span>
@@ -194,7 +193,7 @@ const FormContainer = styled.div`
   .checkbox-wrapper {
     label {
       position: relative;
-      top: 7px;
+      top: 1px;
       /* margin-right: 0.2rem; */
       padding-right: 0.3rem;
     }

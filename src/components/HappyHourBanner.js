@@ -26,7 +26,6 @@ const HappyHourBanner = () => {
             opacity={[0.1, 1]}
             className='parallax-banner-text'
             speed={8}
-            translateY={[-5, 15]}
           >
             <h2>
               Happy hour varje dag <span>15-22</span>
