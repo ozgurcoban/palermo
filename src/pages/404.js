@@ -1,16 +1,19 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
+import Layout from '../components/Layout';
 
 const Error = () => {
   return (
-    <ErrorContainer>
-      <div>
-        <h2>404</h2>
-        <p>sidan hittades inte...</p>
-        <Link to='/'>Tillbaka till förstasidan</Link>
-      </div>
-    </ErrorContainer>
+    <Layout>
+      <ErrorContainer>
+        <div>
+          <h2>404</h2>
+          <p>sidan hittades inte...</p>
+          <Link to='/'>Tillbaka till förstasidan</Link>
+        </div>
+      </ErrorContainer>
+    </Layout>
   );
 };
 
