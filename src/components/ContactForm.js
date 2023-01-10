@@ -69,11 +69,8 @@ const ContactForm = () => {
           acceptedTerms: false,
         }}
         validationSchema={Yup.object({
-          firstName: Yup.string()
+          name: Yup.string()
             .max(15, 'Fältet måste vara högst 15 tecken långt')
-            .required('Obligatorisk fält'),
-          lastName: Yup.string()
-            .max(20, 'Fältet måste vara högst 20 tecken långt')
             .required('Obligatorisk fält'),
           phone: Yup.string().matches(phoneRegExp, 'Ogiltig telefonnummer'),
           email: Yup.string()
@@ -106,7 +103,7 @@ const ContactForm = () => {
           }, 4000);
         }}
       >
-        {({ isValid, isSubmitting, dirty, status }) => {
+        {({ isValid, isSubmitting, dirty }) => {
           return (
             <Form className='form'>
               <Div>
