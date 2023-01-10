@@ -26,16 +26,20 @@ const ErrorContainer = styled.main`
     text-align: center;
   }
   div > h2 {
-    font-size: clamp(2rem, 3vw, 4rem);
+    font-size: clamp(8rem, 10vw, 8rem);
+    margin: 0 0 1rem 0;
   }
 
   div > p {
-    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    margin: 0 0 2rem 0;
   }
 
   div > a {
+    padding-top: 2rem;
     text-transform: uppercase;
-    font-size: clamp(1.2 rem, 2vw, 1.7);
+    text-decoration: underline;
+    font-size: clamp(1.1rem, 2vw, 1.7rem);
     font-weight: 600;
   }
 `;
