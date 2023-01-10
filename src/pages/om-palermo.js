@@ -180,6 +180,7 @@ const PageHeader = styled.section`
   background: hsla(300, 2%, 56%, 1);
   display: grid;
   place-items: center;
+  padding-top: 4rem;
 
   h2 {
     color: ${({ theme }) => theme.primaryLight};
@@ -217,18 +218,19 @@ const PageHeaderCenter = styled.div`
 
 const PageContent = styled.div`
   width: 90vw;
-  margin: 2.5rem auto;
+  margin: 0 auto;
   max-width: 1120px;
+  padding-top: 4rem;
 
   h3 {
-    /* width: clamp(20ch, 50%, 45ch); */
+    margin-bottom: 0;
   }
 `;
 
 const ColumnRow = styled.div`
   display: grid;
   gap: 2rem 4rem;
-  margin-bottom: 5rem;
+  padding-top: 4rem;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
