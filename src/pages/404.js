@@ -17,9 +17,10 @@ const Error = () => {
 const ErrorContainer = styled.main`
   font-family: 'Raleway', sans-serif;
   height: 80vh;
+  display: grid;
+  place-items: center;
   div {
-    display: grid;
-    place-items: center;
+    text-align: center;
   }
   div > h2 {
     font-size: clamp(2rem, 3vw, 4rem);
