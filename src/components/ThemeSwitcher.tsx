@@ -5,8 +5,27 @@ import { useTheme } from 'next-themes';
 
 export default function ThemeController() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-  console.log('theme', theme);
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  // console.log('theme', resolvedTheme);
+
+  useEffect(() => {
+    // Function to update theme
+    // const updateTheme = (e: MediaQueryListEvent) => {
+    //   const newTheme = e.matches ? 'dark' : 'light';
+    //   setTheme(newTheme);
+    // };
+    // // Create media query list
+    // const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+    // // Set initial theme
+    // const initialTheme = matcher.matches ? 'dark' : 'light';
+    // setTheme(initialTheme);
+    // // Listen for changes
+    // matcher.addEventListener('change', updateTheme);
+    // // Clean up listener on unmount
+    // return () => {
+    //   matcher.removeEventListener('change', updateTheme);
+    // };
+  }, [setTheme]);
 
   useEffect(() => {
     setMounted(true);
@@ -17,10 +36,10 @@ export default function ThemeController() {
   }
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = resolvedTheme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    console.log('theme toggled');
-    console.log('new theme', newTheme);
+    // console.log('theme toggled');
+    // console.log('new theme', newTheme);
   };
 
   return (
@@ -28,7 +47,7 @@ export default function ThemeController() {
       className='swap swap-rotate hover:text-slate-300 cursor-pointer'
       title={theme === 'light' ? 'Switch to Dark' : 'Switch to Light'}
     >
-      <input type='checkbox' value={theme} onChange={toggleTheme} />
+      <input type='checkbox' value={theme} onClick={toggleTheme} />
 
       <svg
         xmlns='http://www.w3.org/2000/svg'

@@ -74,7 +74,7 @@ export default async function LocaleLayout({
   unstable_setRequestLocale(locale);
 
   return (
-    <html className='h-full' lang={locale}>
+    <html className='h-full' lang={locale} suppressHydrationWarning>
       <body className={clsx(inter.className, 'flex h-full flex-col')}>
         <ThemeProvider>
           <Navbar />
