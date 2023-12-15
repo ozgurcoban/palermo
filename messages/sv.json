@@ -12,19 +12,21 @@
     "description": "<p>Es ist leider ein Problem aufgetreten.</p><p>Du kannst versuchen <retry>diese Seite neu zu laden</retry>.</p>"
   },
   "NotFoundPage": {
-    "title": "Seite nicht gefunden",
-    "description": "Bitte überprüfe die Addressleiste deines Browsers oder verwende die Navigation um zu einer bekannten Seite zu wechseln."
+    "title": "Sidan kan ej hittas",
+    "description": "Var god kontrollera adressfältet i din webbläsare eller använd navigeringen för att byta till en känd sida."
   },
   "LocaleLayout": {
     "title": "next-intl Beispiel"
   },
   "LocaleSwitcher": {
-    "label": "Sprache ändern",
-    "locale": "{locale, select, de {Deutsch} en {Englisch} other {Unbekannt}}"
+    "label": "Ändra språk",
+    "locale": "{locale, select, sv {Svenska} en {Engelska} other {Okänd}}"
   },
   "Navigation": {
     "home": "Start",
-    "pathnames": "Pfadnamen"
+    "menu": "Meny",
+    "about-us": "Om oss",
+    "basement": "Källaren"
   },
   "PageLayout": {
     "links": {

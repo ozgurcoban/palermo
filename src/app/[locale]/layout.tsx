@@ -40,6 +40,7 @@ import { ReactNode } from 'react';
 import { locales } from '@/config';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ThemeProvider from '@/providers/ThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -75,9 +76,11 @@ export default async function LocaleLayout({
   return (
     <html className='h-full' lang={locale}>
       <body className={clsx(inter.className, 'flex h-full flex-col')}>
-        <Navbar />
-        {children}
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

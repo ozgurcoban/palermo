@@ -7,8 +7,9 @@ export default function NotFoundPage() {
   const t = useTranslations('NotFoundPage');
 
   return (
-    <div className='h-screen grid place-items-center'>
+    <main className='h-screen grid place-items-center'>
+      <h2 className='text-xl'>{t('title')}</h2>
       <p className='max-w-[460px]'>{t('description')}</p>
-    </div>
+    </main>
   );
 }
