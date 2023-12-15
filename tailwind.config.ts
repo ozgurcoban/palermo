@@ -11,7 +11,7 @@ const config: Config = {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ['autumn', 'luxury'],
+    themes: ['light', 'dark'],
     darkMode: 'class',
   },
 };
