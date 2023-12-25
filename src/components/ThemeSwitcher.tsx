@@ -1,6 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { SunIcon, MoonStar } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
@@ -24,7 +26,17 @@ const ThemeSwitcher = () => {
 
   return (
     <div>
-      <button onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
+      <motion.div
+        onClick={toggleTheme}
+        q
+        whileTap={{ scale: 1.2, rotate: 360, transition: { duration: 0.5 } }}
+      >
+        {theme === 'dark' ? (
+          <SunIcon className='sizes-6 text-yellow-300' />
+        ) : (
+          <MoonStar className='sizes-6 text-slate-700' />
+        )}
+      </motion.div>
     </div>
   );
 };
