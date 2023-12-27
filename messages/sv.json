@@ -1,7 +1,12 @@
 {
   "IndexPage": {
-    "title": "next-intl Beispiel",
-    "description": "Dies ist ein Beispiel, das die Verwendung von <code>next-intl</code> mit dem Next.js App Router demonstriert. Bei Ändern der Sprache rechts oben ändert sich der Inhalt dieser Seite."
+    "hero": {
+      "title": "Hos Palermo där välsmakande rätter och ett fint urval av öl välkomnar alla"
+    },
+    "about": {
+      "title": "Dirkha",
+      "description": "Good Green News"
+    }
   },
   "PathnamesPage": {
     "title": "Pfadnamen",
@@ -15,18 +20,20 @@
     "title": "Sidan kan ej hittas",
     "description": "Var god kontrollera adressfältet i din webbläsare eller använd navigeringen för att byta till en känd sida."
   },
-  "LocaleLayout": {
-    "title": "next-intl Beispiel"
+  "Metadata": {
+    "title": "Dirkha - Good Green News",
+    "description": "Built with Next.js and next-intl"
   },
   "LocaleSwitcher": {
     "label": "Ändra språk",
     "locale": "{locale, select, sv {Svenska} en {Engelska} other {Okänd}}"
   },
   "Navigation": {
-    "home": "Start",
+    "home": "Hem",
     "menu": "Meny",
-    "about-us": "Om oss",
-    "basement": "Källaren"
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "basement": "Nedervåningen"
   },
   "PageLayout": {
     "links": {

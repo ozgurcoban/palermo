@@ -28,13 +28,12 @@ const ThemeSwitcher = () => {
     <div>
       <motion.div
         onClick={toggleTheme}
-        q
         whileTap={{ scale: 1.2, rotate: 360, transition: { duration: 0.5 } }}
       >
         {theme === 'dark' ? (
-          <SunIcon className='sizes-6 text-yellow-300' />
+          <SunIcon className='sizes-5 text-yellow-300' />
         ) : (
-          <MoonStar className='sizes-6 text-slate-700' />
+          <MoonStar className='sizes-5 text-slate-700' />
         )}
       </motion.div>
     </div>

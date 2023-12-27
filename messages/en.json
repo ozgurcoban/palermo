@@ -1,10 +1,15 @@
 {
   "IndexPage": {
-    "title": "next-intl example",
-    "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
+    "hero": {
+      "title": "At Palermo where tasty dishes and a fine selection of beers welcome everyone."
+    },
+    "about": {
+      "title": "Dirkha",
+      "description": "Good Green News"
+    }
   },
-  "PathnamesPage": {
-    "title": "Pathnames",
+  "MenuPage": {
+    "title": "Menu",
     "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>"
   },
   "Error": {
@@ -15,8 +20,9 @@
     "title": "Page not found",
     "description": "Please double-check the browser address bar or use the navigation to go to a known page."
   },
-  "LocaleLayout": {
-    "title": "next-intl example"
+  "Metadata": {
+    "title": "Dirkha - Good Green News",
+    "description": "Built with Next.js and next-intl"
   },
   "LocaleSwitcher": {
     "label": "Change language",
@@ -24,7 +30,10 @@
   },
   "Navigation": {
     "home": "Home",
-    "pathnames": "Pathnames"
+    "menu": "Menu",
+    "about": "About",
+    "contact": "Contact",
+    "basement": "Basement"
   },
   "PageLayout": {
     "links": {

@@ -56,7 +56,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params: { locale },
 }: Omit<Props, 'children'>) {
-  const t = await getTranslations({ locale, namespace: 'LocaleLayout' });
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
 
   return {
     title: t('title'),
@@ -78,7 +78,7 @@ export default async function LocaleLayout({
       <body className={clsx(inter.className, 'flex h-full flex-col')}>
         <ThemeProvider>
           <Navbar />
-          {children}
+          <main>{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

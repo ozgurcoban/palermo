@@ -4,9 +4,21 @@ export const locales = ['sv', 'en'] as const;
 
 export const pathnames = {
   '/': '/',
-  '/om-oss': {
-    en: '/about-us',
+  '/menu': {
+    en: '/menu',
+    sv: '/meny',
+  },
+  '/about': {
+    en: '/about',
     sv: '/om-oss',
+  },
+  '/contact': {
+    en: '/contact',
+    sv: '/kontakt',
+  },
+  '/basement': {
+    en: '/basement',
+    sv: '/nedervaningen',
   },
 } satisfies Pathnames<typeof locales>;
 
