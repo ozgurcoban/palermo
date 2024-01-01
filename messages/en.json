@@ -32,9 +32,7 @@
     "home": "Home",
     "menu": "Menu",
     "about": "About",
-    "contact": "Contact",
-    "gallery": "Gallery",
-    "basement": "Basement"
+    "news": "News"
   },
   "PageLayout": {
     "links": {

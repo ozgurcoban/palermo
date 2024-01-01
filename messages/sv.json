@@ -32,9 +32,7 @@
     "home": "Hem",
     "menu": "Meny",
     "about": "Om oss",
-    "contact": "Kontakt",
-    "gallery": "Bildgalleri",
-    "basement": "Nedervåningen"
+    "news": "Nyheter"
   },
   "PageLayout": {
     "links": {

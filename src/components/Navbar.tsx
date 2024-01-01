@@ -26,7 +26,7 @@ export default function Navbar() {
                     <Link href={'/about'}>{t('about')}</Link>
                   </li>
                   <li>
-                    <Link href={'/blog'}>{t('gallery')}</Link>
+                    <Link href={'/news'}>{t('news')}</Link>
                   </li>
                 </ul>
                 <div className='md:hidden'>Menu</div>
