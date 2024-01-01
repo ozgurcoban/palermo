@@ -42,7 +42,7 @@ export default function Hero() {
         <div className='bg-accent rounded p-10'>
           <h1
             ref={ref}
-            className='max-w-screen-sm text-secondary-foreground text-6xl'
+            className='max-w-screen-sm text-secondary-foreground text-4xl'
           >
             {t('hero.title')}
           </h1>

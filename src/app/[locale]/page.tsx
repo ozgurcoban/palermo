@@ -23,7 +23,6 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { locales } from '@/config';
 import Hero from '@/components/Hero';
 import HeroProvider from '@/components/HeroProvider';
-import FutureSection from '@/components/FutureSection';
 
 type Props = {
   params: { locale: string };
@@ -42,7 +41,6 @@ export default function IndexPage({ params: { locale } }: Props) {
   return (
     <>
       <HeroProvider />
-      <FutureSection />
     </>
   );
 }
