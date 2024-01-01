@@ -13,12 +13,12 @@ export const pathnames = {
     sv: '/om-oss',
   },
   '/contact': {
-    en: '/contact',
-    sv: '/kontakt',
+    en: '/blog',
+    sv: '/blog',
   },
   '/basement': {
-    en: '/basement',
-    sv: '/nedervaningen',
+    en: '/menu',
+    sv: '/meny',
   },
 } satisfies Pathnames<typeof locales>;
 
