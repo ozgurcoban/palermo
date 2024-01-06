@@ -17,6 +17,11 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-lato)', 'sans-serif'],
+        teko: ['var(--font-teko)', 'sans-serif'],
+        lobster: ['var(--font-lobster)', 'sans-serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
