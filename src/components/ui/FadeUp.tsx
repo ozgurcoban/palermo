@@ -10,7 +10,7 @@ type FadeUp = {
 
 const variants = {
   initial: {
-    y: 10,
+    y: 30,
     opacity: 0,
   },
   animate: {

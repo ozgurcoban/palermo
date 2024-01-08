@@ -42,7 +42,7 @@ export default async function LocaleLayout({
       className={`${lato.variable} ${teko.variable} ${lobster.variable}`}
       suppressHydrationWarning
     >
-      <body>
+      <body className="overflow-x-hidden">
         <IntlProvider params={{ locale }}>
           <Navbar />
           <main>{children}</main>
