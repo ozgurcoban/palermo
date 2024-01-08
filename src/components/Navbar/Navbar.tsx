@@ -1,4 +1,4 @@
-import LocaleSwitcher from "../LocaleSwitcher";
+import LocaleSwitcher from "./LocaleSwitcher";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import NavLinks from "./NavLinks";
