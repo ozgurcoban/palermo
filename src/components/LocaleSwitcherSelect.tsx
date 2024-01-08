@@ -37,7 +37,7 @@ export default function LocaleSwitcherSelect({
       <p className='sr-only'>{label}</p>
       <div className='flex items-center'>
         <select
-          className='inline-flex appearance-none bg-transparent text-2xl'
+          className='inline-flex appearance-none bg-transparent'
           defaultValue={defaultValue}
           disabled={isPending}
           onChange={onSelectChange}

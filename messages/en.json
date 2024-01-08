@@ -26,6 +26,7 @@
   },
   "LocaleSwitcher": {
     "label": "Change language",
+    "title": "Language",
     "locale": "{locale, select, sv {Swedish} en {English} other {Unknown}}"
   },
   "Navigation": {
