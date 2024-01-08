@@ -10,6 +10,11 @@ const config = {
   prefix: "",
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-lato)', 'sans-serif'],
+        teko: ['var(--font-teko)', 'sans-serif'],
+        lobster: ['var(--font-lobster)', 'sans-serif'],
+      },
       colors: {
         dark: "rgb(var(--dark))",
         light: "rgb(var(--light))",

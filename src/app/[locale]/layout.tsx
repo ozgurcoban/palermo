@@ -41,6 +41,7 @@ import { locales } from '@/config';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ThemeProvider from '@/providers/ThemeProvider';
+import { teko, lobster, lato } from '../fonts';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -74,8 +75,12 @@ export default async function LocaleLayout({
   unstable_setRequestLocale(locale);
 
   return (
-    <html className='h-full' lang={locale} suppressHydrationWarning>
-      <body className={clsx(inter.className, 'flex h-full flex-col')}>
+    <html
+      lang={locale}
+      className={`${lato.variable} ${teko.variable} ${lobster.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>
