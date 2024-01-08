@@ -72,11 +72,6 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      fontFamily: {
-        teko: ['var(--font-teko)'],
-        lato: ['var(--font-lato)'],
-        lobster: ['var(--font-lobster)'],
-      }
     },
   },
   plugins: [require("tailwindcss-animate")],

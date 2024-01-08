@@ -1,5 +1,4 @@
 import LocaleSwitcher from './LocaleSwitcher';
-import ThemeSwitcher from './ThemeSwitcher';
 import { useTranslations } from 'next-intl';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
@@ -50,7 +49,6 @@ export default function Navbar() {
               orientation='vertical'
               className='mx-1 bg-slate-300 h-6'
             />
-            <ThemeSwitcher />
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
-import { ReactNode } from 'react';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
-import Hero from '@/components/Hero';
+import { ReactNode } from "react";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
 type Props = {
   children: ReactNode;
@@ -12,7 +11,7 @@ export default function IntlProvider({ children, params: { locale } }: Props) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <Hero />
+      {children}
     </NextIntlClientProvider>
   );
 }
