@@ -1,3 +1,5 @@
+import PageTransition from "@/components/ui/PageTransition";
+
 export default function MenuPage() {
-  return <div>MenuPage</div>;
+  return <PageTransition>MenuPage</PageTransition>;
 }

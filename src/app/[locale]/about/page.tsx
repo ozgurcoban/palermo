@@ -1,3 +1,5 @@
+import PageTransition from "@/components/ui/PageTransition";
+
 export default function AboutPage() {
-  return <div>AboutPage</div>;
+  return <PageTransition>AboutPage</PageTransition>;
 }

@@ -1,3 +1,5 @@
+import PageTransition from "@/components/ui/PageTransition";
+
 export default function News() {
-  return <div>News Page</div>;
+  return <PageTransition>News Page</PageTransition>;
 }

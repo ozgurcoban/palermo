@@ -6,6 +6,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { teko, lobster, lato } from "../fonts";
 import IntlProvider from "@/providers/IntlProvider";
+import { AnimatePresence } from "framer-motion";
+import MotionDiv from "@/components/ui/MotionDiv";
+import PageTransition from "@/components/ui/PageTransition";
 
 type Props = {
   children: ReactNode;
