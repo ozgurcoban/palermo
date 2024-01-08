@@ -31,7 +31,7 @@
 }
 
 .container {
-  @apply max-w-[1264px] mx-auto px-8;
+  @apply max-w-[1264px] mx-auto sm:px-8 px-4;
 }
 
 .row {
@@ -43,5 +43,5 @@
 }
 
 .title-secondary {
-  @apply font-teko text-[64px] leading-normal font-semibold uppercase;
+  @apply font-teko lg:text-[64px] text-5xl lg:leading-normal font-semibold uppercase;
 }

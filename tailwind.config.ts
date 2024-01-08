@@ -11,9 +11,10 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-lato)', 'sans-serif'],
-        teko: ['var(--font-teko)', 'sans-serif'],
-        lobster: ['var(--font-lobster)', 'sans-serif'],
+        sans: ["var(--font-lato)", "sans-serif"],
+        teko: ["var(--font-teko)", "sans-serif"],
+        lato: ["var(--font-lato)", "sans-serif"],
+        lobster: ["var(--font-lobster)", "sans-serif"],
       },
       colors: {
         dark: "rgb(var(--dark))",
