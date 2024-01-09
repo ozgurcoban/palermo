@@ -1,10 +1,11 @@
-import { notFound } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
-import { locales } from '@/config';
-import Hero from '@/components/Hero';
-import PageTransition from '@/components/ui/PageTransition';
-import ContactInfoSection from '@/components/ContactInfoSection';
+import { notFound } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { unstable_setRequestLocale } from "next-intl/server";
+import { locales } from "@/config";
+import Hero from "@/components/Hero";
+import PageTransition from "@/components/ui/PageTransition";
+import Gallery from "@/components/Gallery";
+import ContactInfoSection from "@/components/ContactInfoSection";
 
 type Props = {
   params: { locale: string };
@@ -21,6 +22,7 @@ export default function IndexPage({ params: { locale } }: Props) {
   return (
     <PageTransition>
       <Hero />
+      <Gallery />
       <ContactInfoSection />
     </PageTransition>
   );

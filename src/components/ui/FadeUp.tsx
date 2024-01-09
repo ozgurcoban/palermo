@@ -1,12 +1,13 @@
 import React from "react";
 import MotionDiv from "./MotionDiv";
+import { MotionProps } from "framer-motion";
 
-type FadeUp = {
-  children: React.ReactNode;
+interface FadeUp extends MotionProps {
+  children?: React.ReactNode;
   delay?: number;
   duration?: number;
   className?: string;
-};
+}
 
 const variants = {
   initial: {
@@ -19,14 +20,22 @@ const variants = {
   },
 };
 
-const FadeUp: React.FC<FadeUp> = ({ children, className, delay, duration }) => {
+const FadeUp: React.FC<FadeUp> = ({
+  children,
+  className,
+  delay,
+  duration,
+  ...props
+}) => {
   return (
     <MotionDiv
       variants={variants}
       initial={"initial"}
-      animate="animate"
       className={className}
+      whileInView={"animate"}
+      viewport={{ once: true }}
       transition={{ delay, duration, ease: "easeIn" }}
+      {...props}
     >
       {children}
     </MotionDiv>
