@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import PageTransition from "@/components/ui/PageTransition";
 import Gallery from "@/components/Gallery";
 import Story from "@/components/Story";
+import Menu from "@/components/Menu";
 
 type Props = {
   params: { locale: string };
@@ -23,6 +24,7 @@ export default function IndexPage({ params: { locale } }: Props) {
       <Hero />
       <Gallery />
       <Story />
+      <Menu />
     </PageTransition>
   );
 }

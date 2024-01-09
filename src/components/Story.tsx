@@ -7,7 +7,7 @@ import FadeUp from "./ui/FadeUp";
 
 const Story = () => {
   return (
-    <section className="w-screen h-screen relative my-16 border-y">
+    <section className="w-screen h-screen relative py-16 border-y">
       <div className="absolute lg:z-[-1] bottom-0 left-0">
         <Image
           src={Beer}

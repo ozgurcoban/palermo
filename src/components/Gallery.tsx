@@ -22,7 +22,7 @@ const Gallery = () => {
               const index = i % 10;
               return (
                 <FadeUp
-                  key={i}
+                  key={`gallery-image-${i}`}
                   delay={0.05 * i}
                   className={`row-span-1 rounded-xl border-2 border-slate-400/10 bg-neutral-100 p-4 dark:bg-neutral-900 ${
                     index === 3 || index === 6
