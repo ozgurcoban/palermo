@@ -4,6 +4,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import { locales } from "@/config";
 import Hero from "@/components/Hero";
 import PageTransition from "@/components/ui/PageTransition";
+import Gallery from "@/components/Gallery";
 
 type Props = {
   params: { locale: string };
@@ -20,6 +21,7 @@ export default function IndexPage({ params: { locale } }: Props) {
   return (
     <PageTransition>
       <Hero />
+      <Gallery />
     </PageTransition>
   );
 }

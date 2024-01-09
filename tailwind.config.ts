@@ -17,9 +17,9 @@ const config = {
         lobster: ["var(--font-lobster)", "sans-serif"],
       },
       colors: {
-        dark: "rgb(var(--dark))",
-        light: "rgb(var(--light))",
-        accent: "rgb(var(--accent))",
+        dark: "rgb(0, 0, 0)",
+        light: "rgb(255, 255, 255)",
+        accent: "rgb(78, 61, 45)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

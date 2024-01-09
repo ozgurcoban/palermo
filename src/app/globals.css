@@ -30,6 +30,10 @@
   }
 }
 
+body {
+  background-color: #fefefe;
+}
+
 .container {
   @apply max-w-[1264px] mx-auto sm:px-8 px-4;
 }
