@@ -47,5 +47,5 @@ body {
 }
 
 .title-secondary {
-  @apply font-teko lg:text-[64px] text-5xl lg:leading-normal font-semibold uppercase;
+  @apply font-teko lg:text-[64px] text-5xl lg:leading-normal font-semibold;
 }

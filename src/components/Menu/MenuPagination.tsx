@@ -21,10 +21,13 @@ const MenuPagination: React.FC<MenuPagination> = ({
   currentPage,
   setCurrentPage,
 }) => {
-  const indexLength = menus_list?.length;
+  const indexLength = menus_list ? menus_list.length : 0;
 
   const nextIndex = Math.ceil((indexLength ?? PAGE_SIZE) / PAGE_SIZE);
-  const indexStart = (currentPage ? currentPage - 1 : 1) * (PAGE_SIZE || 1) + 1;
+  const indexStart =
+    indexLength > 0
+      ? (currentPage ? currentPage - 1 : 1) * (PAGE_SIZE || 1) + 1
+      : 0;
   const indexEnd = menus_list?.length
     ? (menus_list?.length % currentPage) + PAGE_SIZE
     : 0;
@@ -39,7 +42,7 @@ const MenuPagination: React.FC<MenuPagination> = ({
     <div className="lg:px-20 md:px-10 px-5 py-8 flex flex-col sm:flex-row gap-y-5 items-center justify-center sm:justify-between">
       <FadeUp delay={2.7}>
         <span>
-          Showing {indexStart} -{indexEnd} of {indexLength} Items
+          Showing {indexStart} - {indexEnd} of {indexLength} Items
         </span>
       </FadeUp>
       <FadeUp delay={2.9} className="flex items-center gap-2">
@@ -51,7 +54,7 @@ const MenuPagination: React.FC<MenuPagination> = ({
           <ArrowLeftCircle className={1 >= currentPage ? "opacity-50" : ""} />
         </button>
         <span>
-          Paper {currentPage} Of {nextIndex}
+          Paper {indexLength > 0 ? currentPage : 0} Of {nextIndex}
         </span>
         <button
           onClick={nextPage}

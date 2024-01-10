@@ -6,7 +6,7 @@ import MenuPagination from "./MenuPagination";
 import FadeUp from "../ui/FadeUp";
 
 const menu_section = {
-  title: "DELICIOUS DISHES AND POWERFUL DRINKS",
+  title: "Delicious dishes and powerful drinks",
   label: "Our amazing categories",
   categories: [
     {
@@ -43,73 +43,7 @@ const menu_section = {
         description:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       },
-      menu_list: [
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-      ],
+      menu_list: [],
     },
     {
       id: "2def",
@@ -121,66 +55,79 @@ const menu_section = {
       },
       menu_list: [
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
@@ -197,66 +144,79 @@ const menu_section = {
       },
       menu_list: [
         {
+          id: "item",
+          title: "Main Coursers",
+          description: "Tomat och ost.",
+          price: "110/105",
+        },
+        {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
@@ -273,66 +233,79 @@ const menu_section = {
       },
       menu_list: [
         {
+          id: "item",
+          title: "Desserts",
+          description: "Tomat och ost.",
+          price: "110/105",
+        },
+        {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
         },
         {
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
+          id: "item",
           title: "Margarita",
           description: "Tomat och ost.",
           price: "110/105",
@@ -352,12 +325,12 @@ export const Menu = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Get the menu list based from the selected tab
+  // Get the menu list everytime the selected tab changed
   const menus_list = useMemo(
     () =>
       menu_section.menus.find(({ category: { value } }) => tab.value === value)
         ?.menu_list,
-    []
+    [tab.value]
   );
 
   // When the tab changed, we go back to the page 1
