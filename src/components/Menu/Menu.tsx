@@ -347,7 +347,7 @@ export const Menu = () => {
     <section className="py-32 bg-[#F8EEE2] w-screen">
       <div className="container">
         <FadeUp>
-          <h2 className="title-secondary text-center">{menu_section.title}</h2>
+          <h2 className="title-secondary !text-center">{menu_section.title}</h2>
         </FadeUp>
         <FadeUp
           delay={0.3}
@@ -367,7 +367,9 @@ export const Menu = () => {
               selectedTab={tab.index}
               setSelectedTab={setTab}
             />
-            <MenuItems data={currentTableMenus} />
+            <FadeUp delay={1} className="w-full h-full">
+              <MenuItems data={currentTableMenus} />
+            </FadeUp>
           </FadeUp>
           <FadeUp delay={2.5}>
             <hr />

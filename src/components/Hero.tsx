@@ -8,7 +8,7 @@ const variants = {
     scale: 0.5,
   },
   animate: {
-    scale: [0.5, 1.10, 1.10, 1],
+    scale: [0.5, 1.1, 1.1, 1],
     width: ["0%", "100%", "100%", "100%", "100%"],
     height: ["30%", "30%", "80%", "100%"],
     opacity: [1, 1, 1],
@@ -22,11 +22,11 @@ export default function Hero() {
         className="relative h-full overflow-hidden"
         variants={variants}
         initial="initial"
-        animate="animate"
+        whileInView={"animate"}
+        viewport={{ once: true }}
         transition={{
           duration: 2,
           ease: "easeInOut",
-          // type: "spring",
           times: [0, 0.3, 0.6, 1],
           damping: 16,
           stiffness: 100,

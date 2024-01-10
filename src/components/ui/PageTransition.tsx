@@ -8,7 +8,7 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
     <AnimatePresence mode="wait">
       {children}
       <MotionDiv
-        className="fixed z-50 top-0 left-0 w-full h-screen bg-accent origin-bottom"
+        className="fixed z-50 top-0 left-0 w-full h-screen bg-accent origin-bottom overflow-hidden"
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 0 }}
         exit={{ scaleY: 1 }}
@@ -16,9 +16,9 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
           duration: 1,
           ease: [0.22, 1, 0.36, 1],
         }}
-      ></MotionDiv>
+      />
       <MotionDiv
-        className="fixed z-50 top-0 left-0 w-full h-screen bg-accent origin-top"
+        className="fixed z-50 top-0 left-0 w-full h-screen bg-accent origin-top overflow-hidden"
         initial={{ scaleY: 1 }}
         animate={{ scaleY: 0 }}
         exit={{ scaleY: 0 }}
@@ -26,7 +26,7 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
           duration: 1,
           ease: [0.22, 1, 0.36, 1],
         }}
-      ></MotionDiv>
+      />
     </AnimatePresence>
   );
 };
