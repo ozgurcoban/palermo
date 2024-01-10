@@ -9,13 +9,8 @@ const variants = {
   },
   animate: {
     scale: [0.5, 1.1, 1.1, 1],
-<<<<<<< HEAD
-    width: ['0%', '100%', '100%', '100%', '100%'],
-    height: ['30%', '30%', '80%', '100%'],
-=======
     width: ["0%", "100%", "100%", "100%", "100%"],
     height: ["30%", "30%", "80%", "100%"],
->>>>>>> 9a56fb2e79702133e0756a8384feee5dd4ce844d
     opacity: [1, 1, 1],
   },
 };
@@ -26,21 +21,12 @@ export default function Hero() {
       <MotionDiv
         className='relative h-full overflow-hidden'
         variants={variants}
-<<<<<<< HEAD
-        initial='initial'
-        animate='animate'
-        transition={{
-          duration: 2,
-          ease: 'easeInOut',
-          // type: "spring",
-=======
         initial="initial"
         whileInView={"animate"}
         viewport={{ once: true }}
         transition={{
           duration: 2,
           ease: "easeInOut",
->>>>>>> 9a56fb2e79702133e0756a8384feee5dd4ce844d
           times: [0, 0.3, 0.6, 1],
           damping: 16,
           stiffness: 100,

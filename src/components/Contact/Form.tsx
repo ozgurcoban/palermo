@@ -8,17 +8,6 @@ import { ContactFormSchema } from "@/lib/ContactFormSchema";
 import { sendMail } from "@/app/_actions";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>;
@@ -27,7 +16,7 @@ export default function ContactForm() {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { errors },
     reset,
   } = useForm<ContactFormInputs>({ resolver: zodResolver(ContactFormSchema) });
 
@@ -52,12 +41,12 @@ export default function ContactForm() {
   };
   return (
     <form onSubmit={handleSubmit(processForm)} className="self-start">
-      <h2 className="title-secondary ">get in touch</h2>
+      <h2 className="title-secondary ">Get in touch</h2>
       <div className="flex gap-4 pb-4 pt-3">
         {/* Name field */}
         <div className="flex-1">
           <input
-            className=" border-2 border-accent w-full p-2"
+            className=" border-2 border-accent w-full p-2 placeholder:capitalize rounded-lg"
             placeholder="name"
             {...register("name")}
           />
@@ -71,7 +60,7 @@ export default function ContactForm() {
         {/* Email field */}
         <div className="flex-1">
           <input
-            className="flex-1 border-2 border-accent w-full p-2"
+            className="flex-1 border-2 border-accent w-full p-2 placeholder:capitalize rounded-lg"
             placeholder="email"
             {...register("email")}
           />
@@ -87,7 +76,7 @@ export default function ContactForm() {
         <textarea
           rows={5}
           placeholder="message"
-          className="border-2 border-accent w-full p-2"
+          className="border-2 border-accent w-full p-3 placeholder:capitalize rounded-lg"
           {...register("message")}
         />
         {errors.message?.message && (
@@ -96,7 +85,7 @@ export default function ContactForm() {
           </p>
         )}
       </div>
-      <Button type="submit" className="mt-4 bg-dark">
+      <Button type="submit" size={"lg"} className="mt-4 bg-dark text-base hover:tracking-wide">
         Submit
       </Button>
     </form>

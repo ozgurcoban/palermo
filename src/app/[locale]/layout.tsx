@@ -6,9 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { teko, lobster, lato } from "../fonts";
 import IntlProvider from "@/providers/IntlProvider";
-import { AnimatePresence } from "framer-motion";
-import MotionDiv from "@/components/ui/MotionDiv";
-import PageTransition from "@/components/ui/PageTransition";
+import ContactInfoSection from "@/components/Contact/ContactInfoSection";
 
 type Props = {
   children: ReactNode;
@@ -48,7 +46,10 @@ export default async function LocaleLayout({
       <body className="overflow-x-hidden">
         <IntlProvider params={{ locale }}>
           <Navbar />
-          <main>{children}</main>
+          <main>
+            {children}
+            <ContactInfoSection />
+          </main>
           <Footer />
         </IntlProvider>
       </body>

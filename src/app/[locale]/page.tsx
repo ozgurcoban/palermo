@@ -4,7 +4,6 @@ import { locales } from "@/config";
 import Hero from "@/components/Hero";
 import PageTransition from "@/components/ui/PageTransition";
 import Gallery from "@/components/Gallery";
-import ContactInfoSection from "@/components/Contact/ContactInfoSection";
 import Story from "@/components/Story";
 import Menu from "@/components/Menu";
 import Wall from "@/components/Wall";
@@ -25,7 +24,6 @@ export default function IndexPage({ params: { locale } }: Props) {
     <PageTransition>
       <Hero />
       <Gallery />
-      <ContactInfoSection />
       <Story />
       <Menu />
       <Wall />

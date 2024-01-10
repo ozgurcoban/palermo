@@ -4,6 +4,7 @@ import {
   EnvelopeClosedIcon,
 } from "@radix-ui/react-icons";
 import ContactForm from "./Form";
+import Link from "next/link";
 
 const openingHours = [
   { day: "Monday:", open: "11:00 AM", close: "01:00 AM" },
@@ -14,28 +15,30 @@ const openingHours = [
 
 export default function ContactInfoSection() {
   return (
-    <section className="w-screen py-16 bg-[#F8EEE2]">
+    <section className="w-screen py-16 bg-[#F8EEE2]" id="contact">
       <div className="container grid lg:grid-cols-2 items-center gap-5">
         <div className="flex justify-between md:flex-row lg:flex-col flex-col gap-10 mb-10">
           <div className="flex-1">
-            <h2 className="title-secondary">where to find us</h2>
+            <h2 className="title-secondary">Where to find us</h2>
             <ul>
-              <li className="flex items-center gap-2 pt-3">
+              <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
                 <HomeIcon className="size-5" />
-                <a href="#">Sysslomansgatan 7, 754 13, Uppsala</a>
+                <Link href="#">Sysslomansgatan 7, 754 13, Uppsala</Link>
               </li>
-              <li className="flex items-center gap-2 pt-3">
+              <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
                 <ChatBubbleIcon className="size-5" />
-                <a href="#">Telephone: +4618255770</a>
+                <Link href="tel:4618255770">Telephone: +4618255770</Link>
               </li>
-              <li className="flex items-center gap-2 pt-3">
+              <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
                 <EnvelopeClosedIcon className="size-5" />
-                <a href="#">Email: info@palermo-uppsala.se</a>
+                <Link href="mailto:info@palermo-uppsala.se">
+                  Email: info@palermo-uppsala.se
+                </Link>
               </li>
             </ul>
           </div>
           <div className="flex-1">
-            <h2 className="title-secondary">opening hours</h2>
+            <h2 className="title-secondary">Opening hours</h2>
             <ul>
               {openingHours.map((day, i) => (
                 <li
