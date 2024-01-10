@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -47,5 +53,30 @@ body {
 }
 
 .title-secondary {
-  @apply font-teko lg:text-[64px] text-5xl lg:leading-normal font-semibold;
+  @apply font-teko lg:text-[64px] text-5xl lg:leading-normal font-semibold lg:text-left text-center;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.swiper-button-next {
+  background-image: url("../../public/icons/arrow-right.svg") !important;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+
+.swiper-button-prev {
+  background-image: url("../../public/icons/arrow-left.svg") !important;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
 }

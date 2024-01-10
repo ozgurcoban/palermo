@@ -6,6 +6,7 @@ import PageTransition from "@/components/ui/PageTransition";
 import Gallery from "@/components/Gallery";
 import Story from "@/components/Story";
 import Menu from "@/components/Menu";
+import Wall from "@/components/Wall";
 
 type Props = {
   params: { locale: string };
@@ -25,6 +26,7 @@ export default function IndexPage({ params: { locale } }: Props) {
       <Gallery />
       <Story />
       <Menu />
+      <Wall />
     </PageTransition>
   );
 }
