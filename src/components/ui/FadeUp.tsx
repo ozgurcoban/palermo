@@ -7,6 +7,7 @@ interface FadeUp extends MotionProps {
   delay?: number;
   duration?: number;
   className?: string;
+  transition?: MotionProps["transition"];
 }
 
 const variants = {
@@ -25,6 +26,7 @@ const FadeUp: React.FC<FadeUp> = ({
   className,
   delay,
   duration,
+  transition,
   ...props
 }) => {
   return (
@@ -34,7 +36,7 @@ const FadeUp: React.FC<FadeUp> = ({
       className={className}
       whileInView={"animate"}
       viewport={{ once: true }}
-      transition={{ delay, duration, ease: "easeIn" }}
+      transition={{ delay, duration, ease: "easeIn", ...transition }}
       {...props}
     >
       {children}

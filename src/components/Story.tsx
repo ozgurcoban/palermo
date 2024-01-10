@@ -4,11 +4,18 @@ import Beer from "../../public/images/beer.png";
 import BG from "../../public/images/story.jpg";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import FadeUp from "./ui/FadeUp";
+import MotionDiv from "./ui/MotionDiv";
 
 const Story = () => {
   return (
-    <section className="w-screen h-screen relative my-16 border-y">
-      <div className="absolute lg:z-[-1] bottom-0 left-0">
+    <section className="w-screen h-screen relative py-16 border-y">
+      <MotionDiv
+        initial={{ rotateZ: 4 }}
+        animate={{ rotateZ: -3 }}
+        style={{ rotateY: 0, rotateX: 0 }}
+        transition={{ repeat: Infinity, repeatType: "reverse", duration: 2 }}
+        className="absolute lg:z-[-1] bottom-0 left-0 origin-bottom-left"
+      >
         <Image
           src={Beer}
           alt="Palermo beer"
@@ -16,7 +23,7 @@ const Story = () => {
           height={385}
           className=""
         />
-      </div>
+      </MotionDiv>
       <div className="container h-full flex lg:flex-row flex-col items-center gap-5">
         <div className="flex-1 lg:text-left text-center">
           <FadeUp>
