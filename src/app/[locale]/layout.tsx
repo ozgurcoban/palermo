@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { teko, lobster, lato } from "../fonts";
 import IntlProvider from "@/providers/IntlProvider";
 import ContactInfoSection from "@/components/Contact/ContactInfoSection";
+import { Toaster } from "@/components/ui/toaster";
 
 type Props = {
   children: ReactNode;
@@ -45,6 +46,7 @@ export default async function LocaleLayout({
     >
       <body className="overflow-x-hidden">
         <IntlProvider params={{ locale }}>
+          <Toaster />
           <Navbar />
           <main>
             {children}

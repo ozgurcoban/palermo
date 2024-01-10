@@ -16,23 +16,21 @@ export default function ContactForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<ContactFormInputs>({ resolver: zodResolver(ContactFormSchema) });
 
-  const processForm: SubmitHandler<ContactFormInputs> = async data => {
+  const processForm: SubmitHandler<ContactFormInputs> = async (data) => {
     const result = await sendMail(data);
 
     if (result?.success) {
-      console.log({ data: result.data });
       toast({
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request.",
+        title: "Thanks!",
+        description: "We'll read your email and back to you soon 😊",
       });
       reset();
       return;
     }
-    console.log(result?.error);
     toast({
       variant: "destructive",
       title: "Uh oh! Something went wrong.",
@@ -85,7 +83,13 @@ export default function ContactForm() {
           </p>
         )}
       </div>
-      <Button type="submit" size={"lg"} className="mt-4 bg-dark text-base hover:tracking-wide">
+      <Button
+        type="submit"
+        size={"lg"}
+        className="mt-4 bg-dark text-base hover:tracking-wide"
+        aria-disabled={isSubmitting}
+        disabled={isSubmitting}
+      >
         Submit
       </Button>
     </form>

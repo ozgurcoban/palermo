@@ -16,12 +16,15 @@ export async function sendMail(data: ContactFormInputs) {
 
     try {
       const data = await resend.emails.send({
-        from: "www.palermo-uppsala.se",
-        to: "info@jackson.com",
-        subject: "Contact Form Submission",
+        from: "info@palermo-uppsala.se",
+        to: ["info@palermo-uppsala.se"],
+        subject: "Message from the Palermo website",
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
         react: ContactFormEmail({ name, email, message }),
       });
+
+      const { error } = data;
+      if (error) return { success: false, error };
       return { success: true, data };
     } catch (error) {
       return { success: false, error };
