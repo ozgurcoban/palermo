@@ -8,6 +8,7 @@ import Story from "@/components/Story";
 import Menu from "@/components/Menu";
 import Wall from "@/components/Wall";
 import WaveDivider from "@/components/WaveDivider";
+import Testimonials from "@/components/Testimonials";
 
 type Props = {
   params: { locale: string };
@@ -15,7 +16,7 @@ type Props = {
 
 export default function IndexPage({ params: { locale } }: Props) {
   // Validate that the incoming `locale` parameter is valid
-  const isValidLocale = locales.some(cur => cur === locale);
+  const isValidLocale = locales.some((cur) => cur === locale);
   if (!isValidLocale) notFound();
 
   // Enable static rendering
@@ -29,6 +30,7 @@ export default function IndexPage({ params: { locale } }: Props) {
       <Story />
       <Menu />
       <Wall />
+      <Testimonials />
     </PageTransition>
   );
 }
