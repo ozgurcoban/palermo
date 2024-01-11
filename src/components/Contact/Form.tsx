@@ -37,8 +37,8 @@ export default function ContactForm() {
     if (result?.success) {
       console.log({ data: result.data });
       toast({
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request.",
+        title: "Message was sent!",
+        description: "Successfully sent your message.",
       });
       reset();
       return;
@@ -52,12 +52,12 @@ export default function ContactForm() {
   };
   return (
     <form onSubmit={handleSubmit(processForm)} className="self-start">
-      <h2 className="title-secondary ">get in touch</h2>
-      <div className="flex gap-4 pb-4 pt-3">
+      <h2 className="title-secondary flex">get in touch</h2>
+      <div className="flex gap-2 md:gap-4 pb-4 pt-3">
         {/* Name field */}
         <div className="flex-1">
           <input
-            className=" border-2 border-accent w-full p-2"
+            className=" border-2 border-accent w-full py-2 px-4"
             placeholder="name"
             {...register("name")}
           />
@@ -71,7 +71,7 @@ export default function ContactForm() {
         {/* Email field */}
         <div className="flex-1">
           <input
-            className="flex-1 border-2 border-accent w-full p-2"
+            className="flex-1 border-2 border-accent w-full py-2 px-4"
             placeholder="email"
             {...register("email")}
           />
@@ -87,7 +87,7 @@ export default function ContactForm() {
         <textarea
           rows={5}
           placeholder="message"
-          className="border-2 border-accent w-full p-2"
+          className="border-2 border-accent w-full py-2 px-4"
           {...register("message")}
         />
         {errors.message?.message && (

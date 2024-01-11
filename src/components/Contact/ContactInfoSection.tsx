@@ -6,10 +6,10 @@ import {
 import ContactForm from "./Form";
 
 const openingHours = [
-  { day: "Monday:", open: "11:00 AM", close: "01:00 AM" },
-  { day: "Tuesday - Friday:", open: "11:00 AM", close: "03:00 AM" },
-  { day: "Saturday:", open: "12:00 PM", close: "03:00 AM" },
-  { day: "Sunday:", open: "12:00 PM", close: "01:00 AM" },
+  { day: "Monday:", open: "11:00", close: "01:00" },
+  { day: "Tuesday - Friday:", open: "11:00", close: "03:00" },
+  { day: "Saturday:", open: "12:00", close: "03:00" },
+  { day: "Sunday:", open: "12:00", close: "01:00" },
 ];
 
 export default function ContactInfoSection() {
@@ -18,7 +18,7 @@ export default function ContactInfoSection() {
       <div className="container grid lg:grid-cols-2 items-center gap-5">
         <div className="flex justify-between md:flex-row lg:flex-col flex-col gap-10 mb-10">
           <div className="flex-1">
-            <h2 className="title-secondary">where to find us</h2>
+            <h2 className="title-secondary flex">where to find us</h2>
             <ul>
               <li className="flex items-center gap-2 pt-3">
                 <HomeIcon className="size-5" />
@@ -35,12 +35,12 @@ export default function ContactInfoSection() {
             </ul>
           </div>
           <div className="flex-1">
-            <h2 className="title-secondary">opening hours</h2>
+            <h2 className="title-secondary flex">opening hours</h2>
             <ul>
               {openingHours.map((day, i) => (
                 <li
                   key={i}
-                  className="flex items-center justify-between gap-8 pt-3 max-w-md"
+                  className="flex items-center justify-between gap-8 pt-3 max-w-sm"
                 >
                   <span className="font-medium">{day.day}</span>
                   <span className="">
