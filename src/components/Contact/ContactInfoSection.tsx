@@ -15,7 +15,7 @@ const openingHours = [
 
 export default function ContactInfoSection() {
   return (
-    <section className="w-screen py-16 bg-[#F8EEE2]" id="contact">
+    <section className="w-screen py-16 pt-28 border-image" id="contact">
       <div className="container grid lg:grid-cols-2 items-center gap-5">
         <div className="flex justify-between md:flex-row lg:flex-col flex-col gap-10 mb-10">
           <div className="flex-1">

@@ -344,7 +344,7 @@ export const Menu = () => {
   }, [currentPage, menus_list, PAGE_SIZE]);
 
   return (
-    <section className="py-32 bg-[#F8EEE2] w-screen">
+    <section className="py-32  w-screen border-image">
       <div className="container">
         <FadeUp>
           <h2 className="title-secondary !text-center">{menu_section.title}</h2>
@@ -367,7 +367,8 @@ export const Menu = () => {
               selectedTab={tab.index}
               setSelectedTab={setTab}
             />
-            <FadeUp delay={1} className="w-full h-full">
+            <FadeUp delay={1} className="w-full h-full mt-8">
+              <hr />
               <MenuItems data={currentTableMenus} />
             </FadeUp>
           </FadeUp>

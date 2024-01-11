@@ -44,7 +44,7 @@ export default function ContactForm() {
         {/* Name field */}
         <div className="flex-1">
           <input
-            className=" border-2 border-accent w-full p-2 placeholder:capitalize rounded-lg"
+            className=" border-2 border-dark w-full px-3 py-4 placeholder:capitalize rounded-lg"
             placeholder="name"
             {...register("name")}
           />
@@ -58,7 +58,7 @@ export default function ContactForm() {
         {/* Email field */}
         <div className="flex-1">
           <input
-            className="flex-1 border-2 border-accent w-full p-2 placeholder:capitalize rounded-lg"
+            className="flex-1 border-2 border-dark w-full px-3 py-4  placeholder:capitalize rounded-lg"
             placeholder="email"
             {...register("email")}
           />
@@ -74,7 +74,7 @@ export default function ContactForm() {
         <textarea
           rows={5}
           placeholder="message"
-          className="border-2 border-accent w-full p-3 placeholder:capitalize rounded-lg"
+          className="border-2 border-dark w-full p-4 placeholder:capitalize rounded-lg"
           {...register("message")}
         />
         {errors.message?.message && (
@@ -86,7 +86,7 @@ export default function ContactForm() {
       <Button
         type="submit"
         size={"lg"}
-        className="mt-4 bg-dark text-base hover:tracking-wide"
+        className="mt-4 bg-dark text-base hover:tracking-wide uppercase"
         aria-disabled={isSubmitting}
         disabled={isSubmitting}
       >

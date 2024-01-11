@@ -6,13 +6,13 @@ const Gallery = () => {
   const gallery = [...Array(10)];
 
   return (
-    <section className="w-screen py-40 h-full ">
+    <section className="w-screen py-40 h-full bg-accent text-white">
       <div className="container flex flex-col items-center">
         <FadeUp>
-          <h2 className="title-secondary">Beautiful moments in palermo</h2>
+          <h2 className="title-secondary">Beautiful moments in Palermo</h2>
         </FadeUp>
         <FadeUp>
-          <p className="font-lato text-center mx-auto text-dark/80 lg:w-1/2 md:w-2/3 w-11/12">
+          <p className="font-lato text-center mx-auto opacity-80 text-lg lg:w-1/2 md:w-2/3 w-11/12">
             Figma ipsum component variant main layer. Component export bullet
             union vertical font asset union. Edit layout bullet align frame
             component move link reesizing.
