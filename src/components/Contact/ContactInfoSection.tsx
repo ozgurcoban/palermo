@@ -19,8 +19,8 @@ export default function ContactInfoSection() {
       <div className="container grid lg:grid-cols-2 items-center gap-5">
         <div className="flex justify-between md:flex-row lg:flex-col flex-col gap-10 mb-10">
           <div className="flex-1">
-            <h2 className="title-secondary">Where to find us</h2>
-            <ul>
+            <h2 className="title-secondary whitespace-nowrap">Where to find us</h2>
+            <ul className="flex flex-col mx-auto w-fit lg:w-full">
               <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
                 <HomeIcon className="size-5" />
                 <Link href="#">Sysslomansgatan 7, 754 13, Uppsala</Link>
@@ -39,7 +39,7 @@ export default function ContactInfoSection() {
           </div>
           <div className="flex-1">
             <h2 className="title-secondary">Opening hours</h2>
-            <ul>
+            <ul className="flex flex-col mx-auto w-fit md:w-full">
               {openingHours.map((day, i) => (
                 <li
                   key={i}
