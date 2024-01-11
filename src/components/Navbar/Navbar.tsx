@@ -29,16 +29,16 @@ export function Navbar() {
   return (
     <header className="sticky w-screen h-[132px]">
       <div className="container h-full flex gap-4 items-center">
-        <div className="flex-1">
+        <Link href={"/"} className="flex-1">
           <Image src="/logo.png" alt="logo" width={80} height={80} />
-        </div>
+        </Link>
         <div className="lg:flex hidden flex-1 justify-end md:justify-center">
           <NavLinks navbarLinks={navbarLinks} />
         </div>
         <div className="lg:flex hidden justify-end items-center md:flex-1 gap-2">
           <Link
             href={"#contact"}
-            className="px-4 py-2 text-xl font-teko uppercase bg-accent text-secondary font-light hover:bg-primary transition-all duration-200"
+            className="px-4 py-2 whitespace-nowrap font-lato uppercase font-normal bg-accent text-secondary hover:bg-primary transition-all duration-200"
           >
             where to find us
           </Link>

@@ -21,7 +21,7 @@ const NavLinks = ({ navbarLinks }: NavLinks) => {
   };
 
   return (
-    <nav className="gap-16 uppercase font-teko text-xl whitespace-nowrap hidden md:flex list-none">
+    <nav className="gap-16 uppercase font-lato text-base whitespace-nowrap hidden md:flex list-none">
       {navbarLinks.map(({ href, title }) => (
         <li key={title}>
           <Link

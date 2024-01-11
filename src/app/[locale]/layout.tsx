@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { locales } from "@/config";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { teko, lobster, lato } from "../fonts";
+import { lobster, lato, recoleta } from "../../lib/fonts";
 import IntlProvider from "@/providers/IntlProvider";
 import ContactInfoSection from "@/components/Contact/ContactInfoSection";
 import { Toaster } from "@/components/ui/toaster";
@@ -41,7 +41,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${lato.variable} ${teko.variable} ${lobster.variable}`}
+      className={`${lato.variable} ${lobster.variable} ${recoleta.variable}`}
       suppressHydrationWarning
     >
       <body className="overflow-x-hidden">

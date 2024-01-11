@@ -12,8 +12,8 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-lato)", "sans-serif"],
-        teko: ["var(--font-teko)", "sans-serif"],
         lato: ["var(--font-lato)", "sans-serif"],
+        recoleta: ["var(--font-recoleta)"],
         lobster: ["var(--font-lobster)", "sans-serif"],
       },
       colors: {

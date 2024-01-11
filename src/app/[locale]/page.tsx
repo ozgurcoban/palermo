@@ -7,6 +7,7 @@ import Gallery from "@/components/Gallery";
 import Story from "@/components/Story";
 import Menu from "@/components/Menu";
 import Wall from "@/components/Wall";
+import WaveDivider from "@/components/WaveDivider";
 
 type Props = {
   params: { locale: string };
@@ -23,6 +24,7 @@ export default function IndexPage({ params: { locale } }: Props) {
   return (
     <PageTransition>
       <Hero />
+      <WaveDivider />
       <Gallery />
       <Story />
       <Menu />

@@ -8,7 +8,7 @@ import MotionDiv from "./ui/MotionDiv";
 
 const Story = () => {
   return (
-    <section className="w-screen h-screen relative py-16 border-y">
+    <section className="w-screen h-screen relative py-16 border-t">
       <MotionDiv
         initial={{ rotateZ: 4 }}
         animate={{ rotateZ: -3 }}
@@ -32,7 +32,7 @@ const Story = () => {
             </h2>
           </FadeUp>
           <FadeUp delay={0.3}>
-            <p className="mt-4 text-body">
+            <p className="mt-4 text-body opacity-85">
               Figma ipsum component variant main layer. Component export bullet
               union vertical font asset union. Edit layout bullet align frame
               component move link reesizing.
@@ -42,9 +42,9 @@ const Story = () => {
             <button
               title="Read more"
               aria-live="polite"
-              className="flex items-center gap-2 mt-16 lg:mx-0 mx-auto hover:tracking-wider transition-all duration-300"
+              className="flex items-center gap-2 mt-16 lg:mx-0 mx-auto hover:tracking-wider transition-all duration-300 text-primary"
             >
-              <span className="uppercase font-teko text-2xl font-medium">
+              <span className="uppercase font-recoleta text-2xl font-medium">
                 Read more
               </span>
               <ArrowRightIcon width={24} height={24} />

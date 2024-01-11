@@ -66,7 +66,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
                 className={`cursor-pointer transition-all duration-700 text-center ${
                   selectedTab === index
                     ? "font-lobster text-5xl lg:text-6xl text-accent"
-                    : "font-teko text-3xl lg:text-4xl font-light"
+                    : "font-lato text-2xl lg:text-3xl text-dark/85"
                 }`}
               >
                 {tab.label}
