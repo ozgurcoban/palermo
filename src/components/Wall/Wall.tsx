@@ -27,7 +27,7 @@ export const Wall = () => {
   const groudImages = divideArrayBy(images);
 
   return (
-    <section className="py-56 overflow-x-hidden">
+    <section className="py-56 overflow-x-hidden border-b bg-[#f9f9f9]">
       <FadeUp>
         <h2 className="title-secondary !text-center">The Wall</h2>
       </FadeUp>

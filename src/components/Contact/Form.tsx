@@ -39,7 +39,7 @@ export default function ContactForm() {
   };
   return (
     <form onSubmit={handleSubmit(processForm)} className="self-start">
-      <h2 className="title-secondary flex">get in touch</h2>
+      <h2 className="title-secondary flex">Get in touch</h2>
       <div className="flex gap-2 md:gap-4 pb-4 pt-3">
         {/* Name field */}
         <div className="flex-1">

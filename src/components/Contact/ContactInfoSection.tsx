@@ -16,13 +16,13 @@ const openingHours = [
 
 export default function ContactInfoSection() {
   return (
-    <section className="w-screen" id="contact">
-      <div className="bg-[#F8EEE2] w-full">
+    <section className="w-screen pt-28 border-image" id="contact">
+      <div className="w-full">
         <div className="container py-16">
           <div className="grid lg:grid-cols-2 items-center gap-5">
             <div className="flex justify-between md:flex-row lg:flex-col flex-col gap-10 mb-10">
               <div className="flex-1">
-                <h2 className="title-secondary flex">where to find us</h2>
+                <h2 className="title-secondary flex">Where to find us</h2>
                 <ul>
                   <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
                     <HomeIcon className="size-5" />
@@ -41,7 +41,7 @@ export default function ContactInfoSection() {
                 </ul>
               </div>
               <div className="flex-1">
-                <h2 className="title-secondary flex">opening hours</h2>
+                <h2 className="title-secondary flex">Opening hours</h2>
                 <ul>
                   {openingHours.map((day, i) => (
                     <li
