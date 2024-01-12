@@ -5,7 +5,7 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 const mapContainerStyle = {
   width: "100%",
-  height: "30rem",
+  height: "25rem",
 };
 const center = {
   lat: 59.860096 - 0.0002,

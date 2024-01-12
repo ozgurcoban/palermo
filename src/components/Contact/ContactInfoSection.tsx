@@ -7,7 +7,7 @@ import ContactForm from "./Form";
 import Link from "next/link";
 import Map from "./Map";
 
-const openingHours = [
+export const openingHours = [
   { day: "Monday:", open: "11:00", close: "01:00" },
   { day: "Tuesday - Friday:", open: "11:00", close: "03:00" },
   { day: "Saturday:", open: "12:00", close: "03:00" },
