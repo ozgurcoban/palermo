@@ -1,8 +1,8 @@
 import React from "react";
 import FadeUp from "../ui/FadeUp";
-import { Button } from "../ui/button";
 import NewsItems from "./NewsItems";
-import { Link } from "@/navigation";
+import Image from "next/image";
+import NewsImage from "../../../public/images/news.jpg";
 
 const news = [
   {
@@ -34,34 +34,39 @@ const news = [
   },
 ];
 
-const RecentNews = () => {
+export const News = () => {
   return (
     <section className="w-screen py-40 h-full bg-[#f9f9f9]">
-      <div className="container flex flex-col items-center">
-        <FadeUp>
-          <h2 className="title-secondary">Be first who read news</h2>
-        </FadeUp>
-        <div className="relative w-full pb-16">
-          <NewsItems news={news.slice(0, 3)} />
-          <FadeUp
-            delay={0.05 * news.length}
-            className="absolute z-10 bottom-0 left-0 w-full h-20 pt-4  overflow-hidden flex items-center justify-center"
-          >
-            <Link href={"/news"}>
-              <Button
-                title="See more"
-                aria-live="polite"
-                className="flex items-center gap-2 px-6 hover:bg-accent"
-              >
-                <span className="font-lato text-base capitalize">See More</span>
-                {/* <HeartFilledIcon width={16} height={16} /> */}
-              </Button>
-            </Link>
+      <div className="container mb-56">
+        <div>
+          <FadeUp delay={0.2}>
+            <h2 className="font-lobster text-9xl capitalize text-center">
+              Palermo's News
+            </h2>
+          </FadeUp>
+          <FadeUp delay={0.4} className="mt-8 max-w-xl mx-auto">
+            <p className="text-center text-xl opacity-85">
+              Explore the latest stories about our dishes, offers, events and
+              future plans here.
+            </p>
           </FadeUp>
         </div>
+      </div>
+      <FadeUp delay={0.6} className="w-screen overflow-hidden max-h-[480px] relative">
+        <div className="absolute inset-0 z-10">
+          <Image
+            src={NewsImage}
+            alt="Palermo's news"
+            width={1920}
+            height={1080}
+            className="object-cover"
+          />
+        </div>
+        <div className="w-full bg-neutral-100 h-[480px]" />
+      </FadeUp>
+      <div className="container">
+        <NewsItems news={news} />
       </div>
     </section>
   );
 };
-
-export default RecentNews;
