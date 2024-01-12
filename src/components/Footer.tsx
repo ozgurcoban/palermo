@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FacebookIcon, InstagramIcon } from "lucide-react";
 import { openingHours } from "./Contact/ContactInfoSection";
+import Link from "next/link";
 
 import {
   HomeIcon,
@@ -20,8 +21,20 @@ export default function Footer() {
               quibusdam vel molestiae.
             </p>
             <div className="flex gap-4">
-              <FacebookIcon />
-              <InstagramIcon />
+              <Link
+                href="https://www.facebook.com/profile.php?id=100046443356150"
+                target="_blank"
+                aria-label="Facebook"
+              >
+                <FacebookIcon />
+              </Link>
+              <Link
+                href="https://www.instagram.com/palermo_uppsala"
+                target="_blank"
+                aria-label="Instagram"
+              >
+                <InstagramIcon />
+              </Link>
             </div>
           </div>
         </div>
