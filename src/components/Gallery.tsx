@@ -1,6 +1,7 @@
 import React from "react";
 import FadeUp from "./ui/FadeUp";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
+import { Button } from "./ui/button";
 
 const Gallery = () => {
   const gallery = [...Array(10)];
@@ -37,15 +38,18 @@ const Gallery = () => {
               );
             })}
           </div>
-          <FadeUp delay={0.05 * gallery.length}>
-            <button
+          <FadeUp
+            delay={0.05 * gallery.length}
+            className="absolute z-10 bottom-0 left-0 w-full h-28 pt-4 from-neutral-100 bg-gradient-to-t overflow-hidden flex items-center justify-center"
+          >
+            <Button
               title="See more"
               aria-live="polite"
-              className="absolute border z-10 bottom-0 left-0 w-full h-20 backdrop-blur-sm bg-light/30 text-rose-500 rounded-xl overflow-hidden flex items-center justify-center gap-2"
+              className="flex items-center gap-2 px-6 hover:bg-accent"
             >
-              <span className="font-lato text-xl">See more</span>
-              <HeartFilledIcon width={20} height={20} />
-            </button>
+              <span className="font-lato text-base capitalize">See More</span>
+              <HeartFilledIcon width={16} height={16} />
+            </Button>
           </FadeUp>
         </div>
       </div>

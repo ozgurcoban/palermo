@@ -9,6 +9,7 @@ import Menu from "@/components/Menu";
 import Wall from "@/components/Wall";
 import WaveDivider from "@/components/WaveDivider";
 import Testimonials from "@/components/Testimonials";
+import RecentNews from "@/components/News/RecentNews";
 
 type Props = {
   params: { locale: string };
@@ -31,6 +32,7 @@ export default function IndexPage({ params: { locale } }: Props) {
       <Menu />
       <Wall />
       <Testimonials />
+      <RecentNews />
     </PageTransition>
   );
 }
