@@ -6,7 +6,7 @@ const Gallery = () => {
   const gallery = [...Array(10)];
 
   return (
-    <section className="w-screen py-40 h-full bg-accent text-white">
+    <section className="w-screen py-40 h-full bg-[#f9f9f9]">
       <div className="container flex flex-col items-center">
         <FadeUp>
           <h2 className="title-secondary">Beautiful moments in Palermo</h2>

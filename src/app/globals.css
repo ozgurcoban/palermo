@@ -64,6 +64,18 @@ body {
   border-image-outset: 0;
 }
 
+.green-bg {
+  border: 1px solid #0a552c;
+  border-image-source: url(../../public/images/green-bg.png);
+  border-image-slice: 30;
+  border-image-width: 30px;
+  border-image-outset: 10;
+  background-image: url(../../public/images/green-bg.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
 .spacer {
   aspect-ratio: 960/200;
   width: 100%;
