@@ -12,15 +12,15 @@ import {
 export default function Footer() {
   return (
     <footer className="bg-[#292d36] text-light">
-      <div className="container py-16 grid grid-cols-3">
+      <div className="container py-16 gap-y-10 grid sm:grid-cols-3 grid-cols-1">
         {/* Opmeing hours */}
-        <div>
+        <div className="flex flex-col items-center sm:items-start">
           <h3 className="text-lg uppercase text-[#e2e8c0]">opening hours</h3>
-          <ul>
+          <ul className="w-full sm:w-fit">
             {openingHours.map((day, i) => (
               <li
                 key={i}
-                className="flex items-center justify-between gap-8 pt-3 max-w-[17rem]"
+                className="flex items-center justify-between gap-8 pt-3 mx-auto sm:mx-0 max-w-[17rem]"
               >
                 <span className="font-medium whitespace-nowrap">{day.day}</span>
                 <span className="">
@@ -30,7 +30,7 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-        <div className="max-w-xs flex flex-col items-center gap-4">
+        <div className="sm:max-w-xs flex flex-col items-center gap-4 sm:row-auto row-start-1">
           <Link href={"/"}>
             <Image src="/logo.png" alt="logo" width={70} height={70} />
           </Link>
@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
         </div>
         {/* Contact */}
-        <div>
+        <div className="flex flex-col items-center sm:items-start">
           <h3 className="flex text-lg uppercase text-[#e2e8c0]">
             where to find us
           </h3>

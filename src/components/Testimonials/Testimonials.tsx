@@ -13,7 +13,7 @@ export const Testimonials = () => {
             Our clients say
           </h2>
         </FadeUp>
-        <div className="flex md:flex-row flex-col-reverse w-full mt-32 items-center md:items-end overflow-x-hidden">
+        <div className="flex md:flex-row flex-col-reverse w-full mt-32 items-center overflow-x-hidden">
           <TestimonialItems />
           <Image src={HappyFace} alt="happy Palermo" width={1920} height={1080} className="object-cover max-w-[600px]"  />
         </div>

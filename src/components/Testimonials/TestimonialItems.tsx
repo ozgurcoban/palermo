@@ -35,7 +35,7 @@ const TestimonialItems = () => {
     );
 
   return (
-    <div className="md:max-w-[577px] md:w-max flex-1 md:-mr-24 z-10 green-bg px-10 lg:px-20 py-16 h-fit ">
+    <div className="md:max-w-[577px] md:w-max flex-1 md:-mr-24 z-10 green-bg px-10 lg:px-20 py-16 h-full mb-2">
       <div className="flex flex-col gap-11 items-center text-light">
         <div className="flex items-center justify-center gap-20 w-full">
           <button
