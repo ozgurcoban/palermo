@@ -8,6 +8,7 @@ import { lobster, lato, recoleta } from "../../lib/fonts";
 import IntlProvider from "@/providers/IntlProvider";
 import ContactInfoSection from "@/components/Contact/ContactInfoSection";
 import { Toaster } from "@/components/ui/toaster";
+import ScrollTop from "@/components/ScrollTop";
 
 type Props = {
   children: ReactNode;
@@ -48,6 +49,7 @@ export default async function LocaleLayout({
         <IntlProvider params={{ locale }}>
           <Toaster />
           <Navbar />
+          <ScrollTop />
           <main>
             {children}
             <ContactInfoSection />

@@ -1,14 +1,13 @@
 "use client";
 import clsx from "clsx";
-import { Divide } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { usePathname, useSearchParams } from "next/navigation";
 import React from "react";
 
 type NavLinks = {
   navbarLinks: {
     title: string;
-    href: string;
+    href: any;
   }[];
 };
 

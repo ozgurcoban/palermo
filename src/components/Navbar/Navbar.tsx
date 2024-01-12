@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import NavLinks from "./NavLinks";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
+import { Link } from "@/navigation";
 
 export function Navbar() {
   const t = useTranslations("Navigation");
@@ -27,7 +27,7 @@ export function Navbar() {
     },
   ];
   return (
-    <header className="sticky w-screen h-[132px]">
+    <header className="sticky w-screen h-[132px]" id="navbar">
       <div className="container h-full flex gap-4 items-center">
         <Link href={"/"} className="flex-1">
           <Image src="/logo.png" alt="logo" width={80} height={80} />
@@ -36,12 +36,12 @@ export function Navbar() {
           <NavLinks navbarLinks={navbarLinks} />
         </div>
         <div className="lg:flex hidden justify-end items-center md:flex-1 gap-2">
-          <Link
+          <a
             href={"#contact"}
             className="px-4 py-2 whitespace-nowrap font-lato uppercase font-normal bg-accent text-secondary hover:bg-primary transition-all duration-200"
           >
             where to find us
-          </Link>
+          </a>
           <div className="hidden px-4 py-2 md:inline-flex items-center ">
             <LocaleSwitcher />
           </div>
