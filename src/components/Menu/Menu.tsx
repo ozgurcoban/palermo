@@ -347,7 +347,7 @@ export const Menu = () => {
     <section className="py-32  w-screen border-image">
       <div className="container">
         <FadeUp>
-          <h2 className="title-secondary !text-center">{menu_section.title}</h2>
+          <h2 className="title-secondary !text-center">Try our special dishes</h2>
         </FadeUp>
         <FadeUp
           delay={0.3}

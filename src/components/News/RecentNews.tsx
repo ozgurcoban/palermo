@@ -39,7 +39,7 @@ const RecentNews = () => {
     <section className="w-screen py-40 h-full bg-[#f9f9f9]">
       <div className="container flex flex-col items-center">
         <FadeUp>
-          <h2 className="title-secondary">Don’t miss out our recent news</h2>
+          <h2 className="title-secondary">Be first who read news</h2>
         </FadeUp>
         <div className="relative w-full pb-16">
           <div className="mt-36 w-full grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">

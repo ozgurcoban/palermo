@@ -28,7 +28,7 @@ const Story = () => {
         <div className="flex-1 lg:text-left text-center">
           <FadeUp>
             <h2 className="title-secondary !normal-case">
-              Hear a <span className="text-accent">story</span> from the store
+              The delicious <span className="text-accent">story</span>
             </h2>
           </FadeUp>
           <FadeUp delay={0.3}>

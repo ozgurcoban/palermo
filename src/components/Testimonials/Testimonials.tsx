@@ -10,7 +10,7 @@ export const Testimonials = () => {
       <div className="container">
         <FadeUp>
           <h2 className="title-secondary !text-center">
-            What do our customers say about Palermo
+            Our clients say
           </h2>
         </FadeUp>
         <div className="flex md:flex-row flex-col-reverse w-full mt-32 items-center md:items-end overflow-x-hidden">

@@ -8,10 +8,10 @@ import Link from "next/link";
 import Map from "./Map";
 
 export const openingHours = [
-  { day: "Monday:", open: "11:00", close: "01:00" },
-  { day: "Tuesday - Friday:", open: "11:00", close: "03:00" },
-  { day: "Saturday:", open: "12:00", close: "03:00" },
-  { day: "Sunday:", open: "12:00", close: "01:00" },
+  { day: "Mon:", open: "11:00", close: "01:00" },
+  { day: "Tue - Fri:", open: "11:00", close: "03:00" },
+  { day: "Sat:", open: "12:00", close: "03:00" },
+  { day: "Sun:", open: "12:00", close: "01:00" },
 ];
 
 export default function ContactInfoSection() {
