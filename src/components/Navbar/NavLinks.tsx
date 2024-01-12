@@ -1,7 +1,7 @@
 "use client";
 import clsx from "clsx";
 import { Link } from "@/navigation";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "@/navigation";
 import React from "react";
 
 type NavLinks = {
@@ -14,10 +14,7 @@ type NavLinks = {
 const NavLinks = ({ navbarLinks }: NavLinks) => {
   const pathname = usePathname();
 
-  const isPathname = (href: string) => {
-    const path = pathname.slice(3);
-    return href === "/" && path === "" ? true : path === href;
-  };
+  const isPathname = (href: string) => pathname === href;
 
   return (
     <nav className="gap-16 uppercase font-lato text-base whitespace-nowrap hidden md:flex list-none">
