@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { locales } from "@/config";
-import Hero from "@/components/Hero";
+import { HomeHero as Hero } from "@/components/Heros";
 import PageTransition from "@/components/ui/PageTransition";
 import Gallery from "@/components/Gallery";
 import Story from "@/components/Story";
@@ -10,6 +10,7 @@ import Wall from "@/components/Wall";
 import WaveDivider from "@/components/WaveDivider";
 import Testimonials from "@/components/Testimonials";
 import RecentNews from "@/components/News/RecentNews";
+import Banner from "@/components/Banner";
 
 type Props = {
   params: { locale: string };
@@ -26,7 +27,7 @@ export default function IndexPage({ params: { locale } }: Props) {
   return (
     <PageTransition>
       <Hero />
-      <WaveDivider />
+      <Banner />
       <Gallery />
       <Story />
       <Menu />
