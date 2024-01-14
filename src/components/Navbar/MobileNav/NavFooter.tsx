@@ -37,16 +37,6 @@ const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
       </ul>
 
       <ul className="w-1/2 lg:w-auto mt-2 overflow-hidden flex flex-wrap gap-2 justify-end">
-        <motion.li
-          custom={[0.3, 0]}
-          variants={translate}
-          initial="initial"
-          animate="enter"
-          exit="exit"
-          className={""}
-        >
-          site language:
-        </motion.li>
         {locales.map((cur) => (
           <motion.li
             custom={[0.3, 0]}
@@ -63,6 +53,16 @@ const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
             {t("locale", { locale: cur })}
           </motion.li>
         ))}
+        <motion.li
+          custom={[0.3, 0]}
+          variants={translate}
+          initial="initial"
+          animate="enter"
+          exit="exit"
+          className={""}
+        >
+          site language:
+        </motion.li>
       </ul>
     </div>
   );

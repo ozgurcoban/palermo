@@ -37,12 +37,22 @@
   }
 }
 
+html::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--light);
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 10px;
+}
+
 body {
   background-color: #fefefe;
 }
 
 .container {
-  @apply max-w-[1264px] mx-auto sm:px-8 px-4;
+  @apply lg:max-w-[1264px] max-w-[100vw] mx-auto sm:px-8 px-4 overflow-hidden;
 }
 
 .row {
@@ -57,11 +67,51 @@ body {
   @apply font-recoleta lg:text-[56px] text-5xl leading-tight lg:leading-normal font-semibold lg:text-left text-center;
 }
 
-.border-image {
+.burger {
+  width: 22.5px;
+  position: relative;
+  pointer-events: none;
+}
+
+.burger::after,
+.burger::before {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: black;
+  position: relative;
+  display: block;
+  transition: all 1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.burger::after {
+  top: -4px;
+}
+
+.burger::before {
+  top: 4px;
+}
+
+.burgerActive::after {
+  transform: rotate(45deg);
+  top: -1px;
+}
+
+.burgerActive::before {
+  transform: rotate(-45deg);
+  top: 1px;
+}
+
+.border-image,
+.dark-border-image {
   border-image-source: url(../../public/images/border.png);
   border-image-slice: 70 0 70 fill;
   border-image-width: 30px 0;
   border-image-outset: 0;
+}
+
+.dark-border-image {
+  border-image-source: url(../../public/images/dark-border.png);
 }
 
 .green-bg {
