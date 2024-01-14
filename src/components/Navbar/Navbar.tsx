@@ -1,33 +1,47 @@
+"use client";
 import LocaleSwitcher from "./LocaleSwitcher";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import NavLinks from "./NavLinks";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Link } from "@/navigation";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import MobileNav from "./MobileNav";
+import { background, opacity } from "./anim";
 
 export function Navbar() {
   const t = useTranslations("Navigation");
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (body) body.style.overflowY = isActive ? "hidden" : "auto";
+  }, [isActive]);
 
   const navbarLinks = [
     {
       title: t("home"),
       href: "/",
+      src: "home.jpg",
     },
     {
       title: t("menu"),
       href: "/menu",
+      src: "menu.jpg",
     },
     {
       title: t("about"),
       href: "/about",
+      src: "home.jpg",
     },
     {
       title: t("news"),
       href: "/news",
+      src: "news.jpg",
     },
   ];
   return (
-    <header className="sticky w-screen h-[132px]" id="navbar">
+    <header className="relative bg-light h-[132px] z-30 w-screen " id="navbar">
       <div className="container h-full flex gap-4 items-center">
         <Link href={"/"} className="flex-1">
           <Image src="/logo.png" alt="logo" width={80} height={80} />
@@ -46,14 +60,46 @@ export function Navbar() {
             <LocaleSwitcher />
           </div>
         </div>
-        <button
-          title="menu"
-          aria-label="menu"
-          aria-live="polite"
-          className="lg:hidden block"
+        <div
+          onClick={() => {
+            setIsActive(!isActive);
+          }}
+          className={"flex lg:hidden items-center justify-center gap-2 cursor-pointer"}
         >
-          <HamburgerMenuIcon width={30} height={30} />
-        </button>
+          <div className={`burger ${isActive ? "burgerActive" : ""}`}></div>
+
+          <div className={"relative flex items-center h-full"}>
+            <motion.p
+              variants={opacity}
+              animate={!isActive ? "open" : "closed"}
+            >
+              Menu
+            </motion.p>
+
+            <motion.p
+              variants={opacity}
+              className="absolute opacity-0"
+              animate={isActive ? "open" : "closed"}
+            >
+              Close
+            </motion.p>
+          </div>
+        </div>
+      </div>
+      <AnimatePresence mode="wait">
+        {isActive && <MobileNav onCloseMenu={() => setIsActive(false)} links={navbarLinks} />}
+      </AnimatePresence>
+
+      <div className="relative">
+        <motion.div
+          variants={background}
+          initial="initial"
+          animate={isActive ? "open" : "closed"}
+          onClick={() => setIsActive(false)}
+          className={
+            "bg-dark opacity-50 h-full w-full absolute left-0 top-full z-40"
+          }
+        ></motion.div>
       </div>
     </header>
   );
