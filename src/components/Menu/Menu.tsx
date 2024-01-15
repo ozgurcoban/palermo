@@ -372,7 +372,7 @@ export const Menu = () => {
               <MenuItems data={currentTableMenus} />
             </FadeUp>
           </FadeUp>
-          <FadeUp delay={2.5}>
+          <FadeUp delay={0.2}>
             <hr />
           </FadeUp>
           <MenuPagination

@@ -23,7 +23,7 @@ const Gallery = () => {
             phrases={[
               "Figma ipsum component variant main layer. Component export bullet union",
               "vertical font asset union. Edit layout bullet align frame component move link",
-              "reesizing."
+              "reesizing.",
             ]}
             className="font-lato text-center mx-auto opacity-80 text-lg"
           />
@@ -54,7 +54,7 @@ const Gallery = () => {
             <Button
               title="See more"
               aria-live="polite"
-              className="flex items-center gap-2 px-6 hover:bg-accent"
+              className="flex items-center gap-2 px-6 dark-border-image bg-transparent py-7 hover:text-rose-500 hover:bg-transparent hover:scale-105"
             >
               <span className="font-lato text-base capitalize">See More</span>
               <HeartFilledIcon width={16} height={16} />

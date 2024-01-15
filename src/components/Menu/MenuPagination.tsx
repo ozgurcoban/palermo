@@ -40,12 +40,12 @@ const MenuPagination: React.FC<MenuPagination> = ({
 
   return (
     <div className="lg:px-20 md:px-10 px-5 py-8 flex flex-col sm:flex-row gap-y-5 items-center justify-center sm:justify-between">
-      <FadeUp delay={2.7}>
+      <FadeUp delay={0.2}>
         <span>
           Showing {indexStart} - {indexEnd} of {indexLength} Items
         </span>
       </FadeUp>
-      <FadeUp delay={2.9} className="flex items-center gap-2">
+      <FadeUp delay={0.2} className="flex items-center gap-2">
         <button
           onClick={previousPage}
           disabled={1 >= currentPage}
