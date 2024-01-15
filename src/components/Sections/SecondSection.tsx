@@ -24,7 +24,7 @@ export const SecondSection = () => {
             </p>
           </FadeUp>
         </div>
-        <div className="flex-[0.5] w-full h-max overflow-hidden">
+        <div className="flex-[0.5] w-full lg:h-max max-h-[450px] overflow-hidden">
           <Image
             src={"/images/about/pizza.jpg"}
             alt="palermo pizza section"

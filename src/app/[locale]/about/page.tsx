@@ -1,7 +1,7 @@
 import Banner from "@/components/Banner";
 import { AboutHero } from "@/components/Heros";
 import NationEveryone from "@/components/NationEveryone";
-import { FirstSection, SecondSection, ThirdSection } from "@/components/Sections";
+import { FirstSection, FourthSection, SecondSection, ThirdSection } from "@/components/Sections";
 import PageTransition from "@/components/ui/PageTransition";
 
 export default function AboutPage() {
@@ -13,6 +13,7 @@ export default function AboutPage() {
       <FirstSection />
       <SecondSection />
       <ThirdSection />
+      <FourthSection />
     </PageTransition>
   );
 }
