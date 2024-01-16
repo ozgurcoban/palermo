@@ -86,7 +86,7 @@ export default function ContactForm() {
       <Button
         type="submit"
         size={"lg"}
-        className="mt-4 bg-dark text-base hover:tracking-wide uppercase"
+        className="mt-4 text-base hover:tracking-wide uppercase dark-border-image bg-transparent py-7 hover:text-rose-500 hover:bg-transparent hover:scale-105"
         aria-disabled={isSubmitting}
         disabled={isSubmitting}
       >
