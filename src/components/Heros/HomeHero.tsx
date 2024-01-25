@@ -1,45 +1,59 @@
 import Image from "next/image";
-import MaskText from "../ui/MaskText";
-import HomeBG from "../../../public/images/home.jpg";
+import MotionDiv from "@/components/ui/MotionDiv";
+import FadeUp from "@/components/ui/FadeUp";
+
+const variants = {
+  initial: {
+    opacity: 0,
+    scale: 0.5,
+  },
+  animate: {
+    scale: [0.5, 1.1, 1.1, 1],
+    width: ["0%", "100%", "100%", "100%", "100%"],
+    height: ["30%", "30%", "80%", "100%"],
+    opacity: [1, 1, 1],
+  },
+};
 
 export function HomeHero() {
   return (
-    <section className="min-h-[calc(100vh-132px)] w-screen dark-border-image text-light relative overflow-x-hidden">
-      <div
-        id="home-hero"
-        className="xl:px-20 sm:px-10 px-5 w-full flex flex-col items-center gap-20 py-10 pt-20 relative"
+    <div className="relative h-dvh w-screen container flex items-center justify-center">
+      <MotionDiv
+        className="relative h-full overflow-hidden"
+        variants={variants}
+        initial="initial"
+        whileInView={"animate"}
+        viewport={{ once: true }}
+        transition={{
+          duration: 2,
+          ease: "easeInOut",
+          times: [0, 0.3, 0.6, 1],
+          damping: 16,
+          stiffness: 100,
+        }}
       >
-        <div className="md:text-[5vw] text-[8vw] w-full">
-          <MaskText
-            delay={0.8}
-            phrases={["Hungry ? Let's meat up"]}
-            className="font-recoleta leading-tight uppercase font-bold text-center text-rose-500"
-          />
-        </div>
-        <div className="max-w-full flex sm:flex-row flex-col xl:gap-20 gap-10">
-          <div className="flex-1 h-full max-h-[70vh] max-w-screen-xl overflow-y-hidden relative">
-            <Image
-              src={HomeBG}
-              alt="palermo homepage hero's background"
-              className="object-cover"
-            />
-          </div>
-          <div className="flex-[0.3] flex flex-col max-h-[70vh] justify-between gap-10">
-            <div className="xl:text-5xl md:text-4xl text-3xl">
-              <MaskText
-                delay={1}
-                phrases={[
-                  "At Palermo where tasty",
-                  "dishes and a fine",
-                  "selection of beers",
-                ]}
-                className="text-gray-200 font-recoleta leading-tight"
-              />
-            </div>
-            <p className="text-light/85">Welcome</p>
-          </div>
-        </div>
+        <div className="absolute z-10 w-full h-full bg-black/40" />
+        <Image
+          src="/hero.jpeg"
+          alt="hero"
+          width={1920}
+          height={1080}
+          style={{ objectFit: "cover" }}
+          className="h-full w-full"
+        />
+      </MotionDiv>
+      <div className="absolute sm:px-8 px-4 text-center inset-0 flex flex-col items-center justify-center z-20">
+        <FadeUp delay={0.8} duration={0.3}>
+          <p className="title-secondary !normal-case text-gray-200 max-w-[600px] !font-normal">
+            At <u>Palermo</u> where tasty dishes and a fine selection of beers
+          </p>
+        </FadeUp>
+        <FadeUp delay={0.5} duration={0.3}>
+          <h1 className="text-light lg:text-[180px] sm:text-[160px] text-[20vw] leading-[120px] sm:leading-[135px]  font-lobster break-words">
+            Welcome everyone
+          </h1>
+        </FadeUp>
       </div>
-    </section>
+    </div>
   );
 }
