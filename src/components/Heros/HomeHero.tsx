@@ -17,7 +17,7 @@ const variants = {
 
 export function HomeHero() {
   return (
-    <div className="relative h-dvh w-screen container flex items-center justify-center">
+    <div className="relative h-[70vh] w-screen container flex items-center justify-center">
       <MotionDiv
         className="relative h-full overflow-hidden"
         variants={variants}
@@ -45,11 +45,12 @@ export function HomeHero() {
       <div className="absolute sm:px-8 px-4 text-center inset-0 flex flex-col items-center justify-center z-20">
         <FadeUp delay={0.8} duration={0.3}>
           <p className="title-secondary !normal-case text-gray-200 max-w-[600px] !font-normal">
-            At <u>Palermo</u> where tasty dishes and a fine selection of beers
+            At <u className="underline-offset-8">Palermo</u> where tasty dishes
+            and a fine selection of beers
           </p>
         </FadeUp>
         <FadeUp delay={0.5} duration={0.3}>
-          <h1 className="text-light lg:text-[180px] sm:text-[160px] text-[20vw] leading-[120px] sm:leading-[135px]  font-lobster break-words">
+          <h1 className="text-light mt-10 lg:text-[180px] sm:text-[160px] text-[20vw] leading-[85px] sm:leading-[135px]  font-lobster break-words">
             Welcome everyone
           </h1>
         </FadeUp>

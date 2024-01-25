@@ -17,7 +17,7 @@ const NavLinks = ({ navbarLinks }: NavLinks) => {
   const isPathname = (href: string) => pathname === href;
 
   return (
-    <nav className="gap-16 uppercase font-lato text-base whitespace-nowrap hidden md:flex list-none">
+    <nav className="gap-10 uppercase font-lato text-base whitespace-nowrap hidden md:flex list-none">
       {navbarLinks.map(({ href, title }) => (
         <li key={title}>
           <Link

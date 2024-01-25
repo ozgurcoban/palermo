@@ -43,7 +43,11 @@ export default function NavBody({
   };
 
   return (
-    <div className={"flex flex-wrap lg:justify-normal justify-between px-8 lg:px-0 h-full mt-10 lg:mt-20 lg:max-w-7xl"}>
+    <div
+      className={
+        "flex lg:justify-normal justify-start px-8 lg:px-0 h-full mt-10 lg:mt-20 lg:max-w-7xl gap-4"
+      }
+    >
       {links.map((link, index) => {
         const { title, href } = link;
         return (
@@ -54,7 +58,7 @@ export default function NavBody({
             className="uppercase"
           >
             <motion.p
-              className="font-recoleta flex overflow-hidden text-3xl py-3 lg:text-[5vw] lg:pr-[2vw]"
+              className="font-recoleta flex overflow-hidden text-lg sm:text-xl py-3 lg:text-[5vw] lg:pr-[2vw]"
               onMouseOver={() => {
                 setSelectedLink({ isActive: true, index });
               }}

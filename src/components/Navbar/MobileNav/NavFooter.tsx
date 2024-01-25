@@ -19,7 +19,7 @@ const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
   return (
     <div
       className={
-        "flex items-end flex-wrap text-xs uppercase mt-10 justify-between lg:pl-1 lg:p-0 px-8"
+        "flex items-end flex-wrap text-xs uppercase mt-10 justify-end lg:pl-1 lg:p-0 px-8"
       }
     >
       <ul className="w-1/2 lg:w-auto mt-2 overflow-hidden">
@@ -29,15 +29,21 @@ const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           initial="initial"
           animate="enter"
           exit="exit"
-        >
-          <a href="#contact" onClick={onCloseMenu}>
-            Where to find us
-          </a>
-        </motion.li>
+        ></motion.li>
       </ul>
 
-      <ul className="w-1/2 lg:w-auto mt-2 overflow-hidden flex flex-wrap gap-2 justify-end">
-        {locales.map((cur) => (
+      <ul className="w-auto mt-2 overflow-hidden flex gap-2 justify-end">
+        <motion.li
+          custom={[0.3, 0]}
+          variants={translate}
+          initial="initial"
+          animate="enter"
+          exit="exit"
+          className={""}
+        >
+          site language:
+        </motion.li>
+        {locales.map(cur => (
           <motion.li
             custom={[0.3, 0]}
             variants={translate}
@@ -53,16 +59,6 @@ const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
             {t("locale", { locale: cur })}
           </motion.li>
         ))}
-        <motion.li
-          custom={[0.3, 0]}
-          variants={translate}
-          initial="initial"
-          animate="enter"
-          exit="exit"
-          className={""}
-        >
-          site language:
-        </motion.li>
       </ul>
     </div>
   );

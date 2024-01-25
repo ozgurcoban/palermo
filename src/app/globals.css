@@ -64,7 +64,7 @@ body {
 }
 
 .title-secondary {
-  @apply font-recoleta lg:text-[56px] text-5xl leading-tight lg:leading-normal font-semibold lg:text-left text-center;
+  @apply font-recoleta lg:text-[56px] text-4xl leading-tight lg:leading-normal font-semibold lg:text-left text-center;
 }
 
 .burger {

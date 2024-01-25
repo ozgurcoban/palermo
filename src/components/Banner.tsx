@@ -13,7 +13,7 @@ const banners = [
 const Banner = () => {
   return (
     <FadeUp delay={0.7}>
-      <div className="bg-light h-24 min-w-[100vw] overflow-hidden py-8 mt-10 mb-10 relative">
+      <div className="bg-light h-24 min-w-[100vw] overflow-hidden py-8 mt-5 mb-10 relative">
         <MotionDiv
           variants={{
             initial: { translateX: "0%" },
@@ -21,12 +21,12 @@ const Banner = () => {
           }}
           transition={{
             repeat: Infinity,
-            duration: 20,
+            duration: 15,
             ease: "linear",
           }}
           initial="initial"
           animate={"animate"}
-          className="w-screen h-full flex flex-nowrap items-center justify-between gap-20"
+          className="w-screen h-full flex flex-nowrap items-center justify-between gap-5 md:gap-15 lg:gap-18"
         >
           {[...banners, ...banners].map(banner => (
             <>
@@ -34,11 +34,11 @@ const Banner = () => {
                 key={banner}
                 className="flex items-center gap-5 justify-around"
               >
-                <span className="md:text-7xl sm:text-5xl text-4xl font-recoleta font-medium whitespace-nowrap">
+                <span className="lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-recoleta tracking-wide font-medium whitespace-nowrap">
                   {banner}
                 </span>
               </div>
-              <Separator orientation="vertical" className="bg-accent py-6" />
+              <Separator orientation="vertical" className="bg-accent py-8" />
             </>
           ))}
         </MotionDiv>
