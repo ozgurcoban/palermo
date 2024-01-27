@@ -4,6 +4,7 @@ import MenuTabs from "./MenuTabs";
 import MenuItems from "./MenuItems";
 import MenuPagination from "./MenuPagination";
 import FadeUp from "../ui/FadeUp";
+import { Component1Icon } from "@radix-ui/react-icons";
 
 const menu_section = {
   title: "Delicious dishes and powerful drinks",
@@ -12,8 +13,7 @@ const menu_section = {
     {
       label: "Starters",
       value: "starters",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      description: "Starters comes with home baked bread and butter",
     },
     {
       label: "Pizza",
@@ -22,8 +22,8 @@ const menu_section = {
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     },
     {
-      label: "Main Coursers",
-      value: "main_coursers",
+      label: "Main",
+      value: "main_courses",
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     },
@@ -347,7 +347,9 @@ export const Menu = () => {
     <section className="py-32  w-screen border-image">
       <div className="container">
         <FadeUp>
-          <h2 className="title-secondary !text-center">Try our special dishes</h2>
+          <h2 className="title-secondary !text-center">
+            Try us, you'll love us
+          </h2>
         </FadeUp>
         <FadeUp
           delay={0.3}
@@ -359,9 +361,13 @@ export const Menu = () => {
             delay={0.8}
             className="lg:px-20 md:px-10 px-5 py-16 flex flex-col items-center"
           >
-            <span className="text-dark/80 font-lato text-xl tracking-wide">
-              {menu_section.label}
-            </span>
+            <div className="flex items-center gap-2">
+              <Component1Icon />
+              <span className="text-dark/80 font-lato text-xl tracking-wide">
+                {menu_section.label}
+              </span>
+              <Component1Icon />
+            </div>
             <MenuTabs
               tabs={menu_section.categories}
               selectedTab={tab.index}

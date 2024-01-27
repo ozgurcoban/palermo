@@ -60,11 +60,11 @@ body {
 }
 
 .text-body {
-  @apply font-lato lg:text-[26px] text-2xl leading-10;
+  @apply font-lato lg:text-[20px] text-xl leading-10;
 }
 
 .title-secondary {
-  @apply font-recoleta lg:text-[56px] text-4xl leading-tight lg:leading-normal font-semibold lg:text-left text-center;
+  @apply font-recoleta lg:text-[3vw] md:text-[5vw] text-[8vw] leading-tight lg:leading-normal font-semibold lg:text-left text-center;
 }
 
 .burger {
@@ -115,7 +115,7 @@ body {
 }
 
 .green-bg {
-  border: 1px solid #0a552c;
+  border: 1px solid #f8eee2;
   border-image-source: url(../../public/images/green-bg.png);
   border-image-slice: 30;
   border-image-width: 30px;

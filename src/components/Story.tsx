@@ -28,14 +28,14 @@ const Story = () => {
         <div className="flex-1 lg:text-left text-center">
           <FadeUp>
             <h2 className="title-secondary !normal-case">
-              The delicious <span className="text-accent">story</span>
+              Welcome to Palermos <span className="text-accent">Heart</span>
             </h2>
           </FadeUp>
           <FadeUp delay={0.3}>
             <p className="mt-4 text-body opacity-85">
-              Figma ipsum component variant main layer. Component export bullet
-              union vertical font asset union. Edit layout bullet align frame
-              component move link reesizing.
+              Palermo: More than a restaurant, it's a meeting place where
+              stories come alive. Welcome to a world of cherished memories.
+              Welcome home, welcome to Palermo.
             </p>
           </FadeUp>
           <FadeUp delay={0.5}>
@@ -44,7 +44,7 @@ const Story = () => {
               aria-live="polite"
               className="flex items-center gap-2 mt-16 lg:mx-0 mx-auto hover:tracking-wider transition-all duration-300 text-primary"
             >
-              <span className="uppercase font-recoleta text-2xl font-medium">
+              <span className="uppercase font-recoleta text-md font-medium">
                 Read more
               </span>
               <ArrowRightIcon width={24} height={24} />

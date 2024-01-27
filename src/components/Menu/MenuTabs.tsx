@@ -25,7 +25,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
 }) => {
   const previousTab = () => {
     if (selectedTab !== 0)
-      setSelectedTab((state) => ({
+      setSelectedTab(state => ({
         value: tabs[state.index - 1].value,
         index: state.index - 1,
       }));
@@ -33,7 +33,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
 
   const nextTab = () => {
     if (selectedTab !== tabs.length - 1)
-      setSelectedTab((state) => ({
+      setSelectedTab(state => ({
         value: tabs[state.index + 1].value,
         index: state.index + 1,
       }));
@@ -41,12 +41,13 @@ const MenuTabs: React.FC<MenuTabs> = ({
 
   return (
     <>
-      <div className="flex items-center gap-1 md:gap-5 mt-8">
+      <div className="w-full grid grid-cols-[1fr_4fr_1fr] justify-between gap-1 md:gap-5 mt-8">
         <button
           title="Previous menu tab"
           aria-live="polite"
           onClick={previousTab}
           disabled={selectedTab === 0}
+          className="hidden sm:inline-block flex-initial"
         >
           <CaretLeftIcon
             width={40}
@@ -54,31 +55,34 @@ const MenuTabs: React.FC<MenuTabs> = ({
             className={selectedTab === 0 ? "text-dark/40" : ""}
           />
         </button>
-        <ul className="flex sm:flex-row flex-col items-center sm:items-end gap-5">
-          {tabs.map((tab, index) => (
-            <li
-              onClick={() =>
-                setSelectedTab((state) => ({ value: tab.value, index }))
-              }
-              key={tab.value}
-            >
-              <h3
-                className={`cursor-pointer transition-all duration-700 text-center ${
-                  selectedTab === index
-                    ? "font-lobster text-5xl lg:text-6xl text-accent"
-                    : "font-lato text-2xl lg:text-3xl text-dark/85"
-                }`}
+        <div className="">
+          <ul className="flex-1 flex items-center gap-6 justify-center">
+            {tabs.map((tab, index) => (
+              <li
+                onClick={() =>
+                  setSelectedTab(state => ({ value: tab.value, index }))
+                }
+                key={tab.value}
               >
-                {tab.label}
-              </h3>
-            </li>
-          ))}
-        </ul>
+                <h3
+                  className={`cursor-pointer transition-all duration-200 text-center ${
+                    selectedTab === index
+                      ? "font-lobster text-3xl lg:text-1xl text-accent"
+                      : "font-lato text-2xl lg:text-xl text-dark/85"
+                  }`}
+                >
+                  {tab.label}
+                </h3>
+              </li>
+            ))}
+          </ul>
+        </div>
         <button
           title="Next menu tab"
           aria-live="polite"
           onClick={nextTab}
           disabled={selectedTab === tabs.length - 1}
+          className="hidden sm:inline-block justify-self-end"
         >
           <CaretRightIcon
             width={40}
@@ -87,6 +91,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
           />
         </button>
       </div>
+
       <FadeUp delay={1} className="max-auto md:w-5/6">
         <p className="text-center mt-12 text-lg">
           {tabs[selectedTab].description}

@@ -1,11 +1,22 @@
 {
-  "IndexPage": {
-    "hero": {
-      "title": "At Palermo where tasty dishes and a fine selection of beers welcome everyone."
+  "Home": {
+    "homeHero": {
+      "description": {
+        "sentenceBefore": "At ",
+        "palermo": "<underline>Palermo</underline>",
+        "sentenceAfter": " where tasty dishes and a fine selection of drinks"
+      },
+      "title": " Welcome everyone"
+    },
+    "gallery": {
+      "title": "Beautiful moments in Palermo",
+      "description": "From hearty meals to joyful gatherings – browse through our memories and feel at home.",
+      "button": "Ses more"
     },
     "about": {
-      "title": "Dirkha",
-      "description": "Good Green News"
+      "title": "Welcome to Palermos Heart",
+      "description": "Palermo: More than a restaurant, it's a meeting place where stories come alive. In the heart of Uppsala, we serve dishes crafted with love, from perfect pizzas to delightful drinks. Each visit is an experience, each meal more than just food. Welcome to a world of cherished memories. Welcome home, welcome to Palermo.",
+      "button": "Read more"
     }
   },
   "MenuPage": {
