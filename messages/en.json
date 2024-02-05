@@ -1,0 +1,63 @@
+{
+  "Home": {
+    "homeHero": {
+      "description": {
+        "sentenceBefore": "At ",
+        "palermo": "<underline>Palermo</underline>",
+        "sentenceAfter": " where tasty dishes and a fine selection of drinks"
+      },
+      "title": " Welcome everyone"
+    },
+    "gallery": {
+      "title": "Beautiful moments in Palermo",
+      "description": "From hearty meals to joyful gatherings – browse through our memories and feel at home.",
+      "button": "Ses more"
+    },
+    "about": {
+      "title": "Welcome to Palermos Heart",
+      "description": "Palermo: More than a restaurant, it's a meeting place where stories come alive. In the heart of Uppsala, we serve dishes crafted with love, from perfect pizzas to delightful drinks. Each visit is an experience, each meal more than just food. Welcome to a world of cherished memories. Welcome home, welcome to Palermo.",
+      "button": "Read more"
+    }
+  },
+  "MenuPage": {
+    "title": "Menu",
+    "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>"
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+  },
+  "NotFoundPage": {
+    "title": "Page not found",
+    "description": "Please double-check the browser address bar or use the navigation to go to a known page."
+  },
+  "Metadata": {
+    "title": "Dirkha - Good Green News",
+    "description": "Built with Next.js and next-intl"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "title": "Language",
+    "locale": "{locale, select, sv {Swedish} en {English} other {Unknown}}"
+  },
+  "Navigation": {
+    "home": "Home",
+    "menu": "Menu",
+    "about": "About",
+    "news": "News"
+  },
+  "PageLayout": {
+    "links": {
+      "docs": {
+        "title": "Docs",
+        "description": "Learn more about next-intl in the official docs.",
+        "href": "https://next-intl-docs.vercel.app/"
+      },
+      "source": {
+        "title": "Source code",
+        "description": "Browse the source code of this example on GitHub.",
+        "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router"
+      }
+    }
+  }
+}
