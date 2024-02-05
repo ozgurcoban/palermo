@@ -1,6 +1,6 @@
 "use client"
-import gsap from "gsap";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import InfiniteMove from "../ui/InfiniteMove";
 
 type Props = {
     images: any[];
@@ -9,38 +9,14 @@ type Props = {
 }
 
 const WallItem: React.FC<Props> = ({ IMAGE_BY_ROW, images, direction }) => {
-    let xPercent = 0;
 
-    const slider = useRef<HTMLDivElement | null>(null)
     const firstList = useRef<HTMLDivElement | null>(null)
     const secondList = useRef<HTMLDivElement | null>(null)
-
-
-    useEffect(() => {
-        gsap.set(secondList.current, { left: secondList.current?.getBoundingClientRect().width })
-        requestAnimationFrame(animate);
-    }, [])
-
-    const animate = () => {
-        if (xPercent < -100) {
-            xPercent = 0;
-        }
-        else if (xPercent > 0) {
-            xPercent = -100;
-        }
-
-
-        gsap.set(firstList.current, { xPercent: xPercent })
-        gsap.set(secondList.current, { xPercent: xPercent })
-        requestAnimationFrame(animate);
-        xPercent += 0.02 * direction;
-
-    }
     return (
         <div
             className={`relative w-full`}
-            ref={slider}
         >
+            <InfiniteMove direction={direction} firstList={firstList} secondList={secondList} />
             <div ref={firstList}
                 style={{ gridTemplateColumns: `repeat(${IMAGE_BY_ROW}, minmax(0, 1fr))` }}
                 className="relative grid w-max gap-8">
