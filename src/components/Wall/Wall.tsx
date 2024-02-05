@@ -1,8 +1,6 @@
-import React from "react";
-import MotionDiv from "../ui/MotionDiv";
 import FadeUp from "../ui/FadeUp";
-
 import WallSlides from "./WallSlides";
+import WallItem from "./WallItem";
 
 const IMAGE_BY_ROW = 5;
 
@@ -35,33 +33,9 @@ export const Wall = () => {
         style={{ gridTemplateRows: `repeat(${groudImages.length}, minmax(0, 1fr))` }}
         className={`mt-20 gap-8 w-max h-full lg:grid hidden`}
       >
-        {groudImages.map((images, i) => {
+        {groudImages.map((images, index) => {
           return (
-            <MotionDiv
-              variants={{
-                initial: { x: i % 2 === 0 ? "-10%" : "10%" },
-                animate: { x: i % 2 === 0 ? "10%" : "-10%" },
-              }}
-              transition={{
-                repeat: Infinity,
-                repeatType: "mirror",
-                duration: 3.2,
-              }}
-              initial="initial"
-              animate={"animate"}
-              key={`wall-${i}`}
-              style={{ gridTemplateColumns: `repeat(${IMAGE_BY_ROW}, minmax(0, 1fr))` }}
-              className={`grid w-max gap-8`}
-            >
-              {images.map((_, imageIndex) => {
-                return (
-                  <div
-                    key={`wall-image-${imageIndex}`}
-                    className={`relative rounded-xl border-2 border-slate-400/10 bg-neutral-100 w-72 h-72 xl:w-96 xl:h-96`}
-                  />
-                );
-              })}
-            </MotionDiv>
+           <WallItem direction={index % 2 === 0 ? 1 : -1}  key={`wall-${index}`} images={images} IMAGE_BY_ROW={IMAGE_BY_ROW}/>
           );
         })}
       </div>
