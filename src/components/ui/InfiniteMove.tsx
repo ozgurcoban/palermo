@@ -24,7 +24,6 @@ const InfiniteMove: React.FC<Props> = ({ firstList, secondList, direction = 1 })
             xPercent = -100;
         }
 
-
         gsap.set(firstList.current, { xPercent: xPercent })
         gsap.set(secondList.current, { xPercent: xPercent })
         requestAnimationFrame(animate);

@@ -1,11 +1,25 @@
-import React from "react";
-import FadeUp from "./ui/FadeUp";
-import { HeartFilledIcon, TriangleDownIcon } from "@radix-ui/react-icons";
-import { Button } from "./ui/button";
-import MaskText from "./ui/MaskText";
+"use client"
+import React, { useEffect, useState } from "react";
+import FadeUp from "../ui/FadeUp";
+import { TriangleDownIcon } from "@radix-ui/react-icons";
+import { Button } from "../ui/button";
+import MaskText from "../ui/MaskText";
+import GalleryImage from "./GalleryImage";
 
-const Gallery = () => {
-  const gallery = [...Array(5)];
+export const Gallery = () => {
+  const gallery = ["gall1", "gall2", "gall3", "gall4", "gall5"];
+
+  const [favouriteList, setFavouriteList] = useState<string[]>([])
+
+    // Get the list from localStorage
+    useEffect(() => {
+        const getFavListFromLocal = localStorage.getItem("favList");
+
+        if (getFavListFromLocal) {
+            const favList: string[] = JSON.parse(getFavListFromLocal);
+            setFavouriteList(favList);
+        }
+      }, [])
 
   return (
     <section className="w-screen py-40 h-full bg-[#f9f9f9] relative">
@@ -28,22 +42,9 @@ const Gallery = () => {
         </div>
         <div className="relative w-full">
           <div className="mt-36 w-full grid auto-rows-[250px] lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-            {gallery.map((_, i) => {
-              const index = i % 10;
-              return (
-                <FadeUp
-                  key={`gallery-image-${i}`}
-                  delay={0.05 * i}
-                  className={`row-span-1 rounded-xl border-2 border-slate-400/10 bg-neutral-100 p-4 ${
-                    index === 3 || index === 6
-                      ? "lg:col-span-2"
-                      : index === 2 || index === 5
-                      ? "lg:col-span-1 sm:col-span-2"
-                      : ""
-                  }`}
-                />
-              );
-            })}
+            {gallery.map((imageId, i) => 
+              <GalleryImage key={`gallery-image-${i}`} imageId={imageId} i={i} favouriteList={favouriteList} setFavouriteList={setFavouriteList} />
+            )}
           </div>
           <FadeUp
             delay={0.05 * gallery.length}
@@ -60,4 +61,3 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
