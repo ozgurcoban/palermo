@@ -14,7 +14,7 @@ const Story = () => {
         animate={{ rotateZ: -3 }}
         style={{ rotateY: 0, rotateX: 0 }}
         transition={{ repeat: Infinity, repeatType: "reverse", duration: 2 }}
-        className="absolute lg:z-[-1] bottom-0 left-0 origin-bottom-left w-40 md:w-70"
+        className="absolute lg:z-[-1] bottom-0 left-0 origin-bottom-left w-40 md:w-80"
       >
         <Image
           src={Beer}
@@ -33,9 +33,9 @@ const Story = () => {
           </FadeUp>
           <FadeUp delay={0.3}>
             <p className="mt-4 text-body opacity-85">
-              Palermo: More than a restaurant, it's a meeting place where
+              {`Palermo: More than a restaurant, it's a meeting place where
               stories come alive. Welcome to a world of cherished memories.
-              Welcome home, welcome to Palermo.
+              Welcome home, welcome to Palermo.`}
             </p>
           </FadeUp>
           <FadeUp delay={0.5}>
