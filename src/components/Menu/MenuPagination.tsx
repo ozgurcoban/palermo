@@ -1,15 +1,10 @@
 import React from "react";
 import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 import FadeUp from "../ui/FadeUp";
+import { IMenuList } from "@/types/generated";
 
 interface MenuPagination {
-  menus_list:
-    | {
-        title: string;
-        description: string;
-        price: string;
-      }[]
-    | undefined;
+  menus_list: IMenuList[];
   PAGE_SIZE: number;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
@@ -33,10 +28,10 @@ const MenuPagination: React.FC<MenuPagination> = ({
     : 0;
 
   const previousPage = () =>
-    setCurrentPage(current => (current <= 1 ? current : current - 1));
+    setCurrentPage((current) => (current <= 1 ? current : current - 1));
 
   const nextPage = () =>
-    setCurrentPage(current => (current >= nextIndex ? current : current + 1));
+    setCurrentPage((current) => (current >= nextIndex ? current : current + 1));
 
   return (
     <div className="lg:px-20 md:px-10 px-5 py-8 flex flex-col sm:flex-row gap-y-5 items-center justify-center sm:justify-between bg-white bg-opacity-60 backdrop-filter backdrop-blur-sm border-none">

@@ -1,8 +1,7 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import MenuTabs from "./MenuTabs";
 import MenuItems from "./MenuItems";
-import MenuPagination from "./MenuPagination";
 import FadeUp from "../ui/FadeUp";
 import { Component1Icon } from "@radix-ui/react-icons";
 
@@ -21,8 +20,8 @@ const menu_section = {
       description: "Tomato sauce and cheese is included in all pizzas",
     },
     {
-      label: "Main",
-      value: "main_courses",
+      label: "Main Coursers",
+      value: "main_coursers",
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
     },
@@ -43,6 +42,7 @@ const menu_section = {
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       },
       menu_list: [],
+      sub_categories: [],
     },
     {
       id: "2def",
@@ -52,90 +52,56 @@ const menu_section = {
         description:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       },
-      menu_list: [
+      sub_categories: [
         {
-          id: "item",
-          title: "Margarita",
-          description:
-            "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
-          price: "110/105",
+          sub_category_title: "Standard pizza",
+          description: "paprika, kronärtskocka, färska ",
+          menu_list: [
+            {
+              id: "item",
+              title: "Margarita",
+              description:
+                "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
+              price: "110/105",
+            },
+            {
+              id: "item",
+              title: "Margarita",
+              description:
+                "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
+              price: "110/105",
+            },
+            {
+              id: "item",
+              title: "Margarita",
+              description:
+                "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
+              price: "110/105",
+            },
+          ],
         },
         {
-          id: "item",
-          title: "Margarita",
-          description:
-            "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description:
-            "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description:
-            "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
+          sub_category_title: "Special pizza",
+          description: "Champinjoner, lök, oliver",
+          menu_list: [
+            {
+              id: "item",
+              title: "Margarita",
+              description:
+                "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
+              price: "110/105",
+            },
+            {
+              id: "item",
+              title: "Margarita",
+              description:
+                "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
+              price: "110/105",
+            },
+          ],
         },
       ],
+      menu_list: [],
     },
     {
       id: "3def",
@@ -145,98 +111,8 @@ const menu_section = {
         description:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       },
-      menu_list: [
-        {
-          id: "item",
-          title: "Main Coursers",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-        {
-          id: "item",
-          title: "Margarita",
-          description: "Tomat och ost.",
-          price: "110/105",
-        },
-      ],
+      menu_list: [],
+      sub_categories: [],
     },
     {
       id: "4def",
@@ -246,6 +122,7 @@ const menu_section = {
         description:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       },
+      sub_categories: [],
       menu_list: [
         {
           id: "item",
@@ -330,33 +207,22 @@ const menu_section = {
   ],
 };
 
-const PAGE_SIZE = 12;
-
 export const Menu = () => {
   // The tab category index and its value
   const [tab, setTab] = useState({
     index: 1,
     value: menu_section.categories[1].value,
   });
-  const [currentPage, setCurrentPage] = useState(1);
 
   // Get the menu list everytime the selected tab changed
-  const menus_list = useMemo(
-    () =>
-      menu_section.menus.find(({ category: { value } }) => tab.value === value)
-        ?.menu_list,
-    [tab.value]
-  );
-
-  // When the tab changed, we go back to the page 1
-  useEffect(() => setCurrentPage(1), [tab.index]);
-
-  // Get the data divided by PAGE_SIZE
-  const currentTableMenus = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
-    const lastPageIndex = firstPageIndex + PAGE_SIZE;
-    return menus_list?.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, menus_list, PAGE_SIZE]);
+  const menus_list = useMemo(() => {
+    const filteredList = menu_section.menus.find(
+      ({ category: { value } }) => tab.value === value
+    );
+    if (filteredList)
+      return [...filteredList.sub_categories!, ...filteredList.menu_list!];
+    else return [];
+  }, [tab.value]);
 
   return (
     <section className="py-32  w-screen border-image">
@@ -374,7 +240,7 @@ export const Menu = () => {
         >
           <FadeUp
             delay={0.8}
-            className="h-[80vh] lg:px-20 md:px-10 px-5 py-16 flex flex-col items-center"
+            className="h-[80vh] overflow-hidden lg:px-20 md:px-10 px-5 py-16 flex flex-col items-center"
           >
             <div className="flex flex-col items-center">
               <div className="flex items-center gap-2">
@@ -390,20 +256,19 @@ export const Menu = () => {
                 setSelectedTab={setTab}
               />
             </div>
-            <FadeUp delay={1} className="w-full h-full mt-8">
-              <hr />
-              <MenuItems data={currentTableMenus} />
+            <div className="w-full text-center mb-1 mt-8">
+              <span className="text-center text-gray-700">
+                Servering/Avhämtning
+              </span>
+              <hr className="mt-4" />
+            </div>
+            <FadeUp delay={1} className="w-full h-full overflow-y-scroll">
+              <MenuItems data={menus_list} />
             </FadeUp>
           </FadeUp>
           <FadeUp delay={0.2}>
             <hr />
           </FadeUp>
-          <MenuPagination
-            PAGE_SIZE={PAGE_SIZE}
-            currentPage={currentPage}
-            menus_list={menus_list}
-            setCurrentPage={setCurrentPage}
-          />
         </FadeUp>
       </div>
     </section>

@@ -1,23 +1,12 @@
 import React from "react";
 import MenuItem from "./MenuItem";
-import FadeUp from "@/components/ui/FadeUp";
+import { IMenuList } from "@/types/generated";
 
-interface MenuItems {
-  data:
-    | {
-        id: string;
-        title: string;
-        description: string;
-        price: string;
-      }[]
-    | undefined;
-}
-
-export const MenuItems: React.FC<MenuItems> = ({ data }) => {
+export const MenuItems: React.FC<{ data: IMenuList[] }> = ({ data }) => {
   return (
-    <ul className="mt-8 grid lg:grid-cols-2 grid-cols-1 gap-5 w-full h-full overflow-y-scroll custom-scrollbar-container">
-      {data?.map((item, i) => (
-        <MenuItem key={Math.random()} {...item} />
+    <ul className="flex flex-col max-w-96 mx-auto mt-8 gap-5 w-full h-full custom-scrollbar-container">
+      {data?.map((item) => (
+        <MenuItem key={Math.random()} item={item} />
       ))}
       {(!data || data?.length === 0) && (
         <li className="text-center col-span-2 text-rose-700 text-lg">

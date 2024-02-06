@@ -44,7 +44,6 @@ const MenuTabs: React.FC<MenuTabs> = ({
       <div className="w-full grid grid-cols-1 sm:grid-cols-[1fr_4fr_1fr] justify-between gap-1 md:gap-5 mt-6">
         <button
           title="Previous menu tab"
-          aria-live="polite"
           onClick={previousTab}
           disabled={selectedTab === 0}
           className="hidden sm:inline-block flex-initial"
@@ -56,19 +55,19 @@ const MenuTabs: React.FC<MenuTabs> = ({
           />
         </button>
 
-        <ul className="flex-1 grid grid-cols-4 items-center md:gap-4 justify-center min-h-[50px] transition-all duration-200">
+        <ul className="flex-1 grid grid-cols-4 items-center md:gap-2 justify-center min-h-[50px] transition-all duration-200">
           {tabs.map((tab, index) => (
             <li
               onClick={() =>
-                setSelectedTab(state => ({ value: tab.value, index }))
+                setSelectedTab({ value: tab.value, index })
               }
               key={tab.value}
             >
               <h3
                 className={`cursor-pointer transition-all duration-200 text-center ${
                   selectedTab === index
-                    ? "font-lobster text-2xl lg:text-xl text-accent"
-                    : "font-lato text-1xl lg:text-lg text-dark/85"
+                    ? "font-lobster text-2xl lg:text-2xl text-accent"
+                    : "font-lato text-xl lg:text-xl text-dark/85"
                 }`}
               >
                 {tab.label}
@@ -79,7 +78,6 @@ const MenuTabs: React.FC<MenuTabs> = ({
 
         <button
           title="Next menu tab"
-          aria-live="polite"
           onClick={nextTab}
           disabled={selectedTab === tabs.length - 1}
           className="hidden sm:inline-block justify-self-end"
