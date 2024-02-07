@@ -7,22 +7,25 @@ import Gallery from "@/components/Gallery";
 import Story from "@/components/Story";
 import Menu from "@/components/Menu";
 import Wall from "@/components/Wall";
-import WaveDivider from "@/components/WaveDivider";
 import Testimonials from "@/components/Testimonials";
 import RecentNews from "@/components/News/RecentNews";
 import Banner from "@/components/Banner";
+import { getNews } from "@/lib/getNews";
+import { INewsItem } from "@/types/generated";
 
 type Props = {
   params: { locale: string };
 };
 
-export default function IndexPage({ params: { locale } }: Props) {
+export default async function IndexPage({ params: { locale } }: Props) {
   // Validate that the incoming `locale` parameter is valid
-  const isValidLocale = locales.some(cur => cur === locale);
+  const isValidLocale = locales.some((cur) => cur === locale);
   if (!isValidLocale) notFound();
 
   // Enable static rendering
   unstable_setRequestLocale(locale);
+
+  const news: INewsItem[] = await getNews();
 
   return (
     <PageTransition>
@@ -33,7 +36,7 @@ export default function IndexPage({ params: { locale } }: Props) {
       <Menu />
       <Wall />
       <Testimonials />
-      <RecentNews />
+      <RecentNews news={news.slice(0, 3)} />
     </PageTransition>
   );
 }

@@ -5,13 +5,7 @@ import Image from "next/image";
 import NewsImage from "../../../public/images/news.jpg";
 import { INewsItem } from "@/types/generated";
 
-export const News = async () => {
-  const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type&access_token=${process.env.INSTAGRAM_KEY}`;
-
-  const data = await fetch(url);
-  const feed = await data.json();
-
-  const news: INewsItem[] = feed?.data;
+export const News = ({ news }: { news: INewsItem[] }) => {
   return (
     <section className="w-screen py-40 h-full bg-[#f9f9f9]">
       <div className="container mb-56">
