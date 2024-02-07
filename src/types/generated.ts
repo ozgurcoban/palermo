@@ -3,6 +3,7 @@ export interface IMenuItem {
   title: string;
   description: string;
   price: string;
+  flag?: string;
 }
 
 export interface ISubCategory {

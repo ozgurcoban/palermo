@@ -14,7 +14,7 @@ const Story = () => {
         animate={{ rotateZ: -3 }}
         style={{ rotateY: 0, rotateX: 0 }}
         transition={{ repeat: Infinity, repeatType: "reverse", duration: 2 }}
-        className="absolute lg:z-[-1] bottom-0 left-0 origin-bottom-left w-40 md:w-80"
+        className="absolute lg:z-[-1] bottom-0 left-0 origin-bottom-left w-40 md:w-[17rem]"
       >
         <Image
           src={Beer}
