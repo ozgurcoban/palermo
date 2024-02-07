@@ -11,4 +11,11 @@ export interface ISubCategory {
   menu_list: IMenuItem[];
 }
 
-export declare type IMenuList = IMenuItem | ISubCategory;
+export type IMenuList = IMenuItem | ISubCategory;
+
+export interface INewsItem {
+    id: string;
+    media_url: string;
+    caption: string;
+    timestamp: string;
+}

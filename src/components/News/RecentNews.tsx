@@ -3,38 +3,16 @@ import FadeUp from "../ui/FadeUp";
 import { Button } from "../ui/button";
 import NewsItems from "./NewsItems";
 import { Link } from "@/navigation";
+import { INewsItem } from "@/types/generated";
 
-const news = [
-  {
-    id: "new-1",
-    cover_image: "",
-    date: "Jan 12, 2024",
-    title: "Figma ipsum component variant",
-    description:
-      "Figma ipsum component variant main layer. Rotate component text shadow share pen pen shadow Rotate component text shadow share pen pen shadow",
-    href: "/",
-  },
-  {
-    id: "new-2",
-    cover_image: "",
-    date: "Jan 12, 2024",
-    title: "Figma ipsum component variant",
-    description:
-      "Figma ipsum component variant main layer. Rotate component text shadow share pen pen shadow Rotate component text shadow share pen pen shadow ",
-    href: "/",
-  },
-  {
-    id: "new-3",
-    cover_image: "",
-    date: "Jan 12, 2024",
-    title: "Figma ipsum component variant",
-    description:
-      "Figma ipsum component variant main layer. Rotate component text shadow share pen pen shadow Rotate component text shadow share pen pen shadow",
-    href: "/",
-  },
-];
+const RecentNews = async () => {
+  const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type&access_token=${process.env.INSTAGRAM_KEY}`;
 
-const RecentNews = () => {
+  const data = await fetch(url);
+  const feed = await data.json();
+
+  const news: INewsItem[] = feed?.data;
+
   return (
     <section className="w-screen py-40 h-full bg-[#f9f9f9]">
       <div className="container flex flex-col items-center">
@@ -53,7 +31,9 @@ const RecentNews = () => {
                 aria-live="polite"
                 className="flex items-center gap-2 px-6 border-image bg-transparent py-7 hover:text-primary hover:bg-transparent text-dark hover:scale-105"
               >
-                <span className="font-lato text-base capitalize font-semibold">See More</span>
+                <span className="font-lato text-base capitalize font-semibold">
+                  See More
+                </span>
               </Button>
             </Link>
           </FadeUp>

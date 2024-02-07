@@ -3,38 +3,15 @@ import FadeUp from "../ui/FadeUp";
 import NewsItems from "./NewsItems";
 import Image from "next/image";
 import NewsImage from "../../../public/images/news.jpg";
+import { INewsItem } from "@/types/generated";
 
-const news = [
-  {
-    id: "new-1",
-    cover_image: "",
-    date: "Jan 12, 2024",
-    title: "Figma ipsum component variant",
-    description:
-      "Figma ipsum component variant main layer. Rotate component text shadow share pen pen shadow Rotate component text shadow share pen pen shadow",
-    href: "/",
-  },
-  {
-    id: "new-2",
-    cover_image: "",
-    date: "Jan 12, 2024",
-    title: "Figma ipsum component variant",
-    description:
-      "Figma ipsum component variant main layer. Rotate component text shadow share pen pen shadow Rotate component text shadow share pen pen shadow ",
-    href: "/",
-  },
-  {
-    id: "new-3",
-    cover_image: "",
-    date: "Jan 12, 2024",
-    title: "Figma ipsum component variant",
-    description:
-      "Figma ipsum component variant main layer. Rotate component text shadow share pen pen shadow Rotate component text shadow share pen pen shadow",
-    href: "/",
-  },
-];
+export const News = async () => {
+  const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type&access_token=${process.env.INSTAGRAM_KEY}`;
 
-export const News = () => {
+  const data = await fetch(url);
+  const feed = await data.json();
+
+  const news: INewsItem[] = feed?.data;
   return (
     <section className="w-screen py-40 h-full bg-[#f9f9f9]">
       <div className="container mb-56">
@@ -52,7 +29,10 @@ export const News = () => {
           </FadeUp>
         </div>
       </div>
-      <FadeUp delay={0.6} className="w-screen overflow-hidden max-h-[480px] relative">
+      <FadeUp
+        delay={0.6}
+        className="w-screen overflow-hidden max-h-[480px] relative"
+      >
         <div className="absolute inset-0 z-10">
           <Image
             src={NewsImage}
