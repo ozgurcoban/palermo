@@ -55,7 +55,7 @@ const menu_section = {
       sub_categories: [
         {
           sub_category_title: "Standard pizza",
-          description: "paprika, kronärtskocka, färska ",
+          description: "Tomatsås och ost ingår i alla pizzor",
           menu_list: [
             {
               id: "item",
@@ -63,13 +63,14 @@ const menu_section = {
               description:
                 "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
               price: "110/105",
+              flag: "vegetarian",
             },
             {
               id: "item",
-              title: "Margarita",
-              description:
-                "Champinjoner, lök, oliver, paprika, kronärtskocka, färska tomater och ananas",
+              title: "Calzone",
+              description: "Skinka",
               price: "110/105",
+              flag: "inbakad",
             },
             {
               id: "item",
