@@ -22,7 +22,7 @@ const Banner = () => {
           <InfiniteMove direction={-1} firstList={firstList} secondList={secondList} />
           <div
             ref={firstList}
-            className="relative h-full w-max flex flex-nowrap items-center justify-between gap-5 md:gap-15 lg:gap-18"
+            className="relative h-full w-max flex flex-nowrap items-center justify-between gap-5 pl-5"
           >
             {banners.map(banner => (
               <Fragment key={banner}>
@@ -40,7 +40,7 @@ const Banner = () => {
           </div>
           <div
             ref={secondList}
-            className="absolute w-max left-full top-0 h-full flex flex-nowrap items-center justify-between gap-5 md:gap-15 lg:gap-18"
+            className="absolute w-max left-full top-0 h-full flex flex-nowrap items-center justify-between gap-5 pl-5"
           >
             {banners.map((banner, i) => (
               <Fragment key={banner + i}>
