@@ -5,10 +5,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from "zod";
 
 import { ContactFormSchema } from "@/lib/ContactFormSchema";
-import { sendMail } from "@/app/_actions";
 
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
+import { sendMail } from "@/app/(user)/_actions";
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 

@@ -3,6 +3,7 @@ import { Pathnames } from 'next-intl/navigation';
 export const locales = ['sv', 'en'] as const;
 
 export const pathnames = {
+  '/studio': '/studio',
   '/': '/',
   '/menu': {
     en: '/menu',

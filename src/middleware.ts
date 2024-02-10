@@ -22,6 +22,6 @@ export const config = {
     // all requests that have a locale prefix
     '/(sv|en)/:path*',
 
-    '/((?!api/|_next/|_static/|_vercel|fonts|images/|[\\w-]+\\.\\w+).*)',
+    '/((?!studio|api/|_next/|_static/|_vercel|fonts|images/|[\\w-]+\\.\\w+).*)',
   ],
 };

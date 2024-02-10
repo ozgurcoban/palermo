@@ -1,4 +1,4 @@
-import { Teko, Lobster, Lato } from "next/font/google";
+import { Lobster, Lato } from "next/font/google";
 import localFont from "next/font/local";
 
 export const recoleta = localFont({
