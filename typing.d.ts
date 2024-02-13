@@ -6,21 +6,49 @@ type Base = {
   _updatedAt: string;
 };
 
-interface Post extends Base {
-  author: Author;
-  body: Block[];
-  categories: Category[];
-  mainImage: Image;
-  slug: Slug;
-  title: string;
-  description: string;
+interface AboutPage extends Base {
+  images: Image[];
+  banner?: LocalizedText[];
+  sections: AboutSections[];
 }
 
-interface Author extends Base {
-  bio: Block[];
-  image: Image;
-  name: string;
-  slug: Slug;
+interface AboutSections extends Base {
+  title: LocalizedText;
+  description: LocalizedText;
+  image: Image[];
+}
+
+interface Homepage extends Base {
+  banner?: LocalizedText[];
+  gallery_section?: GallerySection;
+  story_section?: StorySection;
+  testimonials_section?: TestimonialSection;
+}
+
+interface GallerySection {
+  title: LocalizedText;
+  description?: LocalizedText;
+  images: Image[];
+}
+
+interface StorySection {
+  title: LocalizedText;
+  description: LocalizedText;
+  images: Image;
+}
+
+interface WallSection {
+  title: LocalizedText;
+  images: Image[];
+}
+
+interface TestimonialSection {
+  title: LocalizedText;
+  testimonials: {
+    author: string;
+    testimonial: LocalizedText;
+    image?: Image;
+  }[];
 }
 
 interface Image {
@@ -33,37 +61,27 @@ interface Reference {
   _type: "reference";
 }
 
-interface Slug {
-  _type: "slug";
-  current: string;
-}
-
-interface Block {
-  _key: string;
-  _type: "block";
-  children: Span[];
-  markDefs: any[];
-  style: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-}
-
-interface Span {
-  _key: string;
-  _type: "span";
-  markDefs: string[];
-  text: string;
-}
-
 interface Category extends Base {
-  description: string;
-  title: string;
+  title: LocalizedText;
+  description?: LocalizedText;
+  sub_categories?: SubCategory[];
+  menu_list?: Food[];
 }
 
-interface MainImage {
-  _type: "image";
-  asset: Reference;
+interface SubCategory extends Base {
+  title: LocalizedText;
+  description?: LocalizedText;
+  menu_list: Food[];
 }
 
-interface Title {
-  _type: "string";
-  current: string;
+interface Food extends Base {
+  title: LocalizedText;
+  price: string;
+  description?: LocalizedText;
+  badge?: LocalizedText;
+}
+
+interface LocalizedText {
+  sv?: string;
+  en?: string;
 }

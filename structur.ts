@@ -1,11 +1,20 @@
 import { Iframe } from "sanity-plugin-iframe-pane";
-import type { DefaultDocumentNodeResolver } from "sanity/desk";
+import type { DefaultDocumentNodeResolver } from "sanity/structure";
 
 export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
   { schemaType }
 ) => {
-  if (schemaType === "post") {
+  if (
+    [
+      "home",
+      "about",
+      "sections",
+      "foods",
+      "subcategories",
+      "categories",
+    ].includes(schemaType)
+  ) {
     return S.document().views([
       S.view.form(),
       S.view
