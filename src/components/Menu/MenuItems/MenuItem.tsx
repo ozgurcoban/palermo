@@ -31,7 +31,7 @@ const MenuFoodItem: React.FC<Food> = ({ title, price, description, badge }) => {
   return (
     <li className="flex flex-col gap-2">
       <div className="flex justify-between items-center">
-        <h4 className="font-recoleta text-left font-light text-xl tracking-tight">
+        <h4 className="font-recoleta text-left text-xl tracking-tight">
           {title[locale]}
         </h4>
         {badge && (

@@ -5,7 +5,18 @@ import MenuItems from "./MenuItems";
 import FadeUp from "../ui/FadeUp";
 import { getLocale } from "@/config";
 
-export const Menu = ({ categories }: { categories: Category[] }) => {
+type Props = {
+  categories: Category[];
+};
+
+export const Menu: React.FC<Props> = ({ categories }) => {
+  if (Array.isArray(categories) && categories.length > 0)
+    return <MenuContent categories={categories} />;
+
+  return;
+};
+
+const MenuContent: React.FC<Props> = ({ categories }) => {
   const locale = getLocale();
 
   // The tab category index and its value

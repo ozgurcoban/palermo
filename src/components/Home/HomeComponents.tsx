@@ -34,9 +34,7 @@ const HomeComponents: React.FC<Props> = ({
       <Banner banners={banner} />
       <Gallery data={gallery_section} />
       <Story data={story_section} />
-      {Array.isArray(categoriesData) && categoriesData.length > 0 && (
-        <Menu categories={categoriesData} />
-      )}
+      <Menu categories={categoriesData} />
       <Wall data={wall_section} />
       <Testimonials data={testimonials_section} />
       <RecentNews news={news.slice(0, 3)} />
