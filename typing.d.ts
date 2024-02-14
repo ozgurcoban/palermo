@@ -21,18 +21,18 @@ interface Contact extends Base {
 }
 
 interface AboutPage extends Base {
-  images: Image[];
+  images?: Image[];
   banner?: LocalizedText[];
-  sections: AboutSections[];
+  sections?: AboutSection[];
 }
 
-interface AboutSections extends Base {
+interface AboutSection extends Base {
   title: LocalizedText;
   description: LocalizedText;
-  image: Image[];
+  image: Image;
 }
 
-interface Homepage extends Base {
+interface HomePage extends Base {
   banner?: LocalizedText[];
   gallery_section?: GallerySection;
   story_section?: StorySection;

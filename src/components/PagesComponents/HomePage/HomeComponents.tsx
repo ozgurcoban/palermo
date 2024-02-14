@@ -11,7 +11,7 @@ import RecentNews from "@/components/News/RecentNews";
 import Banner from "@/components/Banner";
 
 type Props = {
-  homeData: Homepage;
+  homeData: HomePage;
   news: INewsItem[];
   categoriesData: Category[];
 };
@@ -31,7 +31,7 @@ const HomeComponents: React.FC<Props> = ({
   return (
     <PageTransition>
       <Hero />
-      <Banner banners={banner} />
+      {banner && <Banner banners={banner} />}
       <Gallery data={gallery_section} />
       <Story data={story_section} />
       <Menu categories={categoriesData} />

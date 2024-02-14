@@ -2,14 +2,20 @@ import Image from "next/image";
 import React from "react";
 import MaskText from "../ui/MaskText";
 import FadeUp from "../ui/FadeUp";
+import { getLocale } from "@/config";
+import urlFor from "@/lib/urlFor";
 
-export const FirstSection = () => {
+export const FirstSection = ({ section }: { section: AboutSection }) => {
+  const locale = getLocale();
+
+  const { image, title, description } = section;
+
   return (
     <section className="w-screen min-h-screen overflow-hidden relative">
       <div className="max-w-full">
         <Image
-          src={"/images/about/restaurant.jpg"}
-          alt="palermo restaurant"
+          src={urlFor(image).url()}
+          alt={image.alt ?? title[locale]}
           width={1920}
           height={1280}
           className="object-cover min-h-screen"
@@ -20,24 +26,12 @@ export const FirstSection = () => {
           <h2 className="md:text-[4vw] lg:text-[3vw] text-[8vw] w-full">
             <MaskText
               delay={0.2}
-              phrases={[
-                "Welcome to the World of",
-                "Palermo - A Timeless",
-                "Gathering Place in the",
-                "Heart of Uppsala.",
-              ]}
+              phrases={[title[locale]]}
               className="font-recoleta leading-tight font-semibold"
             />
           </h2>
           <FadeUp delay={0.5}>
-            <p className="text-body">
-              For as long as memory serves, Palermo has been more than just a
-              pub; it's an institution of camaraderie and the finer things in
-              life. A place where generations of academics, from budding
-              students to worldly professors, have conversed over a glass. Here,
-              on Sysslomansgatan, you'll find our living room where each evening
-              writes its own story.
-            </p>
+            <p className="text-body">{description[locale]}</p>
           </FadeUp>
         </div>
       </div>

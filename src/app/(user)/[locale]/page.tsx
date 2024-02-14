@@ -8,8 +8,8 @@ import { token } from "../../../../sanity/lib/token";
 import { getClient } from "../../../../sanity/lib/client";
 import { CATEGORIES_QUERY, HOME_QUERY } from "../../../../sanity/lib/queries";
 import PreviewProvider from "@/components/PreviewProvider";
-import HomeComponents from "@/components/Home/HomeComponents";
-import PreviewHomePage from "@/components/Home/PreviewHomePage";
+import HomeComponents from "@/components/PagesComponents/HomePage/HomeComponents";
+import PreviewHomePage from "@/components/PagesComponents/HomePage/PreviewHomePage";
 
 type Props = {
   params: { locale: string };
@@ -28,7 +28,7 @@ export default async function IndexPage({ params: { locale } }: Props) {
   const isDraft = draftMode().isEnabled;
   const client = getClient(isDraft ? token : undefined);
 
-  const homeData = await client.fetch<Homepage>(HOME_QUERY);
+  const homeData = await client.fetch<HomePage>(HOME_QUERY);
   const categoriesData = await client.fetch<Category[]>(CATEGORIES_QUERY);
 
   if (isDraft)
