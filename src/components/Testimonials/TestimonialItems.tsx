@@ -1,28 +1,22 @@
-"use client";
+import { getLocale } from "@/config";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
-import React, { useState } from "react";
 
-const testimonials = [
-  {
-    name: "Louis GL",
-    testimonial: `Figma ipsum component variant main layer. Pencil effect reesizing star
-        style team project.Figma ipsum component variant main layer. Pencil
-        effect reesizing star style team project.`,
-  },
-  {
-    name: "Abdo HM",
-    testimonial: `Figma ipsum component variant main layer. Pencil effect reesizing star
-        style team project.`,
-  },
-  {
-    name: "Öz C",
-    testimonial: `Figma ipsum component variant main layer. Pencil effect reesizing star
-        style team project.`,
-  },
-];
+type Props = {
+  testimonials: {
+    author: string;
+    testimonial: LocalizedText;
+    image?: Image | undefined;
+  }[];
+  selectedTestimonial: number;
+  setSelectedTestimonial: React.Dispatch<React.SetStateAction<number>>;
+};
 
-const TestimonialItems = () => {
-  const [selectedTestimonial, setSelectedTestimonial] = useState(0);
+const TestimonialItems: React.FC<Props> = ({
+  testimonials,
+  selectedTestimonial,
+  setSelectedTestimonial,
+}) => {
+  const locale = getLocale();
 
   const previous = () =>
     setSelectedTestimonial((testimonial) =>
@@ -46,14 +40,14 @@ const TestimonialItems = () => {
             <ArrowLeftIcon width={24} height={24} />
           </button>
           <span className="text-lg">
-            {testimonials[selectedTestimonial].name}
+            {testimonials[selectedTestimonial].author}
           </span>
           <button title="Next testimonial" aria-live="polite" onClick={next}>
             <ArrowRightIcon width={24} height={24} />
           </button>
         </div>
         <p className="text-body text-center">
-          {testimonials[selectedTestimonial].testimonial}
+          {testimonials[selectedTestimonial].testimonial[locale]}
         </p>
       </div>
     </div>

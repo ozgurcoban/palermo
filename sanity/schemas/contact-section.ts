@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { supportedLanguages } from "./lang-config";
 
 export default defineType({
   name: "contact",
@@ -25,6 +26,16 @@ export default defineType({
           title: "Email",
           type: "string",
         }),
+        defineField({
+          name: "facebook",
+          title: "Facebook Link",
+          type: "string",
+        }),
+        defineField({
+          name: "instagram",
+          title: "Instagram Link",
+          type: "string",
+        }),
       ],
     }),
     defineField({
@@ -39,7 +50,24 @@ export default defineType({
               name: "day",
               title: "Day",
               description: "Enter the day, e.g: Mon or Tue - Fri",
-              type: "string",
+              type: "object",
+              fieldsets: [
+                {
+                  title: "Translations",
+                  name: "translations",
+                  options: { collapsible: true },
+                },
+              ],
+              // Dynamically define one field per language
+              fields: supportedLanguages.map((lang) =>
+                defineField({
+                  title: lang.title,
+                  name: lang.id,
+                  type: "string",
+                  fieldset: lang.isDefault ? undefined : "translations",
+                  validation: (Rule) => Rule.required(),
+                })
+              ),
             }),
             defineField({
               name: "time",
@@ -47,6 +75,7 @@ export default defineType({
               description:
                 "Enter the time, e.g: 11:00 - 01:00 or 11:00 - 03:00",
               type: "string",
+              validation: (Rule) => Rule.required(),
             }),
           ],
         }),

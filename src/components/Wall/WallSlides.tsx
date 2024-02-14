@@ -11,8 +11,10 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
+import Image from "next/image";
+import urlFor from "@/lib/urlFor";
 
-const WallSlides = ({ images }: { images: any[] }) => {
+const WallSlides = ({ images }: { images: Image[] }) => {
   return (
     <Swiper
       pagination={{
@@ -33,9 +35,11 @@ const WallSlides = ({ images }: { images: any[] }) => {
       slidesPerView={1}
       spaceBetween={10}
     >
-      {images.map((_, i) => (
-        <SwiperSlide key={`wall-image-${i}`}>
-          <div className="mx-auto h-64 relative rounded-xl border-2 border-slate-400/10 bg-neutral-100" />
+      {images.map((image, i) => (
+        <SwiperSlide key={image._key}>
+          <div className="mx-auto h-64 relative rounded-xl overflow-hidden">
+            <Image src={urlFor(image).url()} alt={urlFor(image).url()} fill className="object-cover" />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>

@@ -14,7 +14,7 @@ export const ABOUT_QUERY = groq`
 export const CATEGORIES_QUERY = groq`
   *[_type=='categories']{
     ...,
-    sub_categories[]->,
+    sub_categories[]->{...,menu_list[]->},
     menu_list[]->
   } | order(_createdAt asc)
 `;
@@ -29,9 +29,3 @@ export const CATEGORIES_QUERY = groq`
 export const CONTACT_QUERY = groq`
   *[_type=='contact'][0]
 `;
-
-export const POSTS_SLUG_QUERY = groq`*[_type == "post" && defined(slug.current)][]{
-  "params": { "slug": slug.current }
-}`;
-
-export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]`;

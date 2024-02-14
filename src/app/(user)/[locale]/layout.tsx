@@ -9,11 +9,15 @@ import IntlProvider from "@/providers/IntlProvider";
 import ContactInfoSection from "@/components/Contact/ContactInfoSection";
 import { Toaster } from "@/components/ui/toaster";
 import ScrollTop from "@/components/ScrollTop";
+import { CONTACT_QUERY } from "../../../../sanity/lib/queries";
+import { getClient } from "../../../../sanity/lib/client";
 
 type Props = {
   children: ReactNode;
   params: { locale: string };
 };
+
+export const revalidate = 30;
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -39,6 +43,10 @@ export default async function LocaleLayout({
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
+  const client = getClient(undefined);
+
+  const contactData = await client.fetch<Contact>(CONTACT_QUERY);
+
   return (
     <html
       lang={locale}
@@ -52,9 +60,9 @@ export default async function LocaleLayout({
           <ScrollTop />
           <main>
             {children}
-            <ContactInfoSection />
+            <ContactInfoSection contactData={contactData} />
           </main>
-          <Footer />
+          <Footer contactData={contactData} />
         </IntlProvider>
       </body>
     </html>

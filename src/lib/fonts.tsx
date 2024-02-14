@@ -48,7 +48,6 @@ export const lato = Lato({
   weight: ["100", "400", "700", "900"],
 });
 
-
 export const lobster = Lobster({
   subsets: ["latin"],
   variable: "--font-lobster",

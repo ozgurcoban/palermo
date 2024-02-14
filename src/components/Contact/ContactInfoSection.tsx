@@ -6,56 +6,76 @@ import {
 import ContactForm from "./Form";
 import Link from "next/link";
 import Map from "./Map";
+import { getLocale } from "@/config";
 
-export const openingHours = [
-  { day: "Mon:", open: "11:00", close: "01:00" },
-  { day: "Tue - Fri:", open: "11:00", close: "03:00" },
-  { day: "Sat:", open: "12:00", close: "03:00" },
-  { day: "Sun:", open: "12:00", close: "01:00" },
-];
+export default function ContactInfoSection({
+  contactData,
+}: {
+  contactData?: Contact;
+}) {
+  const locale = getLocale();
+  if (!contactData)
+    return (
+      <section className="w-screen pt-28 border-image" id="contact">
+        <div className="container py-16">
+          <ContactForm />
+        </div>
+      </section>
+    );
 
-export default function ContactInfoSection() {
+  const { contact_infos, opening_hours } = contactData;
+
   return (
     <section className="w-screen pt-28 border-image" id="contact">
       <div className="w-full">
         <div className="container py-16">
           <div className="grid lg:grid-cols-2 items-center gap-5">
             <div className="flex justify-between md:flex-row lg:flex-col flex-col gap-10 mb-10">
-              <div className="flex-1">
-                <h2 className="title-secondary flex">Where to find us</h2>
-                <ul>
-                  <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
-                    <HomeIcon className="size-5" />
-                    <Link href="#">Sysslomansgatan 7, 754 13, Uppsala</Link>
-                  </li>
-                  <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
-                    <ChatBubbleIcon className="size-5" />
-                    <Link href="tel:4618255770">Telephone: +4618255770</Link>
-                  </li>
-                  <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
-                    <EnvelopeClosedIcon className="size-5" />
-                    <Link href="mailto:info@palermo-uppsala.se">
-                      Email: info@palermo-uppsala.se
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="flex-1">
-                <h2 className="title-secondary flex">Opening hours</h2>
-                <ul>
-                  {openingHours.map((day, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center justify-between gap-8 pt-3 max-w-sm"
-                    >
-                      <span className="font-medium">{day.day}</span>
-                      <span className="">
-                        {day.open} - {day.close}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {contact_infos && (
+                <div className="flex-1">
+                  <h2 className="title-secondary flex">Where to find us</h2>
+                  <ul>
+                    {contact_infos.address && (
+                      <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
+                        <HomeIcon className="size-5" />
+                        <Link href="#">{contact_infos.address}</Link>
+                      </li>
+                    )}
+                    {contact_infos.telephone && (
+                      <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
+                        <ChatBubbleIcon className="size-5" />
+                        <Link href={`tel:${contact_infos.telephone}`}>
+                          Telephone: {contact_infos.telephone}
+                        </Link>
+                      </li>
+                    )}
+                    {contact_infos.email && (
+                      <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
+                        <EnvelopeClosedIcon className="size-5" />
+                        <Link href={`mailto:${contact_infos.email}`}>
+                          Email: {contact_infos.email}
+                        </Link>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              )}
+              {opening_hours && (
+                <div className="flex-1">
+                  <h2 className="title-secondary flex">Opening hours</h2>
+                  <ul>
+                    {opening_hours.map(({ day, time }) => (
+                      <li
+                        key={day[locale]}
+                        className="flex items-center justify-between gap-8 pt-3 max-w-sm"
+                      >
+                        <span className="font-medium">{day[locale]}</span>
+                        <span className="">{time}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
             <ContactForm />
           </div>

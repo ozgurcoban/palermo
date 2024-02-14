@@ -6,6 +6,20 @@ type Base = {
   _updatedAt: string;
 };
 
+interface Contact extends Base {
+  contact_infos?: {
+    address?: string;
+    telephone?: string;
+    email?: string;
+    facebook?: string;
+    instagram?: string;
+  };
+  opening_hours?: {
+    day: LocalizedText;
+    time: string;
+  }[];
+}
+
 interface AboutPage extends Base {
   images: Image[];
   banner?: LocalizedText[];
@@ -23,6 +37,7 @@ interface Homepage extends Base {
   gallery_section?: GallerySection;
   story_section?: StorySection;
   testimonials_section?: TestimonialSection;
+  wall_section?: WallSection;
 }
 
 interface GallerySection {
@@ -34,12 +49,12 @@ interface GallerySection {
 interface StorySection {
   title: LocalizedText;
   description: LocalizedText;
-  images: Image;
+  image: Image;
 }
 
 interface WallSection {
-  title: LocalizedText;
-  images: Image[];
+  title?: LocalizedText;
+  images?: Image[];
 }
 
 interface TestimonialSection {
@@ -53,7 +68,9 @@ interface TestimonialSection {
 
 interface Image {
   _type: "image";
+  _key: string;
   asset: Reference;
+  alt?: string;
 }
 
 interface Reference {
@@ -82,6 +99,6 @@ interface Food extends Base {
 }
 
 interface LocalizedText {
-  sv?: string;
-  en?: string;
+  sv: string;
+  en: string;
 }

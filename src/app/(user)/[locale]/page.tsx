@@ -1,17 +1,15 @@
 import { notFound } from "next/navigation";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { locales } from "@/config";
-import { HomeHero as Hero } from "@/components/Heros";
-import PageTransition from "@/components/ui/PageTransition";
-import Gallery from "@/components/Gallery";
-import Story from "@/components/Story";
-import Menu from "@/components/Menu";
-import Wall from "@/components/Wall";
-import Testimonials from "@/components/Testimonials";
-import RecentNews from "@/components/News/RecentNews";
-import Banner from "@/components/Banner";
 import { getNews } from "@/lib/getNews";
 import { INewsItem } from "@/types/generated";
+import { draftMode } from "next/headers";
+import { token } from "../../../../sanity/lib/token";
+import { getClient } from "../../../../sanity/lib/client";
+import { CATEGORIES_QUERY, HOME_QUERY } from "../../../../sanity/lib/queries";
+import PreviewProvider from "@/components/PreviewProvider";
+import HomeComponents from "@/components/Home/HomeComponents";
+import PreviewHomePage from "@/components/Home/PreviewHomePage";
 
 type Props = {
   params: { locale: string };
@@ -27,16 +25,28 @@ export default async function IndexPage({ params: { locale } }: Props) {
 
   const news: INewsItem[] = await getNews();
 
+  const isDraft = draftMode().isEnabled;
+  const client = getClient(isDraft ? token : undefined);
+
+  const homeData = await client.fetch<Homepage>(HOME_QUERY);
+  const categoriesData = await client.fetch<Category[]>(CATEGORIES_QUERY);
+
+  if (isDraft)
+    return (
+      <PreviewProvider token={token}>
+        <PreviewHomePage
+          homeData={homeData}
+          news={news}
+          categoriesData={categoriesData}
+        />
+      </PreviewProvider>
+    );
+
   return (
-    <PageTransition>
-      <Hero />
-      <Banner />
-      <Gallery />
-      <Story />
-      <Menu />
-      <Wall />
-      <Testimonials />
-      <RecentNews news={news.slice(0, 3)} />
-    </PageTransition>
+    <HomeComponents
+      homeData={homeData}
+      news={news}
+      categoriesData={categoriesData}
+    />
   );
 }
