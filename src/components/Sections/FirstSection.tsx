@@ -2,11 +2,11 @@ import Image from "next/image";
 import React from "react";
 import MaskText from "../ui/MaskText";
 import FadeUp from "../ui/FadeUp";
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 import urlFor from "@/lib/urlFor";
 
 export const FirstSection = ({ section }: { section: AboutSection }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
 
   const { image, title, description } = section;
 

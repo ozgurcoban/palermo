@@ -1,4 +1,4 @@
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 import RadioButton from "../ui/RadioButton";
 
 interface MenuTabs {
@@ -17,7 +17,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
   selectedTab,
   setSelectedTab,
 }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
   return (
     <>
       <div className="w-full mt-6">

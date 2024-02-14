@@ -6,14 +6,14 @@ import {
 import ContactForm from "./Form";
 import Link from "next/link";
 import Map from "./Map";
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 
 export default function ContactInfoSection({
   contactData,
 }: {
   contactData?: Contact;
 }) {
-  const locale = getLocale();
+  const locale = useGetLocale();
   if (!contactData)
     return (
       <section className="w-screen pt-28 border-image" id="contact">

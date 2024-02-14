@@ -1,8 +1,8 @@
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 import React from "react";
 
 const MenuItem: React.FC<{ item: SubCategory | Food }> = ({ item }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
 
   if ((item as Food).price)
     // Identify if the item is the food
@@ -27,7 +27,7 @@ const MenuItem: React.FC<{ item: SubCategory | Food }> = ({ item }) => {
 };
 
 const MenuFoodItem: React.FC<Food> = ({ title, price, description, badge }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
   return (
     <li className="flex flex-col gap-2">
       <div className="flex justify-between items-center">

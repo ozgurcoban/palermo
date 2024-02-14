@@ -1,16 +1,15 @@
 "use client";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const ScrollTop = () => {
   const [showBtn, setShowBtn] = useState(false);
 
-  const onScroll = useCallback(() => {
-    const { scrollY } = window;
-    setShowBtn(scrollY > 132);
-  }, []);
-
   useEffect(() => {
+    const onScroll = () => {
+      const { scrollY } = window;
+      setShowBtn(scrollY > 132);
+    };
     //add eventlistener to window
     window.addEventListener("scroll", onScroll, { passive: true });
     // remove event on unmount to prevent a memory leak with the cleanup

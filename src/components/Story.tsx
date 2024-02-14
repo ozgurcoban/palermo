@@ -4,12 +4,12 @@ import Beer from "../../public/images/beer.png";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import FadeUp from "./ui/FadeUp";
 import MotionDiv from "./ui/MotionDiv";
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 import urlFor from "@/lib/urlFor";
 import { Link } from "@/navigation";
 
 const Story = ({ data }: { data?: StorySection }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
 
   if (!data) return;
 

@@ -1,4 +1,4 @@
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 
 type Props = {
@@ -16,7 +16,7 @@ const TestimonialItems: React.FC<Props> = ({
   selectedTestimonial,
   setSelectedTestimonial,
 }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
 
   const previous = () =>
     setSelectedTestimonial((testimonial) =>

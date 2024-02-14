@@ -99,7 +99,7 @@ export default defineConfig({
                   "foods",
                   "subcategories",
                   "categories",
-                ].includes(listItem.getId())
+                ].includes(listItem?.getId()!)
             ),
           ]),
     }),

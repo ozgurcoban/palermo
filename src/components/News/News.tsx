@@ -12,7 +12,7 @@ export const News = ({ news }: { news: INewsItem[] }) => {
         <div>
           <FadeUp delay={0.2}>
             <h2 className="font-lobster text-9xl capitalize text-center">
-              Palermo's News
+              {"Palermo's News"}
             </h2>
           </FadeUp>
           <FadeUp delay={0.4} className="mt-8 max-w-xl mx-auto">

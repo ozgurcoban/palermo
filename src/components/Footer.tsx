@@ -7,10 +7,10 @@ import {
   ChatBubbleIcon,
   EnvelopeClosedIcon,
 } from "@radix-ui/react-icons";
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 
 export default function Footer({ contactData }: { contactData?: Contact }) {
-  const locale = getLocale();
+  const locale = useGetLocale();
 
   if (!contactData)
     return (

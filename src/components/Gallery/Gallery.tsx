@@ -5,11 +5,11 @@ import { TriangleDownIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
 import MaskText from "../ui/MaskText";
 import GalleryImage from "./GalleryImage";
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 import urlFor from "@/lib/urlFor";
 
 export const Gallery = ({ data }: { data?: GallerySection }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
 
   const [favouriteList, setFavouriteList] = useState<string[]>([]);
   const [showMore, setShowMore] = useState(false);

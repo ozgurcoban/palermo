@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import MenuTabs from "./MenuTabs";
 import MenuItems from "./MenuItems";
 import FadeUp from "../ui/FadeUp";
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 
 type Props = {
   categories: Category[];
@@ -17,7 +17,7 @@ export const Menu: React.FC<Props> = ({ categories }) => {
 };
 
 const MenuContent: React.FC<Props> = ({ categories }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
 
   // The tab category index and its value
   const [tab, setTab] = useState({
@@ -34,14 +34,14 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
         ...(filteredList.menu_list ?? []),
       ];
     else return [];
-  }, [tab.value]);
+  }, [tab.value, categories]);
 
   return (
     <section className="py-32  w-screen border-image">
       <div className="container">
         <FadeUp>
           <h2 className="title-secondary !text-center cursor-default">
-            Try us, you'll love us
+            {"Try us, you'll love us"}
           </h2>
         </FadeUp>
         <FadeUp

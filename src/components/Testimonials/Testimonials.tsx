@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import FadeUp from "../ui/FadeUp";
 import TestimonialItems from "./TestimonialItems";
 import Image from "next/image";
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 import urlFor from "@/lib/urlFor";
 
 type Props = {
@@ -12,10 +12,9 @@ type Props = {
 };
 
 export const Testimonials: React.FC<Props> = ({ data }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
   const [selectedTestimonial, setSelectedTestimonial] = useState(0);
 
-  console.log(locale);
   if (!data) return;
 
   const { title, testimonials } = data;

@@ -3,7 +3,7 @@ import { Pathnames } from "next-intl/navigation";
 
 export const locales = ["sv", "en"] as const;
 
-export const getLocale = () => {
+export const useGetLocale = () => {
   const locale = useLocale();
 
   return locale as "en" | "sv";

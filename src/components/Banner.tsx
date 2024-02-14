@@ -3,13 +3,13 @@ import { Fragment, useRef } from "react";
 import FadeUp from "./ui/FadeUp";
 import { Separator } from "@/components/ui/separator";
 import InfiniteMove from "./ui/InfiniteMove";
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 
 const Banner = ({ banners }: { banners: LocalizedText[] }) => {
   const firstList = useRef<HTMLDivElement | null>(null);
   const secondList = useRef<HTMLDivElement | null>(null);
 
-  const locale = getLocale();
+  const locale = useGetLocale();
   return (
     <FadeUp delay={0.7}>
       <div className="bg-light h-24 min-w-[100vw] overflow-hidden py-8 mt-5 mb-10 relative">

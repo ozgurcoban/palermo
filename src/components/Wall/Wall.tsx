@@ -1,7 +1,7 @@
 import FadeUp from "../ui/FadeUp";
 import WallSlides from "./WallSlides";
 import WallItem from "./WallItem";
-import { getLocale } from "@/config";
+import { useGetLocale } from "@/config";
 
 const IMAGE_BY_ROW = 5;
 
@@ -22,7 +22,7 @@ const divideArrayBy = (originalArray: Image[] = []) => {
 };
 
 export const Wall = ({ data }: { data?: WallSection }) => {
-  const locale = getLocale();
+  const locale = useGetLocale();
 
   if (!data || !data.images || !data.title) return;
 
