@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 type Props = {
@@ -15,14 +15,16 @@ const InfiniteMove: React.FC<Props> = ({
 }) => {
   let xPercent = 0;
 
-  useGSAP(() => {
-    if (secondList.current && firstList.current) {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
       gsap.set(secondList.current, {
         left: secondList.current?.getBoundingClientRect().width,
       });
       requestAnimationFrame(animate);
-    }
-  });
+    });
+
+    return () => ctx.revert(); // <-- cleanup
+  }, []);
 
   const animate = () => {
     if (xPercent < -100) {
@@ -34,7 +36,7 @@ const InfiniteMove: React.FC<Props> = ({
       gsap.set(firstList.current, { xPercent: xPercent });
       gsap.set(secondList.current, { xPercent: xPercent });
       requestAnimationFrame(animate);
-      xPercent += 0.02 * direction;
+      xPercent += 0.01 * direction;
     }
   };
   return null;
