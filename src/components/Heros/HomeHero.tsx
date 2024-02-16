@@ -1,6 +1,10 @@
 import Image from "next/image";
 import MotionDiv from "@/components/ui/MotionDiv";
 import FadeUp from "@/components/ui/FadeUp";
+import { useTranslations } from "next-intl";
+// import { unstable_setRequestLocale } from "next-intl/server";
+import { ILocale } from "@/types/generated";
+import Localization from "@/components/localization";
 
 const variants = {
   initial: {
@@ -16,6 +20,8 @@ const variants = {
 };
 
 export function HomeHero() {
+  // unstable_setRequestLocale(locale)
+
   return (
     <div className="relative h-[70vh] w-screen container flex items-center justify-center">
       <MotionDiv
@@ -44,15 +50,10 @@ export function HomeHero() {
       </MotionDiv>
       <div className="absolute sm:px-8 px-4 text-center inset-0 flex flex-col items-center justify-center z-20">
         <FadeUp delay={0.8} duration={0.3}>
-          <p className="title-secondary !normal-case text-gray-200 max-w-[600px] !font-normal">
-            At <u className="underline-offset-8">Palermo</u> where tasty dishes
-            and a fine selection of beers
-          </p>
+          <Localization text="Home.HomeHero.description" rich />
         </FadeUp>
         <FadeUp delay={0.5} duration={0.3}>
-          <h1 className="text-light mt-10 lg:text-[180px] sm:text-[160px] text-[20vw] leading-[85px] sm:leading-[135px]  font-lobster break-words">
-            Welcome everyone
-          </h1>
+          <Localization text="Home.HomeHero.title" />
         </FadeUp>
       </div>
     </div>

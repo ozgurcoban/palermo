@@ -1,19 +1,19 @@
 {
   "Home": {
-    "homeHero": {
+    "HomeHero": {
       "description": {
         "sentenceBefore": "På ",
-        "palermo": "<underline>Palermo</underline>",
+        "underline": "Palermo",
         "sentenceAfter": " där välsmakande rätter och ett fint urval av dryck"
       },
-      "title": " Välkomnar alla"
+      "title": "Välkomnar alla"
     },
-    "gallery": {
+    "Gallery": {
       "title": "Ögonblick hos Oss",
       "description": "Från hjärtliga måltider till glada samlingar – bläddra igenom våra minnen och känn dig som hemma",
       "button": "Se mer"
     },
-    "about": {
+    "About": {
       "title": "Välkommen till Palermos Hjärta",
       "description": "Palermo: Mer än en restaurang, en mötesplats där berättelser väcks till liv. I hjärtat av Uppsala serverar vi rätter tillagade med kärlek, från perfekta pizzor till utsökta drycker. Varje besök är en upplevelse, varje måltid mer än bara mat. Välkommen till en värld av värdefulla minnen. Välkommen hem, välkommen till Palermo.",
       "button": "Läs mer"
@@ -32,7 +32,7 @@
     "description": "Var god kontrollera adressfältet i din webbläsare eller använd navigeringen för att byta till en känd sida."
   },
   "Metadata": {
-    "title": "Dirkha - Good Green News",
+    "title": "Palermo - Uppsalas naturliga mötesplats",
     "description": "Built with Next.js and next-intl"
   },
   "LocaleSwitcher": {
