@@ -15,8 +15,13 @@ export interface ISubCategory {
 export type IMenuList = IMenuItem | ISubCategory;
 
 export interface INewsItem {
-    id: string;
-    media_url: string;
-    caption: string;
-    timestamp: string;
+  id: string;
+  media_url: string;
+  caption: string;
+  timestamp: string;
+}
+
+export interface ILocale {
+  locale: string;
+  params: any;
 }
