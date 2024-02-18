@@ -6,8 +6,6 @@ import { Link } from "@/navigation";
 import { INewsItem } from "@/types/generated";
 
 const RecentNews = ({ news }: { news: INewsItem[] }) => {
-  console.log(news);
-
   return (
     <section className="w-screen py-40 h-full bg-[#f9f9f9]">
       <div className="container flex flex-col items-center">
