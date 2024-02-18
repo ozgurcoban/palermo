@@ -21,6 +21,7 @@ const HomeComponents: React.FC<Props> = ({
   news,
   categoriesData,
 }) => {
+
   const {
     banner,
     gallery_section,

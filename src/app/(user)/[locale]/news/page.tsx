@@ -4,11 +4,11 @@ import { getNews } from "@/lib/getNews";
 import { INewsItem } from "@/types/generated";
 
 export default async function NewsPage() {
-  const news: INewsItem[] = await getNews();
+  const news: { data: INewsItem[] } = await getNews();
 
   return (
     <PageTransition>
-      <News news={news} />
+      <News news={news.data} />
     </PageTransition>
   );
 }

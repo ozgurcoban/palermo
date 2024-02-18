@@ -25,7 +25,7 @@ const RecentNews = ({ news }: { news: INewsItem[] }) => {
                 <Button
                   title="See more"
                   aria-live="polite"
-                  className="flex items-center gap-2 px-6 border-image bg-transparent py-7 hover:text-primary hover:bg-transparent text-dark hover:scale-105"
+                  className="mt-5 flex items-center gap-2 px-6 border-image bg-transparent py-7 hover:text-primary hover:bg-transparent text-dark hover:scale-105"
                 >
                   <span className="font-lato text-base capitalize font-semibold">
                     See More

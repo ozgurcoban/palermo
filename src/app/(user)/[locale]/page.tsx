@@ -23,7 +23,7 @@ export default async function IndexPage({ params: { locale } }: Props) {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
-  const news: INewsItem[] = await getNews();
+  const news: { data: INewsItem[] } = await getNews();
 
   const isDraft = draftMode().isEnabled;
   const client = getClient(isDraft ? token : undefined);
@@ -36,7 +36,7 @@ export default async function IndexPage({ params: { locale } }: Props) {
       <PreviewProvider token={token}>
         <PreviewHomePage
           homeData={homeData}
-          news={news}
+          news={news.data}
           categoriesData={categoriesData}
         />
       </PreviewProvider>
@@ -45,7 +45,7 @@ export default async function IndexPage({ params: { locale } }: Props) {
   return (
     <HomeComponents
       homeData={homeData}
-      news={news}
+      news={news.data}
       categoriesData={categoriesData}
     />
   );

@@ -17,7 +17,7 @@ const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
               alt={caption}
               width={1920}
               height={256}
-              className="object-cover w-full rounded-lg"
+              className="object-cover rounded-lg max-w-[350px] max-h-[350px] w-full h-full"
             />
             <div>
               <span className="text-base opacity-80">
@@ -36,9 +36,7 @@ const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
       </div>
       {news.length === 0 && (
         <div className="w-full text-center">
-          <span className="text-xl">
-            - There is no news at the moment!! -
-          </span>
+          <span className="text-xl">- There is no news at the moment!! -</span>
         </div>
       )}
     </>
