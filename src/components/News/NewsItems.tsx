@@ -1,24 +1,40 @@
 import React from "react";
 import FadeUp from "../ui/FadeUp";
 import { INewsItem } from "@/types/generated";
+import { Link } from "@/navigation";
 
 const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
   return (
     <>
       <div className="mt-36 w-full grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-        {news.map(({ id, media_url, timestamp, caption }, i) => (
+        {news.map(({ id, media_url, timestamp, caption, media_type }, i) => (
           <FadeUp
             className={`rounded-xl p-4 overflow-hidden flex flex-col border gap-11`}
             key={id}
             delay={0.05 * i}
           >
-            <img
-              src={media_url}
-              alt={caption}
-              width={1920}
-              height={256}
-              className="object-cover rounded-lg max-w-[350px] max-h-[350px] w-full h-full"
-            />
+            {media_type === "VIDEO" ? (
+              <video
+                id="my-video"
+                className="video-js max-h-[350px]"
+                controls
+                preload="auto"
+                width="640"
+                height="264"
+                // poster="MY_VIDEO_POSTER.jpg"
+                data-setup="{}"
+              >
+                <source src={media_url} type="video/mp4" />
+              </video>
+            ) : (
+              <img
+                src={media_url}
+                alt={caption}
+                width={1920}
+                height={256}
+                className="object-cover rounded-lg max-w-[350px] max-h-[350px] w-full h-full"
+              />
+            )}
             <div>
               <span className="text-base opacity-80">
                 {new Date(timestamp).toLocaleDateString("en-US", {
@@ -30,6 +46,9 @@ const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
               <p className="line-clamp-2 text-2xl leading-normal mt-4">
                 {caption}
               </p>
+              <Link className="text-primary" href={`/news/${id}`}>
+                Read more
+              </Link>
             </div>
           </FadeUp>
         ))}

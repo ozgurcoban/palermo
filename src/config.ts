@@ -24,6 +24,10 @@ export const pathnames = {
     en: "/news",
     sv: "/nyheter",
   },
+  "/news/[...id]": {
+    en: "/news/[...id]",
+    sv: "/nyheter/[...id]",
+  },
 } satisfies Pathnames<typeof locales>;
 
 export const localePrefix = "as-needed";
