@@ -44,7 +44,11 @@
     "home": "Hem",
     "menu": "Meny",
     "about": "Om oss",
-    "news": "Nyheter"
+    "news": "Nyheter",
+    "contact": "Hitta till oss",
+    "mobile": {
+      "siteLanguage": "Språk:"
+    }
   },
   "PageLayout": {
     "links": {

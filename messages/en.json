@@ -6,7 +6,7 @@
         "underline": "Palermo",
         "sentenceAfter": " where tasty dishes and a fine selection of drinks"
       },
-      "title": " Welcome everyone"
+      "title": "Welcome everyone"
     },
     "Gallery": {
       "title": "Beautiful moments in Palermo",
@@ -44,7 +44,11 @@
     "home": "Home",
     "menu": "Menu",
     "about": "About",
-    "news": "News"
+    "news": "News",
+    "contact": "where to find us",
+    "mobile": {
+      "siteLanguage": "Site language:"
+    }
   },
   "PageLayout": {
     "links": {

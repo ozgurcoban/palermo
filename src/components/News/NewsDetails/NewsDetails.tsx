@@ -9,7 +9,7 @@ export const NewsDetails = ({
   allNews: INewsItem[];
   newsDetails: INewsItem;
 }) => {
-  const news = allNews.filter((news) => id !== news.id);
+  const news = allNews.filter(news => id !== news.id);
 
   return (
     <section className="w-screen py-40 h-full bg-[#f9f9f9]">

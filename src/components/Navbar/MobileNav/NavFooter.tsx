@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { locales } from "@/config";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/navigation";
+import { LocalizedText } from "@/components/localization";
 
 const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
   const t = useTranslations("LocaleSwitcher");
@@ -41,7 +42,7 @@ const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           exit="exit"
           className={""}
         >
-          site language:
+          <LocalizedText text="Navigation.mobile.siteLanguage" />
         </motion.li>
         {locales.map(cur => (
           <motion.li

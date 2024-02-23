@@ -60,7 +60,7 @@ export function Navbar() {
             href={"#contact"}
             className="px-4 py-2 whitespace-nowrap font-lato uppercase font-normal bg-accent text-secondary hover:bg-primary transition-all duration-200"
           >
-            where to find us
+            {t("contact")}
           </a>
           <div className="hidden px-4 py-2 lg:inline-flex items-center ">
             <LocaleSwitcher />

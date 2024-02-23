@@ -164,3 +164,8 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #4e3d2d #4e3d2d;
 }
+
+.selected {
+  /* Your styles for the selected item */
+  font-weight: bold; /* Example style */
+}

@@ -25,3 +25,8 @@ export default function Localization({ text, rich }: LocalizationProps) {
     </h1>
   );
 }
+
+export function LocalizedText({ text }: { text: string }) {
+  const t = useTranslations();
+  return <>{t(text)}</>;
+}
