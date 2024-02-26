@@ -16,13 +16,8 @@ import {
 
 interface MenuTabs {
   tabs: Category[];
-  setSelectedTab: React.Dispatch<
-    React.SetStateAction<{
-      index: number;
-      value: string;
-    }>
-  >;
-  selectedTab: number;
+  setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
+  selectedTab: string;
 }
 
 function useWindowWidth(): number {
@@ -60,16 +55,14 @@ const MenuTabs: React.FC<MenuTabs> = ({
               Our amazing categories
             </span>
           </div>
-          <ul className="flex-col mt-3 md:gap-2 transition-all duration-200">
-            {tabs.map((tab, index) => (
+          <ul className="flex flex-col mt-3 gap-3 transition-all duration-200">
+            {tabs.map((tab) => (
               <li className="flex items-center gap-3" key={tab._id}>
                 <RadioButton
                   label={tab.title[locale]}
                   value={tab._id}
-                  isSelected={selectedTab === index}
-                  onRadioChange={() =>
-                    setSelectedTab({ value: tab._id, index })
-                  }
+                  isSelected={selectedTab === tab._id}
+                  onRadioChange={() => setSelectedTab(tab._id)}
                   groupName="categories"
                 />
               </li>
@@ -78,7 +71,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
         </div>
       ) : (
         <div className="md:hidden mt-4">
-          <Select>
+          <Select defaultValue={selectedTab} onValueChange={setSelectedTab}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select a category" />
             </SelectTrigger>
@@ -86,11 +79,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
               <SelectGroup>
                 <SelectLabel>Categories</SelectLabel>
                 {tabs.map((tab, index) => (
-                  <SelectItem
-                    key={tab._id}
-                    value={tab._id}
-                    onChange={() => setSelectedTab({ value: tab._id, index })}
-                  >
+                  <SelectItem key={tab._id} value={tab._id}>
                     {tab.title[locale]}
                   </SelectItem>
                 ))}

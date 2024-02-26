@@ -20,21 +20,23 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
   const locale = useGetLocale();
 
   // The tab category index and its value
-  const [tab, setTab] = useState({
-    index: 1,
-    value: categories[0]._id,
-  });
+  const [tab, setTab] = useState(categories[0]._id);
 
   // Get the menu list everytime the selected tab changed
   const menus_list = useMemo(() => {
-    const filteredList = categories.find(({ _id }) => tab.value === _id);
+    const filteredList = categories.find(({ _id }) => tab === _id);
     if (filteredList)
       return [
         ...(filteredList.sub_categories ?? []),
         ...(filteredList.menu_list ?? []),
       ];
     else return [];
-  }, [tab.value, categories]);
+  }, [tab, categories]);
+
+  const getCategory = useMemo(
+    () => categories.find((category) => tab === category._id),
+    [categories, tab]
+  );
 
   return (
     <section className="py-32  w-screen border-image">
@@ -57,21 +59,21 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
             <div className="flex flex-col">
               <MenuTabs
                 tabs={categories}
-                selectedTab={tab.index}
+                selectedTab={tab}
                 setSelectedTab={setTab}
               />
             </div>
             <div className="w-full text-center mb-1 mt-6 md:mt-8 sticky top-0 overflow-y-scroll">
-              {categories[tab.index].description && (
+              {getCategory?.description && (
                 <div className="text-center text-lg mb-3">
-                  <p>{categories[tab.index].description?.[locale]}</p>
+                  <p>{getCategory.description?.[locale]}</p>
                 </div>
               )}
               <p className="text-right text-gray-700 sticky top-0 bg-white w-full">
                 Servering/Avh.
               </p>
               <hr className="mt-4" />
-              <FadeUp delay={1} className="w-full h-full overflow-y-scroll">
+              <FadeUp delay={1} className="w-full h-full">
                 <MenuItems data={menus_list} />
               </FadeUp>
             </div>
