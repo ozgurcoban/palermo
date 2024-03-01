@@ -17,7 +17,7 @@ export default defineConfig({
   plugins: [
     structureTool({
       defaultDocumentNode: getDefaultDocumentNode,
-      structure: (S) =>
+      structure: S =>
         S.list()
           .title("Base")
           .items([
@@ -66,17 +66,17 @@ export default defineConfig({
                   .title("Menu")
                   .items([
                     S.listItem()
-                      .title("Foods List")
+                      .title("Food Items List")
                       .child(
                         S.documentList()
-                          .title("Foods List")
+                          .title("Food Items List")
                           .filter('_type == "foods"')
                       ),
                     S.listItem()
-                      .title("SubCategories List")
+                      .title("Sub Categories List")
                       .child(
                         S.documentList()
-                          .title("SubCategories List")
+                          .title("Sub Categories List")
                           .filter('_type == "subcategories"')
                       ),
                     S.listItem()
@@ -91,7 +91,7 @@ export default defineConfig({
             S.divider(),
 
             ...S.documentTypeListItems().filter(
-              (listItem) =>
+              listItem =>
                 ![
                   "home",
                   "about",

@@ -34,7 +34,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
   }, [tab, categories]);
 
   const getCategory = useMemo(
-    () => categories.find((category) => tab === category._id),
+    () => categories.find(category => tab === category._id),
     [categories, tab]
   );
 

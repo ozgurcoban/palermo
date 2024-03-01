@@ -18,7 +18,7 @@ const MenuItem: React.FC<{ item: SubCategory | Food }> = ({ item }) => {
         </span>
       )}
       <ul className="flex flex-col gap-5 py-6 mt-3 border-y w-full">
-        {(item as SubCategory).menu_list?.map((item) => (
+        {(item as SubCategory).menu_list?.map(item => (
           <MenuFoodItem key={item._id} {...item} />
         ))}
       </ul>
