@@ -14,6 +14,7 @@ const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
 
   function onSelectChange(nextLocale: string) {
     onCloseMenu();
+    // @ts-ignore
     router.replace(pathname, { locale: nextLocale });
   }
 
