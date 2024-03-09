@@ -46,7 +46,7 @@ const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
               <p className="line-clamp-2 text-2xl leading-normal mt-4">
                 {caption}
               </p>
-              <Link className="text-primary" href={`/news/${id}`}>
+              <Link className="text-primary" href={`/news/${id}` as any}>
                 Read more
               </Link>
             </div>
