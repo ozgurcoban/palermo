@@ -88,7 +88,7 @@ interface Category extends Base {
 interface SubCategory extends Base {
   title: LocalizedText;
   description?: LocalizedText;
-  menu_list: Food[];
+  menu_list: (Food | Wine)[];
 }
 
 interface Food extends Base {
@@ -103,7 +103,7 @@ interface Food extends Base {
 
 interface Wine extends Base {
   title: LocalizedText;
-  priceSection: {
+  prices: {
     bottlePrice: number;
     glassPrice: number;
     carafePrice: number;

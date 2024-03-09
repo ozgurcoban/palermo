@@ -6,12 +6,7 @@ const MenuItem: React.FC<{ item: SubCategory | Food | Wine }> = ({ item }) => {
 
   const locale = useGetLocale();
 
-  if (item._type === "foods")
-    // Identify if the item is the food
-    return <MenuFoodItem {...(item as Food)} />;
-  // else if (item._type === "subcategories") {
-  //   return <MenuWineItem {...(item as Wine)} />;
-  // }
+  if (item._type === "foods") return <MenuFoodItem {...(item as Food)} />;
   return (
     <li className="flex text-center items-center flex-col gap-2">
       <h3 className="font-recoleta font-medium text-2xl tracking-tight w-full">
@@ -23,9 +18,13 @@ const MenuItem: React.FC<{ item: SubCategory | Food | Wine }> = ({ item }) => {
         </span>
       )}
       <ul className="flex flex-col gap-5 py-6 mt-3 border-y w-full">
-        {(item as SubCategory).menu_list?.map(item => (
-          <MenuFoodItem key={item._id} {...item} />
-        ))}
+        {(item as SubCategory).menu_list?.map((item) =>
+          item._type === "wines" ? (
+            <MenuWineItem key={item._id} {...(item as Wine)} />
+          ) : (
+            <MenuFoodItem key={item._id} {...(item as Food)} />
+          )
+        )}
       </ul>
     </li>
   );
@@ -68,7 +67,7 @@ const MenuFoodItem: React.FC<Food> = ({
 };
 const MenuWineItem: React.FC<Wine> = ({
   title,
-  priceSection: { bottlePrice, glassPrice, carafePrice },
+  prices: { bottlePrice, glassPrice, carafePrice },
   description,
   badge,
 }) => {
