@@ -2,10 +2,9 @@ import { defineField, defineType } from "sanity";
 import { supportedLanguages } from "./lang-config";
 
 export default defineType({
-  name: "foods",
-  title: "Food Items",
+  name: "wines",
+  title: "Wines",
   type: "document",
-
   fields: [
     defineField({
       title: "Title",
@@ -56,46 +55,25 @@ export default defineType({
       title: "Prices",
       fields: [
         defineField({
-          title: "Price",
-          description: "Enter the price per unit",
-          name: "price",
+          title: "Price per bottle",
+          description: "Enter the price per bottle",
+          name: "bottlePrice",
           type: "number",
           validation: Rule => Rule.required(),
         }),
         defineField({
-          title: "Takeaway price",
-          description: "Enter the price per unit",
-          name: "takeawayPrice",
+          title: "Price per glass",
+          description: "Enter the price per glass",
+          name: "glassPrice",
+          type: "number",
+          validation: Rule => Rule.required(),
+        }),
+        defineField({
+          title: "Price per carafe",
+          description: "Enter the carafe price",
+          name: "carafePrice",
           type: "number",
         }),
-        // defineField({
-        //   title: "Is Wine",
-        //   description: "Check this if the food item is a wine",
-        //   name: "isWine",
-        //   type: "boolean",
-        // }),
-        // defineField({
-        //   title: "Price per bottle",
-        //   description: "Enter the price per bottle",
-        //   name: "bottlePrice",
-        //   type: "number",
-        //   hidden: ({ parent }) => !parent?.isWine,
-        // }),
-        // defineField({
-        //   title: "Price per glass",
-        //   description: "Enter the price per glass",
-        //   name: "glassPrice",
-        //   type: "number",
-        //   // group: "wine",
-        //   hidden: ({ parent }) => !parent?.isWine,
-        // }),
-        // defineField({
-        //   title: "Price per carafe",
-        //   description: "Enter the carafe price",
-        //   name: "carafePrice",
-        //   type: "number",
-        //   hidden: ({ parent }) => !parent?.isWine,
-        // }),
       ],
     }),
 

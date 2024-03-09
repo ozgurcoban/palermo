@@ -29,7 +29,7 @@ export default function LocaleSwitcher() {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {locales.map((cur) => (
+          {locales.map(cur => (
             <SelectItem
               className="hover:text-white focus:text-white"
               key={cur}

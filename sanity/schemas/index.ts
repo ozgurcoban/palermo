@@ -6,6 +6,7 @@ import categories from "./categories";
 import sections from "./sections";
 import contactSection from "./contact-section";
 import aboutpage from "./aboutpage";
+import wines from "./wines";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -16,5 +17,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     subcategories,
     categories,
     contactSection,
+    wines,
   ],
 };

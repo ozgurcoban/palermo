@@ -93,7 +93,21 @@ interface SubCategory extends Base {
 
 interface Food extends Base {
   title: LocalizedText;
-  price: string;
+  priceSection: {
+    price: number;
+    takeAwayPrice: number;
+  };
+  description?: LocalizedText;
+  badge?: LocalizedText;
+}
+
+interface Wine extends Base {
+  title: LocalizedText;
+  priceSection: {
+    bottlePrice: number;
+    glassPrice: number;
+    carafePrice: number;
+  };
   description?: LocalizedText;
   badge?: LocalizedText;
 }

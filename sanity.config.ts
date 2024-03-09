@@ -66,21 +66,28 @@ export default defineConfig({
                   .title("Menu")
                   .items([
                     S.listItem()
-                      .title("Food Items List")
+                      .title("Food Items")
                       .child(
                         S.documentList()
-                          .title("Food Items List")
+                          .title("Food Items")
                           .filter('_type == "foods"')
                       ),
                     S.listItem()
-                      .title("Sub Categories List")
+                      .title("Wines")
+                      .child(
+                        S.documentList()
+                          .title("Wine Item")
+                          .filter('_type == "wines"')
+                      ),
+                    S.listItem()
+                      .title("Sub Categories")
                       .child(
                         S.documentList()
                           .title("Sub Categories List")
                           .filter('_type == "subcategories"')
                       ),
                     S.listItem()
-                      .title("Categories List")
+                      .title("Categories")
                       .child(
                         S.documentList()
                           .title("Categories List")
@@ -99,6 +106,7 @@ export default defineConfig({
                   "foods",
                   "subcategories",
                   "categories",
+                  "wines",
                 ].includes(listItem?.getId()!)
             ),
           ]),

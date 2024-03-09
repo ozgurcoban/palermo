@@ -13,6 +13,7 @@ export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (
       "foods",
       "subcategories",
       "categories",
+      "wines",
     ].includes(schemaType)
   ) {
     return S.document().views([

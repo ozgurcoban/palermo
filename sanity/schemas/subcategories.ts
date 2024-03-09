@@ -18,13 +18,13 @@ export default defineType({
         },
       ],
       // Dynamically define one field per language
-      fields: supportedLanguages.map((lang) =>
+      fields: supportedLanguages.map(lang =>
         defineField({
           title: lang.title,
           name: lang.id,
           type: "string",
           fieldset: lang.isDefault ? undefined : "translations",
-          validation: (Rule) => Rule.required(),
+          validation: Rule => Rule.required(),
         })
       ),
     }),
@@ -40,7 +40,7 @@ export default defineType({
         },
       ],
       // Dynamically define one field per language
-      fields: supportedLanguages.map((lang) =>
+      fields: supportedLanguages.map(lang =>
         defineField({
           title: lang.title,
           name: lang.id,
@@ -54,14 +54,14 @@ export default defineType({
       title: "Menu List",
       description: "Add the foods that belongs to this sub-category (optional)",
       type: "array",
-      of: [{ type: "reference", to: { type: "foods" } }],
-      validation: (Rule) =>
-        Rule.custom((foods) =>
+      of: [{ type: "reference", to: [{ type: "foods" }, { type: "wines" }] }],
+      validation: Rule =>
+        Rule.custom(foods =>
           (foods ?? []).length > 0
             ? true
             : {
                 message:
-                  "The menu list is required, please add at least one food",
+                  "The menu list is required, please add at least one item",
               }
         ),
     }),
