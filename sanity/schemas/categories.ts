@@ -18,13 +18,13 @@ export default defineType({
         },
       ],
       // Dynamically define one field per language
-      fields: supportedLanguages.map((lang) =>
+      fields: supportedLanguages.map(lang =>
         defineField({
           title: lang.title,
           name: lang.id,
           type: "string",
           fieldset: lang.isDefault ? undefined : "translations",
-          validation: (Rule) => Rule.required(),
+          validation: Rule => Rule.required(),
         })
       ),
     }),
@@ -40,7 +40,7 @@ export default defineType({
         },
       ],
       // Dynamically define one field per language
-      fields: supportedLanguages.map((lang) =>
+      fields: supportedLanguages.map(lang =>
         defineField({
           title: lang.title,
           name: lang.id,

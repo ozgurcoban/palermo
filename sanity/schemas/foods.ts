@@ -5,7 +5,6 @@ export default defineType({
   name: "foods",
   title: "Food Items",
   type: "document",
-
   fields: [
     defineField({
       title: "Title",
@@ -52,8 +51,15 @@ export default defineType({
     }),
     defineField({
       type: "object",
-      name: "prices",
+      name: "priceSection",
       title: "Prices",
+      validation: Rule =>
+        Rule.custom(fields => {
+          if (!fields?.price) {
+            return "Please add a price";
+          }
+          return true;
+        }),
       fields: [
         defineField({
           title: "Price",
@@ -68,34 +74,6 @@ export default defineType({
           name: "takeawayPrice",
           type: "number",
         }),
-        // defineField({
-        //   title: "Is Wine",
-        //   description: "Check this if the food item is a wine",
-        //   name: "isWine",
-        //   type: "boolean",
-        // }),
-        // defineField({
-        //   title: "Price per bottle",
-        //   description: "Enter the price per bottle",
-        //   name: "bottlePrice",
-        //   type: "number",
-        //   hidden: ({ parent }) => !parent?.isWine,
-        // }),
-        // defineField({
-        //   title: "Price per glass",
-        //   description: "Enter the price per glass",
-        //   name: "glassPrice",
-        //   type: "number",
-        //   // group: "wine",
-        //   hidden: ({ parent }) => !parent?.isWine,
-        // }),
-        // defineField({
-        //   title: "Price per carafe",
-        //   description: "Enter the carafe price",
-        //   name: "carafePrice",
-        //   type: "number",
-        //   hidden: ({ parent }) => !parent?.isWine,
-        // }),
       ],
     }),
 

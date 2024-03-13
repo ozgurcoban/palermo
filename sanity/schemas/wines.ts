@@ -51,7 +51,7 @@ export default defineType({
     }),
     defineField({
       type: "object",
-      name: "prices",
+      name: "priceSection",
       title: "Prices",
       fields: [
         defineField({

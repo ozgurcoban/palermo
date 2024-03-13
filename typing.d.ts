@@ -95,7 +95,7 @@ interface Food extends Base {
   title: LocalizedText;
   priceSection: {
     price: number;
-    takeAwayPrice: number;
+    takeawayPrice?: number;
   };
   description?: LocalizedText;
   badge?: LocalizedText;
@@ -103,10 +103,10 @@ interface Food extends Base {
 
 interface Wine extends Base {
   title: LocalizedText;
-  prices: {
+  priceSection: {
     bottlePrice: number;
     glassPrice: number;
-    carafePrice: number;
+    carafePrice?: number;
   };
   description?: LocalizedText;
   badge?: LocalizedText;

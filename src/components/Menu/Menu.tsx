@@ -4,12 +4,23 @@ import MenuTabs from "./MenuTabs";
 import MenuItems from "./MenuItems";
 import FadeUp from "../ui/FadeUp";
 import { useGetLocale } from "@/config";
+import { SlashIcon } from "@radix-ui/react-icons";
 
 type Props = {
   categories: Category[];
 };
 
 export const Menu: React.FC<Props> = ({ categories }) => {
+  // if (
+  //   categories &&
+  //   categories[0] &&
+  //   categories[0].menu_list &&
+  //   categories[0].menu_list[0] &&
+  //   categories[0].menu_list[0].priceSection
+  // ) {
+  //   console.log("kiri", categories[0].menu_list[0].priceSection.price);
+  // }
+
   if (Array.isArray(categories) && categories.length > 0)
     return <MenuContent categories={categories} />;
 
@@ -37,6 +48,8 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
     () => categories.find(category => tab === category._id),
     [categories, tab]
   );
+
+  console.log("getCategory", getCategory);
 
   return (
     <section className="py-32  w-screen border-image">
@@ -69,9 +82,24 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                   <p>{getCategory.description?.[locale]}</p>
                 </div>
               )}
-              <p className="text-right text-gray-700 sticky top-0 bg-white w-full">
-                Servering/Avh.
-              </p>
+              <div className="flex">
+                <p className="text-right text-gray-700 sticky top-0 bg-white w-full whitespace-nowrap">
+                  Servering
+                </p>
+
+                {getCategory?.sub_categories?.some(subCategory =>
+                  subCategory.menu_list.some(
+                    item =>
+                      "takeawayPrice" in item.priceSection &&
+                      item.priceSection.takeawayPrice
+                  )
+                ) ? (
+                  <>
+                    <SlashIcon className="h-6 text-gray-500" />
+                    <p className="">Avh.</p>
+                  </>
+                ) : null}
+              </div>
               <hr className="mt-4" />
               <FadeUp delay={1} className="w-full h-full">
                 <MenuItems data={menus_list} />
