@@ -7,6 +7,7 @@ import MotionDiv from "./ui/MotionDiv";
 import { useGetLocale } from "@/config";
 import urlFor from "@/lib/urlFor";
 import { Link } from "@/navigation";
+import Localization from "./localization";
 
 const Story = ({ data }: { data?: StorySection }) => {
   const locale = useGetLocale();
@@ -40,7 +41,7 @@ const Story = ({ data }: { data?: StorySection }) => {
               className="flex items-center gap-2 mt-16 lg:mx-0 mx-auto hover:tracking-wider transition-all duration-300 text-primary"
             >
               <span className="uppercase font-recoleta text-md font-medium">
-                Read more
+                <Localization text="Buttons.readMore" />
               </span>
               <ArrowRightIcon width={24} height={24} />
             </Link>
@@ -53,7 +54,7 @@ const Story = ({ data }: { data?: StorySection }) => {
               alt={image.alt ?? title[locale]}
               width={1920}
               height={1080}
-              className="rounded-3xl hover:scale-105 transition-all duration-500 object-cover shadow-xl shadow-dark/30"
+              className="rounded hover:scale-105 transition-all duration-500 object-cover shadow-xl shadow-dark/30"
             />
           </FadeUp>
         </div>

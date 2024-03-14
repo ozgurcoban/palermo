@@ -17,7 +17,32 @@
       "title": "Välkommen till Palermos Hjärta",
       "description": "Palermo: Mer än en restaurang, en mötesplats där berättelser väcks till liv. I hjärtat av Uppsala serverar vi rätter tillagade med kärlek, från perfekta pizzor till utsökta drycker. Varje besök är en upplevelse, varje måltid mer än bara mat. Välkommen till en värld av värdefulla minnen. Välkommen hem, välkommen till Palermo.",
       "button": "Läs mer"
+    },
+    "Menu": {
+      "title": "Testa oss",
+      "dineIn": "Servering",
+      "takeAway": "Avh.",
+      "glass": "Gl.",
+      "bottle": "Fl.",
+      "carafe": "Kar."
+    },
+    "News": {
+      "title": "Var först med att veta"
     }
+  },
+  "ContactSection": {
+    "addressTitle": "Hitta oss",
+    "phone": "Telefon",
+    "email": "E-post",
+    "openingHours": "Öppettider",
+    "getInTouch": "Kontakta oss",
+    "name": "Namn",
+    "message": "Meddelande"
+  },
+  "Buttons": {
+    "readMore": "Läs mer",
+    "submit": "Skicka",
+    "seeMore": "Se mer"
   },
   "PathnamesPage": {
     "title": "Pfadnamen",

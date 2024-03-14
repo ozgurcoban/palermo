@@ -2,6 +2,7 @@ import React from "react";
 import FadeUp from "../ui/FadeUp";
 import { INewsItem } from "@/types/generated";
 import { Link } from "@/navigation";
+import Localization from "../localization";
 
 const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
   return (
@@ -9,7 +10,7 @@ const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
       <div className="mt-36 w-full grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
         {news.map(({ id, media_url, timestamp, caption, media_type }, i) => (
           <FadeUp
-            className={`rounded-xl p-4 overflow-hidden flex flex-col border gap-11`}
+            className={`rounded p-4 overflow-hidden flex flex-col border gap-11`}
             key={id}
             delay={0.05 * i}
           >
@@ -32,7 +33,7 @@ const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
                 alt={caption}
                 width={1920}
                 height={256}
-                className="object-cover rounded-lg max-w-[350px] max-h-[350px] w-full h-full"
+                className="object-cover rounded max-w-[350px] max-h-[350px] w-full h-full"
               />
             )}
             <div>
@@ -47,7 +48,7 @@ const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
                 {caption}
               </p>
               <Link className="text-primary" href={`/news/${id}` as any}>
-                Read more
+                <Localization text="Buttons.readMore" />
               </Link>
             </div>
           </FadeUp>

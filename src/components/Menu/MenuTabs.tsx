@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useGetLocale } from "@/config";
 import RadioButton from "../ui/RadioButton";
+import clsx from "clsx";
 
 import {
   Select,
@@ -56,7 +57,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
             </span>
           </div>
           <ul className="flex flex-col mt-3 gap-3 transition-all duration-200">
-            {tabs.map((tab) => (
+            {tabs.map(tab => (
               <li className="flex items-center gap-3" key={tab._id}>
                 <RadioButton
                   label={tab.title[locale]}
@@ -79,7 +80,13 @@ const MenuTabs: React.FC<MenuTabs> = ({
               <SelectGroup>
                 <SelectLabel>Categories</SelectLabel>
                 {tabs.map((tab, index) => (
-                  <SelectItem key={tab._id} value={tab._id}>
+                  <SelectItem
+                    key={tab._id}
+                    value={tab._id}
+                    className={clsx({
+                      "selected-tab": selectedTab === tab._id,
+                    })}
+                  >
                     {tab.title[locale]}
                   </SelectItem>
                 ))}

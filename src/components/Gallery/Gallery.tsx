@@ -7,8 +7,10 @@ import MaskText from "../ui/MaskText";
 import GalleryImage from "./GalleryImage";
 import { useGetLocale } from "@/config";
 import urlFor from "@/lib/urlFor";
+import { useTranslations } from "next-intl";
 
 export const Gallery = ({ data }: { data?: GallerySection }) => {
+  const t = useTranslations("Buttons");
   const locale = useGetLocale();
 
   const [favouriteList, setFavouriteList] = useState<string[]>([]);
@@ -71,7 +73,9 @@ export const Gallery = ({ data }: { data?: GallerySection }) => {
                 title="See more"
                 aria-live="polite"
               >
-                <span className="font-lato text-base capitalize">See More</span>
+                <span className="font-lato text-base capitalize">
+                  {t("seeMore")}
+                </span>
                 <TriangleDownIcon width={16} height={16} />
               </Button>
             </FadeUp>

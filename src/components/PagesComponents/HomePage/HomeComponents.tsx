@@ -21,7 +21,6 @@ const HomeComponents: React.FC<Props> = ({
   news,
   categoriesData,
 }) => {
-
   const {
     banner,
     gallery_section,
@@ -37,7 +36,7 @@ const HomeComponents: React.FC<Props> = ({
       <Story data={story_section} />
       <Menu categories={categoriesData} />
       <Wall data={wall_section} />
-      <Testimonials data={testimonials_section} />
+      {/* <Testimonials data={testimonials_section} /> */}
       <RecentNews news={news.slice(0, 3)} />
     </PageTransition>
   );

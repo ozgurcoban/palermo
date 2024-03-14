@@ -27,11 +27,11 @@ const WallItem: React.FC<Props> = ({ IMAGE_BY_ROW, images, direction }) => {
         }}
         className="relative grid w-max gap-8"
       >
-        {images.map((image) => {
+        {images.map(image => {
           return (
             <div
               key={image._key}
-              className={`relative rounded-xl overflow-hidden w-72 h-72 xl:w-96 xl:h-96`}
+              className={`relative rounded overflow-hidden w-72 h-72 xl:w-96 xl:h-96`}
             >
               <Image
                 src={urlFor(image).url()}
@@ -50,11 +50,11 @@ const WallItem: React.FC<Props> = ({ IMAGE_BY_ROW, images, direction }) => {
         }}
         className="absolute left-full top-0 grid w-max gap-8 pl-8"
       >
-        {images.map((image) => {
+        {images.map(image => {
           return (
             <div
               key={image._key}
-              className={`relative rounded-xl overflow-hidden w-72 h-72 xl:w-96 xl:h-96`}
+              className={`relative rounded overflow-hidden w-72 h-72 xl:w-96 xl:h-96`}
             >
               <Image
                 src={urlFor(image).url()}

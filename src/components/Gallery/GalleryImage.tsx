@@ -31,7 +31,7 @@ const GalleryImage: React.FC<Props> = ({
     setIsFavourite(favourite);
     const updatedList = favourite
       ? [...favouriteList, imageId]
-      : favouriteList.filter((id) => id !== imageId);
+      : favouriteList.filter(id => id !== imageId);
     setFavouriteList(updatedList);
     localStorage.setItem("favList", JSON.stringify(updatedList));
   };
@@ -39,7 +39,7 @@ const GalleryImage: React.FC<Props> = ({
   return (
     <FadeUp
       delay={0.05 * i}
-      className={`relative cursor-pointer overflow-hidden row-span-1 rounded-xl p-4 ${
+      className={`relative cursor-pointer overflow-hidden row-span-1 rounded p-4 ${
         index === 3 || index === 6
           ? "lg:col-span-2"
           : index === 2 || index === 5

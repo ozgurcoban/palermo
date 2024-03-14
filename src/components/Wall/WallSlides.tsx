@@ -37,8 +37,13 @@ const WallSlides = ({ images }: { images: Image[] }) => {
     >
       {images.map((image, i) => (
         <SwiperSlide key={image._key}>
-          <div className="mx-auto h-64 relative rounded-xl overflow-hidden">
-            <Image src={urlFor(image).url()} alt={urlFor(image).url()} fill className="object-cover" />
+          <div className="mx-auto h-64 relative rounded overflow-hidden">
+            <Image
+              src={urlFor(image).url()}
+              alt={urlFor(image).url()}
+              fill
+              className="object-cover"
+            />
           </div>
         </SwiperSlide>
       ))}

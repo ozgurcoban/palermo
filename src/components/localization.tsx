@@ -19,14 +19,5 @@ export default function Localization({ text, rich }: LocalizationProps) {
       </>
     );
   }
-  return (
-    <h1 className="text-light mt-10 lg:text-[180px] opacity-70 sm:text-[160px] text-[20vw] leading-[85px] sm:leading-[135px] font-lobster break-words">
-      {t(text)}
-    </h1>
-  );
-}
-
-export function LocalizedText({ text }: { text: string }) {
-  const t = useTranslations();
   return <>{t(text)}</>;
 }

@@ -17,6 +17,7 @@ export default defineType({
           options: { collapsible: true },
         },
       ],
+
       // Dynamically define one field per language
       fields: supportedLanguages.map(lang =>
         defineField({

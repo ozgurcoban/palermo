@@ -53,7 +53,9 @@ export function HomeHero() {
           <Localization text="Home.HomeHero.description" rich />
         </FadeUp>
         <FadeUp delay={0.5} duration={0.3}>
-          <Localization text="Home.HomeHero.title" />
+          <h1 className="text-light mt-10 lg:text-[180px] opacity-70 sm:text-[160px] text-[20vw] leading-[85px] sm:leading-[135px] font-lobster break-words">
+            <Localization text="Home.HomeHero.title" />
+          </h1>
         </FadeUp>
       </div>
     </div>

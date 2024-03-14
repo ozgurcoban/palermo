@@ -4,13 +4,16 @@ import { Button } from "../ui/button";
 import NewsItems from "./NewsItems";
 import { Link } from "@/navigation";
 import { INewsItem } from "@/types/generated";
+import Localization from "../localization";
 
 const RecentNews = ({ news }: { news: INewsItem[] }) => {
   return (
     <section className="w-screen py-40 h-full bg-[#f9f9f9]">
       <div className="container flex flex-col items-center">
         <FadeUp>
-          <h2 className="title-secondary">Be first who read news</h2>
+          <h2 className="title-secondary text-dark">
+            <Localization text="Home.News.title" />
+          </h2>
         </FadeUp>
         <div className="relative w-full pb-16">
           <NewsItems news={news} />
@@ -23,10 +26,10 @@ const RecentNews = ({ news }: { news: INewsItem[] }) => {
                 <Button
                   title="See more"
                   aria-live="polite"
-                  className="mt-5 flex items-center gap-2 px-6 border-image bg-transparent py-7 hover:text-primary hover:bg-transparent text-dark hover:scale-105"
+                  className="bg-slate-500"
                 >
                   <span className="font-lato text-base capitalize font-semibold">
-                    See More
+                    <Localization text="Buttons.seeMore" />
                   </span>
                 </Button>
               </Link>

@@ -58,7 +58,7 @@ export function Navbar() {
         <div className="md:flex justify-end items-center md:flex-1 gap-2">
           <a
             href={"#contact"}
-            className="px-4 py-2 whitespace-nowrap font-lato uppercase font-normal bg-accent text-secondary hover:bg-primary transition-all duration-200"
+            className="px-4 py-2 whitespace-nowrap font-lato uppercase font-normal bg-accent text-secondary hover:bg-primary transition-all duration-200 rounded"
           >
             {t("contact")}
           </a>

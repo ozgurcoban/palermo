@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from "zod";
+import { useTranslations } from "next-intl";
 
 import { ContactFormSchema } from "@/lib/ContactFormSchema";
 
@@ -13,6 +14,8 @@ import { sendMail } from "@/app/(user)/_actions";
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 
 export default function ContactForm() {
+  const t = useTranslations("ContactSection");
+  const b = useTranslations("Buttons");
   const {
     register,
     handleSubmit,
@@ -39,13 +42,13 @@ export default function ContactForm() {
   };
   return (
     <form onSubmit={handleSubmit(processForm)} className="self-start">
-      <h2 className="title-secondary flex">Get in touch</h2>
+      <h2 className="title-secondary flex">{t("getInTouch")}</h2>
       <div className="flex gap-2 md:gap-4 pb-4 pt-3">
         {/* Name field */}
         <div className="flex-1">
           <input
-            className=" border-2 border-dark w-full px-3 py-4 placeholder:capitalize rounded-lg"
-            placeholder="name"
+            className=" border-2 border-dark w-full px-3 py-4 placeholder:capitalize rounded"
+            placeholder={t("name")}
             {...register("name")}
           />
           {errors.name?.message && (
@@ -58,8 +61,8 @@ export default function ContactForm() {
         {/* Email field */}
         <div className="flex-1">
           <input
-            className="flex-1 border-2 border-dark w-full px-3 py-4  placeholder:capitalize rounded-lg"
-            placeholder="email"
+            className="flex-1 border-2 border-dark w-full px-3 py-4  placeholder:capitalize rounded"
+            placeholder={t("email")}
             {...register("email")}
           />
           {errors.email?.message && (
@@ -73,8 +76,8 @@ export default function ContactForm() {
       <div className="">
         <textarea
           rows={5}
-          placeholder="message"
-          className="border-2 border-dark w-full p-4 placeholder:capitalize rounded-lg"
+          placeholder={t("message")}
+          className="border-2 border-dark w-full p-4 placeholder:capitalize rounded"
           {...register("message")}
         />
         {errors.message?.message && (
@@ -86,11 +89,11 @@ export default function ContactForm() {
       <Button
         type="submit"
         size={"lg"}
-        className="mt-4 text-base hover:tracking-wide uppercase dark-border-image bg-transparent py-7 hover:text-rose-500 hover:bg-transparent hover:scale-105"
+        className="mt-4"
         aria-disabled={isSubmitting}
         disabled={isSubmitting}
       >
-        Submit
+        {b("submit")}
       </Button>
     </form>
   );

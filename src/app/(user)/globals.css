@@ -169,3 +169,7 @@ body {
   /* Your styles for the selected item */
   font-weight: bold; /* Example style */
 }
+
+.selected-tab {
+  color: #f8eee2;
+}
