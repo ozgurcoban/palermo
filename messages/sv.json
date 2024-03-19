@@ -1,0 +1,92 @@
+{
+  "Home": {
+    "HomeHero": {
+      "description": {
+        "sentenceBefore": "På ",
+        "underline": "Palermo",
+        "sentenceAfter": " där välsmakande rätter och ett fint urval av dryck"
+      },
+      "title": "Välkomnar alla"
+    },
+    "Gallery": {
+      "title": "Ögonblick hos Oss",
+      "description": "Från hjärtliga måltider till glada samlingar – bläddra igenom våra minnen och känn dig som hemma",
+      "button": "Se mer"
+    },
+    "About": {
+      "title": "Välkommen till Palermos Hjärta",
+      "description": "Palermo: Mer än en restaurang, en mötesplats där berättelser väcks till liv. I hjärtat av Uppsala serverar vi rätter tillagade med kärlek, från perfekta pizzor till utsökta drycker. Varje besök är en upplevelse, varje måltid mer än bara mat. Välkommen till en värld av värdefulla minnen. Välkommen hem, välkommen till Palermo.",
+      "button": "Läs mer"
+    },
+    "Menu": {
+      "title": "Testa oss",
+      "dineIn": "Servering",
+      "takeAway": "Avh.",
+      "glass": "Gl.",
+      "bottle": "Fl.",
+      "carafe": "Kar."
+    },
+    "News": {
+      "title": "Var först med att veta"
+    }
+  },
+  "ContactSection": {
+    "addressTitle": "Hitta oss",
+    "phone": "Telefon",
+    "email": "E-post",
+    "openingHours": "Öppettider",
+    "getInTouch": "Kontakta oss",
+    "name": "Namn",
+    "message": "Meddelande"
+  },
+  "Buttons": {
+    "readMore": "Läs mer",
+    "submit": "Skicka",
+    "seeMore": "Se mer"
+  },
+  "PathnamesPage": {
+    "title": "Pfadnamen",
+    "description": "<p>Auch die Pfadnamen sind internationalisiert.</p><p>Wenn du die Standardsprache Englisch verwendest, siehst du <code>/en/pathnames</code> in der Adressleiste des Browsers auf dieser Seite.</p><p>Wenn du die Sprache auf Deutsch änderst, wird die URL entsprechend lokalisiert (<code>/de/pfadnamen</code>).</p>"
+  },
+  "Error": {
+    "title": "Etwas ist schief gelaufen!",
+    "description": "<p>Es ist leider ein Problem aufgetreten.</p><p>Du kannst versuchen <retry>diese Seite neu zu laden</retry>.</p>"
+  },
+  "NotFoundPage": {
+    "title": "Sidan kan ej hittas",
+    "description": "Var god kontrollera adressfältet i din webbläsare eller använd navigeringen för att byta till en känd sida."
+  },
+  "Metadata": {
+    "title": "Palermo - Uppsalas naturliga mötesplats",
+    "description": "Built with Next.js and next-intl"
+  },
+  "LocaleSwitcher": {
+    "label": "Ändra språk",
+    "title": "Språk",
+    "locale": "{locale, select, sv {Svenska} en {Engelska} other {Okänd}}"
+  },
+  "Navigation": {
+    "home": "Hem",
+    "menu": "Meny",
+    "about": "Om oss",
+    "news": "Nyheter",
+    "contact": "Hitta till oss",
+    "mobile": {
+      "siteLanguage": "Språk:"
+    }
+  },
+  "PageLayout": {
+    "links": {
+      "docs": {
+        "title": "Dokumentation",
+        "description": "Erfahre mehr über next-intl in der offiziellen Dokumentation.",
+        "href": "https://next-intl-docs.vercel.app/"
+      },
+      "source": {
+        "title": "Quellcode",
+        "description": "Sieh dir den Quellcode dieses Beispiels auf GitHub an.",
+        "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router"
+      }
+    }
+  }
+}
