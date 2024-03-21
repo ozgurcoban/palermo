@@ -54,7 +54,8 @@ const GalleryImage: React.FC<Props> = ({
         loading="lazy"
         className="object-cover hover:scale-105 transition-all duration-500"
       />
-      <button
+      TODO: add value of amount of likes
+      {/* <button
         title="favourite"
         onClick={handleChangeFavourite}
         className="absolute top-3 right-3 outline-none"
@@ -64,7 +65,7 @@ const GalleryImage: React.FC<Props> = ({
         ) : (
           <HeartIcon size={24} className="text-white " />
         )}
-      </button>
+      </button> */}
     </FadeUp>
   );
 };

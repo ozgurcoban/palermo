@@ -74,7 +74,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                   <p>{getCategory.description?.[locale]}</p>
                 </div>
               )}
-              <div className="flex sticky top-0 bg-white">
+              <div className="flex sticky top-0 bg-white max-w-md mx-auto">
                 {getCategory?.sub_categories?.some(subCategory =>
                   subCategory.menu_list.some(
                     item =>
@@ -83,11 +83,14 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                   )
                 ) ? (
                   <>
-                    <p className="text-right text-gray-700 sticky top-0 bg-white w-full whitespace-nowrap">
+                    <p className="text-right text-accent sticky top-0 bg-white w-full whitespace-nowrap">
                       {t("dineIn")}
                     </p>
                     <SlashIcon className="h-6 text-gray-500" />
-                    <p className="whitespace-nowrap"> {t("takeAway")}</p>
+                    <p className="whitespace-nowrap text-gray-500 ">
+                      {" "}
+                      {t("takeAway")}
+                    </p>
                   </>
                 ) : null}
                 {getCategory?.sub_categories?.some(subCategory =>
@@ -98,13 +101,13 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                   )
                 ) ? (
                   <>
-                    <p className="text-right text-gray-700 sticky top-0 bg-white w-full whitespace-nowrap">
+                    <p className="text-right text-accent sticky top-0 bg-white w-full whitespace-nowrap">
                       {t("glass")}
                     </p>
-                    <SlashIcon className="h-6 text-gray-500" />
+                    <SlashIcon className="h-6 text-accent" />
                     <p className="">{t("bottle")}</p>
-                    <SlashIcon className="h-6 text-gray-500" />
-                    <p className="">{t("carafe")}</p>
+                    <SlashIcon className="h-6" />
+                    <p className="text-gray-500">{t("carafe")}</p>
                   </>
                 ) : null}
               </div>

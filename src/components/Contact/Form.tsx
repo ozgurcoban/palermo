@@ -28,16 +28,16 @@ export default function ContactForm() {
 
     if (result?.success) {
       toast({
-        title: "Thanks!",
-        description: "We'll read your email and back to you soon 😊",
+        title: t("Form.title"),
+        description: t("Form.description"),
       });
       reset();
       return;
     }
     toast({
       variant: "destructive",
-      title: "Uh oh! Something went wrong.",
-      description: "There was a problem with your request.",
+      title: t("Form.errorTitle"),
+      description: t("Form.errorDescription"),
     });
   };
   return (
@@ -89,7 +89,7 @@ export default function ContactForm() {
       <Button
         type="submit"
         size={"lg"}
-        className="mt-4"
+        className="mt-4 bg-accent"
         aria-disabled={isSubmitting}
         disabled={isSubmitting}
       >

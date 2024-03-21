@@ -6,7 +6,7 @@ export const MenuItems: React.FC<{ data: (SubCategory | Food)[] }> = ({
 }) => {
   // console.log(data)
   return (
-    <ul className="flex flex-col max-w-96 mx-auto mt-8 gap-5 w-full h-full custom-scrollbar-container">
+    <ul className="flex flex-col max-w-md mx-auto mt-8 gap-5 w-full h-full custom-scrollbar-container">
       {data?.map(item => (
         <MenuItem key={item._id} item={item} />
       ))}

@@ -71,7 +71,7 @@ export function Navbar() {
             setIsActive(!isActive);
           }}
           className={
-            "flex lg:hidden items-center justify-center gap-2 cursor-pointer"
+            "flex p-2 lg:hidden items-center justify-center gap-2 cursor-pointer"
           }
         >
           <div className={`burger ${isActive ? "burgerActive" : ""}`}></div>

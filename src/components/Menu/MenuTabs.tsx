@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useGetLocale } from "@/config";
 import RadioButton from "../ui/RadioButton";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 import {
   Select,
@@ -43,6 +44,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
   selectedTab,
   setSelectedTab,
 }) => {
+  const t = useTranslations("Home.Menu");
   const windowWidth: number = useWindowWidth();
   const locale = useGetLocale();
   // console.log(tabs);
@@ -53,7 +55,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
         <div className="w-full mt-6">
           <div className="py-3 w-fit">
             <span className="text-dark font-lato text-sm sm:text-md uppercase tracking-wide whitespace-nowrap cursor-default">
-              Our amazing categories
+              {t("categories")}
             </span>
           </div>
           <ul className="flex flex-col mt-3 gap-3 transition-all duration-200">

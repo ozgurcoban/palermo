@@ -20,6 +20,7 @@
     },
     "Menu": {
       "title": "Testa oss",
+      "categories": "Våra kategorier",
       "dineIn": "Servering",
       "takeAway": "Avh.",
       "glass": "Gl.",
@@ -37,7 +38,13 @@
     "openingHours": "Öppettider",
     "getInTouch": "Kontakta oss",
     "name": "Namn",
-    "message": "Meddelande"
+    "message": "Meddelande",
+    "Form": {
+      "title": "Tack för att du hörde av dig!",
+      "description": "Ditt meddelande är viktigt för oss. Vi går igenom ditt mail och återkommer till dig så snart vi kan. Skål! 🍻",
+      "destructiveTitle": "Hoppsan! Något gick snett.",
+      "destructiveDescription": "Tyvärr kunde vi inte skicka ditt meddelande. Var god försök igen senare."
+    }
   },
   "Buttons": {
     "readMore": "Läs mer",

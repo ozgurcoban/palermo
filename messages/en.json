@@ -20,6 +20,7 @@
     },
     "Menu": {
       "title": "Try us, you'll love us",
+      "categories": "our amazing categories",
       "dineIn": "Dine-in",
       "takeAway": "Take-away",
       "glass": "Gl.",
@@ -37,7 +38,13 @@
     "openingHours": "Opening hours",
     "getInTouch": "Get in touch",
     "name": "Name",
-    "message": "Message"
+    "message": "Message",
+    "Form": {
+      "title": "Thank You for Reaching Out!",
+      "description": "Your message is important to us. We're reviewing your email and will get back to you as quickly as possible. Cheers! 🍻",
+      "errorTitle": "Oops! Something Went Wrong.",
+      "errorDescription": "Unfortunately, we couldn't send your message. Please try again later."
+    }
   },
   "MenuPage": {
     "title": "Menu",

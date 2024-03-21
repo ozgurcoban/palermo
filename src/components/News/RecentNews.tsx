@@ -26,7 +26,7 @@ const RecentNews = ({ news }: { news: INewsItem[] }) => {
                 <Button
                   title="See more"
                   aria-live="polite"
-                  className="bg-slate-500"
+                  className="bg-accent"
                 >
                   <span className="font-lato text-base capitalize font-semibold">
                     <Localization text="Buttons.seeMore" />
