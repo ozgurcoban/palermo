@@ -1,15 +1,27 @@
 "use client";
+
 import LocaleSwitcher from "./LocaleSwitcher";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import NavLinks from "./NavLinks";
 import { Link } from "@/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MobileNav from "./MobileNav";
 import { background, opacity } from "./anim";
 
 export function Navbar() {
+  const handleClick = useCallback((event: React.MouseEvent) => {
+    event.preventDefault();
+    const contactElement = document.getElementById("contact");
+    if (contactElement) {
+      window.scrollTo({
+        top: scrollY + contactElement.getBoundingClientRect().top + 100,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+
   const t = useTranslations("Navigation");
   const [isActive, setIsActive] = useState(false);
 
@@ -57,7 +69,7 @@ export function Navbar() {
         </div>
         <div className="md:flex justify-end items-center md:flex-1 gap-2">
           <a
-            href={"#contact"}
+            onClick={handleClick}
             className="px-4 py-2 whitespace-nowrap font-lato uppercase font-normal bg-accent text-secondary hover:bg-primary transition-all duration-200 rounded"
           >
             {t("contact")}

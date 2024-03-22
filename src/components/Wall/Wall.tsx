@@ -52,7 +52,7 @@ export const Wall = ({ data }: { data?: WallSection }) => {
           );
         })}
       </div>
-      <div className="hidden block mt-20 h-56 px-4">
+      <div className="hidden mt-20 h-56 px-4">
         <WallSlides images={images} />
       </div>
     </section>
