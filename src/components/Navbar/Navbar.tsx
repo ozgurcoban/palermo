@@ -16,7 +16,7 @@ export function Navbar() {
     const contactElement = document.getElementById("contact");
     if (contactElement) {
       window.scrollTo({
-        top: scrollY + contactElement.getBoundingClientRect().top + 100,
+        top: scrollY + contactElement.getBoundingClientRect().top + 150,
         behavior: "smooth",
       });
     }
