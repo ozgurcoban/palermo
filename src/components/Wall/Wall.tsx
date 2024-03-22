@@ -39,7 +39,7 @@ export const Wall = ({ data }: { data?: WallSection }) => {
         style={{
           gridTemplateRows: `repeat(${groudImages.length}, minmax(0, 1fr))`,
         }}
-        className={`mt-20 gap-8 w-max h-full lg:grid hidden`}
+        className={`mt-20 gap-8 w-max h-full grid`}
       >
         {groudImages.map((images, index) => {
           return (
@@ -52,7 +52,7 @@ export const Wall = ({ data }: { data?: WallSection }) => {
           );
         })}
       </div>
-      <div className="lg:hidden block mt-20 h-56 px-4">
+      <div className="hidden block mt-20 h-56 px-4">
         <WallSlides images={images} />
       </div>
     </section>

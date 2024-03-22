@@ -1,6 +1,7 @@
 import { useGetLocale } from "@/config";
 import React from "react";
 import { SlashIcon } from "@radix-ui/react-icons";
+import MaskText from "@/components/ui/MaskText";
 
 const MenuItem: React.FC<{ item: SubCategory | Food | Wine }> = ({ item }) => {
   // console.log("item", item, "type", item._type);

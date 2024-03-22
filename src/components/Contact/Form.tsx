@@ -10,6 +10,7 @@ import { ContactFormSchema } from "@/lib/ContactFormSchema";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { sendMail } from "@/app/(user)/_actions";
+import FadeUp from "../ui/FadeUp";
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 
@@ -42,59 +43,64 @@ export default function ContactForm() {
   };
   return (
     <form onSubmit={handleSubmit(processForm)} className="self-start">
-      <h2 className="title-secondary flex">{t("getInTouch")}</h2>
-      <div className="flex gap-2 md:gap-4 pb-4 pt-3">
-        {/* Name field */}
-        <div className="flex-1">
-          <input
-            className=" border-2 border-dark w-full px-3 py-4 placeholder:capitalize rounded"
-            placeholder={t("name")}
-            {...register("name")}
+      <FadeUp delay={1.4}>
+        <h2 className="title-secondary flex">{t("getInTouch")}</h2>
+
+        <div className="flex gap-2 md:gap-4 pb-4 pt-3">
+          {/* Name field */}
+
+          <div className="flex-1">
+            <input
+              className=" border-2 border-dark w-full px-3 py-4 placeholder:capitalize rounded"
+              placeholder={t("name")}
+              {...register("name")}
+            />
+            {errors.name?.message && (
+              <p className="ml-1 mt-1 text-sm text-destructive">
+                {errors.name.message}
+              </p>
+            )}
+          </div>
+
+          {/* Email field */}
+          <div className="flex-1">
+            <input
+              className="flex-1 border-2 border-dark w-full px-3 py-4  placeholder:capitalize rounded"
+              placeholder={t("email")}
+              {...register("email")}
+            />
+            {errors.email?.message && (
+              <p className="ml-1 mt-1 text-sm text-destructive">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+        </div>
+        {/* Message field */}
+        <div className="">
+          <textarea
+            rows={5}
+            placeholder={t("message")}
+            className="border-2 border-dark w-full p-4 placeholder:capitalize rounded"
+            {...register("message")}
           />
-          {errors.name?.message && (
-            <p className="ml-1 mt-1 text-sm text-destructive">
-              {errors.name.message}
+          {errors.message?.message && (
+            <p className="ml-1 text-sm text-destructive">
+              {errors.message.message}
             </p>
           )}
         </div>
 
-        {/* Email field */}
-        <div className="flex-1">
-          <input
-            className="flex-1 border-2 border-dark w-full px-3 py-4  placeholder:capitalize rounded"
-            placeholder={t("email")}
-            {...register("email")}
-          />
-          {errors.email?.message && (
-            <p className="ml-1 mt-1 text-sm text-destructive">
-              {errors.email.message}
-            </p>
-          )}
-        </div>
-      </div>
-      {/* Message field */}
-      <div className="">
-        <textarea
-          rows={5}
-          placeholder={t("message")}
-          className="border-2 border-dark w-full p-4 placeholder:capitalize rounded"
-          {...register("message")}
-        />
-        {errors.message?.message && (
-          <p className="ml-1 text-sm text-destructive">
-            {errors.message.message}
-          </p>
-        )}
-      </div>
-      <Button
-        type="submit"
-        size={"lg"}
-        className="mt-4 bg-accent"
-        aria-disabled={isSubmitting}
-        disabled={isSubmitting}
-      >
-        {b("submit")}
-      </Button>
+        <Button
+          type="submit"
+          size={"lg"}
+          className="mt-4 bg-accent"
+          aria-disabled={isSubmitting}
+          disabled={isSubmitting}
+        >
+          {b("submit")}
+        </Button>
+      </FadeUp>
     </form>
   );
 }

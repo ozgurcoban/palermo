@@ -38,7 +38,7 @@ const Story = ({ data }: { data?: StorySection }) => {
           <FadeUp delay={0.5}>
             <Link
               href={"/about"}
-              className="flex items-center gap-2 mt-16 lg:mx-0 mx-auto hover:tracking-wider transition-all duration-300 text-primary"
+              className="flex items-center gap-2 mt-16 lg:mx-0 mx-auto hover:tracking-wider transition-all duration-300 text-accent"
             >
               <span className="uppercase font-recoleta text-md font-medium">
                 <Localization text="Buttons.readMore" />

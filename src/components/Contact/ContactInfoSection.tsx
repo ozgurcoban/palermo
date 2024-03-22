@@ -8,6 +8,7 @@ import Link from "next/link";
 import Map from "./Map";
 import { useGetLocale } from "@/config";
 import Localization from "../localization";
+import FadeUp from "../ui/FadeUp";
 
 export default function ContactInfoSection({
   contactData,
@@ -34,52 +35,66 @@ export default function ContactInfoSection({
             <div className="flex justify-between md:flex-row lg:flex-col flex-col gap-10 mb-10">
               {contact_infos && (
                 <div className="flex-1">
-                  <h2 className="title-secondary flex">
-                    <Localization text="ContactSection.addressTitle" />
-                  </h2>
+                  <FadeUp delay={0.4}>
+                    <h2 className="title-secondary flex">
+                      <Localization text="ContactSection.addressTitle" />
+                    </h2>
+                  </FadeUp>
                   <ul>
                     {contact_infos.address && (
-                      <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
-                        <HomeIcon className="size-5" />
-                        <Link href="#">{contact_infos.address}</Link>
-                      </li>
+                      <FadeUp delay={0.6}>
+                        <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
+                          <HomeIcon className="size-5" />
+                          <Link href="#">{contact_infos.address}</Link>
+                        </li>
+                      </FadeUp>
                     )}
                     {contact_infos.telephone && (
-                      <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
-                        <ChatBubbleIcon className="size-5" />
-                        <Link href={`tel:${contact_infos.telephone}`}>
-                          <Localization text="ContactSection.phone" />
-                          :&nbsp;
-                          {contact_infos.telephone}
-                        </Link>
-                      </li>
+                      <FadeUp delay={0.8}>
+                        <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
+                          <ChatBubbleIcon className="size-5" />
+                          <Link href={`tel:${contact_infos.telephone}`}>
+                            <Localization text="ContactSection.phone" />
+                            :&nbsp;
+                            {contact_infos.telephone}
+                          </Link>
+                        </li>
+                      </FadeUp>
                     )}
                     {contact_infos.email && (
-                      <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
-                        <EnvelopeClosedIcon className="size-5" />
-                        <Link href={`mailto:${contact_infos.email}`}>
-                          <Localization text="ContactSection.email" />
-                          :&nbsp;
-                          {contact_infos.email}
-                        </Link>
-                      </li>
+                      <FadeUp delay={1}>
+                        <li className="flex items-center gap-2 pt-3 hover:text-accent transition-all duration-300">
+                          <EnvelopeClosedIcon className="size-5" />
+                          <Link href={`mailto:${contact_infos.email}`}>
+                            <Localization text="ContactSection.email" />
+                            :&nbsp;
+                            {contact_infos.email}
+                          </Link>
+                        </li>
+                      </FadeUp>
                     )}
                   </ul>
                 </div>
               )}
               {opening_hours && (
                 <div className="flex-1">
-                  <h2 className="title-secondary flex">
-                    <Localization text="ContactSection.openingHours" />
-                  </h2>
+                  <FadeUp delay={1.2}>
+                    <h2 className="title-secondary flex">
+                      <Localization text="ContactSection.openingHours" />
+                    </h2>
+                  </FadeUp>
                   <ul>
                     {opening_hours.map(({ day, time }) => (
                       <li
                         key={day[locale]}
                         className="flex items-center justify-between gap-8 pt-3 max-w-sm"
                       >
-                        <span className="font-medium">{day[locale]}</span>
-                        <span className="">{time}</span>
+                        <FadeUp delay={1.4}>
+                          <span className="font-medium">{day[locale]}</span>
+                        </FadeUp>
+                        <FadeUp delay={1.6}>
+                          <span className="">{time}</span>
+                        </FadeUp>
                       </li>
                     ))}
                   </ul>

@@ -11,7 +11,7 @@ const Banner = ({ banners }: { banners: LocalizedText[] }) => {
 
   const locale = useGetLocale();
   return (
-    <FadeUp delay={0.7}>
+    <FadeUp delay={1.2}>
       <div className="bg-light h-24 min-w-[100vw] overflow-hidden py-8 mt-5 mb-10 relative">
         <div className="relative w-full">
           <InfiniteMove
@@ -23,7 +23,7 @@ const Banner = ({ banners }: { banners: LocalizedText[] }) => {
             ref={firstList}
             className="relative h-full w-max flex flex-nowrap items-center justify-between gap-5 pl-5"
           >
-            {banners.map((banner) => (
+            {banners.map(banner => (
               <Fragment key={banner[locale]}>
                 <div className="flex items-center gap-5 justify-around">
                   <span className="lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-recoleta tracking-wide font-medium whitespace-nowrap">
