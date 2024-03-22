@@ -36,7 +36,8 @@ const InfiniteMove: React.FC<Props> = ({
       gsap.set(firstList.current, { xPercent: xPercent });
       gsap.set(secondList.current, { xPercent: xPercent });
       requestAnimationFrame(animate);
-      xPercent += 0.025 * direction;
+      // speed of the animation
+      xPercent += 0.035 * direction;
     }
   };
   return null;

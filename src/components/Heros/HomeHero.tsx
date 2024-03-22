@@ -49,10 +49,10 @@ export function HomeHero() {
         />
       </MotionDiv>
       <div className="absolute sm:px-8 px-4 text-center inset-0 flex flex-col items-center justify-center z-20">
-        <FadeUp delay={0.8} duration={0.3}>
+        <FadeUp delay={1.3} duration={0.7}>
           <Localization text="Home.HomeHero.description" rich />
         </FadeUp>
-        <FadeUp delay={0.5} duration={0.3}>
+        <FadeUp delay={1.7} duration={0.7}>
           <h1 className="text-light mt-10 lg:text-[180px] opacity-70 sm:text-[160px] text-[20vw] leading-[85px] sm:leading-[135px] font-lobster break-words">
             <Localization text="Home.HomeHero.title" />
           </h1>

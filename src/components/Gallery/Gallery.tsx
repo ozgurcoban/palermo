@@ -45,7 +45,7 @@ export const Gallery = ({ data }: { data?: GallerySection }) => {
             <MaskText
               delay={0.4}
               phrases={[description[locale]]}
-              className="text-body text-center mx-auto opacity-80"
+              className="text-body text-justify max-w-md mx-auto opacity-80"
             />
           </div>
         )}

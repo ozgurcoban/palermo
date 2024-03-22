@@ -70,7 +70,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
             </div>
             <div className="w-full text-center mb-1 mt-6 md:mt-8 sticky top-0 overflow-y-scroll">
               {getCategory?.description && (
-                <div className="text-center text-lg mb-3">
+                <div className="text-justify text-lg mb-3 max-w-md mx-auto">
                   <p>{getCategory.description?.[locale]}</p>
                 </div>
               )}

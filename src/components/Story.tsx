@@ -33,7 +33,9 @@ const Story = ({ data }: { data?: StorySection }) => {
             <h2 className="title-secondary !normal-case">{title[locale]}</h2>
           </FadeUp>
           <FadeUp delay={0.3}>
-            <p className="mt-4 text-body opacity-85">{description[locale]}</p>
+            <p className="mt-4 text-body opacity-85 text-justify max-w-md">
+              {description[locale]}
+            </p>
           </FadeUp>
           <FadeUp delay={0.5}>
             <Link

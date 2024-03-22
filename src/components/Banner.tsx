@@ -11,7 +11,7 @@ const Banner = ({ banners }: { banners: LocalizedText[] }) => {
 
   const locale = useGetLocale();
   return (
-    <FadeUp delay={1.2}>
+    <FadeUp delay={1.8} duration={0.2}>
       <div className="bg-light h-24 min-w-[100vw] overflow-hidden py-8 mt-5 mb-10 relative">
         <div className="relative w-full">
           <InfiniteMove
