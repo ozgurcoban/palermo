@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import MenuTabs from "./MenuTabs";
 import MenuItems from "./MenuItems";
 import FadeUp from "../ui/FadeUp";
@@ -26,6 +26,15 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
 
   // The tab category index and its value
   const [tab, setTab] = useState(categories[0]._id);
+
+  // Ref for scrollable div
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo(0, 0);
+    }
+  }, [tab]);
 
   // Get the menu list everytime the selected tab changed
   const menus_list = useMemo(() => {
@@ -68,7 +77,10 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                 setSelectedTab={setTab}
               />
             </div>
-            <div className="w-full text-center mb-1 mt-6 md:mt-8 sticky top-0 overflow-y-scroll">
+            <div
+              className="w-full text-center mb-1 mt-6 md:mt-8 sticky top-0 overflow-y-scroll"
+              ref={scrollRef}
+            >
               {getCategory?.description && (
                 <div className="text-justify text-lg mb-3 max-w-md mx-auto">
                   <p>{getCategory.description?.[locale]}</p>
