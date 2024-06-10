@@ -17,7 +17,7 @@ type Props = {
 
 export default async function IndexPage({ params: { locale } }: Props) {
   // Validate that the incoming `locale` parameter is valid
-  const isValidLocale = locales.some((cur) => cur === locale);
+  const isValidLocale = locales.some(cur => cur === locale);
   if (!isValidLocale) notFound();
 
   // Enable static rendering

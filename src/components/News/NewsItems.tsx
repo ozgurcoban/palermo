@@ -8,7 +8,7 @@ const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
   return (
     <>
       <div className="mt-36 w-full grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-        {news.map(({ id, media_url, timestamp, caption, media_type }, i) => (
+        {news?.map(({ id, media_url, timestamp, caption, media_type }, i) => (
           <FadeUp
             className={`rounded p-4 overflow-hidden flex flex-col border gap-11`}
             key={id}
@@ -54,7 +54,7 @@ const NewsItems: React.FC<{ news: INewsItem[] }> = ({ news }) => {
           </FadeUp>
         ))}
       </div>
-      {news.length === 0 && (
+      {news?.length === 0 && (
         <div className="w-full text-center">
           <span className="text-xl">- There is no news at the moment!! -</span>
         </div>
