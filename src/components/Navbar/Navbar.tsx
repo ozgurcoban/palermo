@@ -46,11 +46,11 @@ export function Navbar() {
       href: "/about",
       src: "home.jpg",
     },
-    {
-      title: t("news"),
-      href: "/news",
-      src: "news.jpg",
-    },
+    // {
+    //   title: t("news"),
+    //   href: "/news",
+    //   src: "news.jpg",
+    // },
   ];
   return (
     <header className="relative bg-light h-[132px] z-30 w-screen " id="navbar">

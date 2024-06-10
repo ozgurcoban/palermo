@@ -37,7 +37,7 @@ const HomeComponents: React.FC<Props> = ({
       <Menu categories={categoriesData} />
       <Wall data={wall_section} />
       {/* <Testimonials data={testimonials_section} /> */}
-      <RecentNews news={news.slice(0, 3)} />
+      {/* <RecentNews news={news.slice(0, 3)} /> */}
     </PageTransition>
   );
 };
