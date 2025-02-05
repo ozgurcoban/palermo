@@ -6,6 +6,7 @@ import Gallery from "@/components/Gallery";
 import Story from "@/components/Story";
 import Menu from "@/components/Menu";
 import Wall from "@/components/Wall";
+import AboutUs from "@/components/AboutUs";
 import Testimonials from "@/components/Testimonials";
 import RecentNews from "@/components/News/RecentNews";
 import Banner from "@/components/Banner";
@@ -32,9 +33,9 @@ const HomeComponents: React.FC<Props> = ({
     <PageTransition>
       <Hero />
       {banner && <Banner banners={banner} />}
-      <Gallery data={gallery_section} />
-      <Story data={story_section} />
       <Menu categories={categoriesData} />
+      <Gallery data={gallery_section} />
+      <AboutUs data={story_section} />
       <Wall data={wall_section} />
       {/* <Testimonials data={testimonials_section} /> */}
       {/* <RecentNews news={news.slice(0, 3)} /> */}

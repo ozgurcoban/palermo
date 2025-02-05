@@ -9,6 +9,7 @@ import { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MobileNav from "./MobileNav";
 import { background, opacity } from "./anim";
+import { Button } from "../ui/button";
 
 export function Navbar() {
   const handleClick = useCallback((event: React.MouseEvent) => {
@@ -53,28 +54,30 @@ export function Navbar() {
     // },
   ];
   return (
-    <header className="relative bg-light h-[132px] z-30 w-screen " id="navbar">
-      <div className="container h-full flex gap-14 items-center">
+    <header className="relative z-30 h-[132px] w-screen" id="navbar">
+      <div className="container flex h-full items-center gap-14">
         <Link href={"/"} className="flex-1 cursor-default">
           <Image
             src="/logo.png"
             alt="logo"
-            width={80}
-            height={80}
+            width={100}
+            height={100}
             style={{ cursor: "pointer" }}
           />
         </Link>
-        <div className="lg:flex hidden flex-1 justify-end md:justify-center">
+        <div className="hidden flex-1 justify-end md:justify-center lg:flex">
           <NavLinks navbarLinks={navbarLinks} />
         </div>
-        <div className="md:flex justify-end items-center md:flex-1 gap-2">
-          <a
+        <div className="items-center justify-end gap-2 md:flex md:flex-1">
+          <Button
+            variant="secondary"
+            size="lg"
             onClick={handleClick}
-            className="px-4 py-2 whitespace-nowrap font-lato uppercase font-normal bg-accent text-secondary hover:bg-primary transition-all duration-200 rounded"
+            className="transform whitespace-nowrap bg-[#5A4B3A] px-4 py-2 font-lato uppercase text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
           >
             {t("contact")}
-          </a>
-          <div className="hidden px-4 py-2 lg:inline-flex items-center ">
+          </Button>
+          <div className="hidden items-center px-4 py-2 lg:inline-flex">
             <LocaleSwitcher />
           </div>
         </div>
@@ -83,7 +86,7 @@ export function Navbar() {
             setIsActive(!isActive);
           }}
           className={
-            "flex p-2 lg:hidden items-center justify-center gap-2 cursor-pointer"
+            "flex cursor-pointer items-center justify-center gap-2 p-2 lg:hidden"
           }
         >
           <div className={`burger ${isActive ? "burgerActive" : ""}`}></div>
@@ -105,7 +108,7 @@ export function Navbar() {
           animate={isActive ? "open" : "closed"}
           onClick={() => setIsActive(false)}
           className={
-            "bg-dark opacity-80 h-full w-full absolute left-0 top-full z-40"
+            "absolute left-0 top-full z-40 h-full w-full bg-dark opacity-80"
           }
         ></motion.div>
       </div>

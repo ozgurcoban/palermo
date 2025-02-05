@@ -1,53 +1,40 @@
 "use client";
 
-import React from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-
-const mapContainerStyle = {
-  width: "100%",
-  height: "25rem",
-};
-const center = {
-  lat: 59.860096 - 0.0002,
-  lng: 17.6305953,
-};
-
-const googleMapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+import React, { useState } from "react";
 
 function Map() {
-  const handleMarkerClick = () => {
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${center.lat},${center.lng}`;
-    window.open(url, "_blank");
+  const [isInteractive, setIsInteractive] = useState(false);
+
+  const handleOverlayClick = () => {
+    setIsInteractive(true);
   };
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: googleMapsApiKey as string,
-  });
-
-  if (loadError) {
-    return <div>Error loading maps</div>;
-  }
-
-  if (!isLoaded) {
-    return <div>Loading maps</div>;
-  }
 
   return (
-    <div className="cursor-pointer">
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={17}
-        center={center}
-        options={{ draggable: false, mapId: "330578b92517eac7" }}
-      >
-        <Marker
-          position={center}
-          icon={{
-            url: "/logo.png",
-            scaledSize: new google.maps.Size(50, 50),
+    <div className="relative h-[500px] w-full">
+      <iframe
+        title="Central bagdad karta"
+        src="https://maps.google.com/maps?q=Sysslomansgatan%207,%20753%2011%20Uppsala&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        width="100%"
+        height="100%"
+        style={{ border: 0, pointerEvents: isInteractive ? "auto" : "none" }}
+        allowFullScreen
+        loading="lazy"
+      />
+      {!isInteractive && (
+        <div
+          onClick={handleOverlayClick}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            cursor: "pointer",
+            // Öppen färg, eventuellt med låg opacitet för att visa att kartan är inaktiv
+            backgroundColor: "rgba(255, 255, 255, 0.2)",
           }}
-          onClick={handleMarkerClick}
         />
-      </GoogleMap>
+      )}
     </div>
   );
 }

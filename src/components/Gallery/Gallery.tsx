@@ -31,26 +31,26 @@ export const Gallery = ({ data }: { data?: GallerySection }) => {
   const { title, description, images } = data;
 
   return (
-    <section className="w-screen py-40 h-full bg-[#f9f9f9] relative">
+    <section className="bg-accent-soft-apricot relative h-full w-screen py-40">
       <div className="container flex flex-col items-center">
         <h2 className="title-secondary">
           <MaskText
             delay={0.2}
             phrases={[title[locale]]}
-            className="font-recoleta leading-tight font-bold text-center"
+            className="text-center font-recoleta font-bold leading-tight"
           />
         </h2>
         {description && (
-          <div className="w-full mt-6">
+          <div className="mt-6 w-full">
             <MaskText
               delay={0.4}
               phrases={[description[locale]]}
-              className="text-body text-justify max-w-md mx-auto opacity-80"
+              className="text-body mx-auto max-w-md text-justify opacity-80"
             />
           </div>
         )}
         <div className="relative w-full">
-          <div className="mt-36 w-full grid auto-rows-[250px] lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
+          <div className="mt-36 grid w-full auto-rows-[250px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {(showMore ? images : images.slice(0, 7)).map((image, i) => (
               <GalleryImage
                 key={image._key}
@@ -65,7 +65,7 @@ export const Gallery = ({ data }: { data?: GallerySection }) => {
           {!showMore && (
             <FadeUp
               delay={0.05 * images.length}
-              className="absolute z-10 bottom-0 left-0 w-full h-28 pt-4 from-neutral-100 bg-gradient-to-t overflow-hidden flex items-center justify-center"
+              className="absolute bottom-0 left-0 z-10 flex h-28 w-full items-center justify-center overflow-hidden bg-gradient-to-t from-neutral-100 pt-4"
             >
               <Button
                 onClick={() => setShowMore(true)}

@@ -48,15 +48,15 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
   }, [tab, categories]);
 
   const getCategory = useMemo(
-    () => categories.find(category => tab === category._id),
-    [categories, tab]
+    () => categories.find((category) => tab === category._id),
+    [categories, tab],
   );
 
   return (
-    <section className="py-32  w-screen border-image">
+    <section className="border-image w-screen py-32">
       <div className="container">
         <FadeUp>
-          <h2 className="title-secondary !text-center cursor-default">
+          <h2 className="title-secondary cursor-default !text-center">
             <Localization text="Home.Menu.title" />
           </h2>
         </FadeUp>
@@ -64,11 +64,11 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
           delay={0.3}
           duration={0.5}
           variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
-          className="mt-8 md:mt-16 rounded border-[12px] border-accent bg-white w-full"
+          className="mt-8 w-full rounded border-[12px] border-accent bg-white md:mt-16"
         >
           <FadeUp
             delay={0.8}
-            className="h-[80vh] overflow-hidden lg:px-20 md:px-10 px-5 pt-4 pb-8 flex flex-col md:flex-row gap-5 lg:gap-10"
+            className="flex h-[80vh] flex-col gap-5 overflow-hidden px-5 pb-8 pt-4 md:flex-row md:px-10 lg:gap-10 lg:px-20"
           >
             <div className="flex flex-col">
               <MenuTabs
@@ -78,42 +78,42 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
               />
             </div>
             <div
-              className="w-full text-center mb-1 mt-6 md:mt-8 sticky top-0 overflow-y-scroll"
+              className="sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
               ref={scrollRef}
             >
               {getCategory?.description && (
-                <div className="text-justify text-lg mb-3 max-w-md mx-auto">
+                <div className="mx-auto mb-3 max-w-md text-justify text-lg">
                   <p>{getCategory.description?.[locale]}</p>
                 </div>
               )}
-              <div className="flex sticky top-0 bg-white max-w-md mx-auto">
-                {getCategory?.sub_categories?.some(subCategory =>
+              <div className="sticky top-0 mx-auto flex max-w-md bg-white">
+                {getCategory?.sub_categories?.some((subCategory) =>
                   subCategory.menu_list.some(
-                    item =>
+                    (item) =>
                       "takeawayPrice" in item.priceSection &&
-                      item.priceSection.takeawayPrice
-                  )
+                      item.priceSection.takeawayPrice,
+                  ),
                 ) ? (
                   <>
-                    <p className="text-right text-accent sticky top-0 bg-white w-full whitespace-nowrap">
+                    <p className="sticky top-0 w-full whitespace-nowrap bg-white text-right text-accent">
                       {t("dineIn")}
                     </p>
                     <SlashIcon className="h-6 text-gray-500" />
-                    <p className="whitespace-nowrap text-gray-500 ">
+                    <p className="whitespace-nowrap text-gray-500">
                       {" "}
                       {t("takeAway")}
                     </p>
                   </>
                 ) : null}
-                {getCategory?.sub_categories?.some(subCategory =>
+                {getCategory?.sub_categories?.some((subCategory) =>
                   subCategory.menu_list.some(
-                    item =>
+                    (item) =>
                       "glassPrice" in item.priceSection &&
-                      item.priceSection.glassPrice
-                  )
+                      item.priceSection.glassPrice,
+                  ),
                 ) ? (
                   <>
-                    <p className="text-right text-accent sticky top-0 bg-white w-full whitespace-nowrap">
+                    <p className="sticky top-0 w-full whitespace-nowrap bg-white text-right text-accent">
                       {t("glass")}
                     </p>
                     <SlashIcon className="h-6 text-accent" />
@@ -124,7 +124,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                 ) : null}
               </div>
               <hr className="mt-4" />
-              <FadeUp delay={1} className="w-full h-full">
+              <FadeUp delay={1} className="h-full w-full">
                 <MenuItems data={menus_list} />
               </FadeUp>
             </div>

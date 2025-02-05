@@ -25,12 +25,12 @@ export default function LocaleSwitcher() {
 
   return (
     <Select value={locale} onValueChange={onSelectChange}>
-      <SelectTrigger className="w-max">
+      <SelectTrigger className="w-max bg-transparent text-primary">
         <SelectValue placeholder="Select a language" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {locales.map(cur => (
+          {locales.map((cur) => (
             <SelectItem
               className="hover:text-white focus:text-white"
               key={cur}

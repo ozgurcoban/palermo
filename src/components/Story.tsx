@@ -17,32 +17,32 @@ const Story = ({ data }: { data?: StorySection }) => {
   const { title, description, image } = data;
 
   return (
-    <section className="w-screen h-screen relative py-16 border-t">
+    <section className="relative h-screen w-screen border-t py-16">
       <MotionDiv
         initial={{ rotateZ: 4 }}
         animate={{ rotateZ: -3 }}
         style={{ rotateY: 0, rotateX: 0 }}
         transition={{ repeat: Infinity, repeatType: "reverse", duration: 2 }}
-        className="absolute lg:z-[-1] bottom-0 left-0 origin-bottom-left w-40 md:w-[17rem]"
+        className="absolute bottom-0 left-0 w-40 origin-bottom-left md:w-[17rem] lg:z-[-1]"
       >
         <Image src={Beer} alt="Palermo beer" width={285} height={185} />
       </MotionDiv>
-      <div className="container h-full flex lg:flex-row flex-col items-center gap-5">
-        <div className="flex-1 lg:text-left text-center">
+      <div className="container grid h-full grid-rows-[1.5fr_3fr] gap-5">
+        <div className="flex-1 text-center lg:text-left">
           <FadeUp>
             <h2 className="title-secondary !normal-case">{title[locale]}</h2>
           </FadeUp>
           <FadeUp delay={0.3}>
-            <p className="mt-4 text-body opacity-85 text-justify max-w-md">
+            <p className="text-body mt-4 max-w-md text-justify opacity-85">
               {description[locale]}
             </p>
           </FadeUp>
           <FadeUp delay={0.5}>
             <Link
               href={"/about"}
-              className="flex items-center gap-2 mt-16 lg:mx-0 mx-auto hover:tracking-wider transition-all duration-300 text-accent"
+              className="mx-auto mt-16 flex items-center gap-2 text-accent transition-all duration-300 hover:tracking-wider lg:mx-0"
             >
-              <span className="uppercase font-recoleta text-md font-medium">
+              <span className="text-md font-recoleta font-medium uppercase">
                 <Localization text="Buttons.readMore" />
               </span>
               <ArrowRightIcon width={24} height={24} />
@@ -56,7 +56,7 @@ const Story = ({ data }: { data?: StorySection }) => {
               alt={image.alt ?? title[locale]}
               width={1920}
               height={1080}
-              className="rounded hover:scale-105 transition-all duration-500 object-cover shadow-xl shadow-dark/30"
+              className="rounded object-cover shadow-xl shadow-dark/30 transition-all duration-500 hover:scale-105"
             />
           </FadeUp>
         </div>

@@ -11,7 +11,7 @@ export default function Localization({ text, rich }: LocalizationProps) {
   if (rich) {
     return (
       <>
-        <p className="title-secondary !normal-case text-gray-200 max-w-md text-justify !font-normal">
+        <p className="title-secondary max-w-xl text-justify !font-normal !normal-case text-gray-200">
           {t(`${text}.sentenceBefore`)}
           <u className="underline-offset-8">{t(`${text}.underline`)}</u>
           {t(`${text}.sentenceAfter`)}

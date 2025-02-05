@@ -31,7 +31,7 @@ export const Wall = ({ data }: { data?: WallSection }) => {
   const groudImages = divideArrayBy(images);
 
   return (
-    <section className="py-56 overflow-x-hidden border-b bg-[#f9f9f9]">
+    <section className="overflow-x-hidden border-b py-56">
       <FadeUp>
         <h2 className="title-secondary !text-center">{title[locale]}</h2>
       </FadeUp>
@@ -39,7 +39,7 @@ export const Wall = ({ data }: { data?: WallSection }) => {
         style={{
           gridTemplateRows: `repeat(${groudImages.length}, minmax(0, 1fr))`,
         }}
-        className={`mt-20 gap-8 w-max h-full grid`}
+        className={`mt-20 grid h-full w-max gap-8`}
       >
         {groudImages.map((images, index) => {
           return (
@@ -52,7 +52,7 @@ export const Wall = ({ data }: { data?: WallSection }) => {
           );
         })}
       </div>
-      <div className="hidden mt-20 h-56 px-4">
+      <div className="mt-20 hidden h-56 px-4">
         <WallSlides images={images} />
       </div>
     </section>

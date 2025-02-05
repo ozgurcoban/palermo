@@ -23,7 +23,7 @@ export function HomeHero() {
   // unstable_setRequestLocale(locale)
 
   return (
-    <div className="relative h-[70vh] w-screen container flex items-center justify-center">
+    <div className="container relative flex h-[70vh] w-screen items-center justify-center">
       <MotionDiv
         className="relative h-full overflow-hidden"
         variants={variants}
@@ -38,7 +38,7 @@ export function HomeHero() {
           stiffness: 100,
         }}
       >
-        <div className="absolute z-10 w-full h-full bg-black/40" />
+        <div className="absolute z-10 h-full w-full bg-black/40" />
         <Image
           src="/hero.jpeg"
           alt="hero"
@@ -48,12 +48,12 @@ export function HomeHero() {
           className="h-full w-full"
         />
       </MotionDiv>
-      <div className="absolute sm:px-8 px-4 text-center inset-0 flex flex-col items-center justify-center z-20">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
         <FadeUp delay={1.3} duration={0.7}>
           <Localization text="Home.HomeHero.description" rich />
         </FadeUp>
         <FadeUp delay={1.7} duration={0.7}>
-          <h1 className="text-light mt-10 lg:text-[180px] opacity-70 sm:text-[160px] text-[20vw] leading-[85px] sm:leading-[135px] font-lobster break-words">
+          <h1 className="mt-10 break-words font-lobster text-[20vw] leading-[85px] text-light opacity-70 sm:text-[160px] sm:leading-[135px] lg:text-[180px]">
             <Localization text="Home.HomeHero.title" />
           </h1>
         </FadeUp>

@@ -12,7 +12,7 @@ const Banner = ({ banners }: { banners: LocalizedText[] }) => {
   const locale = useGetLocale();
   return (
     <FadeUp delay={1.8} duration={0.2}>
-      <div className="bg-light h-24 min-w-[100vw] overflow-hidden py-8 mt-5 mb-10 relative">
+      <div className="relative mb-10 mt-5 h-24 min-w-[100vw] overflow-hidden py-8">
         <div className="relative w-full">
           <InfiniteMove
             direction={-1}
@@ -21,12 +21,12 @@ const Banner = ({ banners }: { banners: LocalizedText[] }) => {
           />
           <div
             ref={firstList}
-            className="relative h-full w-max flex flex-nowrap items-center justify-between gap-5 pl-5"
+            className="relative flex h-full w-max flex-nowrap items-center justify-between gap-5 pl-5"
           >
-            {banners.map(banner => (
+            {banners.map((banner) => (
               <Fragment key={banner[locale]}>
-                <div className="flex items-center gap-5 justify-around">
-                  <span className="lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-recoleta tracking-wide font-medium whitespace-nowrap">
+                <div className="flex items-center justify-around gap-5">
+                  <span className="whitespace-nowrap font-recoleta text-3xl font-medium tracking-wide sm:text-4xl md:text-5xl lg:text-6xl">
                     {banner[locale]}
                   </span>
                 </div>
@@ -36,12 +36,12 @@ const Banner = ({ banners }: { banners: LocalizedText[] }) => {
           </div>
           <div
             ref={secondList}
-            className="absolute w-max left-full top-0 h-full flex flex-nowrap items-center justify-between gap-5 pl-5"
+            className="absolute left-full top-0 flex h-full w-max flex-nowrap items-center justify-between gap-5 pl-5"
           >
             {banners.map((banner, i) => (
               <Fragment key={banner[locale] + i}>
-                <div className="flex items-center gap-5 justify-around">
-                  <span className="lg:text-6xl md:text-5xl sm:text-4xl text-3xl font-recoleta tracking-wide font-medium whitespace-nowrap">
+                <div className="flex items-center justify-around gap-5">
+                  <span className="whitespace-nowrap font-recoleta text-3xl font-medium tracking-wide sm:text-4xl md:text-5xl lg:text-6xl">
                     {banner[locale]}
                   </span>
                 </div>

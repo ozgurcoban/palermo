@@ -20,6 +20,7 @@ const config = {
         dark: "rgb(0, 0, 0)",
         light: "rgb(255, 255, 255)",
         accent: "rgb(78, 61, 45)",
+        "accent-soft-apricot": "hsl(var(--accent-soft-apricot))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
