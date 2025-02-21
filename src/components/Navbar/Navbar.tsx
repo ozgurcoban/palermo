@@ -73,7 +73,7 @@ export function Navbar() {
             variant="secondary"
             size="lg"
             onClick={handleClick}
-            className="transform whitespace-nowrap bg-[#5A4B3A] px-4 py-2 font-lato uppercase text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
+            className="transform whitespace-nowrap bg-[#5A4B3A] px-4 py-2 font-lato uppercase text-white transition-all duration-200"
           >
             {t("contact")}
           </Button>

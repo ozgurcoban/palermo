@@ -10,22 +10,22 @@ const MenuItem: React.FC<{ item: SubCategory | Food | Wine }> = ({ item }) => {
 
   if (item._type === "foods") return <MenuFoodItem {...(item as Food)} />;
   return (
-    <li className="flex text-center items-center flex-col gap-2">
-      <h3 className="font-recoleta font-medium text-2xl tracking-tight w-full">
+    <li className="flex flex-col items-center gap-2 text-center">
+      <h3 className="w-full font-recoleta text-2xl font-medium tracking-tight">
         {(item as SubCategory).title[locale]}
       </h3>
       {item.description && (
-        <span className="text-sm font-lato text-dark/85 w-full">
+        <span className="w-full font-lato text-sm text-dark/85">
           {item.description[locale]}
         </span>
       )}
-      <ul className="flex flex-col gap-5 py-6 mt-3 border-y w-full">
-        {(item as SubCategory).menu_list?.map(item =>
+      <ul className="mt-3 flex w-full flex-col gap-5 border-y py-6">
+        {(item as SubCategory).menu_list?.map((item) =>
           item._type === "wines" ? (
             <MenuWineItem key={item._id} {...(item as Wine)} />
           ) : (
             <MenuFoodItem key={item._id} {...(item as Food)} />
-          )
+          ),
         )}
       </ul>
     </li>
@@ -43,20 +43,20 @@ const MenuFoodItem: React.FC<Food> = ({
   const locale = useGetLocale();
   return (
     <li className="flex flex-col gap-2">
-      <div className="flex justify-between items-start">
-        <h4 className="sm:max-w-64 max-w-44 text-balance font-recoleta text-left text-xl tracking-tight">
+      <div className="flex items-start justify-between">
+        <h4 className="max-w-44 text-balance text-left font-recoleta text-xl tracking-tight sm:max-w-64">
           {title[locale]}
         </h4>
 
-        <div className="mx-2 flex-1 h-[1px] bg-accent/50 mt-3" />
+        <div className="mx-2 mt-3 h-[1px] flex-1 bg-accent/50" />
         <div>
-          <span className="font-lobster text-md text-accent whitespace-nowrap">
+          <span className="text-md whitespace-nowrap font-lobster text-primary">
             {price} {!takeawayPrice ? <span>kr</span> : null}
           </span>
           {takeawayPrice && (
             <>
-              <SlashIcon className="inline-block h-6 ml-[-4px]" />
-              <span className="font-lobster text-md text-gray-500 whitespace-nowrap">
+              <SlashIcon className="ml-[-4px] inline-block h-6" />
+              <span className="text-md whitespace-nowrap font-lobster text-gray-500">
                 {takeawayPrice} <span>kr</span>
               </span>
             </>
@@ -64,12 +64,12 @@ const MenuFoodItem: React.FC<Food> = ({
         </div>
       </div>
       {description && (
-        <span className="text-sm text-left font-lato text-dark/85">
+        <span className="text-left font-lato text-sm text-dark/85">
           {description[locale]}
         </span>
       )}
       {badge && (
-        <span className="self-start rounded-md bg-neutral-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 uppercase whitespace-nowrap">
+        <span className="self-start whitespace-nowrap rounded-md bg-neutral-50 px-2 py-1 text-xs font-medium uppercase text-gray-600 ring-1 ring-inset ring-gray-500/10">
           {badge[locale]}
         </span>
       )}
@@ -87,24 +87,24 @@ const MenuWineItem: React.FC<Wine> = ({
   const locale = useGetLocale();
   return (
     <li className="flex flex-col gap-2">
-      <div className="flex justify-between items-center">
-        <h4 className="font-recoleta text-left text-xl tracking-tight">
+      <div className="flex items-center justify-between">
+        <h4 className="text-left font-recoleta text-xl tracking-tight">
           {title[locale]}
         </h4>
 
-        <div className="mx-2 flex-1 h-[1px] bg-accent/50" />
+        <div className="mx-2 h-[1px] flex-1 bg-accent/50" />
         <div>
-          <span className="font-lobster text-md text-accent self-start whitespace-nowrap">
+          <span className="text-md self-start whitespace-nowrap font-lobster text-accent">
             {glassPrice}
           </span>
-          <SlashIcon className="inline-block h-6 ml-[-4px]" />
-          <span className="font-lobster text-md text-accent self-start whitespace-nowrap">
+          <SlashIcon className="ml-[-4px] inline-block h-6" />
+          <span className="text-md self-start whitespace-nowrap font-lobster text-accent">
             {bottlePrice} {!carafePrice && <span>kr</span>}
           </span>
           {carafePrice && (
             <>
-              <SlashIcon className="inline-block h-6 ml-[-4px]" />
-              <span className="font-lobster text-md text-gray-500 whitespace-nowrap">
+              <SlashIcon className="ml-[-4px] inline-block h-6" />
+              <span className="text-md whitespace-nowrap font-lobster text-gray-500">
                 {carafePrice} <span>kr</span>
               </span>
             </>
@@ -112,12 +112,12 @@ const MenuWineItem: React.FC<Wine> = ({
         </div>
       </div>
       {description && (
-        <span className="text-sm text-left font-lato text-dark/85">
+        <span className="text-left font-lato text-sm text-dark/85">
           {description[locale]}
         </span>
       )}
       {badge && (
-        <span className="inline-flex items-center rounded-md bg-neutral-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 ml-1 uppercase whitespace-nowrap self-start">
+        <span className="ml-1 inline-flex items-center self-start whitespace-nowrap rounded-md bg-neutral-50 px-2 py-1 text-xs font-medium uppercase text-gray-600 ring-1 ring-inset ring-gray-500/10">
           {badge[locale]}
         </span>
       )}

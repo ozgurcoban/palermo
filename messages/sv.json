@@ -14,8 +14,35 @@
       "button": "Se mer"
     },
     "About": {
-      "title": "Välkommen till Palermos Hjärta",
-      "description": "Palermo: Mer än en restaurang, en mötesplats där berättelser väcks till liv. I hjärtat av Uppsala serverar vi rätter tillagade med kärlek, från perfekta pizzor till utsökta drycker. Varje besök är en upplevelse, varje måltid mer än bara mat. Välkommen till en värld av värdefulla minnen. Välkommen hem, välkommen till Palermo.",
+      "introduction": {
+        "title": "Välkommen till Palermo",
+        "description": "Palermo är mer än en restaurang – det är en mötesplats där berättelser blir levande. Här skapas minnen att bevara. Välkommen hem, välkommen till Palermo."
+      },
+      "quickFacts": {
+        "title": "Fakta om Palermo",
+        "facts": [
+          {
+            "title": "Åretrunt inglasad uteservering.",
+            "description": "En populär och livlig mötesplats året runt.",
+            "icon": "Users"
+          },
+          {
+            "title": "Äkta pizzor & vällagad comfort food.",
+            "description": "Äkta svenska pizzor & andra klassiker.",
+            "icon": "Pizza"
+          },
+          {
+            "title": "Vänlig och avslappnad atmosfär.",
+            "description": "Som en inställd föreläsning – välkomnande och livligt.",
+            "icon": "Beer"
+          },
+          {
+            "title": "Endast kortbetalning.",
+            "description": "Snabbt, smidigt och helt utan krångel.",
+            "icon": "CreditCard"
+          }
+        ]
+      },
       "button": "Läs mer"
     },
     "Menu": {

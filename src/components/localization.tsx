@@ -4,14 +4,19 @@ import { useTranslations } from "next-intl";
 interface LocalizationProps {
   text: string;
   rich?: boolean;
+  className?: string;
 }
 
-export default function Localization({ text, rich }: LocalizationProps) {
+export default function Localization({
+  text,
+  rich,
+  className,
+}: LocalizationProps) {
   const t = useTranslations();
   if (rich) {
     return (
       <>
-        <p className="title-secondary max-w-xl text-justify !font-normal !normal-case text-gray-200">
+        <p className={`${className} max-w-xl`}>
           {t(`${text}.sentenceBefore`)}
           <u className="underline-offset-8">{t(`${text}.underline`)}</u>
           {t(`${text}.sentenceAfter`)}

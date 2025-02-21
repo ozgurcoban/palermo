@@ -24,7 +24,7 @@ interface MenuTabs {
 
 function useWindowWidth(): number {
   const [windowWidth, setWindowWidth] = useState<number>(
-    typeof window !== "undefined" ? window.innerWidth : 0
+    typeof window !== "undefined" ? window.innerWidth : 0,
   );
 
   useEffect(() => {
@@ -52,15 +52,18 @@ const MenuTabs: React.FC<MenuTabs> = ({
   return (
     <>
       {windowWidth >= 768 ? (
-        <div className="w-full mt-6">
-          <div className="py-3 w-fit">
-            <span className="text-dark font-lato text-sm sm:text-md uppercase tracking-wide whitespace-nowrap cursor-default">
+        <div className="mt-6 w-full">
+          <div className="w-fit py-3">
+            <span className="sm:text-md cursor-default whitespace-nowrap font-lato text-sm uppercase tracking-wide text-primary">
               {t("categories")}
             </span>
           </div>
-          <ul className="flex flex-col mt-3 gap-3 transition-all duration-200">
-            {tabs.map(tab => (
-              <li className="flex items-center gap-3" key={tab._id}>
+          <ul className="mt-3 flex flex-col gap-3 transition-all duration-200">
+            {tabs.map((tab) => (
+              <li
+                className="flex items-center gap-3 text-primary"
+                key={tab._id}
+              >
                 <RadioButton
                   label={tab.title[locale]}
                   value={tab._id}
@@ -73,7 +76,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
           </ul>
         </div>
       ) : (
-        <div className="md:hidden mt-4">
+        <div className="mt-4 md:hidden">
           <Select defaultValue={selectedTab} onValueChange={setSelectedTab}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select a category" />

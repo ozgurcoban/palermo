@@ -21,9 +21,9 @@
     --primary-foreground: 0 0% 100%;
     --secondary: 24 30% 70%;
     --secondary-foreground: 0 0% 0%;
-    --muted: -14 30% 85%;
+    --muted: 14 30% 85%;
     --muted-foreground: 24 5% 35%;
-    --accent: -14 30% 80%;
+    --accent: 14 30% 80%;
     --accent-foreground: 24 5% 15%;
     --destructive: 0 72% 30%;
     --destructive-foreground: 24 5% 90%;
@@ -44,9 +44,9 @@
     --primary-foreground: 0 0% 100%;
     --secondary: 24 30% 20%;
     --secondary-foreground: 0 0% 100%;
-    --muted: -14 30% 25%;
+    --muted: 14 30% 25%;
     --muted-foreground: 24 5% 60%;
-    --accent: -14 30% 25%;
+    --accent: 14 30% 25%;
     --accent-foreground: 24 5% 90%;
     --destructive: 0 72% 30%;
     --destructive-foreground: 24 5% 90%;
@@ -72,6 +72,10 @@ body {
   background-color: hsl(var(--background));
 }
 
+p {
+  @apply font-lato text-[15px] leading-[1.6] tracking-normal text-foreground sm:text-[16px] sm:leading-[1.65] md:text-[17px] md:leading-[1.7] lg:text-[18px] lg:leading-[1.75];
+}
+
 .container {
   @apply mx-auto max-w-[100vw] overflow-hidden px-4 sm:px-8 lg:max-w-[1444px];
 }
@@ -81,11 +85,16 @@ body {
 }
 
 .text-body {
-  @apply font-lato text-xl leading-10 lg:text-[20px];
+  @apply font-lato text-base leading-relaxed text-foreground sm:text-[17px] sm:leading-[1.7] lg:text-lg lg:leading-[1.75];
 }
 
 .title-secondary {
-  @apply text-center font-recoleta text-[8vw] font-semibold leading-tight md:text-[5vw] lg:text-left lg:text-[2vw];
+  @apply mask-fade font-recoleta text-3xl font-bold leading-tight md:text-5xl;
+  color: hsl(var(--primary));
+}
+
+.title-tertiary {
+  @apply font-recoleta text-xl font-semibold leading-tight sm:text-2xl md:text-4xl;
 }
 
 .burger {
@@ -193,4 +202,49 @@ body {
 
 .selected-tab {
   color: #f8eee2;
+}
+
+.mask-fade {
+  /* För bredare browserstöd kan du lägga till både vendor-prefix */
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+.subtle-scroll {
+  will-change: transform;
+}
+
+.animate-subtle-scroll {
+  -webkit-animation: subtleScroll 1s ease-in-out 2.5s forwards;
+  animation: subtleScroll 1s ease-in-out 2.5s forwards;
+}
+
+@-webkit-keyframes subtleScroll {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0, -105px, 0);
+    transform: translate3d(0, -105px, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes subtleScroll {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0, -105px, 0);
+    transform: translate3d(0, -105px, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }

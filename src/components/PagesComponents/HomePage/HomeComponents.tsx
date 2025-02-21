@@ -34,8 +34,8 @@ const HomeComponents: React.FC<Props> = ({
       <Hero />
       {banner && <Banner banners={banner} />}
       <Menu categories={categoriesData} />
-      <Gallery data={gallery_section} />
       <AboutUs data={story_section} />
+      <Gallery data={gallery_section} />
       <Wall data={wall_section} />
       {/* <Testimonials data={testimonials_section} /> */}
       {/* <RecentNews news={news.slice(0, 3)} /> */}

@@ -30,13 +30,70 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
   // Ref for scrollable div
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+  }, []);
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo(0, 0);
     }
   }, [tab]);
 
-  // Get the menu list everytime the selected tab changed
+  useEffect(() => {
+    if (!scrollRef.current || !wrapperRef.current) return;
+
+    // Check localStorage first
+    if (localStorage.getItem("menu-scroll")) {
+      return;
+    }
+
+    // Single observer configuration for both refs
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-subtle-scroll");
+          localStorage.setItem("menu-scroll", "true");
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    // Observe both elements
+    observer.observe(scrollRef.current);
+
+    if (window.innerWidth < 768) observer.observe(wrapperRef.current);
+
+    // Cleanup function
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // This effect removes the animation class if the user scrolls the container.
+  useEffect(() => {
+    const scroll = scrollRef.current;
+    const wrapper = wrapperRef.current;
+    if (!scroll || !wrapper) return;
+
+    const handleScroll = () => {
+      // If the container has been scrolled even a little, remove the animation
+      if (scroll.scrollTop > 0) {
+        scroll.classList.remove("animate-subtle-scroll");
+        wrapper.classList.remove("animate-subtle-scroll");
+      }
+    };
+
+    scroll.addEventListener("scroll", handleScroll);
+
+    return () => {
+      scroll.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // Get the menu list every time the selected tab changes
   const menus_list = useMemo(() => {
     const filteredList = categories.find(({ _id }) => tab === _id);
     if (filteredList)
@@ -53,10 +110,11 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
   );
 
   return (
-    <section className="border-image w-screen py-32">
+    <section className="border-image w-screen py-24">
       <div className="container">
+        <h1>API URL: {process.env.NEXT_PUBLIC_API_URL}</h1>
         <FadeUp>
-          <h2 className="title-secondary cursor-default !text-center">
+          <h2 className="title-secondary cursor-default !text-center" id="menu">
             <Localization text="Home.Menu.title" />
           </h2>
         </FadeUp>
@@ -70,7 +128,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
             delay={0.8}
             className="flex h-[80vh] flex-col gap-5 overflow-hidden px-5 pb-8 pt-4 md:flex-row md:px-10 lg:gap-10 lg:px-20"
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col" ref={wrapperRef}>
               <MenuTabs
                 tabs={categories}
                 selectedTab={tab}
@@ -78,7 +136,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
               />
             </div>
             <div
-              className="sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
+              className="subtle-scroll sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
               ref={scrollRef}
             >
               {getCategory?.description && (
@@ -86,7 +144,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                   <p>{getCategory.description?.[locale]}</p>
                 </div>
               )}
-              <div className="sticky top-0 mx-auto flex max-w-md bg-white">
+              <div className="sticky top-0 mx-auto flex max-w-md items-center bg-white">
                 {getCategory?.sub_categories?.some((subCategory) =>
                   subCategory.menu_list.some(
                     (item) =>
@@ -95,10 +153,11 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                   ),
                 ) ? (
                   <>
-                    <p className="sticky top-0 w-full whitespace-nowrap bg-white text-right text-accent">
+                    <p className="sticky top-0 w-full whitespace-nowrap bg-white text-right text-primary">
                       {t("dineIn")}
                     </p>
-                    <SlashIcon className="h-6 text-gray-500" />
+                    <SlashIcon className="h-6 text-primary" />{" "}
+                    {/* Updated to use text-primary */}
                     <p className="whitespace-nowrap text-gray-500">
                       {" "}
                       {t("takeAway")}
@@ -113,10 +172,11 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                   ),
                 ) ? (
                   <>
-                    <p className="sticky top-0 w-full whitespace-nowrap bg-white text-right text-accent">
+                    <p className="sticky top-0 w-full whitespace-nowrap bg-white text-right text-primary">
                       {t("glass")}
                     </p>
-                    <SlashIcon className="h-6 text-accent" />
+                    <SlashIcon className="h-6 text-primary" />{" "}
+                    {/* Updated to use text-primary */}
                     <p className="">{t("bottle")}</p>
                     <SlashIcon className="h-6" />
                     <p className="text-gray-500">{t("carafe")}</p>

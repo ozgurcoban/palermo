@@ -4,20 +4,16 @@ import { deskTool } from "sanity/desk";
 import { presentationTool } from "sanity/presentation";
 import { schema } from "./sanity/schemas";
 import { getDefaultDocumentNode } from "./structur";
-import { apiVersion, dataset, projectId } from "./sanity/env";
+import { apiVersion, projectId } from "./sanity/env";
 import { myTheme } from "./theme";
 import { structureTool } from "sanity/structure";
+import { RobotIcon, RocketIcon } from "@sanity/icons";
 
-export default defineConfig({
-  basePath: "/studio",
-  name: "PALERMO_STUDIO",
-  title: "Palermo Studio",
-  projectId,
-  dataset,
+const commonConfig = {
   plugins: [
     structureTool({
       defaultDocumentNode: getDefaultDocumentNode,
-      structure: S =>
+      structure: (S) =>
         S.list()
           .title("Base")
           .items([
@@ -32,7 +28,7 @@ export default defineConfig({
                       .child(
                         S.documentList()
                           .title("Home Page")
-                          .filter('_type == "home"')
+                          .filter('_type == "home"'),
                       ),
                     S.listItem()
                       .title("About Page")
@@ -45,18 +41,18 @@ export default defineConfig({
                               .child(
                                 S.documentList()
                                   .title("About Sections")
-                                  .filter('_type == "sections"')
+                                  .filter('_type == "sections"'),
                               ),
                             S.listItem()
                               .title("About Page")
                               .child(
                                 S.documentList()
                                   .title("About Page")
-                                  .filter('_type == "about"')
+                                  .filter('_type == "about"'),
                               ),
-                          ])
+                          ]),
                       ),
-                  ])
+                  ]),
               ),
             S.divider(),
             S.listItem()
@@ -70,35 +66,35 @@ export default defineConfig({
                       .child(
                         S.documentList()
                           .title("Food Items")
-                          .filter('_type == "foods"')
+                          .filter('_type == "foods"'),
                       ),
                     S.listItem()
                       .title("Wines")
                       .child(
                         S.documentList()
                           .title("Wine Item")
-                          .filter('_type == "wines"')
+                          .filter('_type == "wines"'),
                       ),
                     S.listItem()
                       .title("Sub Categories")
                       .child(
                         S.documentList()
                           .title("Sub Categories List")
-                          .filter('_type == "subcategories"')
+                          .filter('_type == "subcategories"'),
                       ),
                     S.listItem()
                       .title("Categories")
                       .child(
                         S.documentList()
                           .title("Categories List")
-                          .filter('_type == "categories"')
+                          .filter('_type == "categories"'),
                       ),
-                  ])
+                  ]),
               ),
             S.divider(),
 
             ...S.documentTypeListItems().filter(
-              listItem =>
+              (listItem) =>
                 ![
                   "home",
                   "about",
@@ -107,7 +103,7 @@ export default defineConfig({
                   "subcategories",
                   "categories",
                   "wines",
-                ].includes(listItem?.getId()!)
+                ].includes(listItem?.getId()!),
             ),
           ]),
     }),
@@ -122,6 +118,29 @@ export default defineConfig({
       },
     }),
   ],
-  schema,
-  theme: myTheme,
-});
+};
+
+export default defineConfig([
+  {
+    basePath: "/studio/development",
+    name: "PALERMO_STUDIO_DEVELOPMENT",
+    title: "Palermo Studio Development",
+    projectId,
+    dataset: "development",
+    schema,
+    theme: myTheme,
+    ...commonConfig,
+    icon: RocketIcon,
+  },
+  {
+    basePath: "/studio/production",
+    name: "PALERMO_STUDIO_PRODUCTION",
+    title: "Palermo Studio",
+    projectId,
+    dataset: "production",
+    schema,
+    theme: myTheme,
+    ...commonConfig,
+    icon: RobotIcon,
+  },
+]);

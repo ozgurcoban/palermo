@@ -32,9 +32,9 @@ export const Wall = ({ data }: { data?: WallSection }) => {
 
   return (
     <section className="overflow-x-hidden border-b py-56">
-      <FadeUp>
+      {/* <FadeUp>
         <h2 className="title-secondary !text-center">{title[locale]}</h2>
-      </FadeUp>
+      </FadeUp> */}
       <div
         style={{
           gridTemplateRows: `repeat(${groudImages.length}, minmax(0, 1fr))`,

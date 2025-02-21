@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 // import { unstable_setRequestLocale } from "next-intl/server";
 import { ILocale } from "@/types/generated";
 import Localization from "@/components/localization";
+import ScrollToMenu from "../ScrollToMenu";
 
 const variants = {
   initial: {
@@ -50,14 +51,21 @@ export function HomeHero() {
       </MotionDiv>
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
         <FadeUp delay={1.3} duration={0.7}>
-          <Localization text="Home.HomeHero.description" rich />
+          <Localization
+            className="text-center font-recoleta text-[8vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(1rem_+_1vw)] lg:text-left lg:text-[calc(1rem_+_1.8vw)]"
+            text="Home.HomeHero.description"
+            rich
+          />
         </FadeUp>
         <FadeUp delay={1.7} duration={0.7}>
-          <h1 className="mt-10 break-words font-lobster text-[20vw] leading-[85px] text-light opacity-70 sm:text-[160px] sm:leading-[135px] lg:text-[180px]">
+          <h1 className="mt-10 break-words font-lobster text-[20vw] leading-[85px] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[160px] sm:leading-[135px] lg:text-[180px]">
             <Localization text="Home.HomeHero.title" />
           </h1>
         </FadeUp>
       </div>
+      <FadeUp className="absolute bottom-6 z-50" delay={1.9} duration={0.7}>
+        <ScrollToMenu />
+      </FadeUp>
     </div>
   );
 }

@@ -15,11 +15,12 @@ const config = {
         lato: ["var(--font-lato)", "sans-serif"],
         recoleta: ["var(--font-recoleta)"],
         lobster: ["var(--font-lobster)", "sans-serif"],
+        "lobster-two": ["var(--font-lobster-two)", "sans-serif"],
       },
       colors: {
         dark: "rgb(0, 0, 0)",
         light: "rgb(255, 255, 255)",
-        accent: "rgb(78, 61, 45)",
+        accent: "hsl(var(--accent))",
         "accent-soft-apricot": "hsl(var(--accent-soft-apricot))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

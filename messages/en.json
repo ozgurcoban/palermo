@@ -14,8 +14,35 @@
       "button": "Ses more"
     },
     "About": {
-      "title": "Welcome to Palermos Heart",
-      "description": "Palermo: More than a restaurant, it's a meeting place where stories come alive. In the heart of Uppsala, we serve dishes crafted with love, from perfect pizzas to delightful drinks. Each visit is an experience, each meal more than just food. Welcome to a world of cherished memories. Welcome home, welcome to Palermo.",
+      "introduction": {
+        "title": "Welcome to Palermo",
+        "description": "Palermo is more than just a restaurant—it’s a gathering place where stories come to life. A place where memories are made to last.Welcome home. Welcome to Palermo."
+      },
+      "quickFacts": {
+        "title": "Quick facts",
+        "facts": [
+          {
+            "title": "Year-round enclosed terrace.",
+            "description": "A popular, cosy spot always buzzing with life.",
+            "icon": "Users"
+          },
+          {
+            "title": "Authentic pizzas & hearty comfort food.",
+            "description": "Genuine Swedish pizzas and other timeless classics.",
+            "icon": "Pizza"
+          },
+          {
+            "title": "Friendly, relaxed vibe.",
+            "description": "Like a cancelled lecture – welcoming and lively.",
+            "icon": "Beer"
+          },
+          {
+            "title": "Card payments only.",
+            "description": "A cash-free experience for smooth and hassle-free service.",
+            "icon": "CreditCard"
+          }
+        ]
+      },
       "button": "Read more"
     },
     "Menu": {
