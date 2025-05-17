@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl";
 import { ILocale } from "@/types/generated";
 import Localization from "@/components/localization";
 import ScrollToMenu from "../ScrollToMenu";
+import Text from "@/lib/Text";
+import { DynamicMotion } from "../ui/DynamicMotion";
 
 const variants = {
   initial: {
@@ -50,7 +52,7 @@ export function HomeHero() {
         />
       </MotionDiv>
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
-        <section>
+        <DynamicMotion>
           <h1 className="text-center font-recoleta text-[8vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(1rem_+_1vw)] lg:text-[calc(1rem_+_1.8vw)]">
             Palermo – Prisvärd restaurang och pizzeria på Sysslomansgatan
           </h1>
@@ -58,7 +60,7 @@ export function HomeHero() {
           <h2 className="mt-10 break-words font-lobster text-[12vw] leading-[85px] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[72px] sm:leading-[135px] lg:text-[86px]">
             Uppsalas 14:e Nation
           </h2>
-        </section>
+        </DynamicMotion>
         {/* <FadeUp delay={1.3} duration={0.7}>
           <Localization
             className="text-center font-recoleta text-[8vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(1rem_+_1vw)] lg:text-left lg:text-[calc(1rem_+_1.8vw)]"
