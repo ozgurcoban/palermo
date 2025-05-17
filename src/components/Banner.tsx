@@ -23,8 +23,8 @@ const Banner = ({ banners }: { banners: LocalizedText[] }) => {
             ref={firstList}
             className="relative flex h-full w-max flex-nowrap items-center justify-between gap-5 pl-5"
           >
-            {banners.map((banner) => (
-              <Fragment key={banner[locale]}>
+            {banners.map((banner, index) => (
+              <Fragment key={`${banner[locale]}-${index}`}>
                 <div className="flex items-center justify-around gap-5">
                   <span className="whitespace-nowrap font-recoleta text-3xl font-medium tracking-wide sm:text-4xl md:text-5xl lg:text-6xl">
                     {banner[locale]}

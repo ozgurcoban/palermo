@@ -22,22 +22,22 @@ interface MenuTabs {
   selectedTab: string;
 }
 
-function useWindowWidth(): number {
-  const [windowWidth, setWindowWidth] = useState<number>(
-    typeof window !== "undefined" ? window.innerWidth : 0,
-  );
+// function useWindowWidth(): number {
+//   const [windowWidth, setWindowWidth] = useState<number>(
+//     typeof window !== "undefined" ? window.innerWidth : 0,
+//   );
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleResize = () => setWindowWidth(window.innerWidth);
-      window.addEventListener("resize", handleResize);
+//   useEffect(() => {
+//     if (typeof window !== "undefined") {
+//       const handleResize = () => setWindowWidth(window.innerWidth);
+//       window.addEventListener("resize", handleResize);
 
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, []);
+//       return () => window.removeEventListener("resize", handleResize);
+//     }
+//   }, []);
 
-  return windowWidth;
-}
+//   return windowWidth;
+// }
 
 const MenuTabs: React.FC<MenuTabs> = ({
   tabs,
@@ -45,13 +45,22 @@ const MenuTabs: React.FC<MenuTabs> = ({
   setSelectedTab,
 }) => {
   const t = useTranslations("Home.Menu");
-  const windowWidth: number = useWindowWidth();
+  // const windowWidth: number = useWindowWidth();
   const locale = useGetLocale();
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   // console.log(tabs);
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
 
   return (
     <>
-      {windowWidth >= 768 ? (
+      {!isMobile ? (
         <div className="mt-6 w-full">
           <div className="w-fit py-3">
             <span className="sm:text-md cursor-default whitespace-nowrap font-lato text-sm uppercase tracking-wide text-primary">

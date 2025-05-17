@@ -31,7 +31,7 @@ const GalleryImage: React.FC<Props> = ({
     setIsFavourite(favourite);
     const updatedList = favourite
       ? [...favouriteList, imageId]
-      : favouriteList.filter(id => id !== imageId);
+      : favouriteList.filter((id) => id !== imageId);
     setFavouriteList(updatedList);
     localStorage.setItem("favList", JSON.stringify(updatedList));
   };
@@ -39,12 +39,12 @@ const GalleryImage: React.FC<Props> = ({
   return (
     <FadeUp
       delay={0.05 * i}
-      className={`relative cursor-pointer overflow-hidden row-span-1 rounded p-4 ${
+      className={`relative row-span-1 cursor-pointer overflow-hidden rounded p-4 ${
         index === 3 || index === 6
           ? "lg:col-span-2"
           : index === 2 || index === 5
-          ? "lg:col-span-1 sm:col-span-2"
-          : ""
+            ? "sm:col-span-2 lg:col-span-1"
+            : ""
       }`}
     >
       <Image
@@ -52,9 +52,9 @@ const GalleryImage: React.FC<Props> = ({
         alt={src}
         fill
         loading="lazy"
-        className="object-cover hover:scale-105 transition-all duration-500"
+        className="object-cover transition-all duration-500 hover:scale-105"
       />
-      TODO: add value of amount of likes
+      {/* TODO: add value of amount of likes */}
       {/* <button
         title="favourite"
         onClick={handleChangeFavourite}

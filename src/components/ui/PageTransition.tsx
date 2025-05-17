@@ -6,9 +6,14 @@ import MotionDiv from "./MotionDiv";
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
   return (
     <AnimatePresence mode="wait">
-      {children}
+      {React.Children.map(children, (child, index) => {
+        return React.isValidElement(child)
+          ? React.cloneElement(child, { key: `page-${index}` })
+          : child;
+      })}
       <MotionDiv
-        className="fixed z-50 top-0 left-0 w-full h-screen bg-accent origin-bottom overflow-hidden"
+        key="transition-bottom"
+        className="fixed left-0 top-0 z-50 h-screen w-full origin-bottom overflow-hidden bg-accent"
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 0 }}
         exit={{ scaleY: 1 }}
@@ -18,7 +23,8 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => {
         }}
       />
       <MotionDiv
-        className="fixed z-50 top-0 left-0 w-full h-screen bg-accent origin-top overflow-hidden"
+        key="transition-top"
+        className="fixed left-0 top-0 z-50 h-screen w-full origin-top overflow-hidden bg-accent"
         initial={{ scaleY: 1 }}
         animate={{ scaleY: 0 }}
         exit={{ scaleY: 0 }}

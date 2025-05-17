@@ -41,7 +41,7 @@ export function HomeHero() {
       >
         <div className="absolute z-10 h-full w-full bg-black/40" />
         <Image
-          src="/hero.jpeg"
+          src="/hero.png"
           alt="hero"
           width={1920}
           height={1080}
@@ -50,7 +50,16 @@ export function HomeHero() {
         />
       </MotionDiv>
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
-        <FadeUp delay={1.3} duration={0.7}>
+        <section>
+          <h1 className="text-center font-recoleta text-[8vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(1rem_+_1vw)] lg:text-[calc(1rem_+_1.8vw)]">
+            Palermo – Prisvärd restaurang och pizzeria på Sysslomansgatan
+          </h1>
+
+          <h2 className="mt-10 break-words font-lobster text-[12vw] leading-[85px] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[72px] sm:leading-[135px] lg:text-[86px]">
+            Uppsalas 14:e Nation
+          </h2>
+        </section>
+        {/* <FadeUp delay={1.3} duration={0.7}>
           <Localization
             className="text-center font-recoleta text-[8vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(1rem_+_1vw)] lg:text-left lg:text-[calc(1rem_+_1.8vw)]"
             text="Home.HomeHero.description"
@@ -61,7 +70,7 @@ export function HomeHero() {
           <h1 className="mt-10 break-words font-lobster text-[20vw] leading-[85px] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[160px] sm:leading-[135px] lg:text-[180px]">
             <Localization text="Home.HomeHero.title" />
           </h1>
-        </FadeUp>
+        </FadeUp> */}
       </div>
       <FadeUp className="absolute bottom-6 z-50" delay={1.9} duration={0.7}>
         <ScrollToMenu />

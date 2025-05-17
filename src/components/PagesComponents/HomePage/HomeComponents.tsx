@@ -3,7 +3,7 @@ import { INewsItem } from "@/types/generated";
 import { HomeHero as Hero } from "@/components/Heros";
 import PageTransition from "@/components/ui/PageTransition";
 import Gallery from "@/components/Gallery";
-import Story from "@/components/Story";
+// import Story from "@/components/Story";
 import Menu from "@/components/Menu";
 import Wall from "@/components/Wall";
 import AboutUs from "@/components/AboutUs";
@@ -22,6 +22,8 @@ const HomeComponents: React.FC<Props> = ({
   news,
   categoriesData,
 }) => {
+  // console.log("homeData", homeData);
+
   const {
     banner,
     gallery_section,
@@ -34,7 +36,7 @@ const HomeComponents: React.FC<Props> = ({
       <Hero />
       {banner && <Banner banners={banner} />}
       <Menu categories={categoriesData} />
-      <AboutUs data={story_section} />
+      {/* <AboutUs data={story_section} /> */}
       <Gallery data={gallery_section} />
       <Wall data={wall_section} />
       {/* <Testimonials data={testimonials_section} /> */}

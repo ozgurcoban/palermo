@@ -105,7 +105,7 @@ export default defineType({
     // Define the about us section
     defineField({
       name: 'story_section',
-      title: 'About us Section',
+      title: 'About us section',
       description: 'Enter the about us section data',
       type: 'object',
       fields: [
@@ -164,6 +164,98 @@ export default defineType({
               type: 'string',
               title: 'Alternative Text',
             },
+          ],
+        }),
+        defineField({
+          name: 'quickFacts',
+          title: 'Quick Facts',
+          type: 'object', // Change from 'array' to 'object'
+          description: 'Enter the quick facts',
+          fields: [
+            // Add a title field at the object level
+            defineField({
+              name: 'title',
+              title: 'Section Title',
+              type: 'object',
+              fieldsets: [
+                {
+                  title: 'Translations',
+                  name: 'translations',
+                  options: {collapsible: false},
+                },
+              ],
+              // Dynamically define one field per language
+              fields: supportedLanguages.map((lang) =>
+                defineField({
+                  title: lang.title,
+                  name: lang.id,
+                  type: 'string',
+                  fieldset: lang.isDefault ? undefined : 'translations',
+                }),
+              ),
+            }),
+            // Now add the facts array
+            defineField({
+              name: 'facts',
+              title: 'Facts',
+              type: 'array',
+              description: 'Enter individual facts',
+              of: [
+                defineArrayMember({
+                  type: 'object',
+                  title: 'Fact',
+                  fields: [
+                    // Define the fact title field
+                    defineField({
+                      name: 'title',
+                      title: 'Title',
+                      type: 'object',
+                      fieldsets: [
+                        {
+                          title: 'Translations',
+                          name: 'translations',
+                          options: {collapsible: false},
+                        },
+                      ],
+                      fields: supportedLanguages.map((lang) =>
+                        defineField({
+                          title: lang.title,
+                          name: lang.id,
+                          type: 'string',
+                          fieldset: lang.isDefault ? undefined : 'translations',
+                        }),
+                      ),
+                    }),
+                    // Rest of the fields (description, icon)
+                    defineField({
+                      name: 'description',
+                      title: 'Description',
+                      type: 'object',
+                      fieldsets: [
+                        {
+                          title: 'Translations',
+                          name: 'translations',
+                          options: {collapsible: false},
+                        },
+                      ],
+                      fields: supportedLanguages.map((lang) =>
+                        defineField({
+                          title: lang.title,
+                          name: lang.id,
+                          type: 'string',
+                          fieldset: lang.isDefault ? undefined : 'translations',
+                        }),
+                      ),
+                    }),
+                    defineField({
+                      name: 'icon',
+                      title: 'Icon',
+                      type: 'string',
+                    }),
+                  ],
+                }),
+              ],
+            }),
           ],
         }),
       ],

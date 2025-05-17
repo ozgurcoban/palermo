@@ -112,7 +112,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
   return (
     <section className="border-image w-screen py-24">
       <div className="container">
-        <h1>API URL: {process.env.NEXT_PUBLIC_API_URL}</h1>
+        {/* <h1>API URL: {process.env.NEXT_PUBLIC_API_URL}</h1> */}
         <FadeUp>
           <h2 className="title-secondary cursor-default !text-center" id="menu">
             <Localization text="Home.Menu.title" />

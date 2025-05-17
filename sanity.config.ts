@@ -4,7 +4,7 @@ import { deskTool } from "sanity/desk";
 import { presentationTool } from "sanity/presentation";
 import { schema } from "./sanity/schemas";
 import { getDefaultDocumentNode } from "./structur";
-import { apiVersion, projectId } from "./sanity/env";
+import { apiVersion, projectId, dataset } from "./sanity/env";
 import { myTheme } from "./theme";
 import { structureTool } from "sanity/structure";
 import { RobotIcon, RocketIcon } from "@sanity/icons";
@@ -126,7 +126,7 @@ export default defineConfig([
     name: "PALERMO_STUDIO_DEVELOPMENT",
     title: "Palermo Studio Development",
     projectId,
-    dataset: "development",
+    dataset,
     schema,
     theme: myTheme,
     ...commonConfig,
@@ -137,7 +137,7 @@ export default defineConfig([
     name: "PALERMO_STUDIO_PRODUCTION",
     title: "Palermo Studio",
     projectId,
-    dataset: "production",
+    dataset,
     schema,
     theme: myTheme,
     ...commonConfig,

@@ -31,12 +31,15 @@ interface AboutUsSection extends Base {
 }
 
 interface Fact {
-  title: string;
-  description: string;
-  icon: string;
+  title: LocalizedText;
+  description: LocalizedText;
 }
 
-// interface AboutSection extends Base {
+interface AboutSection extends Base {
+  title: LocalizedText;
+  description: LocalizedText;
+  image: Image;
+}
 //   title: LocalizedText;
 //   description: LocalizedText;
 //   image: Image;
