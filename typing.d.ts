@@ -20,6 +20,12 @@ interface Contact extends Base {
   }[];
 }
 
+interface AboutPage extends Base {
+  images?: Image[];
+  banner?: LocalizedText[];
+  sections?: AboutSection[];
+}
+
 interface AboutUsSection extends Base {
   title: LocalizedText;
   description: LocalizedText;
