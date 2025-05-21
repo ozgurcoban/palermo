@@ -8,6 +8,7 @@ import Localization from "@/components/localization";
 import ScrollToMenu from "../ScrollToMenu";
 import Text from "@/lib/Text";
 import { DynamicMotion } from "../ui/DynamicMotion";
+import { Badge } from "../ui/badge";
 
 const variants = {
   initial: {
@@ -23,6 +24,11 @@ const variants = {
 };
 
 export function HomeHero() {
+  const t = useTranslations("Home");
+  const text1 = t("HomeHero.title");
+  const text2 = t("HomeHero.description");
+  const badgeMain = t("HomeHero.badge.main");
+  const badgeSuffix = t("HomeHero.badge.suffix");
   // unstable_setRequestLocale(locale)
 
   return (
@@ -51,16 +57,28 @@ export function HomeHero() {
           className="h-full w-full"
         />
       </MotionDiv>
+
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
         <DynamicMotion>
-          <h1 className="text-center font-recoleta text-[8vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(1rem_+_1vw)] lg:text-[calc(1rem_+_1.8vw)]">
-            Palermo – Prisvärd restaurang och pizzeria på Sysslomansgatan
+          <Badge className="pointer-events-none mb-4 rounded-sm bg-muted-foreground px-4 py-2 font-medium text-secondary opacity-70">
+            <span className="uppercase">
+              <Localization text={badgeMain} />
+            </span>
+            <span>
+              <Localization text={badgeSuffix} />
+            </span>
+          </Badge>
+        </DynamicMotion>
+        <DynamicMotion>
+          <h1 className="text-center font-recoleta text-[12vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(2.6rem_+_3.5vw)] lg:text-[calc(2.6rem_+_3.8vw)]">
+            <Localization text={text1} />
           </h1>
 
-          <h2 className="mt-10 break-words font-lobster text-[12vw] leading-[85px] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[72px] sm:leading-[135px] lg:text-[86px]">
-            Uppsalas 14:e Nation
-          </h2>
+          <p className="break-words font-lato text-[4vw] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[28px] lg:text-[36px] lg:leading-[85px]">
+            <Localization text={text2} />
+          </p>
         </DynamicMotion>
+
         {/* <FadeUp delay={1.3} duration={0.7}>
           <Localization
             className="text-center font-recoleta text-[8vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(1rem_+_1vw)] lg:text-left lg:text-[calc(1rem_+_1.8vw)]"
