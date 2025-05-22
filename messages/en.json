@@ -1,17 +1,13 @@
 {
   "Home": {
     "HomeHero": {
-      "descriptionX": {
-        "sentenceBefore": "At ",
-        "underline": "Palermo",
-        "sentenceAfter": " where tasty dishes and a fine selection of drinks"
-      },
       "title": "Palermo",
       "description": "A great-value restaurant and pizzeria on Sysslomansgatan",
       "badge": {
         "main": "UPPSALAS 14:",
         "suffix": "th NATION"
-      }
+      },
+      "cta": "Check out the menu"
     },
     "Gallery": {
       "title": "Beautiful moments in Palermo",

@@ -25,10 +25,6 @@ const variants = {
 
 export function HomeHero() {
   const t = useTranslations("Home");
-  const text1 = t("HomeHero.title");
-  const text2 = t("HomeHero.description");
-  const badgeMain = t("HomeHero.badge.main");
-  const badgeSuffix = t("HomeHero.badge.suffix");
   // unstable_setRequestLocale(locale)
 
   return (
@@ -62,20 +58,20 @@ export function HomeHero() {
         <DynamicMotion>
           <Badge className="pointer-events-none mb-4 rounded-sm bg-muted-foreground px-4 py-2 font-medium text-secondary opacity-70">
             <span className="uppercase">
-              <Localization text={badgeMain} />
+              <Localization text="Home.HomeHero.badge.main" />
             </span>
             <span>
-              <Localization text={badgeSuffix} />
+              <Localization text="Home.HomeHero.badge.suffix" />
             </span>
           </Badge>
         </DynamicMotion>
         <DynamicMotion>
           <h1 className="text-center font-recoleta text-[12vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(2.6rem_+_3.5vw)] lg:text-[calc(2.6rem_+_3.8vw)]">
-            <Localization text={text1} />
+            <Localization text="Home.HomeHero.title" />
           </h1>
 
           <p className="break-words font-lato text-[4vw] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[28px] lg:text-[36px] lg:leading-[85px]">
-            <Localization text={text2} />
+            <Localization text="Home.HomeHero.description" />
           </p>
         </DynamicMotion>
 
@@ -93,7 +89,7 @@ export function HomeHero() {
         </FadeUp> */}
       </div>
       <FadeUp className="absolute bottom-6 z-50" delay={1.9} duration={0.7}>
-        <ScrollToMenu />
+        <ScrollToMenu>{t("HomeHero.cta")}</ScrollToMenu>
       </FadeUp>
     </div>
   );

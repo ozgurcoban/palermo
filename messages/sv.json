@@ -1,17 +1,13 @@
 {
   "Home": {
     "HomeHero": {
-      "descriptionX": {
-        "sentenceBefore": "På ",
-        "underline": "Palermo",
-        "sentenceAfter": " där välsmakande rätter och ett fint urval av dryck"
-      },
       "title": "Palermo",
       "description": "Prisvärd restaurang och pizzeria på Sysslomansgatan",
       "badge": {
         "main": "UPPSALAS 14:",
         "suffix": "e NATION"
-      }
+      },
+      "cta": "Kolla in menyn"
     },
     "Gallery": {
       "title": "Ögonblick hos Oss",
