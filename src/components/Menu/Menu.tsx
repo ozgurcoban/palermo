@@ -122,10 +122,13 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
           delay={0.3}
           duration={0.5}
           variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
-          className="mt-8 w-full rounded border-[12px] border-accent bg-white md:mt-16"
+          className="mt-8 w-full rounded border-[12px] bg-white md:mt-16"
         >
           <FadeUp
             delay={0.8}
+            style={{
+              boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
+            }}
             className="flex h-[80vh] flex-col gap-5 overflow-hidden px-5 pb-8 pt-4 md:flex-row md:px-10 lg:gap-10 lg:px-20"
           >
             <div className="flex flex-col" ref={wrapperRef}>

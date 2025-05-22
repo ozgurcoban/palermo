@@ -31,15 +31,15 @@ export const Gallery = ({ data }: { data?: GallerySection }) => {
   const { title, description, images } = data;
 
   return (
-    <section className="bg-accent-soft-apricot relative h-full w-screen py-40">
+    <section className="relative h-full w-screen bg-accent-soft-apricot py-40">
       <div className="container flex flex-col items-center">
-        <h2 className="title-secondary">
-          <MaskText
-            delay={0.2}
-            phrases={[title[locale]]}
-            className="text-center font-recoleta font-bold leading-tight"
-          />
-        </h2>
+        <MaskText
+          delay={0.2}
+          phrases={[title[locale]]}
+          className="title-secondary text-center font-recoleta font-bold leading-tight"
+          as="h2"
+        />
+
         {description && (
           <div className="mt-6 w-full">
             <MaskText

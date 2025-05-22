@@ -7,9 +7,15 @@ type MaskText = {
   phrases: string[];
   className?: string;
   delay?: number;
+  as?: "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span";
 };
 
-const MaskText: React.FC<MaskText> = ({ phrases, className, delay }) => {
+const MaskText: React.FC<MaskText> = ({
+  phrases,
+  className,
+  delay,
+  as = "p",
+}) => {
   const animation = {
     initial: { y: "100%" },
 
@@ -22,12 +28,14 @@ const MaskText: React.FC<MaskText> = ({ phrases, className, delay }) => {
       },
     }),
   };
+
+  const Tag = motion[as] || motion.p;
   return (
     <>
       {phrases.map((phrase, index) => {
         return (
           <div key={phrase} className={cn("overflow-hidden", className)}>
-            <motion.p
+            <Tag
               custom={index}
               variants={animation}
               initial="initial"
@@ -35,7 +43,7 @@ const MaskText: React.FC<MaskText> = ({ phrases, className, delay }) => {
               viewport={{ once: true }}
             >
               {phrase}
-            </motion.p>
+            </Tag>
           </div>
         );
       })}
