@@ -167,18 +167,24 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                     </p>
                     <SlashIcon className="h-6 text-primary" />{" "}
                     {/* Updated to use text-primary */}
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <p className="whitespace-nowrap text-primary">
-                            {t("takeAway.short")}
-                          </p>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <span>{t("takeAway.full")}</span>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    {t("takeAway.full") ? (
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <p className="whitespace-nowrap text-primary">
+                              {t("takeAway.short")}
+                            </p>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <span>{t("takeAway.full")}</span>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    ) : (
+                      <p className="whitespace-nowrap text-primary">
+                        {t("takeAway.short")}
+                      </p>
+                    )}
                   </>
                 ) : null}
                 {getCategory?.sub_categories?.some((subCategory) =>

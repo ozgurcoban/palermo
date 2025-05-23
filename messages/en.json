@@ -50,7 +50,10 @@
       "title": "Try us, you'll love us",
       "categories": "our amazing categories",
       "dineIn": "Dine-in",
-      "takeAway": "Take-away",
+      "takeAway": {
+        "short": "Take-away",
+        "full": ""
+      },
       "glass": {
         "short": "Gl",
         "full": "Glass"
