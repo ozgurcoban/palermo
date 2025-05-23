@@ -51,9 +51,18 @@
       "categories": "our amazing categories",
       "dineIn": "Dine-in",
       "takeAway": "Take-away",
-      "glass": "Gl.",
-      "bottle": "Btl.",
-      "carafe": "Car."
+      "glass": {
+        "short": "Gl",
+        "full": "Glass"
+      },
+      "bottle": {
+        "short": "Btl",
+        "full": "Bottle"
+      },
+      "carafe": {
+        "short": "Car",
+        "full": "Carafe"
+      }
     },
     "News": {
       "title": "Be first to know"

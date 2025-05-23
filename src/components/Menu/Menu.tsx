@@ -8,6 +8,12 @@ import { useGetLocale } from "@/config";
 import { SlashIcon } from "@radix-ui/react-icons";
 import Localization from "../localization";
 import { useTranslations } from "next-intl";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type Props = {
   categories: Category[];
@@ -161,10 +167,18 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                     </p>
                     <SlashIcon className="h-6 text-primary" />{" "}
                     {/* Updated to use text-primary */}
-                    <p className="whitespace-nowrap text-gray-500">
-                      {" "}
-                      {t("takeAway")}
-                    </p>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <p className="whitespace-nowrap text-primary">
+                            {t("takeAway.short")}
+                          </p>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <span>{t("takeAway.full")}</span>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   </>
                 ) : null}
                 {getCategory?.sub_categories?.some((subCategory) =>
@@ -174,16 +188,42 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                       item.priceSection.glassPrice,
                   ),
                 ) ? (
-                  <>
-                    <p className="sticky top-0 w-full whitespace-nowrap bg-white text-right text-primary">
-                      {t("glass")}
-                    </p>
-                    <SlashIcon className="h-6 text-primary" />{" "}
-                    {/* Updated to use text-primary */}
-                    <p className="">{t("bottle")}</p>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <div className="flex w-full justify-end">
+                        <TooltipTrigger asChild>
+                          <p className="whitespace-nowrap text-primary">
+                            {t("glass.short")}
+                          </p>
+                        </TooltipTrigger>
+                      </div>
+                      <TooltipContent>
+                        <span>{t("glass.full")}</span>
+                      </TooltipContent>
+                    </Tooltip>
+                    <SlashIcon className="h-6 text-primary" />
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <p className="whitespace-nowrap text-primary">
+                          {t("bottle.short")}
+                        </p>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <span>{t("bottle.full")}</span>
+                      </TooltipContent>
+                    </Tooltip>
                     <SlashIcon className="h-6" />
-                    <p className="text-gray-500">{t("carafe")}</p>
-                  </>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <p className="whitespace-nowrap text-primary">
+                          {t("carafe.short")}
+                        </p>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <span>{t("carafe.full")}</span>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 ) : null}
               </div>
               <hr className="mt-4" />

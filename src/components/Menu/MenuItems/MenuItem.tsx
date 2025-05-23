@@ -94,17 +94,17 @@ const MenuWineItem: React.FC<Wine> = ({
 
         <div className="mx-2 h-[1px] flex-1 bg-accent/50" />
         <div>
-          <span className="text-md self-start whitespace-nowrap font-lobster text-accent">
+          <span className="text-md self-start whitespace-nowrap font-lobster">
             {glassPrice}
           </span>
           <SlashIcon className="ml-[-4px] inline-block h-6" />
-          <span className="text-md self-start whitespace-nowrap font-lobster text-accent">
+          <span className="text-md self-start whitespace-nowrap font-lobster">
             {bottlePrice} {!carafePrice && <span>kr</span>}
           </span>
           {carafePrice && (
             <>
               <SlashIcon className="ml-[-4px] inline-block h-6" />
-              <span className="text-md whitespace-nowrap font-lobster text-gray-500">
+              <span className="text-md whitespace-nowrap font-lobster">
                 {carafePrice} <span>kr</span>
               </span>
             </>

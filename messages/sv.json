@@ -50,10 +50,22 @@
       "title": "Testa oss",
       "categories": "Våra kategorier",
       "dineIn": "Servering",
-      "takeAway": "Avh.",
-      "glass": "Gl.",
-      "bottle": "Fl.",
-      "carafe": "Kar."
+      "takeAway": {
+        "short": "Avh",
+        "full": "Avhämtning"
+      },
+      "glass": {
+        "short": "Gl",
+        "full": "Glas"
+      },
+      "bottle": {
+        "short": "Fla",
+        "full": "Flaska"
+      },
+      "carafe": {
+        "short": "Kar",
+        "full": "Karaff"
+      }
     },
     "News": {
       "title": "Var först med att veta"
