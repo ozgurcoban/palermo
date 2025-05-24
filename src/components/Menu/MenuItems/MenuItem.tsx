@@ -101,13 +101,13 @@ const MenuWineItem: React.FC<Wine> = ({
           <span className="text-md self-start whitespace-nowrap font-lobster">
             {bottlePrice} {!carafePrice && <span>kr</span>}
           </span>
-          {carafePrice && (
-            <>
-              <SlashIcon className="ml-[-4px] inline-block h-6" />
-              <span className="text-md whitespace-nowrap font-lobster">
-                {carafePrice} <span>kr</span>
-              </span>
-            </>
+          <SlashIcon className="ml-[-4px] inline-block h-6" />
+          {carafePrice ? (
+            <span className="text-md whitespace-nowrap font-lobster">
+              {carafePrice} <span>kr</span>
+            </span>
+          ) : (
+            <span className="whitespace-nowrap text-sm text-gray-400">N/A</span>
           )}
         </div>
       </div>

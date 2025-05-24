@@ -135,7 +135,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
             style={{
               boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
             }}
-            className="flex h-[80vh] flex-col gap-5 overflow-hidden px-5 pb-8 pt-4 md:flex-row md:px-10 lg:gap-10 lg:px-20"
+            className="flex h-[80vh] flex-col gap-5 px-5 pb-8 pt-4 md:flex-row md:px-10 lg:gap-10 lg:px-20"
           >
             <div className="flex flex-col" ref={wrapperRef}>
               <MenuTabs
@@ -196,7 +196,7 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                 ) ? (
                   <TooltipProvider>
                     <Tooltip>
-                      <div className="flex w-full justify-end">
+                      <div className="relative z-50 flex w-full justify-end">
                         <TooltipTrigger asChild>
                           <p className="whitespace-nowrap text-primary">
                             {t("glass.short")}
