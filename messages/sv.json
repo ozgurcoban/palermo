@@ -135,5 +135,8 @@
         "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router"
       }
     }
+  },
+  "Footer": {
+    "slogan": "Uppsalas (inofficiella) 14:e nation"
   }
 }

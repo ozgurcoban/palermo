@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FacebookIcon, InstagramIcon } from "lucide-react";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 import {
   HomeIcon,
@@ -15,7 +16,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
 
   if (!contactData)
     return (
-      <div className="w-full flex items-center justify-center">
+      <div className="flex w-full items-center justify-center">
         {" "}
         <Link href={"/"}>
           <Image src="/logo.png" alt="logo" width={70} height={70} />
@@ -27,7 +28,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
 
   return (
     <footer className="bg-[#292d36] text-light">
-      <div className="container py-16 gap-y-10 grid md:grid-cols-3 grid-cols-1">
+      <div className="container grid grid-cols-1 gap-y-10 py-16 md:grid-cols-3">
         {/* Opening hours */}
         {opening_hours && (
           <div className="justify-self-center">
@@ -40,9 +41,9 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                 {opening_hours.map(({ day, time }, i) => (
                   <li
                     key={i}
-                    className="flex items-center justify-between gap-8 pt-3 mx-auto sm:mx-0 max-w-[17rem]"
+                    className="mx-auto flex max-w-[17rem] items-center justify-between gap-8 pt-3 sm:mx-0"
                   >
-                    <span className="font-medium whitespace-nowrap">
+                    <span className="whitespace-nowrap font-medium">
                       {day[locale]}
                     </span>
                     <span className="">{time}</span>
@@ -53,10 +54,13 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
           </div>
         )}
 
-        <div className="flex flex-col items-center gap-4 order-0">
+        <div className="order-0 flex flex-col items-center gap-4">
           <Link href={"/"}>
             <Image src="/logo.png" alt="logo" width={130} height={130} />
           </Link>
+          <p className="text-white">
+            <Localization text="Footer.slogan" />
+          </p>
           {contact_infos && (
             <div className="flex gap-4">
               {contact_infos.facebook && (
@@ -64,7 +68,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                   href={contact_infos.facebook}
                   target="_blank"
                   aria-label="Facebook"
-                  className="hover:text-primary transition-all duration-300"
+                  className="transition-all duration-300 hover:text-primary"
                 >
                   <FacebookIcon />
                 </Link>
@@ -74,7 +78,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                   href={contact_infos.instagram}
                   target="_blank"
                   aria-label="Instagram"
-                  className="hover:text-primary transition-all duration-300"
+                  className="transition-all duration-300 hover:text-primary"
                 >
                   <InstagramIcon />
                 </Link>
@@ -91,25 +95,33 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
               </h3>
               <ul>
                 {contact_infos.address && (
-                  <li className="flex items-center gap-2 pt-3 hover:text-primary transition-all duration-300">
+                  <li className="flex items-center gap-2 pt-3 transition-all duration-300 hover:text-primary">
                     <HomeIcon className="size-5" />
-                    <a href="#">{contact_infos.address}</a>
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=Sysslomansgatan+7,+753+11+Uppsala,+Sverige"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {contact_infos.address}
+                    </a>
                   </li>
                 )}
                 {contact_infos.telephone && (
-                  <li className="flex items-center gap-2 pt-3 hover:text-primary transition-all duration-300">
+                  <li className="flex items-center gap-2 pt-3 transition-all duration-300 hover:text-primary">
                     <ChatBubbleIcon className="size-5" />
                     <a href={`tel:${contact_infos.telephone}`}>
-                      <Localization text="ContactSection.phone" />:
+                      <Localization text="ContactSection.phone" />
+                      :&nbsp;
                       {contact_infos.telephone}
                     </a>
                   </li>
                 )}
                 {contact_infos.email && (
-                  <li className="flex items-center gap-2 pt-3 hover:text-primary transition-all duration-300">
+                  <li className="flex items-center gap-2 pt-3 transition-all duration-300 hover:text-primary">
                     <EnvelopeClosedIcon className="size-5" />
                     <a href={`mailto:${contact_infos.email}`}>
-                      <Localization text="ContactSection.email" />:
+                      <Localization text="ContactSection.email" />
+                      :&nbsp;
                       {contact_infos.email}
                     </a>
                   </li>
