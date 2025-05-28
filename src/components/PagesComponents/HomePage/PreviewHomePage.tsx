@@ -13,11 +13,12 @@ export default function PreviewHomePage({
   homeData: HomePage;
   news: INewsItem[];
   categoriesData: Category[];
+  lunchData?: LunchConfiguration;
 }) {
   const [data] = useLiveQuery<HomePage>(homeData, HOME_QUERY);
   const [categories] = useLiveQuery<Category[]>(
     categoriesData,
-    CATEGORIES_QUERY
+    CATEGORIES_QUERY,
   );
 
   return (

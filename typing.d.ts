@@ -129,3 +129,32 @@ interface LocalizedText {
   sv: string;
   en: string;
 }
+
+interface LunchItem {
+  title: LocalizedText;
+  description: LocalizedText;
+}
+
+interface LunchConfiguration extends Base {
+  title: LocalizedText;
+  timeInfo: {
+    days: LocalizedText;
+    hours: string;
+  };
+  dagensLunch: {
+    title: LocalizedText;
+    price: number;
+    items: LunchItem[];
+  };
+  lunchPizza: {
+    title: LocalizedText;
+    description: LocalizedText;
+    price: number;
+    subcategoryRef: SubCategory;
+  };
+  monthlySpecial: {
+    title: LocalizedText;
+    price: number;
+    dish: LunchItem;
+  };
+}

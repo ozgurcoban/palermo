@@ -20,6 +20,10 @@ export const pathnames = {
     en: "/about",
     sv: "/om-oss",
   },
+  "/lunch": {
+    en: "/lunch",
+    sv: "/lunch",
+  },
   "/news": {
     en: "/news",
     sv: "/nyheter",

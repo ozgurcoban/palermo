@@ -31,6 +31,13 @@ const commonConfig = {
                           .filter('_type == "home"'),
                       ),
                     S.listItem()
+                      .title("Lunch Page")
+                      .child(
+                        S.documentList()
+                          .title("Lunch Configuration")
+                          .filter('_type == "lunch"'),
+                      ),
+                    S.listItem()
                       .title("About Page")
                       .child(
                         S.list()
@@ -103,6 +110,7 @@ const commonConfig = {
                   "subcategories",
                   "categories",
                   "wines",
+                  "lunch",
                 ].includes(listItem?.getId()!),
             ),
           ]),

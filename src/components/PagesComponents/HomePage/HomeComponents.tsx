@@ -6,9 +6,9 @@ import Gallery from "@/components/Gallery";
 // import Story from "@/components/Story";
 import Menu from "@/components/Menu";
 import Wall from "@/components/Wall";
-import AboutUs from "@/components/AboutUs";
-import Testimonials from "@/components/Testimonials";
-import RecentNews from "@/components/News/RecentNews";
+// import AboutUs from "@/components/AboutUs";
+// import Testimonials from "@/components/Testimonials";
+// import RecentNews from "@/components/News/RecentNews";
 import Banner from "@/components/Banner";
 
 type Props = {

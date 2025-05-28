@@ -6,33 +6,36 @@ export default defineType({
   title: 'Lunch Page',
   type: 'document',
   fields: [
-    // Hero section med bilder (liknande about-sidan)
     defineField({
-      name: 'hero_image',
-      title: 'Hero Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
+      name: 'title',
+      title: 'Title',
+      type: 'object',
+      fieldsets: [
         {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
+          title: 'Translations',
+          name: 'translations',
+          options: {collapsible: true},
         },
       ],
+      fields: supportedLanguages.map((lang) =>
+        defineField({
+          title: lang.title,
+          name: lang.id,
+          type: 'string',
+          fieldset: lang.isDefault ? undefined : 'translations',
+          initialValue: lang.id === 'sv' ? 'i kirens lunch' : 'Lunchins',
+        }),
+      ),
     }),
-
-    // Banner för öppettider eller specialerbjudanden
     defineField({
-      name: 'banner',
-      title: 'Banner Section',
-      type: 'array',
-      description: 'Enter banner texts (e.g., lunch hours)',
-      of: [
-        {
+      name: 'timeInfo',
+      title: 'Time Information',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'days',
+          title: 'Days',
           type: 'object',
-          title: 'Text',
           fieldsets: [
             {
               title: 'Translations',
@@ -46,16 +49,22 @@ export default defineType({
               name: lang.id,
               type: 'string',
               fieldset: lang.isDefault ? undefined : 'translations',
+              initialValue: lang.id === 'sv' ? 'Måndag - Fredag' : 'Monday - Friday',
             }),
           ),
-        },
+        }),
+        defineField({
+          name: 'hours',
+          title: 'Hours',
+          type: 'string',
+          initialValue: '11:00 - 15:00',
+        }),
       ],
     }),
-
-    // Introduktionstext
+    // Dagens lunch
     defineField({
-      name: 'introduction',
-      title: 'Introduction Section',
+      name: 'dagensLunch',
+      title: 'Dagens Lunch',
       type: 'object',
       fields: [
         defineField({
@@ -75,6 +84,99 @@ export default defineType({
               name: lang.id,
               type: 'string',
               fieldset: lang.isDefault ? undefined : 'translations',
+              initialValue: lang.id === 'sv' ? 'Dagens Lunch' : 'Lunch of the Day',
+            }),
+          ),
+        }),
+        defineField({
+          name: 'price',
+          title: 'Price',
+          type: 'number',
+          initialValue: 119,
+          validation: (Rule) => Rule.required().positive(),
+          description: 'Pris för dagens lunch',
+        }),
+        defineField({
+          name: 'items',
+          title: 'Lunch Items',
+          type: 'array',
+          validation: (Rule) => Rule.required().min(1),
+          of: [
+            {
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'title',
+                  title: 'Title',
+                  type: 'object',
+                  fieldsets: [
+                    {
+                      title: 'Translations',
+                      name: 'translations',
+                      options: {collapsible: true},
+                    },
+                  ],
+                  fields: supportedLanguages.map((lang) =>
+                    defineField({
+                      title: lang.title,
+                      name: lang.id,
+                      type: 'string',
+                      fieldset: lang.isDefault ? undefined : 'translations',
+                      validation: (Rule) => Rule.required(),
+                    }),
+                  ),
+                }),
+                defineField({
+                  name: 'description',
+                  title: 'Description',
+                  type: 'object',
+                  fieldsets: [
+                    {
+                      title: 'Translations',
+                      name: 'translations',
+                      options: {collapsible: true},
+                    },
+                  ],
+                  fields: supportedLanguages.map((lang) =>
+                    defineField({
+                      title: lang.title,
+                      name: lang.id,
+                      type: 'string',
+                      fieldset: lang.isDefault ? undefined : 'translations',
+                    }),
+                  ),
+                }),
+              ],
+            },
+          ],
+        }),
+      ],
+    }),
+
+    // Lunchpizza
+    defineField({
+      name: 'lunchPizza',
+      title: 'Lunchpizza',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'object',
+          fieldsets: [
+            {
+              title: 'Translations',
+              name: 'translations',
+              options: {collapsible: true},
+            },
+          ],
+          fields: supportedLanguages.map((lang) =>
+            defineField({
+              title: lang.title,
+              name: lang.id,
+              type: 'string',
+              fieldset: lang.isDefault ? undefined : 'translations',
+              initialValue: lang.id === 'sv' ? 'Lunchpizza' : 'Lunch Pizza',
             }),
           ),
         }),
@@ -93,35 +195,71 @@ export default defineType({
             defineField({
               title: lang.title,
               name: lang.id,
-              type: 'text',
+              type: 'string',
               fieldset: lang.isDefault ? undefined : 'translations',
+              initialValue: lang.id === 'sv' ? 'Alla standardpizzor' : 'All standard pizzas',
             }),
           ),
         }),
+        defineField({
+          name: 'price',
+          title: 'Price',
+          type: 'number',
+          validation: (Rule) => Rule.required().positive(),
+          initialValue: 119,
+        }),
+        defineField({
+          name: 'subcategoryRef',
+          title: 'Pizza Subcategory',
+          type: 'reference',
+          to: [{type: 'subcategories'}],
+          description: 'Select the standard pizza subcategory',
+          validation: (Rule) => Rule.required(),
+        }),
       ],
     }),
-
-    // Pizza lunch pris
+    // Månadens tips
     defineField({
-      name: 'pizza_price',
-      title: 'Pizza Lunch Price',
-      type: 'number',
-      description: 'Price for pizzas during lunch',
-      validation: (Rule) => Rule.required(),
-    }),
-
-    // Varmrätter
-    defineField({
-      name: 'warm_dishes',
-      title: 'Warm Dishes',
-      type: 'array',
-      of: [
-        {
+      name: 'monthlySpecial',
+      title: 'Månadens tips',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'object',
+          fieldsets: [
+            {
+              title: 'Translations',
+              name: 'translations',
+              options: {collapsible: true},
+            },
+          ],
+          fields: supportedLanguages.map((lang) =>
+            defineField({
+              title: lang.title,
+              name: lang.id,
+              type: 'string',
+              fieldset: lang.isDefault ? undefined : 'translations',
+              initialValue: lang.id === 'sv' ? 'Månadens tips' : 'Monthly Special',
+            }),
+          ),
+        }),
+        defineField({
+          name: 'price',
+          title: 'Price',
+          type: 'number',
+          validation: (Rule) => Rule.required().positive(),
+          initialValue: 159,
+        }),
+        defineField({
+          name: 'dish',
+          title: 'Dish',
           type: 'object',
           fields: [
             defineField({
               name: 'title',
-              title: 'Dish Name',
+              title: 'Title',
               type: 'object',
               fieldsets: [
                 {
@@ -160,130 +298,16 @@ export default defineType({
                 }),
               ),
             }),
-            defineField({
-              name: 'price',
-              title: 'Price',
-              type: 'number',
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: 'available_days',
-              title: 'Available Days',
-              type: 'array',
-              of: [{type: 'string'}],
-              options: {
-                list: [
-                  {title: 'Monday', value: 'monday'},
-                  {title: 'Tuesday', value: 'tuesday'},
-                  {title: 'Wednesday', value: 'wednesday'},
-                  {title: 'Thursday', value: 'thursday'},
-                  {title: 'Friday', value: 'friday'},
-                  {title: 'Saturday', value: 'saturday'},
-                  {title: 'Sunday', value: 'sunday'},
-                ],
-              },
-            }),
           ],
-        },
-      ],
-      validation: (Rule) =>
-        Rule.custom((dishes) =>
-          (dishes ?? []).length === 8
-            ? true
-            : {
-                message: 'You must add exactly 8 warm dishes',
-              },
-        ),
-    }),
-
-    // Månadens tips
-    defineField({
-      name: 'monthly_special',
-      title: 'Monthly Special',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'title',
-          title: 'Dish Name',
-          type: 'object',
-          fieldsets: [
-            {
-              title: 'Translations',
-              name: 'translations',
-              options: {collapsible: true},
-            },
-          ],
-          fields: supportedLanguages.map((lang) =>
-            defineField({
-              title: lang.title,
-              name: lang.id,
-              type: 'string',
-              fieldset: lang.isDefault ? undefined : 'translations',
-              validation: (Rule) => Rule.required(),
-            }),
-          ),
-        }),
-        defineField({
-          name: 'description',
-          title: 'Description',
-          type: 'object',
-          fieldsets: [
-            {
-              title: 'Translations',
-              name: 'translations',
-              options: {collapsible: true},
-            },
-          ],
-          fields: supportedLanguages.map((lang) =>
-            defineField({
-              title: lang.title,
-              name: lang.id,
-              type: 'text',
-              fieldset: lang.isDefault ? undefined : 'translations',
-            }),
-          ),
-        }),
-        defineField({
-          name: 'price',
-          title: 'Price',
-          type: 'number',
-          validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-          name: 'image',
-          title: 'Dish Image',
-          type: 'image',
-          options: {
-            hotspot: true,
-          },
-        }),
-      ],
-    }),
-
-    // Lunch hours info
-    defineField({
-      name: 'lunch_hours',
-      title: 'Lunch Hours',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'weekdays',
-          title: 'Weekdays',
-          type: 'string',
-          description: 'e.g., 11:00 - 14:00',
-        }),
-        defineField({
-          name: 'weekends',
-          title: 'Weekends',
-          type: 'string',
-          description: 'e.g., 12:00 - 15:00',
         }),
       ],
     }),
   ],
   preview: {
-    prepare(selection) {
-      return {...selection, title: 'Lunch Page Content'}
+    prepare() {
+      return {
+        title: 'Lunch Configuration',
+      }
     },
   },
 })

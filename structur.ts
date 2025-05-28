@@ -3,7 +3,7 @@ import type { DefaultDocumentNodeResolver } from "sanity/structure";
 
 export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (
   S,
-  { schemaType }
+  { schemaType },
 ) => {
   if (
     [
@@ -14,6 +14,7 @@ export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (
       "subcategories",
       "categories",
       "wines",
+      "lunch",
     ].includes(schemaType)
   ) {
     return S.document().views([

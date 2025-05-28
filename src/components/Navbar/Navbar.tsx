@@ -43,6 +43,11 @@ export function Navbar() {
       src: "menu.jpg",
     },
     {
+      title: t("lunch"),
+      href: "/lunch",
+      src: "lunch.jpg",
+    },
+    {
       title: t("about"),
       href: "/about",
       src: "home.jpg",

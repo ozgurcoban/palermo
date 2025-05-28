@@ -29,3 +29,16 @@ export const CATEGORIES_QUERY = groq`
 export const CONTACT_QUERY = groq`
   *[_type=='contact'][0]
 `
+
+export const LUNCH_QUERY = groq`
+  *[_type=='lunch'][0]{
+    ...,
+    lunchPizza{
+      ...,
+      subcategoryRef->{
+        ...,
+        menu_list[]->
+      }
+    }
+  }
+`
