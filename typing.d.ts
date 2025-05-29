@@ -141,20 +141,20 @@ interface LunchConfiguration extends Base {
     days: LocalizedText;
     hours: string;
   };
-  dagensLunch: {
+  dagensLunch?: {
     title: LocalizedText;
     price: number;
     items: LunchItem[];
   };
-  lunchPizza: {
+  lunchPizza?: {
     title: LocalizedText;
-    description: LocalizedText;
+    description?: LocalizedText;
     price: number;
-    subcategoryRef: SubCategory;
+    subcategoryRef?: SubCategory;
   };
-  monthlySpecial: {
+  monthlySpecial?: {
     title: LocalizedText;
     price: number;
-    dish: LunchItem;
+    dish?: LunchItem;
   };
 }

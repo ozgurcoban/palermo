@@ -79,15 +79,14 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
     })) || [];
 
   // Transform monthly special items
-  const monthlyItems = monthlySpecial?.dish
+  const monthlyItem = monthlySpecial?.dish
     ? [
         {
+          ...monthlySpecial.dish,
           _id: "monthly-special",
           _type: "foods" as const,
-          title: monthlySpecial.dish.title,
-          description: monthlySpecial.dish.description || "",
           priceSection: {
-            price: monthlySpecial.price || 119, // Default price if not specified
+            price: monthlySpecial.price,
           },
         },
       ]
@@ -112,16 +111,19 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
     <section className="border-image w-screen py-24" id="lunch">
       <div className="container">
         <FadeUp>
-          <h2 className="title-secondary cursor-default">
-            {title[locale] || "Lunch"}
+          <h2 className="title-secondary cursor-default !text-center">
+            {title?.[locale] || "Lunch"}
           </h2>
         </FadeUp>
 
         {timeInfo && (
-          <FadeUp className="mt-6 flex items-center justify-center gap-2 text-primary">
+          <FadeUp
+            delay={0.2}
+            className="mt-6 flex items-center justify-center gap-2 text-primary"
+          >
             <Clock className="size-5" />
-            <span className="text-lg">
-              {timeInfo.days[locale]} • {timeInfo.hours}
+            <span className="font-medium">
+              {timeInfo.days[locale]} {timeInfo.hours}
             </span>
           </FadeUp>
         )}
@@ -141,8 +143,8 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
           >
             <Tabs
               defaultValue={defaultTab}
-              onValueChange={handleTabChange}
               className="w-full"
+              onValueChange={handleTabChange}
             >
               <TabsList className="mb-6 grid w-full grid-cols-3">
                 {dagensLunch && (
@@ -151,8 +153,11 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
                     className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2"
                   >
                     <span className="text-xs sm:text-sm">
-                      {dagensLunch.title?.[locale]}
+                      {dagensLunch.title?.[locale] || "Dagens lunch"}
                     </span>
+                    <Badge variant="secondary" className="text-xs">
+                      {dagensLunch.price} kr
+                    </Badge>
                   </TabsTrigger>
                 )}
                 {lunchPizza && (
@@ -161,14 +166,91 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
                     className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2"
                   >
                     <span className="text-xs sm:text-sm">
-                      {lunchPizza.title?.[locale]}
+                      {lunchPizza.title?.[locale] || "Lunchpizza"}
                     </span>
-                    <Badge variant="secondary" className="mt-1">
-                      Från {lunchPizza.price} kr
+                    <Badge variant="secondary" className="text-xs">
+                      {lunchPizza.price} kr
+                    </Badge>
+                  </TabsTrigger>
+                )}
+                {monthlySpecial && (
+                  <TabsTrigger
+                    value="monthly"
+                    className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2"
+                  >
+                    <span className="text-xs sm:text-sm">
+                      {monthlySpecial.title?.[locale] || "Månadens tips"}
+                    </span>
+                    <Badge variant="secondary" className="text-xs">
+                      {monthlySpecial.price} kr
                     </Badge>
                   </TabsTrigger>
                 )}
               </TabsList>
+
+              <div
+                className="subtle-scroll h-[60vh] overflow-y-scroll"
+                ref={scrollRef}
+              >
+                {dagensLunch && (
+                  <TabsContent value="dagens" className="mt-0">
+                    <div className="sticky top-0 mb-4 border-b bg-white pb-4">
+                      <h3 className="text-center font-recoleta text-2xl">
+                        {dagensLunch.title?.[locale] || "Dagens lunch"}
+                      </h3>
+                      <p className="text-center font-lobster text-3xl text-primary">
+                        {dagensLunch.price} kr
+                      </p>
+                    </div>
+                    <ul className="mx-auto flex w-full max-w-md flex-col gap-5">
+                      {dagensItems.map((item) => (
+                        <MenuItem key={item._id} item={item as Food} />
+                      ))}
+                    </ul>
+                  </TabsContent>
+                )}
+
+                {lunchPizza && (
+                  <TabsContent value="pizza" className="mt-0">
+                    <div className="sticky top-0 mb-4 border-b bg-white pb-4">
+                      <h3 className="text-center font-recoleta text-2xl">
+                        {lunchPizza.title?.[locale] || "Lunchpizza"}
+                      </h3>
+                      {lunchPizza.description?.[locale] && (
+                        <p className="mb-2 text-center text-sm text-dark/85">
+                          {lunchPizza.description[locale]}
+                        </p>
+                      )}
+                      <p className="text-center font-lobster text-3xl text-primary">
+                        {lunchPizza.price} kr
+                      </p>
+                    </div>
+                    <ul className="mx-auto flex w-full max-w-md flex-col gap-5">
+                      {pizzaItems.map((item) => (
+                        <MenuItem key={item._id} item={item} />
+                      ))}
+                    </ul>
+                  </TabsContent>
+                )}
+
+                {monthlySpecial && (
+                  <TabsContent value="monthly" className="mt-0">
+                    <div className="sticky top-0 mb-4 border-b bg-white pb-4">
+                      <h3 className="text-center font-recoleta text-2xl">
+                        {monthlySpecial.title?.[locale] || "Månadens tips"}
+                      </h3>
+                      <p className="text-center font-lobster text-3xl text-primary">
+                        {monthlySpecial.price} kr
+                      </p>
+                    </div>
+                    <ul className="mx-auto flex w-full max-w-md flex-col gap-5">
+                      {monthlyItem.map((item) => (
+                        <MenuItem key={item._id} item={item as Food} />
+                      ))}
+                    </ul>
+                  </TabsContent>
+                )}
+              </div>
             </Tabs>
           </FadeUp>
         </FadeUp>

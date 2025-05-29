@@ -228,19 +228,11 @@ export default defineType({
           name: 'title',
           title: 'Title',
           type: 'object',
-          fieldsets: [
-            {
-              title: 'Translations',
-              name: 'translations',
-              options: {collapsible: true},
-            },
-          ],
           fields: supportedLanguages.map((lang) =>
             defineField({
               title: lang.title,
               name: lang.id,
               type: 'string',
-              fieldset: lang.isDefault ? undefined : 'translations',
               initialValue: lang.id === 'sv' ? 'Månadens tips' : 'Monthly Special',
             }),
           ),
@@ -249,7 +241,7 @@ export default defineType({
           name: 'price',
           title: 'Price',
           type: 'number',
-          validation: (Rule) => Rule.required().positive(),
+          validation: (Rule) => Rule.positive(), // Ta bort required
           initialValue: 159,
         }),
         defineField({
@@ -261,20 +253,12 @@ export default defineType({
               name: 'title',
               title: 'Title',
               type: 'object',
-              fieldsets: [
-                {
-                  title: 'Translations',
-                  name: 'translations',
-                  options: {collapsible: true},
-                },
-              ],
               fields: supportedLanguages.map((lang) =>
                 defineField({
                   title: lang.title,
                   name: lang.id,
                   type: 'string',
-                  fieldset: lang.isDefault ? undefined : 'translations',
-                  validation: (Rule) => Rule.required(),
+                  // INGEN validation här
                 }),
               ),
             }),
@@ -282,19 +266,12 @@ export default defineType({
               name: 'description',
               title: 'Description',
               type: 'object',
-              fieldsets: [
-                {
-                  title: 'Translations',
-                  name: 'translations',
-                  options: {collapsible: true},
-                },
-              ],
               fields: supportedLanguages.map((lang) =>
                 defineField({
                   title: lang.title,
                   name: lang.id,
                   type: 'string',
-                  fieldset: lang.isDefault ? undefined : 'translations',
+                  // INGEN validation här
                 }),
               ),
             }),
