@@ -4,12 +4,12 @@ import { LUNCH_QUERY } from "../../../../../sanity/lib/queries";
 import { getClient } from "../../../../../sanity/lib/client";
 import PreviewProvider from "@/components/PreviewProvider";
 import LunchComponents from "@/components/PagesComponents/LunchPage/LunchComponents";
+import PreviewLunchPage from "@/components/PagesComponents/LunchPage/PreviewLunchPage";
 
 import { locales } from "@/config";
 import { notFound } from "next/navigation";
 import { unstable_setRequestLocale } from "next-intl/server";
 import PageTransition from "@/components/ui/PageTransition";
-import Lunch from "@/components/Lunch";
 
 type Props = {
   params: { locale: string };
@@ -31,9 +31,7 @@ export default async function LunchPage({ params: { locale } }: Props) {
   if (isDraft)
     return (
       <PreviewProvider token={token}>
-        <PageTransition>
-          <Lunch lunchData={lunchData} />
-        </PageTransition>
+        <PreviewLunchPage lunchData={lunchData} />
       </PreviewProvider>
     );
 

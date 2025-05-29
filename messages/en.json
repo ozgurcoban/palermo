@@ -88,7 +88,12 @@
   },
   "MenuPage": {
     "title": "Menu",
-    "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>"
+    "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
+    "hero": {
+      "badge": "Full Menu",
+      "title": "Menu",
+      "description": "Discover our selection of delicious dishes and beverages"
+    }
   },
   "Buttons": {
     "readMore": "Read more",
@@ -139,5 +144,19 @@
   },
   "Footer": {
     "slogan": "Uppsalas (unofficial) 14th nation"
+  },
+  "Lunch": {
+    "hero": {
+      "badge": "Weekdays 11:00-14:00",
+      "title": "Lunch",
+      "description": "Enjoy our daily fresh lunches, pizzas and monthly specials"
+    }
+  },
+  "AboutPage": {
+    "hero": {
+      "badge": "Since 1991",
+      "title": "About Us",
+      "description": "Uppsala's most natural meeting place for over 30 years"
+    }
   }
 }

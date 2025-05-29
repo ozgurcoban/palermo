@@ -86,6 +86,13 @@
       "destructiveDescription": "Tyvärr kunde vi inte skicka ditt meddelande. Var god försök igen senare."
     }
   },
+  "MenuPage": {
+    "hero": {
+      "badge": "Hela menyn",
+      "title": "Meny",
+      "description": "Upptäck vårt urval av läckra rätter och drycker"
+    }
+  },
   "Buttons": {
     "readMore": "Läs mer",
     "submit": "Skicka",
@@ -139,5 +146,19 @@
   },
   "Footer": {
     "slogan": "Uppsalas (inofficiella) 14:e nation"
+  },
+  "Lunch": {
+    "hero": {
+      "badge": "Vardagar 11:00-14:00",
+      "title": "Lunch",
+      "description": "Njut av våra dagsfärska luncher, pizzor och månadens specialiteter"
+    }
+  },
+  "AboutPage": {
+    "hero": {
+      "badge": "Sedan 1991",
+      "title": "Om oss",
+      "description": "Uppsalas mest naturliga mötesplats i över 30 år"
+    }
   }
 }

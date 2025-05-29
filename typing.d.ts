@@ -143,6 +143,7 @@ interface LunchConfiguration extends Base {
   };
   dagensLunch?: {
     title: LocalizedText;
+    description?: LocalizedText;
     price: number;
     items: LunchItem[];
   };
@@ -154,6 +155,7 @@ interface LunchConfiguration extends Base {
   };
   monthlySpecial?: {
     title: LocalizedText;
+    description?: LocalizedText;
     price: number;
     dish?: LunchItem;
   };

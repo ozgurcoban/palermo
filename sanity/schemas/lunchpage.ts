@@ -89,6 +89,30 @@ export default defineType({
           ),
         }),
         defineField({
+          name: 'description',
+          title: 'Description',
+          type: 'object',
+          fieldsets: [
+            {
+              title: 'Translations',
+              name: 'translations',
+              options: {collapsible: true},
+            },
+          ],
+          fields: supportedLanguages.map((lang) =>
+            defineField({
+              title: lang.title,
+              name: lang.id,
+              type: 'string',
+              fieldset: lang.isDefault ? undefined : 'translations',
+              initialValue:
+                lang.id === 'sv'
+                  ? 'Välj mellan våra 9 dagliga specialiteter'
+                  : 'Choose from our 9 daily specials',
+            }),
+          ),
+        }),
+        defineField({
           name: 'price',
           title: 'Price',
           type: 'number',
@@ -147,6 +171,18 @@ export default defineType({
                   ),
                 }),
               ],
+              preview: {
+                select: {
+                  title: 'title.sv',
+                  subtitle: 'description.sv',
+                },
+                prepare({title, subtitle}) {
+                  return {
+                    title: title || 'Lunch rätt',
+                    subtitle: subtitle || 'Ingen beskrivning',
+                  }
+                },
+              },
             },
           ],
         }),
@@ -234,6 +270,30 @@ export default defineType({
               name: lang.id,
               type: 'string',
               initialValue: lang.id === 'sv' ? 'Månadens tips' : 'Monthly Special',
+            }),
+          ),
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description',
+          type: 'object',
+          fieldsets: [
+            {
+              title: 'Translations',
+              name: 'translations',
+              options: {collapsible: true},
+            },
+          ],
+          fields: supportedLanguages.map((lang) =>
+            defineField({
+              title: lang.title,
+              name: lang.id,
+              type: 'string',
+              fieldset: lang.isDefault ? undefined : 'translations',
+              initialValue:
+                lang.id === 'sv'
+                  ? 'Vår kocks specialrekommendation denna månad'
+                  : "Our chef's special recommendation this month",
             }),
           ),
         }),

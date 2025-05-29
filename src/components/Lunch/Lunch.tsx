@@ -108,101 +108,76 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
         : "dagens";
 
   return (
-    <section className="border-image w-screen py-24" id="lunch">
+    <section className="border-image w-screen py-12 md:py-24" id="lunch">
       <div className="container">
-        <FadeUp>
-          <h2 className="title-secondary cursor-default !text-center">
-            {title?.[locale] || "Lunch"}
-          </h2>
-        </FadeUp>
-
-        {timeInfo && (
-          <FadeUp
-            delay={0.2}
-            className="mt-6 flex items-center justify-center gap-2 text-primary"
-          >
-            <Clock className="size-5" />
-            <span className="font-medium">
-              {timeInfo.days[locale]} {timeInfo.hours}
-            </span>
-          </FadeUp>
-        )}
-
         <FadeUp
           delay={0.3}
           duration={0.5}
           variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
-          className="mt-8 w-full rounded border-[12px] bg-white md:mt-16"
+          className="w-full rounded border-4 bg-white sm:border-8 md:border-[12px]"
         >
           <FadeUp
             delay={0.8}
             style={{
               boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
             }}
-            className="px-5 pb-8 pt-4 md:px-10 lg:px-20"
+            className="px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:px-20"
           >
             <Tabs
               defaultValue={defaultTab}
               className="w-full"
               onValueChange={handleTabChange}
             >
-              <TabsList className="mb-6 grid w-full grid-cols-3">
+              <TabsList className="mb-3 grid h-auto w-full grid-cols-3 gap-1 rounded-full p-1 sm:mb-6 sm:gap-2 sm:p-2">
                 {dagensLunch && (
                   <TabsTrigger
                     value="dagens"
-                    className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2"
+                    className="flex h-full w-full flex-col items-center justify-center gap-0.5 rounded-full py-2 text-xs sm:flex-row sm:gap-2 sm:py-3 sm:text-sm"
                   >
-                    <span className="text-xs sm:text-sm">
+                    <span className="text-12 leading-tight sm:text-xs md:text-sm">
                       {dagensLunch.title?.[locale] || "Dagens lunch"}
                     </span>
-                    <Badge variant="secondary" className="text-xs">
-                      {dagensLunch.price} kr
-                    </Badge>
                   </TabsTrigger>
                 )}
                 {lunchPizza && (
                   <TabsTrigger
                     value="pizza"
-                    className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2"
+                    className="flex h-full w-full flex-col items-center justify-center gap-0.5 rounded-full py-2 text-xs sm:flex-row sm:gap-2 sm:py-3 sm:text-sm"
                   >
-                    <span className="text-xs sm:text-sm">
+                    <span className="text-12 leading-tight sm:text-xs md:text-sm">
                       {lunchPizza.title?.[locale] || "Lunchpizza"}
                     </span>
-                    <Badge variant="secondary" className="text-xs">
-                      {lunchPizza.price} kr
-                    </Badge>
                   </TabsTrigger>
                 )}
                 {monthlySpecial && (
                   <TabsTrigger
                     value="monthly"
-                    className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2"
+                    className="flex h-full w-full flex-col items-center justify-center gap-0.5 rounded-full py-2 text-xs sm:flex-row sm:gap-2 sm:py-3 sm:text-sm"
                   >
-                    <span className="text-xs sm:text-sm">
+                    <span className="text-12 leading-tight sm:text-xs md:text-sm">
                       {monthlySpecial.title?.[locale] || "Månadens tips"}
                     </span>
-                    <Badge variant="secondary" className="text-xs">
-                      {monthlySpecial.price} kr
-                    </Badge>
                   </TabsTrigger>
                 )}
               </TabsList>
 
               <div
-                className="subtle-scroll h-[60vh] overflow-y-scroll"
+                className="subtle-scroll h-[70vh] overflow-y-scroll sm:h-[55vh] md:h-[60vh]"
                 ref={scrollRef}
               >
                 {dagensLunch && (
                   <TabsContent value="dagens" className="mt-0">
-                    <div className="sticky top-0 mb-4 border-b bg-white pb-4">
-                      <h3 className="text-center font-recoleta text-2xl">
+                    <div className="sticky top-0 z-10 mb-3 border-b bg-white pb-2 sm:mb-4 sm:pb-4">
+                      <h3 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
                         {dagensLunch.title?.[locale] || "Dagens lunch"}
                       </h3>
-                      <p className="text-center font-lobster text-3xl text-primary">
-                        {dagensLunch.price} kr
-                      </p>
+                      {dagensLunch.description?.[locale] && (
+                        <p className="mb-1 text-center text-xs text-dark/85 sm:mb-2 sm:text-sm">
+                          {dagensLunch.description[locale]}
+                        </p>
+                      )}
                     </div>
-                    <ul className="mx-auto flex w-full max-w-md flex-col gap-5">
+                    <ul className="mx-auto flex w-full max-w-md flex-col gap-3 px-2 sm:gap-5 sm:px-0">
                       {dagensItems.map((item) => (
                         <MenuItem key={item._id} item={item as Food} />
                       ))}
@@ -212,20 +187,17 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
 
                 {lunchPizza && (
                   <TabsContent value="pizza" className="mt-0">
-                    <div className="sticky top-0 mb-4 border-b bg-white pb-4">
-                      <h3 className="text-center font-recoleta text-2xl">
+                    <div className="sticky top-0 z-10 mb-3 border-b bg-white pb-2 sm:mb-4 sm:pb-4">
+                      <h3 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
                         {lunchPizza.title?.[locale] || "Lunchpizza"}
                       </h3>
                       {lunchPizza.description?.[locale] && (
-                        <p className="mb-2 text-center text-sm text-dark/85">
+                        <p className="mb-1 text-center text-xs text-dark/85 sm:mb-2 sm:text-sm">
                           {lunchPizza.description[locale]}
                         </p>
                       )}
-                      <p className="text-center font-lobster text-3xl text-primary">
-                        {lunchPizza.price} kr
-                      </p>
                     </div>
-                    <ul className="mx-auto flex w-full max-w-md flex-col gap-5">
+                    <ul className="mx-auto flex w-full max-w-md flex-col gap-3 px-2 sm:gap-5 sm:px-0">
                       {pizzaItems.map((item) => (
                         <MenuItem key={item._id} item={item} />
                       ))}
@@ -235,15 +207,17 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
 
                 {monthlySpecial && (
                   <TabsContent value="monthly" className="mt-0">
-                    <div className="sticky top-0 mb-4 border-b bg-white pb-4">
-                      <h3 className="text-center font-recoleta text-2xl">
+                    <div className="sticky top-0 z-10 mb-3 border-b bg-white pb-2 sm:mb-4 sm:pb-4">
+                      <h3 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
                         {monthlySpecial.title?.[locale] || "Månadens tips"}
                       </h3>
-                      <p className="text-center font-lobster text-3xl text-primary">
-                        {monthlySpecial.price} kr
-                      </p>
+                      {monthlySpecial.description?.[locale] && (
+                        <p className="mb-1 text-center text-xs text-dark/85 sm:mb-2 sm:text-sm">
+                          {monthlySpecial.description[locale]}
+                        </p>
+                      )}
                     </div>
-                    <ul className="mx-auto flex w-full max-w-md flex-col gap-5">
+                    <ul className="mx-auto flex w-full max-w-md flex-col gap-3 px-2 sm:gap-5 sm:px-0">
                       {monthlyItem.map((item) => (
                         <MenuItem key={item._id} item={item as Food} />
                       ))}
