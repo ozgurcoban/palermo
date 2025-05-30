@@ -17,7 +17,7 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
   return (
     <>
       <PageHero
-        imageUrl="/images/menu.jpg"
+        imageUrl="/images/hero/lunch-hero-exterior.png"
         imageAlt="lunch hero"
       >
         <FadeUp delay={0.3}>
@@ -27,7 +27,7 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
             </span>
           </Badge>
         </FadeUp>
-        
+
         <FadeUp delay={0.5}>
           <h1 className="mb-3 text-center font-recoleta text-[12vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] sm:mb-4 sm:text-5xl md:text-6xl lg:text-7xl">
             {t("hero.title", { defaultValue: "Lunch" })}
@@ -36,8 +36,9 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
 
         <FadeUp delay={0.7}>
           <p className="max-w-2xl break-words font-lato text-base text-light/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-lg md:text-xl lg:text-2xl">
-            {t("hero.description", { 
-              defaultValue: "Enjoy our daily fresh lunches, pizzas and monthly specials" 
+            {t("hero.description", {
+              defaultValue:
+                "Enjoy our daily fresh lunches, pizzas and monthly specials",
             })}
           </p>
         </FadeUp>

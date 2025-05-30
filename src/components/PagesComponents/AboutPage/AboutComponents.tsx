@@ -26,7 +26,7 @@ const AboutComponents: React.FC<Props> = ({ aboutData }) => {
   return (
     <>
       <PageHero
-        imageUrl="/images/about/restaurant.jpg"
+        imageUrl="/images/hero/about-hero-bar-atmosphere.png"
         imageAlt="about hero"
       >
         <FadeUp delay={0.3}>
@@ -36,7 +36,7 @@ const AboutComponents: React.FC<Props> = ({ aboutData }) => {
             </span>
           </Badge>
         </FadeUp>
-        
+
         <FadeUp delay={0.5}>
           <h1 className="mb-3 text-center font-recoleta text-[12vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] sm:mb-4 sm:text-5xl md:text-6xl lg:text-7xl">
             {t("hero.title", { defaultValue: "About Us" })}
@@ -45,8 +45,9 @@ const AboutComponents: React.FC<Props> = ({ aboutData }) => {
 
         <FadeUp delay={0.7}>
           <p className="max-w-2xl break-words font-lato text-base text-light/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-lg md:text-xl lg:text-2xl">
-            {t("hero.description", { 
-              defaultValue: "Uppsala's most natural meeting place for over 30 years" 
+            {t("hero.description", {
+              defaultValue:
+                "Uppsala's most natural meeting place for over 30 years",
             })}
           </p>
         </FadeUp>
