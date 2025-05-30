@@ -86,16 +86,19 @@ export function Navbar() {
             <LocaleSwitcher />
           </div>
         </div>
-        <div
+        <button
           onClick={() => {
             setIsActive(!isActive);
           }}
           className={
             "flex cursor-pointer items-center justify-center gap-2 p-2 lg:hidden"
           }
+          aria-label={isActive ? t("closeMenu") : t("openMenu")}
+          aria-expanded={isActive}
+          aria-controls="mobile-menu"
         >
-          <div className={`burger ${isActive ? "burgerActive" : ""}`}></div>
-        </div>
+          <div className={`burger ${isActive ? "burgerActive" : ""}`} aria-hidden="true"></div>
+        </button>
       </div>
       <AnimatePresence mode="wait">
         {isActive && (

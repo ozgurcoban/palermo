@@ -34,8 +34,9 @@ export default function NavBody({
           animate="enter"
           exit="exit"
           key={char + i}
+          style={{ display: "inline-block" }}
         >
-          {char}
+          {char === " " ? "\u00A0" : char}
         </motion.span>
       );
     });

@@ -126,6 +126,8 @@
     "about": "Om oss",
     "news": "Nyheter",
     "contact": "Hitta till oss",
+    "openMenu": "Öppna meny",
+    "closeMenu": "Stäng meny",
     "mobile": {
       "siteLanguage": "Språk:"
     }

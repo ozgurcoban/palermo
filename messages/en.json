@@ -124,6 +124,8 @@
     "about": "About",
     "news": "News",
     "contact": "where to find us",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
     "mobile": {
       "siteLanguage": "Site language:"
     }

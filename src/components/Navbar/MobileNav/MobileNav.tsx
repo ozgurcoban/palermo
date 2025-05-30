@@ -24,6 +24,9 @@ export const MobileNav: React.FC<IMobileNav> = ({ links, onCloseMenu }) => {
       animate="enter"
       exit="exit"
       className={"overflow-hidden bg-light"}
+      id="mobile-menu"
+      role="navigation"
+      aria-label="Mobile navigation"
     >
       <div className={"lg:flex gap-12 mb-20 lg:mb-0 lg:justify-between"}>
         <div className={"flex flex-col justify-between"}>
