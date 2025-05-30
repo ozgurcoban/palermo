@@ -6,6 +6,14 @@
 - npm run typecheck: Run TypeScript compiler to check types
 - npm test: Run tests if available
 
+# Commit messages
+
+- Use Conventional Commits format: `type: description`
+- Write commit messages in English, even if communicating in Swedish
+- Keep messages compact and descriptive
+- Common types: feat, fix, docs, style, refactor, test, chore, wip
+- Examples: `feat: add lunch page component`, `fix: resolve menu scroll issue`, `docs: update README`
+
 # Code style
 
 - Use ES modules (import/export) syntax, not CommonJS (require)

@@ -9,7 +9,6 @@ import PreviewLunchPage from "@/components/PagesComponents/LunchPage/PreviewLunc
 import { locales } from "@/config";
 import { notFound } from "next/navigation";
 import { unstable_setRequestLocale } from "next-intl/server";
-import PageTransition from "@/components/ui/PageTransition";
 
 type Props = {
   params: { locale: string };
@@ -35,9 +34,5 @@ export default async function LunchPage({ params: { locale } }: Props) {
       </PreviewProvider>
     );
 
-  return (
-    <PageTransition>
-      <LunchComponents lunchData={lunchData} />
-    </PageTransition>
-  );
+  return <LunchComponents lunchData={lunchData} />;
 }

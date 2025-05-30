@@ -1,7 +1,6 @@
 import React from "react";
 import { INewsItem } from "@/types/generated";
 import { HomeHero as Hero } from "@/components/Heros";
-import PageTransition from "@/components/ui/PageTransition";
 import Gallery from "@/components/Gallery";
 // import Story from "@/components/Story";
 import Menu from "@/components/Menu";
@@ -32,7 +31,7 @@ const HomeComponents: React.FC<Props> = ({
     wall_section,
   } = homeData;
   return (
-    <PageTransition>
+    <>
       <Hero />
       {banner && <Banner banners={banner} />}
       <Menu categories={categoriesData} />
@@ -41,7 +40,7 @@ const HomeComponents: React.FC<Props> = ({
       <Wall data={wall_section} />
       {/* <Testimonials data={testimonials_section} /> */}
       {/* <RecentNews news={news.slice(0, 3)} /> */}
-    </PageTransition>
+    </>
   );
 };
 

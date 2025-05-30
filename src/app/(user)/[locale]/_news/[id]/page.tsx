@@ -1,5 +1,4 @@
 import NewsDetails from "@/components/News/NewsDetails";
-import PageTransition from "@/components/ui/PageTransition";
 import { pathnames } from "@/config";
 import { getNews } from "@/lib/getNews";
 import { INewsItem } from "@/types/generated";
@@ -17,11 +16,7 @@ const NewPage = async ({ params: { id } }: Props) => {
 
   if (!newsDetails) notFound();
 
-  return (
-    <PageTransition>
-      <NewsDetails allNews={news.data} newsDetails={newsDetails} />
-    </PageTransition>
-  );
+  return <NewsDetails allNews={news.data} newsDetails={newsDetails} />;
 };
 
 export default NewPage;

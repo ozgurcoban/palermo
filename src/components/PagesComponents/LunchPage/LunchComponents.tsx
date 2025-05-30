@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import PageTransition from "@/components/ui/PageTransition";
 import { Lunch } from "@/components/Lunch/Lunch";
 import { PageHero } from "@/components/Heros";
 import FadeUp from "@/components/ui/FadeUp";
@@ -16,7 +15,7 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
   const t = useTranslations("Lunch");
 
   return (
-    <PageTransition>
+    <>
       <PageHero
         imageUrl="/images/menu.jpg"
         imageAlt="lunch hero"
@@ -44,7 +43,7 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
         </FadeUp>
       </PageHero>
       <Lunch lunchData={lunchData} />
-    </PageTransition>
+    </>
   );
 };
 

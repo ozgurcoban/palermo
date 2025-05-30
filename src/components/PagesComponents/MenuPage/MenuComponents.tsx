@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import PageTransition from "@/components/ui/PageTransition";
 import Menu from "@/components/Menu";
 import { WelcomeSection } from "@/components/Sections";
 import { PageHero } from "@/components/Heros";
@@ -17,7 +16,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
   const t = useTranslations("MenuPage");
 
   return (
-    <PageTransition>
+    <>
       <PageHero
         imageUrl="/images/menu.jpg"
         imageAlt="menu hero"
@@ -46,7 +45,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
       </PageHero>
       <Menu categories={categoriesData} />
       <WelcomeSection />
-    </PageTransition>
+    </>
   );
 };
 

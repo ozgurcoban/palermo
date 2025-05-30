@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import PageTransition from "@/components/ui/PageTransition";
 import Banner from "@/components/Banner";
 import { PageHero } from "../../Heros";
 import NationEveryone from "../../NationEveryone";
@@ -25,7 +24,7 @@ const AboutComponents: React.FC<Props> = ({ aboutData }) => {
   const t = useTranslations("AboutPage");
 
   return (
-    <PageTransition>
+    <>
       <PageHero
         imageUrl="/images/about/restaurant.jpg"
         imageAlt="about hero"
@@ -63,7 +62,7 @@ const AboutComponents: React.FC<Props> = ({ aboutData }) => {
         </>
       )}
       <WelcomeSection />
-    </PageTransition>
+    </>
   );
 };
 
