@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import FadeUp from "../ui/FadeUp";
 import { useGetLocale } from "@/config";
 import { Clock } from "lucide-react";
 import MenuItem from "../Menu/MenuItems/MenuItem";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import FadeUp from "../ui/FadeUp";
 
 type Props = {
   lunchData: LunchConfiguration;
@@ -110,18 +110,13 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
   return (
     <section className="border-image w-screen py-12 md:py-24" id="lunch">
       <div className="container">
-        <FadeUp
-          delay={0.3}
-          duration={0.5}
-          variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
-          className="w-full rounded border-4 bg-white sm:border-8 md:border-[12px]"
-        >
-          <FadeUp
-            delay={0.8}
-            style={{
-              boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
-            }}
-            className="px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:px-20"
+        <FadeUp delay={0.4}>
+          <div className="w-full rounded border-4 bg-white sm:border-8 md:border-[12px]">
+            <div
+              style={{
+                boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
+              }}
+              className="px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:px-20"
           >
             <Tabs
               defaultValue={defaultTab}
@@ -226,7 +221,8 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
                 )}
               </div>
             </Tabs>
-          </FadeUp>
+            </div>
+          </div>
         </FadeUp>
       </div>
     </section>

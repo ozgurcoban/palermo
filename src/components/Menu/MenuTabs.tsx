@@ -67,7 +67,7 @@ const MenuTabs: React.FC<MenuTabs> = ({
               {t("categories")}
             </span>
           </div>
-          <ul className="mt-3 flex flex-col gap-3 transition-all duration-200">
+          <ul className="mt-3 flex flex-col gap-3">
             {tabs.map((tab) => (
               <li
                 className="flex items-center gap-3 text-primary"
