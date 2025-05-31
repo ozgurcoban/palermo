@@ -97,7 +97,10 @@ export function Navbar() {
           aria-expanded={isActive}
           aria-controls="mobile-menu"
         >
-          <div className={`burger ${isActive ? "burgerActive" : ""}`} aria-hidden="true"></div>
+          <div
+            className={`burger ${isActive ? "burgerActive" : ""}`}
+            aria-hidden="true"
+          ></div>
         </button>
       </div>
       <AnimatePresence mode="wait">

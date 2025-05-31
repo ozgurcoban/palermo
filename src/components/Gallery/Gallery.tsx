@@ -1,3 +1,4 @@
+/// <reference path="../../../typing.d.ts" />
 "use client";
 import React, { useEffect, useState } from "react";
 import FadeUp from "../ui/FadeUp";
@@ -8,8 +9,17 @@ import GalleryImage from "./GalleryImage";
 import { useGetLocale } from "@/config";
 import urlFor from "@/lib/urlFor";
 import { useTranslations } from "next-intl";
+import { GalleryCarousel } from "./GalleryCarousel";
 
-export const Gallery = ({ data }: { data?: GallerySection }) => {
+/// <reference path="../../../typing.d.ts" />
+
+export const Gallery = ({
+  data,
+  mode = "carousel",
+}: {
+  data?: GallerySection;
+  mode?: "grid" | "carousel";
+}) => {
   const t = useTranslations("Buttons");
   const locale = useGetLocale();
 
@@ -30,6 +40,12 @@ export const Gallery = ({ data }: { data?: GallerySection }) => {
 
   const { title, description, images } = data;
 
+  // Return carousel mode if selected
+  if (mode === "carousel") {
+    return <GalleryCarousel galleryData={data} />;
+  }
+
+  // Default grid mode
   return (
     <section className="relative h-full w-screen bg-accent-soft-apricot py-40">
       <div className="container flex flex-col items-center">
@@ -64,7 +80,7 @@ export const Gallery = ({ data }: { data?: GallerySection }) => {
           </div>
           {!showMore && (
             <FadeUp
-              delay={0.05 * images.length}
+              delay={0.55 * images.length}
               className="absolute bottom-0 left-0 z-10 flex h-28 w-full items-center justify-center overflow-hidden bg-gradient-to-t from-neutral-100 pt-4"
             >
               <Button

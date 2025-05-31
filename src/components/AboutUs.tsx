@@ -62,6 +62,7 @@ const AboutUs = ({ data }: { data?: AboutUsSection }) => {
             alt={image.alt ?? title[locale]}
             fill
             className="object-cover object-center"
+            placeholder="blur"
           />
           <div className="absolute inset-0 bg-primary/50" />
         </div>
@@ -101,6 +102,7 @@ const AboutUs = ({ data }: { data?: AboutUsSection }) => {
           alt={image.alt ?? title[locale]}
           fill
           className="object-cover object-center"
+          placeholder="blur"
         />
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
         <div className="grid-template-rows-[auto_1fr_auto] relative grid h-full items-center justify-center gap-10 text-white">

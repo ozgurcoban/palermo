@@ -17,13 +17,14 @@ const NavImg: React.FC<INavImg> = ({ src, selectedLink }) => {
       variants={opacity}
       initial="initial"
       animate={selectedLink.isActive ? "open" : "closed"}
-      className={"hidden lg:block w-[500px] h-[350px] relative"}
+      className={"relative hidden h-[350px] w-[500px] lg:block"}
     >
       <Image
         src={`/images/${src}`}
         fill={true}
         alt={`palermo ${src} image`}
         className="object-cover"
+        placeholder="blur"
       />
     </motion.div>
   );
