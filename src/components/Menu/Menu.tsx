@@ -17,18 +17,56 @@ import {
 
 type Props = {
   categories: Category[];
+  disableAnimations?: boolean;
 };
 
-export const Menu: React.FC<Props> = ({ categories }) => {
+export const Menu: React.FC<Props> = ({
+  categories,
+  disableAnimations = false,
+}) => {
   if (Array.isArray(categories) && categories.length > 0)
-    return <MenuContent categories={categories} />;
+    return (
+      <MenuContent
+        categories={categories}
+        disableAnimations={disableAnimations}
+      />
+    );
 
   return;
 };
 
-const MenuContent: React.FC<Props> = ({ categories }) => {
+const MenuContent: React.FC<Props> = ({
+  categories,
+  disableAnimations = false,
+}) => {
   const t = useTranslations("Home.Menu");
   const locale = useGetLocale();
+
+  // Check if animations should be disabled based on localStorage (24-hour cooldown)
+  const [hasSeenAnimation, setHasSeenAnimation] = useState(false);
+
+  useEffect(() => {
+    if (disableAnimations) {
+      setHasSeenAnimation(true);
+      return;
+    }
+
+    // Check localStorage only on client side
+    if (typeof window !== 'undefined') {
+      const lastSeen = localStorage.getItem("menu-animation-seen");
+      const now = Date.now();
+      const twentyFourHours = 24 * 60 * 60 * 1000;
+      
+      if (lastSeen && (now - parseInt(lastSeen)) < twentyFourHours) {
+        setHasSeenAnimation(true);
+      } else if (!lastSeen) {
+        // First time - save after animations complete
+        setTimeout(() => {
+          localStorage.setItem("menu-animation-seen", now.toString());
+        }, 2000);
+      }
+    }
+  }, [disableAnimations]);
 
   // The tab category index and its value
   const [tab, setTab] = useState(categories[0]._id);
@@ -115,22 +153,38 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
     [categories, tab],
   );
 
+  // Conditional wrapper for animations
+  const AnimWrapper = ({ children, ...props }: any) => {
+    if (disableAnimations || hasSeenAnimation) {
+      // Return children with className and style if provided
+      if (props.className || props.style) {
+        return (
+          <div className={props.className} style={props.style}>
+            {children}
+          </div>
+        );
+      }
+      return <>{children}</>;
+    }
+    return <FadeUp {...props}>{children}</FadeUp>;
+  };
+
   return (
     <section className="border-image w-screen py-24">
       <div className="container">
         {/* <h1>API URL: {process.env.NEXT_PUBLIC_API_URL}</h1> */}
-        <FadeUp>
+        <AnimWrapper>
           <h2 className="title-secondary cursor-default !text-center" id="menu">
             <Localization text="Home.Menu.title" />
           </h2>
-        </FadeUp>
-        <FadeUp
+        </AnimWrapper>
+        <AnimWrapper
           delay={0.3}
           duration={0.5}
           variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
-          className="mt-8 w-full rounded border-4 bg-white sm:border-8 md:border-[12px] md:mt-16"
+          className="mt-8 w-full rounded border-4 bg-white sm:border-8 md:mt-16 md:border-[12px]"
         >
-          <FadeUp
+          <AnimWrapper
             delay={0.8}
             style={{
               boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
@@ -233,15 +287,15 @@ const MenuContent: React.FC<Props> = ({ categories }) => {
                 ) : null}
               </div>
               <hr className="mt-4" />
-              <FadeUp delay={1} className="h-full w-full">
+              <div className="h-full w-full">
                 <MenuItems data={menus_list} />
-              </FadeUp>
+              </div>
             </div>
-          </FadeUp>
-          <FadeUp delay={0.2}>
+          </AnimWrapper>
+          <AnimWrapper delay={0.2}>
             <hr />
-          </FadeUp>
-        </FadeUp>
+          </AnimWrapper>
+        </AnimWrapper>
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
 
   return (
     <>
-      <PageHero imageUrl="/images/menu.jpg" imageAlt="menu hero">
+      <PageHero imageUrl="/images/hero/menu-hero.png" imageAlt="menu hero">
         <FadeUp delay={0.3}>
           <Badge className="pointer-events-none mb-4 rounded-sm bg-muted-foreground/80 px-4 py-2 font-medium text-secondary opacity-90">
             <span className="uppercase tracking-wider">
@@ -42,7 +42,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
         </FadeUp>
       </PageHero>
       <FadeUp delay={0.4}>
-        <Menu categories={categoriesData} />
+        <Menu categories={categoriesData} disableAnimations />
       </FadeUp>
       <WelcomeSection />
     </>

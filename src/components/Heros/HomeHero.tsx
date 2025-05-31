@@ -28,7 +28,7 @@ export function HomeHero() {
   // unstable_setRequestLocale(locale)
 
   return (
-    <div className="container relative flex h-[70vh] w-screen items-center justify-center">
+    <div className="relative flex h-[70vh] w-screen items-center justify-center">
       <MotionDiv
         className="relative h-full overflow-hidden"
         variants={variants}

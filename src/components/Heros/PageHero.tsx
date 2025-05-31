@@ -22,15 +22,17 @@ interface HeroProps {
   overlayGradient?: string;
 }
 
-export function PageHero({ 
-  imageUrl, 
-  imageAlt, 
+export function PageHero({
+  imageUrl,
+  imageAlt,
   height = "h-[50vh]",
   children,
-  overlayGradient = "from-black/30 via-black/40 to-black/50"
+  overlayGradient = "from-black/30 via-black/40 to-black/50",
 }: HeroProps) {
   return (
-    <div className={`container relative flex w-screen items-center justify-center ${height}`}>
+    <div
+      className={`relative flex w-screen items-center justify-center ${height}`}
+    >
       <MotionDiv
         className="relative h-full w-full overflow-hidden"
         variants={fadeVariants}
@@ -42,14 +44,16 @@ export function PageHero({
           ease: "easeOut",
         }}
       >
-        <div className={`absolute z-10 h-full w-full bg-gradient-to-b ${overlayGradient}`} />
+        <div
+          className={`absolute z-10 h-full w-full bg-gradient-to-b ${overlayGradient}`}
+        />
         <Image
           src={imageUrl}
           alt={imageAlt}
           width={1920}
           height={1080}
           style={{ objectFit: "cover" }}
-          className="h-full w-full"
+          className="h-full w-full object-[50%_50%] lg:object-[50%_60%] xl:object-[50%_75%]"
           priority
         />
       </MotionDiv>
