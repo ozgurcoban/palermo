@@ -9,6 +9,8 @@ import Map from "./Map";
 import { useGetLocale } from "@/config";
 import Localization from "../localization";
 import FadeUp from "../ui/FadeUp";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 export default function ContactInfoSection({
   contactData,
@@ -26,86 +28,88 @@ export default function ContactInfoSection({
     );
 
   const { contact_infos, opening_hours } = contactData;
-  // console.log("Full contactData object:", JSON.stringify(contactData, null, 2));
-  // console.log("ContactData keys:", Object.keys(contactData));
-  // console.log("ContactInfos:", contact_infos);
-  // console.log("OpeningHours:", opening_hours);
 
   return (
     <section className="border-image w-screen pt-28" id="contact">
       <div className="w-full">
         <div className="container py-16">
-          <div className="grid items-center gap-5 lg:grid-cols-2">
-            <div className="mb-10 flex flex-col justify-between gap-10 md:flex-row lg:flex-col">
+          <div className="grid gap-8 lg:grid-cols-2">
+            <div className="flex flex-col gap-6">
               {contact_infos && (
-                <div className="flex-1">
-                  <FadeUp delay={0.4}>
-                    <h2 className="title-secondary flex">
-                      <Localization text="ContactSection.addressTitle" />
-                    </h2>
-                  </FadeUp>
-                  <ul>
-                    {contact_infos.address && (
-                      <FadeUp delay={0.6}>
-                        <li className="flex items-center gap-2 pt-3 transition-all duration-300 hover:text-accent">
-                          <HomeIcon className="size-5" />
-                          <Link href="#">{contact_infos.address}</Link>
-                        </li>
-                      </FadeUp>
-                    )}
-                    {contact_infos.telephone && (
-                      <FadeUp delay={0.8}>
-                        <li className="flex items-center gap-2 pt-3 transition-all duration-300 hover:text-accent">
-                          <ChatBubbleIcon className="size-5" />
-                          <Link href={`tel:${contact_infos.telephone}`}>
+                <FadeUp delay={0.4}>
+                  <Card className="border-0 bg-white/80 shadow-lg">
+                    <CardHeader>
+                      <CardTitle className="title-secondary">
+                        <Localization text="ContactSection.addressTitle" />
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {contact_infos.address && (
+                        <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
+                          <HomeIcon className="size-5 text-accent" />
+                          <Link href="#" className="text-base">
+                            {contact_infos.address}
+                          </Link>
+                        </div>
+                      )}
+                      {contact_infos.telephone && (
+                        <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
+                          <ChatBubbleIcon className="size-5 text-accent" />
+                          <Link href={`tel:${contact_infos.telephone}`} className="text-base">
                             <Localization text="ContactSection.phone" />
                             :&nbsp;
                             {contact_infos.telephone}
                           </Link>
-                        </li>
-                      </FadeUp>
-                    )}
-                    {contact_infos.email && (
-                      <FadeUp delay={1}>
-                        <li className="flex items-center gap-2 pt-3 transition-all duration-300 hover:text-accent">
-                          <EnvelopeClosedIcon className="size-5" />
-                          <Link href={`mailto:${contact_infos.email}`}>
+                        </div>
+                      )}
+                      {contact_infos.email && (
+                        <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
+                          <EnvelopeClosedIcon className="size-5 text-accent" />
+                          <Link href={`mailto:${contact_infos.email}`} className="text-base">
                             <Localization text="ContactSection.email" />
                             :&nbsp;
                             {contact_infos.email}
                           </Link>
-                        </li>
-                      </FadeUp>
-                    )}
-                  </ul>
-                </div>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </FadeUp>
               )}
               {opening_hours && (
-                <div className="flex-1">
-                  <FadeUp delay={1.2}>
-                    <h2 className="title-secondary flex">
-                      <Localization text="ContactSection.openingHours" />
-                    </h2>
-                  </FadeUp>
-                  <ul>
-                    {opening_hours.map(({ day, time }) => (
-                      <li
-                        key={day[locale]}
-                        className="flex max-w-sm items-center justify-between gap-8 pt-3"
-                      >
-                        <FadeUp delay={1.4}>
-                          <span className="font-medium">{day[locale]}</span>
-                        </FadeUp>
-                        <FadeUp delay={1.6}>
-                          <span className="">{time}</span>
-                        </FadeUp>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <FadeUp delay={0.6}>
+                  <Card className="border-0 bg-white/80 shadow-lg">
+                    <CardHeader>
+                      <CardTitle className="title-secondary">
+                        <Localization text="ContactSection.openingHours" />
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        {opening_hours.map(({ day, time }, index) => (
+                          <div key={day[locale]}>
+                            <div className="flex items-center justify-between">
+                              <span className="font-medium text-base">{day[locale]}</span>
+                              <span className="text-base text-muted-foreground">{time}</span>
+                            </div>
+                            {index < opening_hours.length - 1 && (
+                              <Separator className="mt-3 bg-gray-200" />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </FadeUp>
               )}
             </div>
-            <ContactForm />
+            <FadeUp delay={0.8}>
+              <Card className="border-0 bg-white/80 shadow-lg h-fit">
+                <CardContent className="p-6">
+                  <ContactForm />
+                </CardContent>
+              </Card>
+            </FadeUp>
           </div>
         </div>
       </div>

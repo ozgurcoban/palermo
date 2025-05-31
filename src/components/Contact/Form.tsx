@@ -8,21 +8,32 @@ import { useTranslations } from "next-intl";
 import { ContactFormSchema } from "@/lib/ContactFormSchema";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
 import { sendMail } from "@/app/(user)/_actions";
-import FadeUp from "../ui/FadeUp";
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 
 export default function ContactForm() {
   const t = useTranslations("ContactSection");
   const b = useTranslations("Buttons");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<ContactFormInputs>({ resolver: zodResolver(ContactFormSchema) });
+  
+  const form = useForm<ContactFormInputs>({
+    resolver: zodResolver(ContactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
 
   const processForm: SubmitHandler<ContactFormInputs> = async data => {
     const result = await sendMail(data);
@@ -32,7 +43,7 @@ export default function ContactForm() {
         title: t("Form.title"),
         description: t("Form.description"),
       });
-      reset();
+      form.reset();
       return;
     }
     toast({
@@ -42,65 +53,85 @@ export default function ContactForm() {
     });
   };
   return (
-    <form onSubmit={handleSubmit(processForm)} className="self-start">
-      <FadeUp delay={1.4}>
-        <h2 className="title-secondary flex">{t("getInTouch")}</h2>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(processForm)} className="space-y-6">
+          <h2 className="title-secondary mb-8">{t("getInTouch")}</h2>
 
-        <div className="flex gap-2 md:gap-4 pb-4 pt-3">
-          {/* Name field */}
+          <div className="grid gap-6">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {/* Name field */}
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        placeholder={t("name")}
+                        className="h-12 border border-gray-300 bg-white px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-          <div className="flex-1">
-            <input
-              className=" border-2 border-dark w-full px-3 py-4 placeholder:capitalize rounded"
-              placeholder={t("name")}
-              {...register("name")}
+              {/* Email field */}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder={t("email")}
+                        className="h-12 border border-gray-300 bg-white px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            {/* Message field */}
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea
+                      placeholder={t("message")}
+                      className="min-h-[140px] resize-none border border-gray-300 bg-white p-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {errors.name?.message && (
-              <p className="ml-1 mt-1 text-sm text-destructive">
-                {errors.name.message}
-              </p>
-            )}
-          </div>
 
-          {/* Email field */}
-          <div className="flex-1">
-            <input
-              className="flex-1 border-2 border-dark w-full px-3 py-4  placeholder:capitalize rounded"
-              placeholder={t("email")}
-              {...register("email")}
-            />
-            {errors.email?.message && (
-              <p className="ml-1 mt-1 text-sm text-destructive">
-                {errors.email.message}
-              </p>
-            )}
+            <Button
+              type="submit"
+              size="lg"
+              className="mt-2 bg-accent hover:bg-accent/90"
+              disabled={form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  {t("sending")}
+                </span>
+              ) : (
+                b("submit")
+              )}
+            </Button>
           </div>
-        </div>
-        {/* Message field */}
-        <div className="">
-          <textarea
-            rows={5}
-            placeholder={t("message")}
-            className="border-2 border-dark w-full p-4 placeholder:capitalize rounded"
-            {...register("message")}
-          />
-          {errors.message?.message && (
-            <p className="ml-1 text-sm text-destructive">
-              {errors.message.message}
-            </p>
-          )}
-        </div>
-
-        <Button
-          type="submit"
-          size={"lg"}
-          className="mt-4 bg-accent"
-          aria-disabled={isSubmitting}
-          disabled={isSubmitting}
-        >
-          {b("submit")}
-        </Button>
-      </FadeUp>
-    </form>
+      </form>
+    </Form>
   );
 }

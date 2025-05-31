@@ -2,11 +2,11 @@
 
 import React from "react";
 import Menu from "@/components/Menu";
-import { WelcomeSection } from "@/components/Sections";
 import { PageHero } from "@/components/Heros";
 import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
+import FoodDeliveryApps from "@/components/FoodDeliveryApps";
 
 type Props = {
   categoriesData: Category[];
@@ -44,7 +44,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
       <FadeUp delay={0.4}>
         <Menu categories={categoriesData} disableAnimations />
       </FadeUp>
-      <WelcomeSection />
+      <FoodDeliveryApps />
     </>
   );
 };

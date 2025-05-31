@@ -31,11 +31,18 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
   const locale = useGetLocale();
   const title = galleryData.title[locale];
   const description = galleryData.description?.[locale];
-  const plugin = useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
+  const plugin = useRef(Autoplay({ 
+    delay: 4000, 
+    stopOnInteraction: false,
+    stopOnMouseEnter: true,
+    playOnInit: false // Don't start automatically
+  }));
 
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!api) {
@@ -49,6 +56,38 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
+
+  // Intersection Observer to start autoplay when in view
+  useEffect(() => {
+    const currentRef = carouselRef.current;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isInView) {
+            setIsInView(true);
+            plugin.current.play();
+          } else if (!entry.isIntersecting && isInView) {
+            setIsInView(false);
+            plugin.current.stop();
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Trigger when 50% of carousel is visible
+      }
+    );
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [isInView]);
 
   return (
     <section className="relative h-full w-screen bg-accent-soft-apricot py-40">
@@ -71,7 +110,8 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
         )}
 
         <FadeUp delay={0.3} className="relative mt-36 w-full">
-          <Carousel
+          <div ref={carouselRef}>
+            <Carousel
             setApi={setApi}
             opts={{
               align: "start",
@@ -119,7 +159,8 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
               </div>
               <CarouselNext className="position-static relative right-auto top-auto translate-x-0 translate-y-0" />
             </div>
-          </Carousel>
+            </Carousel>
+          </div>
         </FadeUp>
       </div>
     </section>

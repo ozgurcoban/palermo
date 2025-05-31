@@ -24,7 +24,6 @@ const NavImg: React.FC<INavImg> = ({ src, selectedLink }) => {
         fill={true}
         alt={`palermo ${src} image`}
         className="object-cover"
-        placeholder="blur"
       />
     </motion.div>
   );

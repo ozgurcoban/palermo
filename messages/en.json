@@ -160,5 +160,19 @@
       "title": "About Us",
       "description": "Uppsala's most natural meeting place for over 30 years"
     }
+  },
+  "FoodDelivery": {
+    "subtitle": "IN YOUR MAUNI",
+    "title": "Order home delivery",
+    "description": "Find Palermo on all major food delivery platforms. Choose your favorite and get your meal delivered conveniently and smoothly.",
+    "orderVia": "Order via {app}"
+  },
+  "SEOSection": {
+    "title": "Affordable pizza, meat dishes and more in the heart of Uppsala",
+    "badge": "EXPLORE PALERMO'S MENU WITH AFFORDABLE PIZZA, PASTA AND MORE – IN THE HEART OF UPPSALA",
+    "heading": "A menu for all tastes and wallets",
+    "description1": "Palermo is an affordable restaurant in the heart of Uppsala – specifically at Sysslomansgatan 7. Here our guests are met with a varied menu with everything from pizza to meat dishes.",
+    "description2": "With us, you'll always find something that suits your taste buds. Whether you're craving a classic pizza, pasta, or one of our meat dishes – Uppsala's on the table after dinner and when the stomach is talking. Our menu is divided into clear categories that make it easy to find what you're craving.",
+    "description3": "Whether you're in the mood for a creamy pizza, a hearty pasta dish, or perhaps a classic cut of meat – Palermo offers something for all tastes. Our professional staff ensures that prices remain low in Uppsala. The main restaurant is perfect for both students and families."
   }
 }

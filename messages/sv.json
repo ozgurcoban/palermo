@@ -162,5 +162,19 @@
       "title": "Om oss",
       "description": "Uppsalas mest naturliga mötesplats i över 30 år"
     }
+  },
+  "FoodDelivery": {
+    "subtitle": "I DIN MAUNI",
+    "title": "Beställ hemleverans",
+    "description": "Palermo hittas på alla stora plattformar för hemkörning av mat. Välj din favorit och få din mathelevererad bekvämt och smidigt.",
+    "orderVia": "Beställ via {app}"
+  },
+  "SEOSection": {
+    "title": "Prisvärd pizza, kötträtter och mer i hjärtat av Uppsala",
+    "badge": "UTFORSKA PALERMOS MENY MED PRISVÄRD PIZZA, PASTA OCH MER – MITT I HJÄRTAT AV UPPSALA",
+    "heading": "En meny för alla smaker och plånböcker",
+    "description1": "Palermo är en prisvärd restaurang i hjärtat av Uppsala – närmare bestämt på Sysslomansgatan 7. Här möts våra gäster av en varierad meny med allt från pizza till kötträtter.",
+    "description2": "Hos oss hittar du alltid något som passar dina smaklökar. Oavsett om du är sugen på en klassisk pizza, pasta eller något av våra kötträtter – Uppsalas på bord efter middag och när mage snackar. Vår meny är uppdelad i tydliga kategorier som gör det enkelt att hitta vad du är sugen på.",
+    "description3": "Oavsett om du är sugen på en krämig pizza, en fyllig pastarätt eller kanske en klassisk köttbit – Palermo erbjuder något för alla smaker. Vår proffsiga personal gör att medelsa sario är låga i Uppsala. Huvudrestaurangen ligger bara studenten och familjer."
   }
 }

@@ -77,7 +77,7 @@ const MenuContent: React.FC<Props> = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+    // Removed debug log
   }, []);
 
   useEffect(() => {
