@@ -38,7 +38,7 @@ const AboutComponents: React.FC<Props> = ({ aboutData }) => {
         </FadeUp>
 
         <FadeUp delay={0.5}>
-          <h1 className="mb-3 text-center font-recoleta text-[12vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] sm:mb-4 sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="hero-title-simple mb-3 sm:mb-4">
             {t("hero.title", { defaultValue: "About Us" })}
           </h1>
         </FadeUp>

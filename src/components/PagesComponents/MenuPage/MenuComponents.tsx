@@ -27,7 +27,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
         </FadeUp>
 
         <FadeUp delay={0.5}>
-          <h1 className="mb-3 text-center font-recoleta text-[12vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] sm:mb-4 sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="hero-title-simple mb-3 sm:mb-4">
             {t("hero.title", { defaultValue: "Menu" })}
           </h1>
         </FadeUp>
@@ -41,7 +41,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
           </p>
         </FadeUp>
       </PageHero>
-      <FadeUp delay={0.4}>
+      <FadeUp delay={0.9}>
         <Menu categories={categoriesData} disableAnimations />
       </FadeUp>
       <FoodDeliveryApps />

@@ -52,12 +52,12 @@ const MenuContent: React.FC<Props> = ({
     }
 
     // Check localStorage only on client side
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const lastSeen = localStorage.getItem("menu-animation-seen");
       const now = Date.now();
       const twentyFourHours = 24 * 60 * 60 * 1000;
-      
-      if (lastSeen && (now - parseInt(lastSeen)) < twentyFourHours) {
+
+      if (lastSeen && now - parseInt(lastSeen) < twentyFourHours) {
         setHasSeenAnimation(true);
       } else if (!lastSeen) {
         // First time - save after animations complete
@@ -170,22 +170,23 @@ const MenuContent: React.FC<Props> = ({
   };
 
   return (
-    <section className="border-image w-screen py-24">
+    <section className="border-image w-screen py-16 md:py-20">
       <div className="container">
         {/* <h1>API URL: {process.env.NEXT_PUBLIC_API_URL}</h1> */}
-        <AnimWrapper>
+        <AnimWrapper delay={0.9}>
           <h2 className="title-secondary cursor-default !text-center" id="menu">
             <Localization text="Home.Menu.title" />
           </h2>
         </AnimWrapper>
+        <h4>kiren i munnen hoppar i hagen</h4>
         <AnimWrapper
-          delay={0.3}
+          delay={1.2}
           duration={0.5}
           variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
           className="mt-8 w-full rounded border-4 bg-white sm:border-8 md:mt-16 md:border-[12px]"
         >
           <AnimWrapper
-            delay={0.8}
+            delay={1.7}
             style={{
               boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
             }}

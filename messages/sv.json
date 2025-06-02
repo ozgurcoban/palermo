@@ -4,7 +4,7 @@
       "title": "Palermo",
       "description": "Prisvärd restaurang och pizzeria på Sysslomansgatan",
       "badge": {
-        "main": "UPPSALAS 14:",
+        "main": "UPPSALAS (INOFFICIELLA) 14:",
         "suffix": "e NATION"
       },
       "cta": "Kolla in menyn"
@@ -151,9 +151,12 @@
   },
   "Lunch": {
     "hero": {
-      "badge": "Vardagar 11:00-14:00",
-      "title": "Lunch",
-      "description": "Njut av våra dagsfärska luncher, pizzor och månadens specialiteter"
+      "title": "Lunch i Uppsala - varje vardag på Palermo",
+      "description": "Dagens lunch {price} kr • Alltid med sallad, bröd & kaffe"
+    },
+    "content": {
+      "title": "Uppsalas mest avslappnade lunch",
+      "description": "Glöm stela business luncher. Här möts studenter och Uppsalabor över rejäl husmanskost och pizza mitt i centrum. Perfekt när plånboken är tunn men magen skriker - och ja, det är därför vi fortfarande kör samma schyssta priser som förr."
     }
   },
   "AboutPage": {

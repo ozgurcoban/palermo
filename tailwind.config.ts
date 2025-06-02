@@ -15,7 +15,7 @@ const config = {
         lato: ["var(--font-lato)", "sans-serif"],
         recoleta: ["var(--font-recoleta)"],
         lobster: ["var(--font-lobster)", "sans-serif"],
-        "lobster-two": ["var(--font-lobster-two)", "sans-serif"],
+        graduate: ["var(--font-graduate)", "sans-serif"],
       },
       colors: {
         dark: "rgb(0, 0, 0)",

@@ -1,4 +1,4 @@
-import { Lobster, Lato, Lobster_Two } from "next/font/google";
+import { Lobster, Lato, Graduate } from "next/font/google";
 import localFont from "next/font/local";
 
 export const recoleta = localFont({
@@ -54,8 +54,8 @@ export const lobster = Lobster({
   weight: "400",
 });
 
-export const lobsterTwo = Lobster_Two({
+export const graduate = Graduate({
   subsets: ["latin"],
-  variable: "--font-lobster-two",
-  weight: ["400", "700"],
+  variable: "--font-graduate",
+  weight: "400",
 });

@@ -4,7 +4,7 @@
       "title": "Palermo",
       "description": "A great-value restaurant and pizzeria on Sysslomansgatan",
       "badge": {
-        "main": "UPPSALAS 14:",
+        "main": "UPPSALAS (UNOFFICIAL) 14:",
         "suffix": "th NATION"
       },
       "cta": "Check out the menu"
@@ -149,9 +149,12 @@
   },
   "Lunch": {
     "hero": {
-      "badge": "Weekdays 11:00-14:00",
-      "title": "Lunch",
-      "description": "Enjoy our daily fresh lunches, pizzas and monthly specials"
+      "title": "Weekday lunch at Palermo Uppsala", 
+      "description": "Daily lunch {price} SEK • Salad, bread & coffee included"
+    },
+    "content": {
+      "title": "Uppsala's most laid-back lunch",
+      "description": "No stuffy business lunches here. Just students and locals gathering over proper comfort food and pizza downtown. Perfect for tight budgets and big appetites - which is exactly why we've kept our prices honest since day one."
     }
   },
   "AboutPage": {
