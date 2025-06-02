@@ -1,0 +1,10 @@
+# Block all web crawlers for development sites
+User-agent: *
+Disallow: /
+
+# Allow crawling on production domain
+# This will be overridden when deployed to production
+# Production domain should have its own robots.txt
+
+# Sitemap location (update for production)
+# Sitemap: https://www.palermo-uppsala.se/sitemap.xml

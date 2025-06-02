@@ -6,7 +6,7 @@ import PreviewProvider from "@/components/PreviewProvider";
 import PreviewAboutPage from "@/components/PagesComponents/AboutPage/PreviewAboutPage";
 import AboutComponents from "@/components/PagesComponents/AboutPage/AboutComponents";
 import { locales } from "@/config";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 type Props = {
@@ -14,6 +14,9 @@ type Props = {
 };
 
 export default async function AboutPage({ params: { locale } }: Props) {
+  // Temporarily redirect to home page
+  redirect(`/${locale}`);
+  
   // Validate that the incoming `locale` parameter is valid
   const isValidLocale = locales.some((cur) => cur === locale);
   if (!isValidLocale) notFound();

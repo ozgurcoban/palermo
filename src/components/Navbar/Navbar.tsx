@@ -47,11 +47,11 @@ export function Navbar() {
       href: "/lunch",
       src: "lunch.jpg",
     },
-    {
-      title: t("about"),
-      href: "/about",
-      src: "home.jpg",
-    },
+    // {
+    //   title: t("about"),
+    //   href: "/about",
+    //   src: "home.jpg",
+    // },
     // {
     //   title: t("news"),
     //   href: "/news",

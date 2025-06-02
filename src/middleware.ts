@@ -11,6 +11,15 @@ export default async function middleware(request: NextRequest) {
     localePrefix,
   });
   const response = handleI18nRouting(request);
+  
+  // Add X-Robots-Tag header for non-production environments
+  const hostname = request.headers.get('host') || '';
+  const isProduction = hostname.includes('palermo-uppsala.se');
+  
+  if (!isProduction) {
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet, noimageindex');
+  }
+  
   return response;
 }
 
