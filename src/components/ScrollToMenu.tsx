@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { ArrowDown } from "lucide-react";
 import { motion, useTransform, useMotionValue, animate } from "framer-motion";
 import { useEffect } from "react";
+import { trackMenuCTAClick } from "@/lib/gtag";
 
 const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
   const y = useMotionValue(0);
@@ -26,6 +27,7 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
   }, [y]);
 
   const scrollToMenu = () => {
+    trackMenuCTAClick();
     const menu = document.getElementById("menu");
     if (menu) {
       menu.scrollIntoView({ behavior: "smooth" });

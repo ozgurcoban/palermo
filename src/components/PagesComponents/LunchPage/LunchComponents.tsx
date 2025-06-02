@@ -7,6 +7,7 @@ import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { useGetLocale } from "@/config";
+import { trackLunchPageCTAClick } from "@/lib/gtag";
 
 type Props = {
   lunchData: LunchConfiguration;
@@ -17,6 +18,7 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
   const locale = useGetLocale();
 
   const scrollToLunch = () => {
+    trackLunchPageCTAClick();
     const lunchSection = document.getElementById("lunch");
     if (lunchSection) {
       // Små fördröjning för att undvika animationskonflikter

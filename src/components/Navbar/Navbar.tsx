@@ -10,10 +10,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import MobileNav from "./MobileNav";
 import { background, opacity } from "./anim";
 import { Button } from "../ui/button";
+import { event } from "@/lib/gtag";
 
 export function Navbar() {
-  const handleClick = useCallback((event: React.MouseEvent) => {
-    event.preventDefault();
+  const handleClick = useCallback((clickEvent: React.MouseEvent) => {
+    clickEvent.preventDefault();
+    
+    // Track the CTA click
+    event({
+      action: 'click',
+      category: 'navigation',
+      label: 'hitta_till_oss_cta',
+    });
+
     const contactElement = document.getElementById("contact");
     if (contactElement) {
       window.scrollTo({

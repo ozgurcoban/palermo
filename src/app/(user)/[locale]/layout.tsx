@@ -13,6 +13,7 @@ import { CONTACT_QUERY, LUNCH_QUERY } from "../../../../sanity/lib/queries";
 import { getClient } from "../../../../sanity/lib/client";
 import { generateRestaurantSchema } from "@/lib/metadata";
 import Script from "next/script";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 type Props = {
   children: ReactNode;
@@ -59,6 +60,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="overflow-x-hidden">
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
         <Script
           id="restaurant-schema"
           type="application/ld+json"

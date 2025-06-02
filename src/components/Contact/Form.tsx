@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from "zod";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 import { ContactFormSchema } from "@/lib/ContactFormSchema";
 
@@ -19,12 +20,14 @@ import {
 } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
 import { sendMail } from "@/app/(user)/_actions";
+import { trackContactFormSubmit, trackContactFormStart } from "@/lib/gtag";
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 
 export default function ContactForm() {
   const t = useTranslations("ContactSection");
   const b = useTranslations("Buttons");
+  const [hasStartedForm, setHasStartedForm] = useState(false);
   
   const form = useForm<ContactFormInputs>({
     resolver: zodResolver(ContactFormSchema),
@@ -35,10 +38,18 @@ export default function ContactForm() {
     },
   });
 
+  const handleFormStart = () => {
+    if (!hasStartedForm) {
+      trackContactFormStart();
+      setHasStartedForm(true);
+    }
+  };
+
   const processForm: SubmitHandler<ContactFormInputs> = async data => {
     const result = await sendMail(data);
 
     if (result?.success) {
+      trackContactFormSubmit();
       toast({
         title: t("Form.title"),
         description: t("Form.description"),
@@ -72,6 +83,7 @@ export default function ContactForm() {
                       <Input
                         placeholder={t("name")}
                         className="h-12 border border-gray-300 bg-white px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        onFocus={handleFormStart}
                         {...field}
                       />
                     </FormControl>

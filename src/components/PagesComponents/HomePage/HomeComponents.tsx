@@ -47,7 +47,11 @@ const HomeComponents: React.FC<Props> = ({
       />
       <Hero />
       {banner && <Banner banners={banner} />}
-      <Menu categories={categoriesData} />
+      <section className="w-full py-16 md:py-20">
+        <div className="container">
+          <Menu categories={categoriesData} />
+        </div>
+      </section>
       {/* <AboutUs data={story_section} /> */}
       <Gallery data={gallery_section} />
       <FAQ />

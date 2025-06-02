@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import MotionDiv from "@/components/ui/MotionDiv";
 import FadeUp from "@/components/ui/FadeUp";
@@ -8,6 +10,7 @@ import { Badge } from "../ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { Utensils } from "lucide-react";
+import { trackLunchCTAClick } from "@/lib/gtag";
 
 const variants = {
   initial: {
@@ -89,7 +92,11 @@ export function HomeHero() {
             size="lg"
             className="group border-2 border-white bg-white/20 font-medium uppercase tracking-wide text-white backdrop-blur-sm transition-all hover:bg-white/30 hover:text-white"
           >
-            <Link href="/lunch" className="flex items-center gap-2">
+            <Link 
+              href="/lunch" 
+              className="flex items-center gap-2"
+              onClick={trackLunchCTAClick}
+            >
               <Utensils className="h-4 w-4" />
               <Localization text="Navigation.lunch" />
             </Link>

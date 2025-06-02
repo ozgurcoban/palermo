@@ -1,3 +1,5 @@
+"use client";
+
 import {
   HomeIcon,
   ChatBubbleIcon,
@@ -13,6 +15,7 @@ import Localization from "../localization";
 import FadeUp from "../ui/FadeUp";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { trackLunchOpeningHoursClick, trackPhoneClick, trackEmailClick, trackAddressClick } from "@/lib/gtag";
 
 export default function ContactInfoSection({
   contactData,
@@ -65,7 +68,11 @@ export default function ContactInfoSection({
                       {contact_infos.address && (
                         <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
                           <HomeIcon className="size-5 text-accent" />
-                          <Link href="#" className="text-base">
+                          <Link 
+                            href="#" 
+                            className="text-base"
+                            onClick={trackAddressClick}
+                          >
                             {contact_infos.address}
                           </Link>
                         </div>
@@ -73,7 +80,11 @@ export default function ContactInfoSection({
                       {contact_infos.telephone && (
                         <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
                           <ChatBubbleIcon className="size-5 text-accent" />
-                          <Link href={`tel:+4618131820`} className="text-base">
+                          <Link 
+                            href={`tel:+4618131820`} 
+                            className="text-base"
+                            onClick={trackPhoneClick}
+                          >
                             <Localization text="ContactSection.phone" />
                             :&nbsp; 018-13 18 20
                           </Link>
@@ -85,6 +96,7 @@ export default function ContactInfoSection({
                           <Link
                             href={`mailto:${contact_infos.email}`}
                             className="text-base"
+                            onClick={trackEmailClick}
                           >
                             <Localization text="ContactSection.email" />
                             :&nbsp;
@@ -127,6 +139,7 @@ export default function ContactInfoSection({
                             <IntlLink
                               href="/lunch"
                               className="group -mx-2 block rounded-md px-2 pb-2 pt-2 transition-all duration-300 hover:bg-accent/5"
+                              onClick={trackLunchOpeningHoursClick}
                             >
                               <div className="mb-2 flex items-center justify-between">
                                 <div className="flex items-center gap-2">

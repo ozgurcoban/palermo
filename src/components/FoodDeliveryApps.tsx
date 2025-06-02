@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import { trackDeliveryAppClick } from "@/lib/gtag";
 
 interface DeliveryApp {
   name: string;
@@ -91,6 +92,7 @@ export default function FoodDeliveryApps() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2"
+                      onClick={() => trackDeliveryAppClick(app.name)}
                     >
                       {app.buttonText}
                       <ArrowTopRightIcon className="h-4 w-4" />
