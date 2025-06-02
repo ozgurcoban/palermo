@@ -109,9 +109,14 @@ p {
 
 /* Variant without stroke for PageHero */
 .hero-title-simple {
-  @apply font-graduate text-center text-[10vw] font-bold leading-tight tracking-wider md:text-5xl lg:text-6xl xl:text-7xl;
+  @apply font-graduate text-center text-[8vw] font-bold leading-tight tracking-wider sm:text-5xl md:text-6xl lg:text-7xl;
   color: white;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero description text */
+.hero-description {
+  @apply max-w-2xl break-words font-lato text-sm text-light/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-base md:text-lg lg:text-xl xl:text-2xl;
 }
 
 .burger {

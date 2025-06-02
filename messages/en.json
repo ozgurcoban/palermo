@@ -150,7 +150,8 @@
   "Lunch": {
     "hero": {
       "title": "Weekday lunch at Palermo Uppsala", 
-      "description": "Daily lunch {price} SEK • Salad, bread & coffee included"
+      "description": "Daily lunch {price} SEK • Salad, bread & coffee included",
+      "cta": "View today's lunch"
     },
     "content": {
       "title": "Uppsala's most laid-back lunch",

@@ -16,13 +16,22 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
   const t = useTranslations("Lunch");
   const locale = useGetLocale();
 
+  const scrollToLunch = () => {
+    const lunchSection = document.getElementById("lunch");
+    if (lunchSection) {
+      // Små fördröjning för att undvika animationskonflikter
+      setTimeout(() => {
+        lunchSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
+  };
+
   return (
     <>
       <PageHero
         imageUrl="/images/hero/lunch-hero-exterior.png"
         imageAlt="lunch hero"
-      >
-        <FadeUp delay={0.3}>
+        badge={
           <Badge className="pointer-events-none mb-4 rounded-sm bg-muted-foreground/80 px-4 py-2 font-medium text-secondary opacity-90">
             <span className="uppercase tracking-wider">
               {lunchData?.timeInfo
@@ -30,26 +39,18 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
                 : t("hero.badge", { defaultValue: "Vardagar 11:00-15:00" })}
             </span>
           </Badge>
-        </FadeUp>
-
-        <FadeUp delay={0.5}>
-          <h1 className="hero-title-simple mb-3 sm:mb-4">
-            {t("hero.title", {
-              defaultValue: "Weekday lunch at Palermo Uppsala",
-            })}
-          </h1>
-        </FadeUp>
-
-        <FadeUp delay={0.7}>
-          <p className="max-w-2xl break-words font-lato text-base text-light/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-lg md:text-xl lg:text-2xl">
-            {t("hero.description", {
-              price: lunchData?.dagensLunch?.price || 119,
-              defaultValue:
-                "Daily lunch {price} SEK • Salad, bread & coffee included",
-            })}
-          </p>
-        </FadeUp>
-      </PageHero>
+        }
+        title={t("hero.title", {
+          defaultValue: "Weekday lunch at Palermo Uppsala",
+        })}
+        description={t("hero.description", {
+          price: lunchData?.dagensLunch?.price || 119,
+          defaultValue:
+            "Daily lunch {price} SEK • Salad, bread & coffee included",
+        })}
+        ctaText={t("hero.cta", { defaultValue: "Se dagens lunch" })}
+        ctaAction={scrollToLunch}
+      />
 
       <section className="w-full py-16 md:py-20">
         <div className="container">
@@ -63,7 +64,7 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
               {t("content.description")}
             </p>
           </FadeUp>
-          <FadeUp delay={1.3}>
+          <FadeUp delay={1.2}>
             <Lunch lunchData={lunchData} />
           </FadeUp>
         </div>

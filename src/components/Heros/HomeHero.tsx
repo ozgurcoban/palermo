@@ -67,31 +67,18 @@ export function HomeHero() {
             </span>
           </Badge>
         </FadeUp>
-        
+
         <FadeUp delay={0.8} duration={0.7}>
           <h1 className="hero-title mb-4">
             <Localization text="Home.HomeHero.title" />
           </h1>
         </FadeUp>
-
+        {/* Hero description */}
         <FadeUp delay={1.1} duration={0.7}>
           <p className="break-words font-lato text-[4vw] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[22px] lg:text-[26px] lg:leading-[85px]">
             <Localization text="Home.HomeHero.description" />
           </p>
         </FadeUp>
-
-        {/* <FadeUp delay={1.3} duration={0.7}>
-          <Localization
-            className="text-center font-recoleta text-[8vw] font-bold leading-tight text-secondary drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] md:text-[calc(1rem_+_1vw)] lg:text-left lg:text-[calc(1rem_+_1.8vw)]"
-            text="Home.HomeHero.description"
-            rich
-          />
-        </FadeUp>
-        <FadeUp delay={1.7} duration={0.7}>
-          <h1 className="mt-10 break-words font-lobster text-[20vw] leading-[85px] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[160px] sm:leading-[135px] lg:text-[180px]">
-            <Localization text="Home.HomeHero.title" />
-          </h1>
-        </FadeUp> */}
       </div>
       <div className="absolute bottom-6 z-20 flex flex-col items-center gap-3">
         {/* Lunch button - only visible on mobile/tablet */}

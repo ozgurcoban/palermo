@@ -152,7 +152,8 @@
   "Lunch": {
     "hero": {
       "title": "Lunch i Uppsala - varje vardag på Palermo",
-      "description": "Dagens lunch {price} kr • Alltid med sallad, bröd & kaffe"
+      "description": "Dagens lunch {price} kr • Alltid med sallad, bröd & kaffe",
+      "cta": "Se dagens lunch"
     },
     "content": {
       "title": "Uppsalas mest avslappnade lunch",
