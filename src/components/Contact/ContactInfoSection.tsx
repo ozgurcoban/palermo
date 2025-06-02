@@ -30,7 +30,7 @@ export default function ContactInfoSection({
   const { contact_infos, opening_hours } = contactData;
 
   return (
-    <section className="border-image w-screen pt-28" id="contact">
+    <section className="border-image w-screen" id="contact">
       <div className="w-full">
         <div className="container py-16">
           <div className="grid gap-8 lg:grid-cols-2">
@@ -55,7 +55,10 @@ export default function ContactInfoSection({
                       {contact_infos.telephone && (
                         <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
                           <ChatBubbleIcon className="size-5 text-accent" />
-                          <Link href={`tel:${contact_infos.telephone}`} className="text-base">
+                          <Link
+                            href={`tel:${contact_infos.telephone}`}
+                            className="text-base"
+                          >
                             <Localization text="ContactSection.phone" />
                             :&nbsp;
                             {contact_infos.telephone}
@@ -65,7 +68,10 @@ export default function ContactInfoSection({
                       {contact_infos.email && (
                         <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
                           <EnvelopeClosedIcon className="size-5 text-accent" />
-                          <Link href={`mailto:${contact_infos.email}`} className="text-base">
+                          <Link
+                            href={`mailto:${contact_infos.email}`}
+                            className="text-base"
+                          >
                             <Localization text="ContactSection.email" />
                             :&nbsp;
                             {contact_infos.email}
@@ -89,8 +95,12 @@ export default function ContactInfoSection({
                         {opening_hours.map(({ day, time }, index) => (
                           <div key={day[locale]}>
                             <div className="flex items-center justify-between">
-                              <span className="font-medium text-base">{day[locale]}</span>
-                              <span className="text-base text-muted-foreground">{time}</span>
+                              <span className="text-base font-medium">
+                                {day[locale]}
+                              </span>
+                              <span className="text-base text-muted-foreground">
+                                {time}
+                              </span>
                             </div>
                             {index < opening_hours.length - 1 && (
                               <Separator className="mt-3 bg-gray-200" />
@@ -104,7 +114,7 @@ export default function ContactInfoSection({
               )}
             </div>
             <FadeUp delay={0.8}>
-              <Card className="border-0 bg-white/80 shadow-lg h-fit">
+              <Card className="h-fit border-0 bg-white/80 shadow-lg">
                 <CardContent className="p-6">
                   <ContactForm />
                 </CardContent>

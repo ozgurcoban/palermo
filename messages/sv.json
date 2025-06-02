@@ -88,9 +88,13 @@
   },
   "MenuPage": {
     "hero": {
-      "badge": "Hela menyn",
-      "title": "Meny",
-      "description": "Upptäck vårt urval av läckra rätter och drycker"
+      "badge": "ÖPPET ALLA DAGAR",
+      "title": "Meny - Pizza, pasta och mer i Uppsala",
+      "description": "Från krispig vesuvio till klassiska kötträtter • Take away eller sitt ner"
+    },
+    "content": {
+      "title": "Uppsalas vardagsrestaurang",
+      "description": "Palermo har blivit en självklar del av Uppsala. Här möts studenter, familjer och kompisgäng över pizza, pasta och rejäl husmanskost. Ingen krånglig fine dining - bara vällagad mat mitt i centrum till priser som funkar för alla. Precis så som en riktig kvarterskrog ska vara."
     }
   },
   "Buttons": {
@@ -168,10 +172,11 @@
     }
   },
   "FoodDelivery": {
-    "subtitle": "I DIN MAUNI",
-    "title": "Beställ hemleverans",
-    "description": "Palermo hittas på alla stora plattformar för hemkörning av mat. Välj din favorit och få din mathelevererad bekvämt och smidigt.",
-    "orderVia": "Beställ via {app}"
+    "subtitle": "HEMLEVERANS I UPPSALA",
+    "title": "Beställ hemkörning från Palermo",
+    "description": "Sugen på pizza eller pasta hemma i soffan? Vi finns på alla stora appar och levererar över hela Uppsala. Samma goda mat, samma schyssta priser - fast du slipper gå utanför dörren.",
+    "orderVia": "Beställ via {app}",
+    "deliveryAreas": "Vi levererar till: Centrum, Löten, Fålhagen, Luthagen, Eriksberg, Gottsunda och övriga Uppsala."
   },
   "SEOSection": {
     "title": "Prisvärd pizza, kötträtter och mer i hjärtat av Uppsala",

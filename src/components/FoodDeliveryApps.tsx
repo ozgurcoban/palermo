@@ -101,6 +101,12 @@ export default function FoodDeliveryApps() {
             </FadeUp>
           ))}
         </div>
+        
+        <FadeUp delay={0.6}>
+          <p className="text-body text-center mt-8 text-muted-foreground">
+            {t("deliveryAreas")}
+          </p>
+        </FadeUp>
       </div>
     </section>
   );

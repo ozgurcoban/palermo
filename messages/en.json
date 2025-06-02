@@ -87,12 +87,14 @@
     }
   },
   "MenuPage": {
-    "title": "Menu",
-    "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
     "hero": {
-      "badge": "Full Menu",
-      "title": "Menu",
-      "description": "Discover our selection of delicious dishes and beverages"
+      "badge": "OPEN EVERY DAY",
+      "title": "Our Menu - Pizza, pasta & more in Uppsala",
+      "description": "From thin-crust \"Swedish\" pizzas to traditional mains • Eat in or take out"
+    },
+    "content": {
+      "title": "UPPSALA'S NEIGHBORHOOD RESTAURANT",
+      "description": "Palermo has become a natural part of Uppsala. This is where students, families and friends gather over pizza, pasta and hearty comfort food. No complicated fine dining - just well-cooked meals downtown at prices that work for everyone. Exactly how a local restaurant should be."
     }
   },
   "Buttons": {
@@ -149,7 +151,7 @@
   },
   "Lunch": {
     "hero": {
-      "title": "Weekday lunch at Palermo Uppsala", 
+      "title": "Weekday lunch at Palermo Uppsala",
       "description": "Daily lunch {price} SEK • Salad, bread & coffee included",
       "cta": "View today's lunch"
     },
@@ -166,10 +168,11 @@
     }
   },
   "FoodDelivery": {
-    "subtitle": "IN YOUR MAUNI",
-    "title": "Order home delivery",
-    "description": "Find Palermo on all major food delivery platforms. Choose your favorite and get your meal delivered conveniently and smoothly.",
-    "orderVia": "Order via {app}"
+    "subtitle": "HOME DELIVERY",
+    "title": "Get Palermo delivered in Uppsala",
+    "description": "Too comfy to leave home? We're on all major delivery apps. Same great food, same fair prices - delivered across Uppsala.",
+    "orderVia": "Order via {app}",
+    "deliveryAreas": "We deliver to: Centrum, Löten, Fålhagen, Luthagen, Eriksberg, Gottsunda and all of Uppsala."
   },
   "SEOSection": {
     "title": "Affordable pizza, meat dishes and more in the heart of Uppsala",
