@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { INewsItem } from "@/types/generated";
 import { HomeHero as Hero } from "@/components/Heros";
@@ -9,6 +11,10 @@ import Menu from "@/components/Menu";
 // import Testimonials from "@/components/Testimonials";
 // import RecentNews from "@/components/News/RecentNews";
 import Banner from "@/components/Banner";
+import Script from "next/script";
+import { generateFAQSchema } from "@/lib/metadata";
+import { useGetLocale } from "@/config";
+import { FAQ } from "@/components/FAQ";
 
 type Props = {
   homeData: HomePage;
@@ -22,6 +28,8 @@ const HomeComponents: React.FC<Props> = ({
   categoriesData,
 }) => {
   // console.log("homeData", homeData);
+  const locale = useGetLocale();
+  const faqSchema = generateFAQSchema(locale as "sv" | "en");
 
   const {
     banner,
@@ -32,11 +40,17 @@ const HomeComponents: React.FC<Props> = ({
   } = homeData;
   return (
     <>
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Hero />
       {banner && <Banner banners={banner} />}
       <Menu categories={categoriesData} />
       {/* <AboutUs data={story_section} /> */}
       <Gallery data={gallery_section} />
+      <FAQ />
       {/* <Wall data={wall_section} /> */}
       {/* <Testimonials data={testimonials_section} /> */}
       {/* <RecentNews news={news.slice(0, 3)} /> */}

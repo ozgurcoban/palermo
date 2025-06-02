@@ -121,7 +121,19 @@
   },
   "Metadata": {
     "title": "Palermo - Uppsalas naturliga mötesplats",
-    "description": "Built with Next.js and next-intl"
+    "description": "Built with Next.js and next-intl",
+    "home": {
+      "title": "Autentisk Pizza & Restaurang i Uppsala",
+      "description": "Upplev Uppsalas mest välkomnande restaurang. Autentiska pizzor, husmanskost och en inglasad uteservering året runt. Ditt andra hem på Sysslomansgatan."
+    },
+    "menu": {
+      "title": "Meny - Pizza, Pasta & Mer",
+      "description": "Se vår kompletta meny med autentiska pizzor, pasta, kötträtter och vegetariska alternativ. Kvalitetsråvaror och generösa portioner till bra priser."
+    },
+    "lunch": {
+      "title": "Lunchmeny - Dagens Specialerbjudanden",
+      "description": "Njut av våra dagliga lunchspecialer måndag till fredag. Färska, mättande måltider till bra priser. Den perfekta lunchplatsen i centrala Uppsala."
+    }
   },
   "LocaleSwitcher": {
     "label": "Ändra språk",

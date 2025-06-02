@@ -7,11 +7,22 @@ import PreviewMenuPage from "@/components/PagesComponents/MenuPage/PreviewMenuPa
 import MenuComponents from "@/components/PagesComponents/MenuPage/MenuComponents";
 import { notFound } from "next/navigation";
 import { locales } from "@/config";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { constructMetadata } from "@/lib/metadata";
 
 type Props = {
   params: { locale: string };
 };
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "Metadata.menu" });
+  
+  return constructMetadata({
+    title: t("title"),
+    description: t("description"),
+    locale,
+  });
+}
 
 export default async function MenuPage({ params: { locale } }: Props) {
   // Validate that the incoming `locale` parameter is valid

@@ -8,11 +8,22 @@ import PreviewLunchPage from "@/components/PagesComponents/LunchPage/PreviewLunc
 
 import { locales } from "@/config";
 import { notFound } from "next/navigation";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { constructMetadata } from "@/lib/metadata";
 
 type Props = {
   params: { locale: string };
 };
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "Metadata.lunch" });
+  
+  return constructMetadata({
+    title: t("title"),
+    description: t("description"),
+    locale,
+  });
+}
 
 export default async function LunchPage({ params: { locale } }: Props) {
   // Validate that the incoming `locale` parameter is valid

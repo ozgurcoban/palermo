@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { locales } from "@/config";
 import { getNews } from "@/lib/getNews";
 import { INewsItem } from "@/types/generated";
@@ -10,10 +10,21 @@ import { CATEGORIES_QUERY, HOME_QUERY } from "../../../../sanity/lib/queries";
 import PreviewProvider from "@/components/PreviewProvider";
 import HomeComponents from "@/components/PagesComponents/HomePage/HomeComponents";
 import PreviewHomePage from "@/components/PagesComponents/HomePage/PreviewHomePage";
+import { constructMetadata } from "@/lib/metadata";
 
 type Props = {
   params: { locale: string };
 };
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: "Metadata.home" });
+  
+  return constructMetadata({
+    title: t("title"),
+    description: t("description"),
+    locale,
+  });
+}
 
 export default async function IndexPage({ params: { locale } }: Props) {
   // Validate that the incoming `locale` parameter is valid

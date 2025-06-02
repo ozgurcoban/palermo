@@ -117,7 +117,19 @@
   },
   "Metadata": {
     "title": "Palermo - Uppsalas most welcoming restaurant",
-    "description": "Built with Next.js and next-intl"
+    "description": "Built with Next.js and next-intl",
+    "home": {
+      "title": "Authentic Pizza & Restaurant in Uppsala",
+      "description": "Experience Uppsala's most welcoming restaurant. Authentic pizzas, hearty comfort food, and a year-round enclosed terrace. Your home away from home on Sysslomansgatan."
+    },
+    "menu": {
+      "title": "Menu - Pizza, Pasta & More",
+      "description": "Browse our full menu featuring authentic pizzas, pasta, meat dishes, and vegetarian options. Quality ingredients and generous portions at great prices."
+    },
+    "lunch": {
+      "title": "Lunch Menu - Daily Specials",
+      "description": "Enjoy our daily lunch specials Monday to Friday. Fresh, hearty meals at great prices. The perfect lunch spot in central Uppsala."
+    }
   },
   "LocaleSwitcher": {
     "label": "Change language",

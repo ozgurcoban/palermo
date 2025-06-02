@@ -11,6 +11,8 @@ import { Toaster } from "@/components/ui/toaster";
 import ScrollTop from "@/components/ScrollTop";
 import { CONTACT_QUERY, LUNCH_QUERY } from "../../../../sanity/lib/queries";
 import { getClient } from "../../../../sanity/lib/client";
+import { generateRestaurantSchema } from "@/lib/metadata";
+import Script from "next/script";
 
 type Props = {
   children: ReactNode;
@@ -48,6 +50,8 @@ export default async function LocaleLayout({
   const contactData = await client.fetch<Contact>(CONTACT_QUERY);
   const lunchData = await client.fetch<LunchConfiguration>(LUNCH_QUERY);
 
+  const restaurantSchema = generateRestaurantSchema(locale as "sv" | "en");
+
   return (
     <html
       lang={locale}
@@ -55,6 +59,11 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="overflow-x-hidden">
+        <Script
+          id="restaurant-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantSchema) }}
+        />
         <IntlProvider params={{ locale }}>
           <Toaster />
           <Navbar />
