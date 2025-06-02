@@ -72,13 +72,18 @@
     }
   },
   "ContactSection": {
-    "addressTitle": "Where to find us",
+    "introTitle": "Find us - Palermo Uppsala",
+    "introDescription": "Palermo is located at Sysslomansgatan 7, right in the center of Uppsala. Got questions about the menu, opening hours, or anything else? Send us a message here or give us a call – we always reply as soon as we can.",
+    "addressTitle": "Contact details",
     "phone": "Phone",
     "email": "Email",
     "openingHours": "Opening hours",
     "getInTouch": "Get in touch",
     "name": "Name",
     "message": "Message",
+    "formTitle": "Ask a question",
+    "formDescription": "We'll get back to you as soon as possible.",
+    "privacyNote": "No data is stored, neither internally nor for marketing purposes.",
     "Form": {
       "title": "Thank You for Reaching Out!",
       "description": "Your message is important to us. We're reviewing your email and will get back to you as quickly as possible. Cheers! 🍻",
@@ -172,7 +177,7 @@
     "title": "Get Palermo delivered in Uppsala",
     "description": "Too comfy to leave home? We're on all major delivery apps. Same great food, same fair prices - delivered across Uppsala.",
     "orderVia": "Order via {app}",
-    "deliveryAreas": "We deliver to: Centrum, Löten, Fålhagen, Luthagen, Eriksberg, Gottsunda and all of Uppsala."
+    "deliveryAreas": "We deliver to: Centrum, Löten, Årsta, Fålhagen, Luthagen, Eriksberg, Gottsunda and all of Uppsala."
   },
   "SEOSection": {
     "title": "Affordable pizza, meat dishes and more in the heart of Uppsala",

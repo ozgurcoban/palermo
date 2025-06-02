@@ -55,7 +55,10 @@ export default function ContactForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(processForm)} className="space-y-6">
-          <h2 className="title-secondary mb-8">{t("getInTouch")}</h2>
+          <div className="mb-8">
+            <h3 className="title-card mb-4">{t("formTitle")}</h3>
+            <p className="text-base text-muted-foreground">{t("formDescription")}</p>
+          </div>
 
           <div className="grid gap-6">
             <div className="grid gap-4 sm:grid-cols-2">
@@ -114,6 +117,10 @@ export default function ContactForm() {
                 </FormItem>
               )}
             />
+
+            <p className="text-sm text-muted-foreground italic">
+              {t("privacyNote")}
+            </p>
 
             <Button
               type="submit"

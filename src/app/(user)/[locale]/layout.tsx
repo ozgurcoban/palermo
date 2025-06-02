@@ -9,7 +9,7 @@ import IntlProvider from "@/providers/IntlProvider";
 import ContactInfoSection from "@/components/Contact/ContactInfoSection";
 import { Toaster } from "@/components/ui/toaster";
 import ScrollTop from "@/components/ScrollTop";
-import { CONTACT_QUERY } from "../../../../sanity/lib/queries";
+import { CONTACT_QUERY, LUNCH_QUERY } from "../../../../sanity/lib/queries";
 import { getClient } from "../../../../sanity/lib/client";
 
 type Props = {
@@ -46,6 +46,7 @@ export default async function LocaleLayout({
   const client = getClient(undefined);
 
   const contactData = await client.fetch<Contact>(CONTACT_QUERY);
+  const lunchData = await client.fetch<LunchConfiguration>(LUNCH_QUERY);
 
   return (
     <html
@@ -60,7 +61,7 @@ export default async function LocaleLayout({
           <ScrollTop />
           <main>
             {children}
-            <ContactInfoSection contactData={contactData} />
+            <ContactInfoSection contactData={contactData} lunchData={lunchData} />
           </main>
           <Footer contactData={contactData} />
         </IntlProvider>

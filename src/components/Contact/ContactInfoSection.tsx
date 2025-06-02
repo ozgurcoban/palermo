@@ -2,9 +2,11 @@ import {
   HomeIcon,
   ChatBubbleIcon,
   EnvelopeClosedIcon,
+  ArrowRightIcon,
 } from "@radix-ui/react-icons";
 import ContactForm from "./Form";
 import Link from "next/link";
+import { Link as IntlLink } from "@/navigation";
 import Map from "./Map";
 import { useGetLocale } from "@/config";
 import Localization from "../localization";
@@ -14,8 +16,10 @@ import { Separator } from "@/components/ui/separator";
 
 export default function ContactInfoSection({
   contactData,
+  lunchData,
 }: {
   contactData?: Contact;
+  lunchData?: LunchConfiguration;
 }) {
   const locale = useGetLocale();
   if (!contactData)
@@ -33,13 +37,27 @@ export default function ContactInfoSection({
     <section className="border-image w-screen" id="contact">
       <div className="w-full">
         <div className="container py-16">
+          {/* Intro section */}
+          <div className="mb-12 text-center">
+            <FadeUp delay={0.2}>
+              <h2 className="title-secondary mb-4">
+                <Localization text="ContactSection.introTitle" />
+              </h2>
+            </FadeUp>
+            <FadeUp delay={0.3}>
+              <p className="text-body mx-auto max-w-2xl">
+                <Localization text="ContactSection.introDescription" />
+              </p>
+            </FadeUp>
+          </div>
+          
           <div className="grid gap-8 lg:grid-cols-2">
             <div className="flex flex-col gap-6">
               {contact_infos && (
                 <FadeUp delay={0.4}>
                   <Card className="border-0 bg-white/80 shadow-lg">
                     <CardHeader>
-                      <CardTitle className="title-secondary">
+                      <CardTitle className="title-card">
                         <Localization text="ContactSection.addressTitle" />
                       </CardTitle>
                     </CardHeader>
@@ -56,12 +74,12 @@ export default function ContactInfoSection({
                         <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
                           <ChatBubbleIcon className="size-5 text-accent" />
                           <Link
-                            href={`tel:${contact_infos.telephone}`}
+                            href={`tel:+4618131820`}
                             className="text-base"
                           >
                             <Localization text="ContactSection.phone" />
                             :&nbsp;
-                            {contact_infos.telephone}
+                            018-13 18 20
                           </Link>
                         </div>
                       )}
@@ -86,7 +104,7 @@ export default function ContactInfoSection({
                 <FadeUp delay={0.6}>
                   <Card className="border-0 bg-white/80 shadow-lg">
                     <CardHeader>
-                      <CardTitle className="title-secondary">
+                      <CardTitle className="title-card">
                         <Localization text="ContactSection.openingHours" />
                       </CardTitle>
                     </CardHeader>
@@ -107,6 +125,39 @@ export default function ContactInfoSection({
                             )}
                           </div>
                         ))}
+                        {lunchData?.timeInfo && (
+                          <>
+                            <Separator className="mt-3 bg-gray-200" />
+                            <IntlLink 
+                              href="/lunch" 
+                              className="block pt-2 group transition-all duration-300 hover:bg-accent/5 -mx-2 px-2 pb-2 rounded-md"
+                            >
+                              <div className="mb-2 flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-base font-semibold text-primary group-hover:text-accent transition-colors">
+                                    Lunch
+                                  </span>
+                                  <ArrowRightIcon className="size-4 text-accent transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300" />
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-base font-medium group-hover:text-accent transition-colors">
+                                  {lunchData.timeInfo.days[locale]}
+                                </span>
+                                <span className="text-base text-muted-foreground group-hover:text-accent transition-colors">
+                                  {lunchData.timeInfo.hours}
+                                </span>
+                              </div>
+                              {lunchData.dagensLunch?.price && (
+                                <div className="mt-2">
+                                  <span className="text-sm text-muted-foreground group-hover:text-accent/80 transition-colors">
+                                    {lunchData.dagensLunch.price} kr inkl. sallad, bröd & kaffe
+                                  </span>
+                                </div>
+                              )}
+                            </IntlLink>
+                          </>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
