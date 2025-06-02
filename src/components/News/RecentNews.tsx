@@ -22,17 +22,18 @@ const RecentNews = ({ news }: { news: INewsItem[] }) => {
               delay={0.05 * news.length}
               className="absolute z-10 bottom-0 left-0 w-full h-20 pt-4  overflow-hidden flex items-center justify-center"
             >
-              <Link href={"/news"}>
+              {/* <Link href={"/news"}> */}
                 <Button
                   title="See more"
                   aria-live="polite"
                   className="bg-accent"
+                  onClick={() => console.log('News route disabled')}
                 >
                   <span className="font-lato text-base capitalize font-semibold">
                     <Localization text="Buttons.seeMore" />
                   </span>
                 </Button>
-              </Link>
+              {/* </Link> */}
             </FadeUp>
           )}
         </div>
