@@ -37,9 +37,9 @@ export const siteConfig = {
 const isDevelopment = 
   process.env.NODE_ENV === 'development' ||
   process.env.VERCEL_ENV === 'preview' ||
-  process.env.VERCEL_GIT_COMMIT_REF !== 'main' || // Not main branch on Vercel
-  process.env.BRANCH !== 'main' || // Netlify branch name
-  process.env.HEAD !== 'main'; // Alternative branch detection
+  (process.env.VERCEL_GIT_COMMIT_REF && process.env.VERCEL_GIT_COMMIT_REF !== 'main') || // Vercel: check only if defined
+  (process.env.BRANCH && process.env.BRANCH !== 'main'); // Netlify: check only if defined
+
 
 type MetadataConfig = {
   title: string;
