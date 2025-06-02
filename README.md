@@ -33,22 +33,50 @@ A modern, multilingual restaurant website built with Next.js 14, TypeScript, San
 
 ## Environment Variables
 
-Create `.env.local` file in the root directory:
+The project uses a secure environment variable setup:
+
+### Environment Files Structure
+
+- **`.env.local`** - Contains sensitive API keys (never committed to Git)
+- **`.env.development`** - Development-specific public settings (safe to commit)
+- **`.env.production`** - Production-specific public settings (safe to commit)
+
+### Setup Instructions
+
+1. Copy the example file to create your local environment:
+
+```bash
+cp .env.local.example .env.local
+```
+
+2. Fill in your API keys in `.env.local`:
 
 ```env
-# Sanity Configuration
-NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
-NEXT_PUBLIC_SANITY_DATASET=development_or_production
+# Sensitive API keys - DO NOT COMMIT
+RESEND_API_KEY=your_resend_api_key
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_key
+INSTAGRAM_KEY=your_instagram_key
 SANITY_API_READ_TOKEN=your_sanity_token
 
-# External APIs
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_key
-RESEND_API_KEY=your_resend_api_key
-
-# Optional
-INSTAGRAM_KEY=your_instagram_key
-NEXT_PUBLIC_VERCEL_URL=your_domain.com
+# Google Analytics (production only)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=your_ga_id
 ```
+
+### How It Works
+
+- **Next.js automatically loads** the correct files based on environment:
+  - Development: `.env.local` + `.env.development`
+  - Production: `.env.local` + `.env.production`
+- **`.env.local` takes precedence** over other environment files
+- **Sanity dataset** is automatically set:
+  - Development: `NEXT_PUBLIC_SANITY_DATASET=development`
+  - Production: `NEXT_PUBLIC_SANITY_DATASET=production`
+
+### Security Note
+
+- `.env.local` contains sensitive keys and is gitignored
+- `.env.development` and `.env.production` only contain public settings
+- Never commit API keys or tokens to the repository
 
 ## Installation
 
