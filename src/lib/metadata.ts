@@ -32,6 +32,15 @@ export const siteConfig = {
   email: "info@palermo-uppsala.se",
 };
 
+// Check if we're in development/preview environment
+// Block everything except main branch in production
+const isDevelopment = 
+  process.env.NODE_ENV === 'development' ||
+  process.env.VERCEL_ENV === 'preview' ||
+  process.env.VERCEL_GIT_COMMIT_REF !== 'main' || // Not main branch on Vercel
+  process.env.BRANCH !== 'main' || // Netlify branch name
+  process.env.HEAD !== 'main'; // Alternative branch detection
+
 type MetadataConfig = {
   title: string;
   description: string;
@@ -73,10 +82,14 @@ export function constructMetadata({
       description,
       images: [image],
     },
-    robots: noIndex
+    robots: noIndex || isDevelopment
       ? {
           index: false,
           follow: false,
+          googleBot: {
+            index: false,
+            follow: false,
+          },
         }
       : {
           index: true,
@@ -200,7 +213,7 @@ export function getFAQData(
           question: "How much is the daily lunch at Palermo?",
           answer:
             lunchInfo ||
-            "Our weekday lunch special is from 119 SEK, served 11:00-15:00. It includes a main course, plus salad bar, bread and coffee. Pick from 9 daily specials or any of our 24 lunch pizzas.",
+            "Our weekday lunch special is from 119 SEK, served 11:00-15:00. It includes a main course, plus salad bar, bread and coffee. Pick from 9 daily classics or any of our 24 lunch pizzas.",
         },
         {
           question: "What are Palermo Uppsala's opening hours?",

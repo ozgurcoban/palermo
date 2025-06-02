@@ -68,6 +68,7 @@ export function Navbar() {
             width={100}
             height={100}
             style={{ cursor: "pointer" }}
+            priority
           />
         </Link>
         <div className="hidden flex-1 justify-end md:justify-center lg:flex">

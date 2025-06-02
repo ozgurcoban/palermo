@@ -63,7 +63,7 @@ export function FAQ() {
             setLunchInfo(
               `Our weekday lunch special is from ${lunchPrice} SEK, served ${timeInfo?.hours || "11:00-15:00"}. ` +
                 `It includes a main course, plus salad bar, bread and coffee. ` +
-                `Pick from ${totalDishes} daily specials or any of our ${numberOfPizzas} lunch pizzas.`,
+                `Pick from ${totalDishes} daily classics or any of our ${numberOfPizzas} lunch pizzas.`,
             );
           }
         }
@@ -100,7 +100,7 @@ export function FAQ() {
                 <AccordionTrigger className="text-left text-base md:text-lg">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="whitespace-pre-line leading-relaxed text-muted-foreground text-base">
+                <AccordionContent className="whitespace-pre-line text-base leading-relaxed text-muted-foreground">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

@@ -7,11 +7,24 @@ import PreviewAboutPage from "@/components/PagesComponents/AboutPage/PreviewAbou
 import AboutComponents from "@/components/PagesComponents/AboutPage/AboutComponents";
 import { locales } from "@/config";
 import { notFound, redirect } from "next/navigation";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { constructMetadata } from "@/lib/metadata";
 
 type Props = {
   params: { locale: string };
 };
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  // Använd fallback metadata eftersom sidan redirectar
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  
+  return constructMetadata({
+    title: locale === "sv" ? "Om oss - Palermo Uppsala" : "About Us - Palermo Uppsala",
+    description: t("description"),
+    locale,
+    noIndex: true, // Eftersom sidan redirectar
+  });
+}
 
 export default async function AboutPage({ params: { locale } }: Props) {
   // Temporarily redirect to home page

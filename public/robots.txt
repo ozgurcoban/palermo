@@ -1,10 +1,24 @@
-# Block all web crawlers for development sites
+# Robots.txt for Palermo Uppsala
+# 
+# NOTE: This file is for PRODUCTION only
+# Preview/staging branches will be blocked via meta tags
+
+# Allow all crawlers on production
 User-agent: *
-Disallow: /
+Allow: /
 
-# Allow crawling on production domain
-# This will be overridden when deployed to production
-# Production domain should have its own robots.txt
+# Block admin routes
+User-agent: *
+Disallow: /admin/
+Disallow: /studio/
+Disallow: /api/
 
-# Sitemap location (update for production)
-# Sitemap: https://www.palermo-uppsala.se/sitemap.xml
+# Development/staging environments
+# These should use noindex meta tags instead of robots.txt
+# to ensure consistent behavior across all preview deployments
+
+# Sitemap location (production)
+Sitemap: https://palermo-uppsala.se/sitemap.xml
+
+# Crawl-delay (optional, in seconds)
+# Crawl-delay: 1

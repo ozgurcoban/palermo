@@ -50,7 +50,7 @@ export default function ContactInfoSection({
               </p>
             </FadeUp>
           </div>
-          
+
           <div className="grid gap-8 lg:grid-cols-2">
             <div className="flex flex-col gap-6">
               {contact_infos && (
@@ -73,13 +73,9 @@ export default function ContactInfoSection({
                       {contact_infos.telephone && (
                         <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
                           <ChatBubbleIcon className="size-5 text-accent" />
-                          <Link
-                            href={`tel:+4618131820`}
-                            className="text-base"
-                          >
+                          <Link href={`tel:+4618131820`} className="text-base">
                             <Localization text="ContactSection.phone" />
-                            :&nbsp;
-                            018-13 18 20
+                            :&nbsp; 018-13 18 20
                           </Link>
                         </div>
                       )}
@@ -128,30 +124,33 @@ export default function ContactInfoSection({
                         {lunchData?.timeInfo && (
                           <>
                             <Separator className="mt-3 bg-gray-200" />
-                            <IntlLink 
-                              href="/lunch" 
-                              className="block pt-2 group transition-all duration-300 hover:bg-accent/5 -mx-2 px-2 pb-2 rounded-md"
+                            <IntlLink
+                              href="/lunch"
+                              className="group -mx-2 block rounded-md px-2 pb-2 pt-2 transition-all duration-300 hover:bg-accent/5"
                             >
                               <div className="mb-2 flex items-center justify-between">
                                 <div className="flex items-center gap-2">
-                                  <span className="text-base font-semibold text-primary group-hover:text-accent transition-colors">
+                                  <span className="text-base font-semibold text-primary transition-colors group-hover:text-accent">
                                     Lunch
                                   </span>
-                                  <ArrowRightIcon className="size-4 text-accent transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300" />
+                                  <ArrowRightIcon className="size-4 translate-x-0 transform text-accent transition-transform duration-300 group-hover:translate-x-1" />
                                 </div>
                               </div>
                               <div className="flex items-center justify-between">
-                                <span className="text-base font-medium group-hover:text-accent transition-colors">
-                                  {lunchData.timeInfo.days[locale]}
+                                <span className="text-base font-medium transition-colors group-hover:text-accent">
+                                  {lunchData.timeInfo.days[locale].charAt(0).toUpperCase() + lunchData.timeInfo.days[locale].slice(1)}
                                 </span>
-                                <span className="text-base text-muted-foreground group-hover:text-accent transition-colors">
+                                <span className="text-base text-muted-foreground transition-colors group-hover:text-accent">
                                   {lunchData.timeInfo.hours}
                                 </span>
                               </div>
                               {lunchData.dagensLunch?.price && (
                                 <div className="mt-2">
-                                  <span className="text-sm text-muted-foreground group-hover:text-accent/80 transition-colors">
-                                    {lunchData.dagensLunch.price} kr inkl. sallad, bröd & kaffe
+                                  <span className="text-sm text-muted-foreground transition-colors group-hover:text-accent/80">
+                                    {lunchData.dagensLunch.price}{" "}
+                                    {locale === "sv"
+                                      ? "kr inkl. sallad, bröd & kaffe"
+                                      : "SEK incl. salad bar, bread & coffee"}
                                   </span>
                                 </div>
                               )}
