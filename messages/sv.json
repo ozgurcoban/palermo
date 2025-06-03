@@ -2,7 +2,7 @@
   "Home": {
     "HomeHero": {
       "title": "Palermo",
-      "description": "Prisvärd restaurang och pizzeria på Sysslomansgatan",
+      "description": "Din lokala pizzeria och restaurang i Uppsala centrum",
       "badge": {
         "main": "UPPSALAS (INOFFICIELLA) 14:",
         "suffix": "e NATION"
@@ -95,7 +95,8 @@
     "hero": {
       "badge": "ÖPPET ALLA DAGAR",
       "title": "Meny - Pizza, pasta och mer i Uppsala",
-      "description": "Från krispig vesuvio till klassiska kötträtter • Take away eller sitt ner"
+      "description": "Från krispig vesuvio till klassiska kötträtter • Take away eller sitt ner",
+      "cta": "Se hela menyn"
     },
     "content": {
       "title": "Uppsalas vardagsrestaurang",
@@ -187,6 +188,27 @@
       "badge": "Sedan 1991",
       "title": "Om oss",
       "description": "Uppsalas mest naturliga mötesplats i över 30 år"
+    }
+  },
+  "Cookies": {
+    "banner": {
+      "badge": "🍪 Cookies",
+      "title": "Vi använder cookies för bästa upplevelse",
+      "description": "Vi använder cookies för att förbättra din upplevelse och analysera trafik för att förbättra vår webbplats. Du kan välja vilka cookies du accepterar.",
+      "acceptAll": "Acceptera alla",
+      "accepted": "Accepterat!",
+      "rejectAll": "Avvisa alla",
+      "settings": "Inställningar"
+    },
+    "settings": {
+      "title": "Cookie-inställningar",
+      "description": "Välj vilka cookies du vill acceptera. Nödvändiga cookies krävs för webbplatsens funktion och analys-cookies hjälper oss förbättra webbplatsen.",
+      "necessary": "Nödvändiga",
+      "necessaryDesc": "Krävs för webbplatsens grundläggande funktioner",
+      "analytics": "Analys",
+      "analyticsDesc": "Hjälper oss förstå hur du använder webbplatsen och förbättra upplevelsen",
+      "cancel": "Avbryt",
+      "save": "Spara"
     }
   },
   "FoodDelivery": {

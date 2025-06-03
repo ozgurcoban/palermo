@@ -2,7 +2,7 @@
   "Home": {
     "HomeHero": {
       "title": "Palermo",
-      "description": "A great-value restaurant and pizzeria on Sysslomansgatan",
+      "description": "Uppsala's go-to spot for pizza and good times",
       "badge": {
         "main": "UPPSALAS (UNOFFICIAL) 14:",
         "suffix": "th NATION"
@@ -95,7 +95,8 @@
     "hero": {
       "badge": "OPEN EVERY DAY",
       "title": "Our Menu - Pizza, pasta & more in Uppsala",
-      "description": "From thin-crust \"Swedish\" pizzas to traditional mains • Eat in or take out"
+      "description": "From thin-crust \"Swedish\" pizzas to traditional mains • Eat in or take out",
+      "cta": "View full menu"
     },
     "content": {
       "title": "UPPSALA'S NEIGHBORHOOD RESTAURANT",
@@ -182,6 +183,27 @@
       "badge": "Since 1991",
       "title": "About Us",
       "description": "Uppsala's most natural meeting place for over 30 years"
+    }
+  },
+  "Cookies": {
+    "banner": {
+      "badge": "🍪 Cookies",
+      "title": "We use cookies for the best experience",
+      "description": "We use cookies to improve your experience and analyze traffic to improve our website. You can choose which cookies to accept.",
+      "acceptAll": "Accept all",
+      "accepted": "Accepted!",
+      "rejectAll": "Reject all",
+      "settings": "Settings"
+    },
+    "settings": {
+      "title": "Cookie settings",
+      "description": "Choose which cookies you want to accept. Necessary cookies are required for the website's function and analytics cookies help us improve the website.",
+      "necessary": "Necessary",
+      "necessaryDesc": "Required for the website's basic functions",
+      "analytics": "Analytics",
+      "analyticsDesc": "Helps us understand how you use the website and improve the experience",
+      "cancel": "Cancel",
+      "save": "Save"
     }
   },
   "FoodDelivery": {

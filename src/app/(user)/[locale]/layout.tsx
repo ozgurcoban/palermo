@@ -14,6 +14,7 @@ import { getClient } from "../../../../sanity/lib/client";
 import { generateRestaurantSchema } from "@/lib/metadata";
 import Script from "next/script";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { CookieBanner } from "@/components/CookieBanner";
 
 type Props = {
   children: ReactNode;
@@ -75,6 +76,7 @@ export default async function LocaleLayout({
             <ContactInfoSection contactData={contactData} lunchData={lunchData} />
           </main>
           <Footer contactData={contactData} />
+          <CookieBanner />
         </IntlProvider>
       </body>
     </html>

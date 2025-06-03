@@ -133,3 +133,11 @@ export const trackLunchOpeningHoursClick = () => {
     label: 'lunch_from_opening_hours',
   });
 };
+
+export const trackMenuPageCTAClick = () => {
+  event({
+    action: 'click',
+    category: 'cta',
+    label: 'menu_page_hero_cta',
+  });
+};

@@ -30,19 +30,27 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
     trackMenuCTAClick();
     const menu = document.getElementById("menu");
     if (menu) {
-      menu.scrollIntoView({ behavior: "smooth" });
+      const navbarHeight = 132; // Height of navbar
+      const menuPosition = menu.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = menuPosition - navbarHeight - 20; // Extra 20px padding
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
 
   return (
     <Button
-      className="flex items-center gap-1 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+      className="relative flex items-center gap-1 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
       onClick={scrollToMenu}
+      type="button"
     >
-      <motion.div style={{ translateY }}>
+      <motion.div style={{ translateY }} className="pointer-events-none">
         <ArrowDown className="size-4" />
       </motion.div>
-      <span className="">{children}</span>
+      <span className="pointer-events-none">{children}</span>
     </Button>
   );
 };

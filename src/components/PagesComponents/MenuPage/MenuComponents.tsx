@@ -7,6 +7,7 @@ import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import FoodDeliveryApps from "@/components/FoodDeliveryApps";
+import { trackMenuPageCTAClick } from "@/lib/gtag";
 
 type Props = {
   categoriesData: Category[];
@@ -14,6 +15,29 @@ type Props = {
 
 const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
   const t = useTranslations("MenuPage");
+
+  const scrollToMenu = () => {
+    trackMenuPageCTAClick();
+    const menuSection = document.getElementById("menu");
+    if (menuSection) {
+      // Small delay to avoid animation conflicts
+      setTimeout(() => {
+        const navbarHeight = 132; // Navbar height including padding
+        const menuPosition = menuSection.getBoundingClientRect().top + window.scrollY;
+        const viewportHeight = window.innerHeight;
+        const menuHeight = menuSection.offsetHeight;
+        
+        // Calculate position to center the menu in viewport (accounting for navbar)
+        // Add 40px to move it down a bit more
+        const offsetPosition = menuPosition - navbarHeight - (viewportHeight - navbarHeight - menuHeight) / 2 + 40;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }, 100);
+    }
+  };
 
   return (
     <>
@@ -31,6 +55,8 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
         description={t("hero.description", {
           defaultValue: "Discover our selection of delicious dishes and beverages",
         })}
+        ctaText={t("hero.cta", { defaultValue: "Se hela menyn" })}
+        ctaAction={scrollToMenu}
       />
       
       <section className="w-full py-16 md:py-20">

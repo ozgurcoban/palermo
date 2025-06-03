@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useGetLocale } from "@/config";
 import { Clock } from "lucide-react";
 import MenuItem from "../Menu/MenuItems/MenuItem";
@@ -16,27 +16,6 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
   const locale = useGetLocale();
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Add scroll hint animation
-  useEffect(() => {
-    if (!scrollRef.current) return;
-
-    const hasSeenScroll = localStorage.getItem("lunch-scroll");
-    if (hasSeenScroll) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-subtle-scroll");
-          localStorage.setItem("lunch-scroll", "true");
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-
-    observer.observe(scrollRef.current);
-
-    return () => observer.disconnect();
-  }, []);
 
   if (!lunchData) {
     return (
@@ -50,8 +29,7 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
     );
   }
 
-  const { title, timeInfo, dagensLunch, lunchPizza, monthlySpecial } =
-    lunchData;
+  const { dagensLunch, lunchPizza, monthlySpecial } = lunchData;
 
   // Transform lunch items to match MenuItem structure
   const dagensItems =
@@ -154,7 +132,7 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
                 </TabsList>
 
                 <div
-                  className="subtle-scroll h-[70vh] overflow-y-scroll sm:h-[55vh] md:h-[60vh]"
+                  className="h-[70vh] overflow-y-scroll sm:h-[55vh] md:h-[60vh]"
                   ref={scrollRef}
                 >
                   {dagensLunch && (

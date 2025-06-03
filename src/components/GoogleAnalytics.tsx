@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, Suspense } from "react";
+import { useEffect, useState, Suspense } from "react";
 
 declare global {
   interface Window {
@@ -13,9 +13,44 @@ declare global {
 function GoogleAnalyticsScript() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [shouldLoadGA, setShouldLoadGA] = useState(false);
 
+  // Check initial consent and listen for updates
   useEffect(() => {
-    if (pathname && window.gtag) {
+    const checkConsent = () => {
+      const consent = localStorage.getItem("cookie-consent");
+      if (consent) {
+        const consentData = JSON.parse(consent);
+        setShouldLoadGA(consentData.analytics === true);
+        
+        // Update gtag consent if GA is already loaded
+        if (window.gtag) {
+          window.gtag('consent', 'update', {
+            analytics_storage: consentData.analytics ? 'granted' : 'denied'
+          });
+        }
+      } else {
+        setShouldLoadGA(false);
+      }
+    };
+
+    // Check initial consent
+    checkConsent();
+
+    // Listen for consent updates
+    const handleConsentUpdate = () => checkConsent();
+    window.addEventListener('cookie-consent-updated', handleConsentUpdate);
+    window.addEventListener('storage', handleConsentUpdate);
+
+    return () => {
+      window.removeEventListener('cookie-consent-updated', handleConsentUpdate);
+      window.removeEventListener('storage', handleConsentUpdate);
+    };
+  }, []);
+
+  // Track page views when pathname changes
+  useEffect(() => {
+    if (pathname && window.gtag && shouldLoadGA) {
       const url =
         pathname +
         (searchParams?.toString() ? `?${searchParams.toString()}` : "");
@@ -23,10 +58,16 @@ function GoogleAnalyticsScript() {
         page_path: url,
       });
     }
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, shouldLoadGA]);
 
-  // Only load in production∏
-  if (process.env.NODE_ENV !== "production") {
+
+  // Check if GA ID is set
+  if (!process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) {
+    return null;
+  }
+
+  // Only load if consent is given
+  if (!shouldLoadGA) {
     return null;
   }
 
@@ -44,6 +85,9 @@ function GoogleAnalyticsScript() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+            gtag('consent', 'default', {
+              analytics_storage: 'granted'
+            });
             gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
             });

@@ -86,56 +86,7 @@ const MenuContent: React.FC<Props> = ({
     }
   }, [tab]);
 
-  useEffect(() => {
-    if (!scrollRef.current || !wrapperRef.current) return;
 
-    // Check localStorage first
-    if (localStorage.getItem("menu-scroll")) {
-      return;
-    }
-
-    // Single observer configuration for both refs
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-subtle-scroll");
-          localStorage.setItem("menu-scroll", "true");
-          observer.unobserve(entry.target);
-        }
-      });
-    });
-
-    // Observe both elements
-    observer.observe(scrollRef.current);
-
-    if (window.innerWidth < 768) observer.observe(wrapperRef.current);
-
-    // Cleanup function
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  // This effect removes the animation class if the user scrolls the container.
-  useEffect(() => {
-    const scroll = scrollRef.current;
-    const wrapper = wrapperRef.current;
-    if (!scroll || !wrapper) return;
-
-    const handleScroll = () => {
-      // If the container has been scrolled even a little, remove the animation
-      if (scroll.scrollTop > 0) {
-        scroll.classList.remove("animate-subtle-scroll");
-        wrapper.classList.remove("animate-subtle-scroll");
-      }
-    };
-
-    scroll.addEventListener("scroll", handleScroll);
-
-    return () => {
-      scroll.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   // Get the menu list every time the selected tab changes
   const menus_list = useMemo(() => {
@@ -156,10 +107,10 @@ const MenuContent: React.FC<Props> = ({
   // Conditional wrapper for animations
   const AnimWrapper = ({ children, ...props }: any) => {
     if (disableAnimations || hasSeenAnimation) {
-      // Return children with className and style if provided
-      if (props.className || props.style) {
+      // Return children with className, style, and id if provided
+      if (props.className || props.style || props.id) {
         return (
-          <div className={props.className} style={props.style}>
+          <div id={props.id} className={props.className} style={props.style}>
             {children}
           </div>
         );
@@ -193,7 +144,7 @@ const MenuContent: React.FC<Props> = ({
               />
             </div>
             <div
-              className="subtle-scroll sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
+              className="sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
               ref={scrollRef}
             >
               {getCategory?.description && (

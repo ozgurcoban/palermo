@@ -34,12 +34,12 @@ export const siteConfig = {
 
 // Check if we're in development/preview environment
 // Block everything except main branch in production
-const isDevelopment = 
-  process.env.NODE_ENV === 'development' ||
-  process.env.VERCEL_ENV === 'preview' ||
-  (process.env.VERCEL_GIT_COMMIT_REF && process.env.VERCEL_GIT_COMMIT_REF !== 'main') || // Vercel: check only if defined
-  (process.env.BRANCH && process.env.BRANCH !== 'main'); // Netlify: check only if defined
-
+const isDevelopment =
+  process.env.NODE_ENV === "development" ||
+  process.env.VERCEL_ENV === "preview" ||
+  (process.env.VERCEL_GIT_COMMIT_REF &&
+    process.env.VERCEL_GIT_COMMIT_REF !== "main") || // Vercel: check only if defined
+  (process.env.BRANCH && process.env.BRANCH !== "main"); // Netlify: check only if defined
 
 type MetadataConfig = {
   title: string;
@@ -82,26 +82,27 @@ export function constructMetadata({
       description,
       images: [image],
     },
-    robots: noIndex || isDevelopment
-      ? {
-          index: false,
-          follow: false,
-          googleBot: {
+    robots:
+      noIndex || isDevelopment
+        ? {
             index: false,
             follow: false,
-          },
-        }
-      : {
-          index: true,
-          follow: true,
-          googleBot: {
+            googleBot: {
+              index: false,
+              follow: false,
+            },
+          }
+        : {
             index: true,
             follow: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large",
-            "max-snippet": -1,
+            googleBot: {
+              index: true,
+              follow: true,
+              "max-video-preview": -1,
+              "max-image-preview": "large",
+              "max-snippet": -1,
+            },
           },
-        },
     alternates: {
       languages: {
         en: "/en",
@@ -190,7 +191,7 @@ export function getFAQData(
         {
           question: "Kan man beställa hemkörning?",
           answer:
-            "Absolut! Vi finns på Uber Eats, Foodora och Wolt. Samma goda mat och schyssta priser, levererat till hela Uppsala.",
+            "Absolut! Du hittar oss på Uber Eats, Foodora och Wolt. Perfekt när du vill njuta av Palermos mat hemma i soffan. Vi levererar över hela Uppsala.",
         },
         {
           question: "Tar ni kontanter?",
@@ -224,7 +225,7 @@ export function getFAQData(
         {
           question: "Can I order delivery?",
           answer:
-            "Absolutely! We're on Uber Eats, Foodora and Wolt. Same great food and fair prices, delivered throughout Uppsala.",
+            "Absolutely! We're on Uber Eats, Foodora and Wolt. Perfect when you want to enjoy Palermo's food from your couch. We deliver throughout Uppsala.",
         },
         {
           question: "Do you accept cash?",
