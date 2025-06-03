@@ -1,8 +1,9 @@
 "use client";
 import { useLiveQuery } from "next-sanity/preview";
+import { useGetLocale } from "@/config";
 
 import { CATEGORIES_QUERY, HOME_QUERY } from "../../../../sanity/lib/queries";
-import HomeComponents from "./HomeComponents";
+import HomeComponentsOptimized from "./HomeComponentsOptimized";
 import { INewsItem } from "@/types/generated";
 
 export default function PreviewHomePage({
@@ -15,6 +16,7 @@ export default function PreviewHomePage({
   categoriesData: Category[];
   lunchData?: LunchConfiguration;
 }) {
+  const locale = useGetLocale();
   const [data] = useLiveQuery<HomePage>(homeData, HOME_QUERY);
   const [categories] = useLiveQuery<Category[]>(
     categoriesData,
@@ -22,6 +24,6 @@ export default function PreviewHomePage({
   );
 
   return (
-    <HomeComponents homeData={data} news={news} categoriesData={categories} />
+    <HomeComponentsOptimized homeData={data} news={news} categoriesData={categories} locale={locale} />
   );
 }

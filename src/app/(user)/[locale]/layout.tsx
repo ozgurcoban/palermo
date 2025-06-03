@@ -15,6 +15,7 @@ import { generateRestaurantSchema } from "@/lib/metadata";
 import Script from "next/script";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
+import { criticalCSS } from "@/lib/critical-css";
 
 type Props = {
   children: ReactNode;
@@ -60,6 +61,12 @@ export default async function LocaleLayout({
       className={` ${lato.variable} ${lobster.variable} ${recoleta.variable} ${graduate.variable} `}
       suppressHydrationWarning
     >
+      <head>
+        <link rel="preconnect" href="https://www.palermo-uppsala.se" />
+        <link rel="dns-prefetch" href="https://www.palermo-uppsala.se" />
+        <link rel="preload" as="image" href="/hero.webp" type="image/webp" />
+        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
+      </head>
       <body className="overflow-x-hidden">
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
         <Script
