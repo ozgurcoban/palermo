@@ -90,7 +90,7 @@ export function PageHero({
       
       {/* Mobile CTA button */}
       {ctaText && ctaAction && (
-        <div className="absolute bottom-6 z-30 flex flex-col items-center lg:hidden">
+        <div className="absolute bottom-6 z-20 flex flex-col items-center lg:hidden">
           <FadeUp delay={ctaDelay}>
             <Button
               onClick={ctaAction}
