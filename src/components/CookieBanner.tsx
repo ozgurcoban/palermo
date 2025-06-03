@@ -126,7 +126,7 @@ export function CookieBanner() {
         >
           <Card className="mx-auto max-w-4xl border-0 bg-white/95 shadow-2xl backdrop-blur-md">
             <CardContent className="p-4 md:p-6">
-              <div className="md:flex-gap-4 flex flex-col md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div className="flex-1 space-y-3">
                   <div className="flex items-center gap-2">
                     <CookieIcon className="h-5 w-5 text-accent" />

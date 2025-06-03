@@ -119,7 +119,7 @@ export function Navbar() {
             "cursor-pointer items-center justify-center gap-2 rounded-md p-2",
             "transition-colors duration-200 hover:bg-accent/10",
             "focus:outline-none focus:ring-2 focus:ring-accent/50",
-            "flex lg:hidden",
+            "flex md:hidden",
           )}
           aria-label={isActive ? t("closeMenu") : t("openMenu")}
           aria-expanded={isActive}
