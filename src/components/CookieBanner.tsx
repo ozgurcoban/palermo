@@ -53,13 +53,6 @@ export function CookieBanner() {
     };
     localStorage.setItem("cookie-consent", JSON.stringify(allAccepted));
 
-    // Debug logging disabled
-    // if (
-    //   process.env.NODE_ENV === "production" &&
-    //   typeof window !== "undefined"
-    // ) {
-    //   console.info("[CookieBanner] All cookies accepted:", allAccepted);
-    // }
 
     // Small delay for smooth animation
     setTimeout(() => {
@@ -79,16 +72,6 @@ export function CookieBanner() {
     localStorage.setItem("cookie-consent", JSON.stringify(selectedPreferences));
     setShowSettings(false);
 
-    // Debug logging disabled
-    // if (
-    //   process.env.NODE_ENV === "production" &&
-    //   typeof window !== "undefined"
-    // ) {
-    //   console.info(
-    //     "[CookieBanner] Selected preferences saved:",
-    //     selectedPreferences,
-    //   );
-    // }
 
     // Small delay for smooth animation
     setTimeout(() => {
