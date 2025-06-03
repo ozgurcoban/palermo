@@ -68,7 +68,7 @@ export default async function LocaleLayout({
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
       </head>
       <body className="overflow-x-hidden">
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
+        <GoogleAnalytics />
         <Script
           id="restaurant-schema"
           type="application/ld+json"

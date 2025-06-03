@@ -25,11 +25,11 @@ function GoogleAnalyticsScript() {
         const analyticsEnabled = consentData.analytics === true;
         setShouldLoadGA(analyticsEnabled);
         
-        // Debug logging in production (browser only)
-        if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-          console.log('[GA] Consent data:', consentData);
-          console.log('[GA] Analytics enabled:', analyticsEnabled);
-        }
+        // Debug logging disabled - uncomment for troubleshooting
+        // if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+        //   console.info('[GA] Consent data:', consentData);
+        //   console.info('[GA] Analytics enabled:', analyticsEnabled);
+        // }
         
         // Update gtag consent if GA is already loaded
         if (window.gtag) {
@@ -63,12 +63,12 @@ function GoogleAnalyticsScript() {
         pathname +
         (searchParams?.toString() ? `?${searchParams.toString()}` : "");
       
-      // Debug logging in production (browser only)
-      if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-        console.log('[GA] Tracking pageview:', url);
-        console.log('[GA] gtag function exists:', typeof window.gtag === 'function');
-        console.log('[GA] GA ID:', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID);
-      }
+      // Debug logging disabled - uncomment for troubleshooting
+      // if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+      //   console.info('[GA] Tracking pageview:', url);
+      //   console.info('[GA] gtag function exists:', typeof window.gtag === 'function');
+      //   console.info('[GA] GA ID:', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID);
+      // }
       
       // Send page view event
       window.gtag("event", "page_view", {
@@ -81,35 +81,54 @@ function GoogleAnalyticsScript() {
 
 
   // Check if GA ID is set
-  if (!process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) {
+  const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  
+  // Hardcoded fallback for debugging - REMOVE THIS IN PRODUCTION
+  // const GA_ID_FALLBACK = 'G-QJK285TFJ0';
+  
+  // Debug logging disabled - uncomment for troubleshooting
+  // if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
+  //   console.info('[GA] Environment check:', {
+  //     GA_ID: GA_ID || 'NOT_FOUND',
+  //     NODE_ENV: process.env.NODE_ENV,
+  //     shouldLoadGA,
+  //     hasWindow: typeof window !== 'undefined',
+  //     protocol: window.location.protocol,
+  //     hostname: window.location.hostname
+  //   });
+  // }
+  
+  if (!GA_ID) {
     if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-      console.warn('[GA] No GA measurement ID found');
+      console.warn('[GA] No GA measurement ID found - check Vercel environment variables');
     }
     return null;
   }
 
   // Only load if consent is given
   if (!shouldLoadGA) {
-    if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-      console.log('[GA] Not loading - consent not given');
-    }
+    // Debug logging disabled
+    // if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+    //   console.info('[GA] Not loading - consent not given');
+    // }
     return null;
   }
   
-  // Debug logging when GA loads (browser only)
-  if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-    console.log('[GA] Loading Google Analytics with ID:', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID);
-  }
+  // Debug logging disabled
+  // if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+  //   console.info('[GA] Loading Google Analytics with ID:', GA_ID);
+  // }
 
   return (
     <>
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
         onLoad={() => {
-          if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-            console.log('[GA] Google Analytics script loaded successfully');
-          }
+          // Debug logging disabled
+          // if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+          //   console.info('[GA] Google Analytics script loaded successfully');
+          // }
         }}
         onError={(e) => {
           console.error('[GA] Failed to load Google Analytics:', e);
@@ -119,9 +138,10 @@ function GoogleAnalyticsScript() {
         id="google-analytics"
         strategy="afterInteractive"
         onReady={() => {
-          if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
-            console.log('[GA] Google Analytics initialized, gtag available:', typeof window.gtag !== 'undefined');
-          }
+          // Debug logging disabled
+          // if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+          //   console.info('[GA] Google Analytics initialized, gtag available:', typeof window.gtag !== 'undefined');
+          // }
         }}
         dangerouslySetInnerHTML={{
           __html: `
@@ -142,21 +162,21 @@ function GoogleAnalyticsScript() {
               analytics_storage: 'granted'
             });
             
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
+            gtag('config', '${GA_ID}', {
               page_path: window.location.pathname,
             });
             
-            // Debug log in production
-            if ('${process.env.NODE_ENV}' === 'production') {
-              console.log('[GA] gtag initialized with ID:', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
-              console.log('[GA] Consent set to granted');
-            }
+            // Debug logging disabled - uncomment for troubleshooting
+            // if ('${process.env.NODE_ENV}' === 'production') {
+            //   console.info('[GA] gtag initialized with ID:', '${GA_ID}');
+            //   console.info('[GA] Consent set to granted');
+            // }
             
-            // Test function for debugging
+            // Test function for debugging - uncomment console logs if needed
             window.testGA = function() {
-              console.log('[GA Test] Testing Google Analytics...');
-              console.log('[GA Test] gtag exists:', typeof gtag === 'function');
-              console.log('[GA Test] dataLayer:', window.dataLayer);
+              // console.info('[GA Test] Testing Google Analytics...');
+              // console.info('[GA Test] gtag exists:', typeof gtag === 'function');
+              // console.info('[GA Test] dataLayer:', window.dataLayer);
               
               // Send test event
               gtag('event', 'test_event', {
@@ -165,7 +185,8 @@ function GoogleAnalyticsScript() {
                 value: 1
               });
               
-              console.log('[GA Test] Test event sent!');
+              // console.info('[GA Test] Test event sent!');
+              return 'Test event sent! Check GA Real-Time reports.';
             };
           `,
         }}

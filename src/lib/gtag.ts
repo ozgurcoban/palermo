@@ -14,9 +14,10 @@ export const canTrack = () => {
 // Log page views
 export const pageview = (url: string) => {
   if (!canTrack()) {
-    if (process.env.NODE_ENV === 'production') {
-      console.log('[GA] Cannot track - canTrack() returned false');
-    }
+    // Debug logging disabled
+    // if (process.env.NODE_ENV === 'production') {
+    //   console.info('[GA] Cannot track - canTrack() returned false');
+    // }
     return;
   }
   
@@ -40,17 +41,19 @@ type GTagEvent = {
 
 export const event = ({ action, category, label, value }: GTagEvent) => {
   if (!canTrack()) {
-    if (process.env.NODE_ENV === 'production') {
-      console.log('[GA] Cannot track event - canTrack() returned false', { action, category });
-    }
+    // Debug logging disabled
+    // if (process.env.NODE_ENV === 'production') {
+    //   console.info('[GA] Cannot track event - canTrack() returned false', { action, category });
+    // }
     return;
   }
   
   // Check if gtag is available
   if (typeof window !== 'undefined' && window.gtag) {
-    if (process.env.NODE_ENV === 'production') {
-      console.log('[GA] Tracking event:', { action, category, label, value });
-    }
+    // Debug logging disabled
+    // if (process.env.NODE_ENV === 'production') {
+    //   console.info('[GA] Tracking event:', { action, category, label, value });
+    // }
     window.gtag('event', action, {
       event_category: category,
       event_label: label,

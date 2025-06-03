@@ -20,7 +20,9 @@ const nextConfig = {
         optimizeCss: false,
     },
     compiler: {
-        removeConsole: process.env.NODE_ENV === "production",
+        removeConsole: process.env.NODE_ENV === "production" ? {
+            exclude: ["error", "warn", "info"],
+        } : false,
     },
     swcMinify: true,
     compress: true,
