@@ -56,12 +56,13 @@ const GalleryImage: React.FC<Props> = ({
       )}
       
       <Image
-        src={src}
+        src={`${src}?w=600&h=400&fit=crop&auto=format`}
         alt={`Gallery image ${i + 1}`}
         fill
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        loading={i < 6 ? "eager" : "lazy"}
-        priority={i < 3}
+        loading={i < 3 ? "eager" : "lazy"}
+        priority={i < 1}
+        quality={75}
         className={cn(
           "object-cover transition-all duration-700",
           isLoading ? "opacity-0" : "opacity-100 hover:scale-105"

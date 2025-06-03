@@ -62,6 +62,8 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="preconnect" href="https://cdn.sanity.io" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="preconnect" href="https://www.palermo-uppsala.se" />
         <link rel="dns-prefetch" href="https://www.palermo-uppsala.se" />
         <link rel="preload" as="image" href="/hero.webp" type="image/webp" />
