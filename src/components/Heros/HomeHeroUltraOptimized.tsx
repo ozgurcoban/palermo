@@ -21,17 +21,10 @@ export async function HomeHeroUltraOptimized({ locale }: { locale: string }) {
           src={heroImage}
           alt="hero"
           priority
-          placeholder="blur"
           quality={75}
           sizes="100vw"
-          style={{ 
-            objectFit: "cover",
-            width: '100%',
-            height: '100%',
-          }}
+          style={{ objectFit: "cover" }}
           className="h-full w-full"
-          fetchPriority="high"
-          decoding="async"
         />
       </div>
 
