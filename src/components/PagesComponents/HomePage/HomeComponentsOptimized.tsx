@@ -1,7 +1,6 @@
 import React from "react";
 import { INewsItem } from "@/types/generated";
 import Gallery from "@/components/Gallery";
-import Banner from "@/components/Banner";
 import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
 import { FAQ } from "@/components/FAQ";
@@ -9,9 +8,12 @@ import dynamic from "next/dynamic";
 import { HomeHeroUltraOptimized } from "@/components/Heros/HomeHeroUltraOptimized";
 
 // Lazy load heavy components
-const Menu = dynamic(() => import("@/components/Menu").then(mod => mod.default), {
-  loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
-});
+const Menu = dynamic(
+  () => import("@/components/Menu").then((mod) => mod.default),
+  {
+    loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
+  },
+);
 
 type Props = {
   homeData: HomePage;
@@ -28,13 +30,7 @@ const HomeComponentsOptimized: React.FC<Props> = ({
 }) => {
   const faqSchema = generateFAQSchema(locale as "sv" | "en");
 
-  const {
-    banner,
-    gallery_section,
-    story_section,
-    testimonials_section,
-    wall_section,
-  } = homeData;
+  const { gallery_section, story_section } = homeData;
 
   return (
     <>
@@ -45,7 +41,6 @@ const HomeComponentsOptimized: React.FC<Props> = ({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <HomeHeroUltraOptimized locale={locale} />
-      {banner && <Banner banners={banner} />}
       <section className="w-full py-16 md:py-20">
         <div className="container">
           <Menu categories={categoriesData} />

@@ -14,13 +14,8 @@ export async function HomeHeroUltraOptimized({ locale }: { locale: string }) {
 
   return (
     <div className="relative flex h-[70vh] w-screen items-center justify-center">
-      {/* Hero image with inline critical CSS */}
-      <div 
-        className="relative h-full w-full overflow-hidden"
-        style={{
-          backgroundColor: '#1a1a1a', // Fallback color matching image
-        }}
-      >
+      {/* Hero image - loads immediately, no animation blocking LCP */}
+      <div className="relative h-full w-full overflow-hidden">
         <div className="absolute z-10 h-full w-full bg-black/40" />
         <Image
           src={heroImage}
@@ -29,68 +24,64 @@ export async function HomeHeroUltraOptimized({ locale }: { locale: string }) {
           placeholder="blur"
           quality={85}
           sizes="100vw"
-          style={{ 
-            objectFit: "cover",
-            width: '100%',
-            height: '100%',
-          }}
+          style={{ objectFit: "cover" }}
           className="h-full w-full"
         />
       </div>
 
-      {/* Content - all inline for fastest render */}
+      {/* Content - rendered server-side with CSS animations */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
-        <div 
-          className="pointer-events-none mb-4 rounded-sm bg-muted-foreground/70 px-4 py-2 font-medium text-secondary backdrop-blur-sm"
-          style={{ display: 'inline-block' }}
+        <Badge
+          variant="secondary"
+          className="hero-fade-1 pointer-events-none mb-4 rounded-sm bg-muted-foreground/70 px-4 py-2 font-medium text-secondary backdrop-blur-sm"
         >
           <span className="uppercase">{t("HomeHero.badge.main")}</span>
           <span>{t("HomeHero.badge.suffix")}</span>
-        </div>
+        </Badge>
 
-        <h1 
-          className="hero-title mb-4"
-          style={{ 
-            fontSize: 'clamp(2.5rem, 10vw, 6rem)',
-            lineHeight: 1.1,
-            fontWeight: 700,
-          }}
-        >
-          {t("HomeHero.title")}
-        </h1>
+        <h1 className="hero-title hero-fade-2 mb-4">{t("HomeHero.title")}</h1>
 
-        <p 
-          className="break-words font-lato text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]"
-          style={{
-            fontSize: 'clamp(1rem, 4vw, 1.625rem)',
-            maxWidth: '48rem',
-          }}
-        >
+        <p className="hero-fade-3 break-words font-lato text-[4vw] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[22px] lg:text-[26px] lg:leading-[85px]">
           {t("HomeHero.description")}
         </p>
       </div>
 
-      {/* CTAs - inline without dynamic imports */}
       <div className="absolute bottom-6 z-20 flex flex-col items-center gap-3">
-        {/* Lunch button */}
-        <div className="lg:hidden">
-          <Link 
-            href="/lunch" 
-            className="group inline-flex items-center gap-2 rounded-md border-2 border-white bg-white/20 px-6 py-3 font-medium uppercase tracking-wide text-white backdrop-blur-sm transition-all hover:bg-white/30 hover:text-white"
-          >
+        {/* Lunch button - server rendered */}
+        <Button
+          asChild
+          variant="ghost"
+          size="lg"
+          className="hero-fade-4 group border-2 border-white bg-white/20 font-medium uppercase tracking-wide text-white backdrop-blur-sm transition-all hover:bg-white/30 hover:text-white lg:hidden"
+        >
+          <Link href="/lunch" className="flex items-center gap-2">
             <Utensils className="h-4 w-4" />
             {tNav("lunch")}
           </Link>
-        </div>
+        </Button>
 
-        {/* Main CTA - server rendered */}
-        <Link
-          href="#menu"
-          className="group inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 font-medium text-accent-foreground transition-all hover:bg-accent/90"
-          style={{ scrollBehavior: 'smooth' }}
+        {/* Main CTA - matching ScrollToMenu design */}
+        <Button
+          asChild
+          className="hero-fade-5 relative flex items-center gap-1 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
         >
-          {t("HomeHero.cta")}
-        </Link>
+          <a href="#menu" className="flex items-center gap-1">
+            <svg
+              className="size-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+            <span className="pointer-events-none">{t("HomeHero.cta")}</span>
+          </a>
+        </Button>
       </div>
     </div>
   );

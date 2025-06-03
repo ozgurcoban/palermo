@@ -89,8 +89,6 @@ const MenuContent: React.FC<Props> = ({
     }
   }, [tab]);
 
-
-
   // Get the menu list every time the selected tab changes
   const menus_list = useMemo(() => {
     const filteredList = categories.find(({ _id }) => tab === _id);
@@ -114,14 +112,10 @@ const MenuContent: React.FC<Props> = ({
       ...props,
       ...(id ? { id } : {}),
     };
-    
+
     if (disableAnimations || hasSeenAnimation) {
       // Return children with all props including id
-      return (
-        <div {...elementProps}>
-          {children}
-        </div>
-      );
+      return <div {...elementProps}>{children}</div>;
     }
     return <FadeUp {...elementProps}>{children}</FadeUp>;
   };
@@ -136,117 +130,117 @@ const MenuContent: React.FC<Props> = ({
         id="menu"
         data-scroll-target="menu"
       >
-          <AnimWrapper
-            delay={0.5}
-            style={{
-              boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
-            }}
-            className="flex h-[80vh] flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
+        <AnimWrapper
+          delay={0.5}
+          style={{
+            boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
+          }}
+          className="flex h-[80vh] gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
+        >
+          <div className="flex flex-col" ref={wrapperRef}>
+            <MenuTabs
+              tabs={categories}
+              selectedTab={tab}
+              setSelectedTab={setTab}
+            />
+          </div>
+          <div
+            className="sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
+            ref={scrollRef}
           >
-            <div className="flex flex-col" ref={wrapperRef}>
-              <MenuTabs
-                tabs={categories}
-                selectedTab={tab}
-                setSelectedTab={setTab}
-              />
-            </div>
-            <div
-              className="sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
-              ref={scrollRef}
-            >
-              {getCategory?.description && (
-                <div className="mx-auto mb-3 max-w-md text-justify text-lg">
-                  <p>{getCategory.description?.[locale]}</p>
-                </div>
-              )}
-              <div className="sticky top-0 mx-auto flex max-w-md items-center bg-white">
-                {getCategory?.sub_categories?.some((subCategory) =>
-                  subCategory.menu_list.some(
-                    (item) =>
-                      "takeawayPrice" in item.priceSection &&
-                      item.priceSection.takeawayPrice,
-                  ),
-                ) ? (
-                  <>
-                    <p className="sticky top-0 w-full whitespace-nowrap bg-white text-right text-primary">
-                      {t("dineIn")}
-                    </p>
-                    <SlashIcon className="h-6 text-primary" />{" "}
-                    {/* Updated to use text-primary */}
-                    {t("takeAway.full") ? (
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <p className="whitespace-nowrap text-primary">
-                              {t("takeAway.short")}
-                            </p>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <span>{t("takeAway.full")}</span>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    ) : (
-                      <p className="whitespace-nowrap text-primary">
-                        {t("takeAway.short")}
-                      </p>
-                    )}
-                  </>
-                ) : null}
-                {getCategory?.sub_categories?.some((subCategory) =>
-                  subCategory.menu_list.some(
-                    (item) =>
-                      "glassPrice" in item.priceSection &&
-                      item.priceSection.glassPrice,
-                  ),
-                ) ? (
-                  <TooltipProvider>
-                    <Tooltip>
-                      <div className="relative z-50 flex w-full justify-end">
+            {getCategory?.description && (
+              <div className="mx-auto mb-3 max-w-md text-justify text-lg">
+                <p>{getCategory.description?.[locale]}</p>
+              </div>
+            )}
+            <div className="sticky top-0 mx-auto flex max-w-md items-center bg-white">
+              {getCategory?.sub_categories?.some((subCategory) =>
+                subCategory.menu_list.some(
+                  (item) =>
+                    "takeawayPrice" in item.priceSection &&
+                    item.priceSection.takeawayPrice,
+                ),
+              ) ? (
+                <>
+                  <p className="sticky top-0 w-full whitespace-nowrap bg-white text-right text-primary">
+                    {t("dineIn")}
+                  </p>
+                  <SlashIcon className="h-6 text-primary" />{" "}
+                  {/* Updated to use text-primary */}
+                  {t("takeAway.full") ? (
+                    <TooltipProvider>
+                      <Tooltip>
                         <TooltipTrigger asChild>
                           <p className="whitespace-nowrap text-primary">
-                            {t("glass.short")}
+                            {t("takeAway.short")}
                           </p>
                         </TooltipTrigger>
-                      </div>
-                      <TooltipContent>
-                        <span>{t("glass.full")}</span>
-                      </TooltipContent>
-                    </Tooltip>
-                    <SlashIcon className="h-6 text-primary" />
-                    <Tooltip>
+                        <TooltipContent>
+                          <span>{t("takeAway.full")}</span>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  ) : (
+                    <p className="whitespace-nowrap text-primary">
+                      {t("takeAway.short")}
+                    </p>
+                  )}
+                </>
+              ) : null}
+              {getCategory?.sub_categories?.some((subCategory) =>
+                subCategory.menu_list.some(
+                  (item) =>
+                    "glassPrice" in item.priceSection &&
+                    item.priceSection.glassPrice,
+                ),
+              ) ? (
+                <TooltipProvider>
+                  <Tooltip>
+                    <div className="relative z-50 flex w-full justify-end">
                       <TooltipTrigger asChild>
                         <p className="whitespace-nowrap text-primary">
-                          {t("bottle.short")}
+                          {t("glass.short")}
                         </p>
                       </TooltipTrigger>
-                      <TooltipContent>
-                        <span>{t("bottle.full")}</span>
-                      </TooltipContent>
-                    </Tooltip>
-                    <SlashIcon className="h-6" />
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <p className="whitespace-nowrap text-primary">
-                          {t("carafe.short")}
-                        </p>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <span>{t("carafe.full")}</span>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                ) : null}
-              </div>
-              <hr className="mt-4" />
-              <div className="h-full w-full">
-                <MenuItems data={menus_list} />
-              </div>
+                    </div>
+                    <TooltipContent>
+                      <span>{t("glass.full")}</span>
+                    </TooltipContent>
+                  </Tooltip>
+                  <SlashIcon className="h-6 text-primary" />
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <p className="whitespace-nowrap text-primary">
+                        {t("bottle.short")}
+                      </p>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <span>{t("bottle.full")}</span>
+                    </TooltipContent>
+                  </Tooltip>
+                  <SlashIcon className="h-6" />
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <p className="whitespace-nowrap text-primary">
+                        {t("carafe.short")}
+                      </p>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <span>{t("carafe.full")}</span>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              ) : null}
             </div>
-          </AnimWrapper>
-          <AnimWrapper delay={0.2}>
-            <hr />
-          </AnimWrapper>
+            <hr className="mt-4" />
+            <div className="h-full w-full">
+              <MenuItems data={menus_list} />
+            </div>
+          </div>
+        </AnimWrapper>
+        <AnimWrapper delay={0.2}>
+          <hr />
+        </AnimWrapper>
       </AnimWrapper>
     </div>
   );

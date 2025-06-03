@@ -2,7 +2,7 @@
 
 import React from "react";
 import Banner from "@/components/Banner";
-import { PageHero } from "../../Heros";
+import { PageHeroOptimized as PageHero } from "../../Heros";
 import NationEveryone from "../../NationEveryone";
 import {
   FirstSection,

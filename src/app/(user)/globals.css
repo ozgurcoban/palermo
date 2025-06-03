@@ -138,12 +138,13 @@ p {
 .burger::after,
 .burger::before {
   content: "";
-  height: 1px;
+  height: 2px;
   width: 100%;
-  background-color: black;
+  background-color: hsl(var(--foreground));
   position: relative;
   display: block;
-  transition: all 1s cubic-bezier(0.76, 0, 0.24, 1);
+  transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  border-radius: 9999px;
 }
 
 .burger::after {
@@ -279,6 +280,22 @@ p {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+}
+
+/* Page Hero CSS animations */
+@keyframes pageHeroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-hero-fade {
+  animation: pageHeroFadeUp 0.7s ease-out both;
 }
 
 @layer base {

@@ -10,7 +10,6 @@ import Menu from "@/components/Menu";
 // import AboutUs from "@/components/AboutUs";
 // import Testimonials from "@/components/Testimonials";
 // import RecentNews from "@/components/News/RecentNews";
-import Banner from "@/components/Banner";
 import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
 import { useGetLocale } from "@/config";
@@ -31,13 +30,8 @@ const HomeComponents: React.FC<Props> = ({
   const locale = useGetLocale();
   const faqSchema = generateFAQSchema(locale as "sv" | "en");
 
-  const {
-    banner,
-    gallery_section,
-    story_section,
-    testimonials_section,
-    wall_section,
-  } = homeData;
+  const { gallery_section, story_section, testimonials_section, wall_section } =
+    homeData;
   return (
     <>
       <Script
@@ -46,7 +40,6 @@ const HomeComponents: React.FC<Props> = ({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Hero />
-      {banner && <Banner banners={banner} />}
       <section className="w-full py-16 md:py-20">
         <div className="container">
           <Menu categories={categoriesData} />

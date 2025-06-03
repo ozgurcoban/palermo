@@ -11,16 +11,17 @@ import MobileNav from "./MobileNav";
 import { background, opacity } from "./anim";
 import { Button } from "../ui/button";
 import { event } from "@/lib/gtag";
+import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const handleClick = useCallback((clickEvent: React.MouseEvent) => {
     clickEvent.preventDefault();
-    
+
     // Track the CTA click
     event({
-      action: 'click',
-      category: 'navigation',
-      label: 'hitta_till_oss_cta',
+      action: "click",
+      category: "navigation",
+      label: "hitta_till_oss_cta",
     });
 
     const contactElement = document.getElementById("contact");
@@ -34,11 +35,21 @@ export function Navbar() {
 
   const t = useTranslations("Navigation");
   const [isActive, setIsActive] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const body = document.querySelector("body");
     if (body) body.style.overflowY = isActive ? "hidden" : "auto";
   }, [isActive]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navbarLinks = [
     {
@@ -68,27 +79,31 @@ export function Navbar() {
     // },
   ];
   return (
-    <header className="relative z-30 h-[132px] w-screen" id="navbar">
+    <header
+      className={cn(
+        "relative z-30 h-[132px] w-screen border-b transition-all duration-300",
+        isScrolled
+          ? "border-border bg-background/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-background/60"
+          : "border-transparent bg-background",
+      )}
+      id="navbar"
+    >
       <div className="container flex h-full items-center gap-14">
-        <Link href={"/"} className="flex-1 cursor-default">
-          <Image
-            src="/logo.png"
-            alt="logo"
-            width={100}
-            height={100}
-            style={{ cursor: "pointer" }}
-            priority
-          />
+        <Link
+          href={"/"}
+          className="flex-1 cursor-pointer transition-transform duration-200 hover:scale-105"
+        >
+          <Image src="/logo.png" alt="logo" width={100} height={100} priority />
         </Link>
         <div className="hidden flex-1 justify-end md:justify-center lg:flex">
           <NavLinks navbarLinks={navbarLinks} />
         </div>
-        <div className="items-center justify-end gap-2 md:flex md:flex-1">
+        <div className="flex flex-1 items-center justify-end gap-2">
           <Button
-            variant="secondary"
+            variant="default"
             size="lg"
             onClick={handleClick}
-            className="transform whitespace-nowrap bg-[#5A4B3A] px-4 py-2 font-lato uppercase text-white transition-all duration-200"
+            className="whitespace-nowrap px-3 font-lato text-xs uppercase shadow-sm transition-all duration-200 hover:shadow-md lg:px-4 lg:text-base"
           >
             {t("contact")}
           </Button>
@@ -100,9 +115,12 @@ export function Navbar() {
           onClick={() => {
             setIsActive(!isActive);
           }}
-          className={
-            "flex cursor-pointer items-center justify-center gap-2 p-2 lg:hidden"
-          }
+          className={cn(
+            "cursor-pointer items-center justify-center gap-2 rounded-md p-2",
+            "transition-colors duration-200 hover:bg-accent/10",
+            "focus:outline-none focus:ring-2 focus:ring-accent/50",
+            "flex lg:hidden",
+          )}
           aria-label={isActive ? t("closeMenu") : t("openMenu")}
           aria-expanded={isActive}
           aria-controls="mobile-menu"

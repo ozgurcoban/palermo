@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Lunch } from "@/components/Lunch/Lunch";
-import { PageHero } from "@/components/Heros";
+import { PageHeroOptimized as PageHero } from "@/components/Heros";
 import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
