@@ -6,7 +6,6 @@ import MenuItems from "./MenuItems";
 import FadeUp from "../ui/FadeUp";
 import { useGetLocale } from "@/config";
 import { SlashIcon } from "@radix-ui/react-icons";
-import Localization from "../localization";
 import { useTranslations } from "next-intl";
 import {
   Tooltip,
@@ -42,7 +41,7 @@ const MenuContent: React.FC<Props> = ({
   const t = useTranslations("Home.Menu");
   const locale = useGetLocale();
 
-  // Check if animations should be disabled based on localStorage (24-hour cooldown)
+  // Check if animations should be disabled based on localStorage (24-hour delay)
   // Initialize to true to avoid hydration mismatch, then update on client
   const [hasSeenAnimation, setHasSeenAnimation] = useState(true);
 
@@ -135,7 +134,7 @@ const MenuContent: React.FC<Props> = ({
           style={{
             boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
           }}
-          className="flex h-[80vh] gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
+          className="flex h-[80vh] flex-row gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:gap-10 lg:px-20"
         >
           <div className="flex flex-col" ref={wrapperRef}>
             <MenuTabs
