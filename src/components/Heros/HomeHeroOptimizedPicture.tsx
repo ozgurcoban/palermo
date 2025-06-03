@@ -31,31 +31,31 @@ export async function HomeHeroOptimizedPicture({ locale }: { locale: string }) {
         <picture className="absolute inset-0">
           <source
             media="(max-width: 640px)"
-            srcSet="/hero-sm.webp"
+            srcSet="/hero/hero-sm.webp"
             type="image/webp"
           />
           <source
             media="(max-width: 768px)"
-            srcSet="/hero-md.webp"
+            srcSet="/hero/hero-md.webp"
             type="image/webp"
           />
           <source
             media="(max-width: 1024px)"
-            srcSet="/hero-lg.webp"
+            srcSet="/hero/hero-lg.webp"
             type="image/webp"
           />
           <source
             media="(max-width: 1280px)"
-            srcSet="/hero-xl.webp"
+            srcSet="/hero/hero-xl.webp"
             type="image/webp"
           />
           <source
             media="(max-width: 1920px)"
-            srcSet="/hero-2xl.webp"
+            srcSet="/hero/hero-2xl.webp"
             type="image/webp"
           />
           <img
-            src="/hero-2xl.webp"
+            src="/hero/hero-2xl.webp"
             alt="hero"
             className="h-full w-full object-cover"
             loading="eager"

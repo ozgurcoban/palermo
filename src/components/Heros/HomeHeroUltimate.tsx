@@ -41,48 +41,48 @@ export async function HomeHeroUltimate({ locale }: { locale: string }) {
           {/* AVIF sources for modern browsers */}
           <source
             media="(max-width: 768px)"
-            srcSet="/hero-sm.avif"
+            srcSet="/hero/hero-sm.avif"
             type="image/avif"
           />
           <source
             media="(max-width: 1280px)"
-            srcSet="/hero-md.avif"
+            srcSet="/hero/hero-md.avif"
             type="image/avif"
           />
           <source
-            srcSet="/hero-lg.avif"
+            srcSet="/hero/hero-lg.avif"
             type="image/avif"
           />
           
           {/* WebP fallbacks */}
           <source
             media="(max-width: 640px)"
-            srcSet="/hero-sm.webp"
+            srcSet="/hero/hero-sm.webp"
             type="image/webp"
           />
           <source
             media="(max-width: 768px)"
-            srcSet="/hero-md.webp"
+            srcSet="/hero/hero-md.webp"
             type="image/webp"
           />
           <source
             media="(max-width: 1024px)"
-            srcSet="/hero-lg.webp"
+            srcSet="/hero/hero-lg.webp"
             type="image/webp"
           />
           <source
             media="(max-width: 1280px)"
-            srcSet="/hero-xl.webp"
+            srcSet="/hero/hero-xl.webp"
             type="image/webp"
           />
           <source
-            srcSet="/hero-2xl.webp"
+            srcSet="/hero/hero-2xl.webp"
             type="image/webp"
           />
           
           {/* Final fallback */}
           <img
-            src="/hero-2xl.webp"
+            src="/hero/hero-2xl.webp"
             alt="hero"
             className="h-full w-full object-cover opacity-0 transition-opacity duration-500"
             loading="eager"
