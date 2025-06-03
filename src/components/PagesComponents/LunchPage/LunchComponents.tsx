@@ -17,16 +17,39 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
   const t = useTranslations("Lunch");
   const locale = useGetLocale();
 
-  const scrollToLunch = (e?: React.MouseEvent) => {
-    if (e) e.preventDefault();
-    trackLunchPageCTAClick();
-    const lunchSection = document.getElementById("lunch");
-    if (lunchSection) {
-      // Små fördröjning för att undvika animationskonflikter
-      setTimeout(() => {
-        lunchSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
+  const scrollToLunch = () => {
+    // Wrap tracking in try-catch to prevent crashes
+    try {
+      trackLunchPageCTAClick();
+    } catch (error) {
+      console.error("Tracking error:", error);
     }
+
+    // Small delay to ensure element is rendered
+    const delay = 100;
+
+    setTimeout(() => {
+      const lunchSection = document.getElementById("lunch");
+      if (lunchSection) {
+        const navbarHeight = 132;
+        const lunchPosition =
+          lunchSection.getBoundingClientRect().top + window.scrollY;
+        const viewportHeight = window.innerHeight;
+        const lunchHeight = lunchSection.offsetHeight;
+
+        // Same calculation as menu page
+        const offsetPosition =
+          lunchPosition -
+          navbarHeight -
+          (viewportHeight - navbarHeight - lunchHeight) / 2 +
+          20;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    }, delay);
   };
 
   return (

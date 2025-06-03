@@ -43,7 +43,8 @@ const MenuContent: React.FC<Props> = ({
   const locale = useGetLocale();
 
   // Check if animations should be disabled based on localStorage (24-hour cooldown)
-  const [hasSeenAnimation, setHasSeenAnimation] = useState(false);
+  // Initialize to true to avoid hydration mismatch, then update on client
+  const [hasSeenAnimation, setHasSeenAnimation] = useState(true);
 
   useEffect(() => {
     if (disableAnimations) {
@@ -59,8 +60,10 @@ const MenuContent: React.FC<Props> = ({
 
       if (lastSeen && now - parseInt(lastSeen) < twentyFourHours) {
         setHasSeenAnimation(true);
-      } else if (!lastSeen) {
-        // First time - save after animations complete
+      } else {
+        // Enable animations on client if not seen recently
+        setHasSeenAnimation(false);
+        // Save after animations complete
         setTimeout(() => {
           localStorage.setItem("menu-animation-seen", now.toString());
         }, 2000);
@@ -105,19 +108,22 @@ const MenuContent: React.FC<Props> = ({
   );
 
   // Conditional wrapper for animations
-  const AnimWrapper = ({ children, ...props }: any) => {
+  const AnimWrapper = ({ children, id, ...props }: any) => {
+    // Always ensure the id is passed through
+    const elementProps = {
+      ...props,
+      ...(id ? { id } : {}),
+    };
+    
     if (disableAnimations || hasSeenAnimation) {
-      // Return children with className, style, and id if provided
-      if (props.className || props.style || props.id) {
-        return (
-          <div id={props.id} className={props.className} style={props.style}>
-            {children}
-          </div>
-        );
-      }
-      return <>{children}</>;
+      // Return children with all props including id
+      return (
+        <div {...elementProps}>
+          {children}
+        </div>
+      );
     }
-    return <FadeUp {...props}>{children}</FadeUp>;
+    return <FadeUp {...elementProps}>{children}</FadeUp>;
   };
 
   return (
@@ -128,6 +134,7 @@ const MenuContent: React.FC<Props> = ({
         variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
         className="w-full rounded border-4 bg-white sm:border-8 md:border-[12px]"
         id="menu"
+        data-scroll-target="menu"
       >
           <AnimWrapper
             delay={0.5}

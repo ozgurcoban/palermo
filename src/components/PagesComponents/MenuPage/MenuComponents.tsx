@@ -16,28 +16,38 @@ type Props = {
 const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
   const t = useTranslations("MenuPage");
 
-  const scrollToMenu = (e?: React.MouseEvent) => {
-    if (e) e.preventDefault();
-    trackMenuPageCTAClick();
-    const menuSection = document.getElementById("menu");
-    if (menuSection) {
-      // Small delay to avoid animation conflicts
-      setTimeout(() => {
-        const navbarHeight = 132; // Navbar height including padding
+  const scrollToMenu = () => {
+    // Track the click event safely
+    try {
+      trackMenuPageCTAClick();
+    } catch (error) {
+      // Silently ignore tracking errors
+    }
+    
+    // Small delay to ensure element is rendered
+    const delay = 100;
+    
+    setTimeout(() => {
+      const menuSection = document.getElementById("menu");
+      if (menuSection) {
+        const navbarHeight = 132;
         const menuPosition = menuSection.getBoundingClientRect().top + window.scrollY;
         const viewportHeight = window.innerHeight;
         const menuHeight = menuSection.offsetHeight;
-        
-        // Calculate position to center the menu in viewport (accounting for navbar)
-        // Add 40px to move it down a bit more
         const offsetPosition = menuPosition - navbarHeight - (viewportHeight - navbarHeight - menuHeight) / 2 + 40;
         
         window.scrollTo({
           top: offsetPosition,
           behavior: "smooth"
         });
-      }, 100);
-    }
+      } else {
+        // Fallback: scroll to a fixed position if element not found
+        window.scrollTo({
+          top: 600,
+          behavior: "smooth"
+        });
+      }
+    }, delay);
   };
 
   return (

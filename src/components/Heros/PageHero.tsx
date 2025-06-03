@@ -90,19 +90,17 @@ export function PageHero({
       
       {/* Mobile CTA button */}
       {ctaText && ctaAction && (
-        <div className="absolute bottom-6 z-20 flex flex-col items-center lg:hidden">
-          <FadeUp delay={ctaDelay}>
-            <Button
-              onClick={ctaAction}
-              className="group flex items-center gap-2 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-              size="lg"
-              type="button"
-            >
-              <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-1" />
-              <span>{ctaText}</span>
-            </Button>
-          </FadeUp>
-        </div>
+        <FadeUp delay={ctaDelay} className="absolute bottom-6 z-20 flex flex-col items-center lg:hidden">
+          <Button
+            onClick={ctaAction}
+            className="group flex items-center gap-2 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+            size="lg"
+            type="button"
+          >
+            <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-1" />
+            <span>{ctaText}</span>
+          </Button>
+        </FadeUp>
       )}
     </div>
   );

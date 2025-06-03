@@ -14,9 +14,12 @@ export const canTrack = () => {
 export const pageview = (url: string) => {
   if (!canTrack()) return;
   
-  window.gtag('config', GA_TRACKING_ID, {
-    page_path: url,
-  });
+  // Check if gtag is available
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('config', GA_TRACKING_ID, {
+      page_path: url,
+    });
+  }
 };
 
 // Log specific events
@@ -30,11 +33,14 @@ type GTagEvent = {
 export const event = ({ action, category, label, value }: GTagEvent) => {
   if (!canTrack()) return;
   
-  window.gtag('event', action, {
-    event_category: category,
-    event_label: label,
-    value: value,
-  });
+  // Check if gtag is available
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', action, {
+      event_category: category,
+      event_label: label,
+      value: value,
+    });
+  }
 };
 
 // Restaurant-specific events

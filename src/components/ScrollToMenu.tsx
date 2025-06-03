@@ -28,18 +28,30 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
 
   const scrollToMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    trackMenuCTAClick();
-    const menu = document.getElementById("menu");
-    if (menu) {
-      const navbarHeight = 132; // Height of navbar
-      const menuPosition = menu.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = menuPosition - navbarHeight - 20; // Extra 20px padding
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+    
+    // Track the click event safely
+    try {
+      trackMenuCTAClick();
+    } catch (error) {
+      // Silently ignore tracking errors
     }
+    
+    // Small delay to ensure element is rendered
+    const delay = 100;
+    
+    setTimeout(() => {
+      const menu = document.getElementById("menu");
+      if (menu) {
+        const navbarHeight = 132; // Height of navbar
+        const menuPosition = menu.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = menuPosition - navbarHeight + 30; // Changed from -20 to +30 for 50px lower
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }, delay);
   };
 
   return (
