@@ -64,7 +64,7 @@ export async function HomeHeroOptimizedPicture({ locale }: { locale: string }) {
             onLoad={(e) => {
               // Remove blur when image loads
               const target = e.target as HTMLImageElement;
-              const placeholder = target.parentElement?.previousElementSibling;
+              const placeholder = target.parentElement?.previousElementSibling as HTMLElement;
               if (placeholder) {
                 placeholder.style.opacity = '0';
                 placeholder.style.transition = 'opacity 0.3s ease-out';
