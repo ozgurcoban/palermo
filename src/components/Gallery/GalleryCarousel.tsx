@@ -1,7 +1,7 @@
 /// <reference path="../../../typing.d.ts" />
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import urlFor from "@/lib/urlFor";
 import FadeUp from "@/components/ui/FadeUp";
@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useGetLocale } from "@/config";
 import Autoplay from "embla-carousel-autoplay";
+import { useImagePreloader } from "@/lib/useImagePreloader";
 
 /// <reference path="../../../typing.d.ts" />
 
@@ -43,6 +44,15 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
   const [count, setCount] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>({});
+
+  // Prepare image URLs for preloading
+  const imageUrls = useMemo(() => {
+    return galleryData.images.map((image) => urlFor(image).url());
+  }, [galleryData.images]);
+
+  // Preload images
+  useImagePreloader(imageUrls);
 
   useEffect(() => {
     if (!api) {
@@ -126,12 +136,30 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
               {galleryData.images.map((image, index) => (
                 <CarouselItem key={image._key} className="basis-full pl-4">
                   <div className="group relative h-[400px] w-full overflow-hidden rounded-lg md:h-[500px] lg:h-[600px]">
+                    {/* Loading skeleton */}
+                    {loadingStates[image._key] !== false && (
+                      <div className="absolute inset-0 animate-pulse bg-gray-200" />
+                    )}
+                    
                     <Image
                       src={urlFor(image).url()}
                       alt={`Gallery image ${index + 1}`}
                       width={1200}
                       height={800}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      priority={index < 2}
+                      loading={index < 2 ? "eager" : "lazy"}
+                      className={cn(
+                        "h-full w-full object-cover transition-all duration-700",
+                        loadingStates[image._key] === false 
+                          ? "opacity-100 group-hover:scale-105" 
+                          : "opacity-0"
+                      )}
+                      onLoad={() => {
+                        setLoadingStates(prev => ({ ...prev, [image._key]: false }));
+                      }}
+                      onError={() => {
+                        setLoadingStates(prev => ({ ...prev, [image._key]: false }));
+                      }}
                     />
                     <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-20" />
                   </div>

@@ -1,6 +1,6 @@
 /// <reference path="../../../typing.d.ts" />
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import FadeUp from "../ui/FadeUp";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
@@ -10,6 +10,7 @@ import { useGetLocale } from "@/config";
 import urlFor from "@/lib/urlFor";
 import { useTranslations } from "next-intl";
 import { GalleryCarousel } from "./GalleryCarousel";
+import { useImagePreloader } from "@/lib/useImagePreloader";
 
 /// <reference path="../../../typing.d.ts" />
 
@@ -25,6 +26,15 @@ export const Gallery = ({
 
   const [favouriteList, setFavouriteList] = useState<string[]>([]);
   const [showMore, setShowMore] = useState(false);
+
+  // Prepare image URLs for preloading
+  const imageUrls = useMemo(() => {
+    if (!data?.images) return [];
+    return data.images.map((image) => urlFor(image).url());
+  }, [data?.images]);
+
+  // Preload images
+  const { isPreloading } = useImagePreloader(imageUrls);
 
   // Get the list from localStorage
   useEffect(() => {
