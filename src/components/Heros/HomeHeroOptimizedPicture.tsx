@@ -1,36 +1,77 @@
-import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { Utensils } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
-// Import hero image for build-time optimization
-import heroImage from "../../../public/hero.webp";
+// Base64 placeholder for instant loading (10x10 pixels, heavily blurred)
+const placeholderBase64 = "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAQAgCdASoKAAoABUB8JZgCdAEegWSq3bAAAMyiHAXuOJAZjTSPXcvD4uBH8x1+r3bsTNTk4NWBvDKrngAAAA==";
 
-// High-quality LQIP for smooth transition (20px width)
-const placeholderBase64 = "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoUAA4APzmEuVOvKKWisAgB4CcJZgCdACIg3bNj60cQSSlcAP6DgxtEsmCbVWOH6sZuItVyjk6VpLuprY1gXUodTrwpbHtG4mRPscq/2jCTKLCUgThfwOCASM7AuGYzAaQAAA==";
-
-export async function HomeHeroUltraOptimized({ locale }: { locale: string }) {
+export async function HomeHeroOptimizedPicture({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "Home" });
   const tNav = await getTranslations({ locale, namespace: "Navigation" });
 
   return (
     <div className="relative flex h-[70vh] w-screen items-center justify-center">
-      {/* Hero image - loads immediately, no animation blocking LCP */}
+      {/* Hero image with picture element for optimal loading */}
       <div className="relative h-full w-full overflow-hidden">
         <div className="absolute z-10 h-full w-full bg-black/40" />
-        <Image
-          src={heroImage}
-          alt="hero"
-          quality={60}
-          sizes="(max-width: 640px) 640px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, (max-width: 1280px) 1280px, 1920px"
-          style={{ objectFit: "cover" }}
-          className="h-full w-full"
-          priority
-          placeholder="blur"
-          blurDataURL={placeholderBase64}
+        
+        {/* Placeholder background for instant paint */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${placeholderBase64})`,
+            filter: 'blur(20px)',
+            transform: 'scale(1.1)'
+          }}
         />
+        
+        {/* Responsive picture element */}
+        <picture className="absolute inset-0">
+          <source
+            media="(max-width: 640px)"
+            srcSet="/hero-sm.webp"
+            type="image/webp"
+          />
+          <source
+            media="(max-width: 768px)"
+            srcSet="/hero-md.webp"
+            type="image/webp"
+          />
+          <source
+            media="(max-width: 1024px)"
+            srcSet="/hero-lg.webp"
+            type="image/webp"
+          />
+          <source
+            media="(max-width: 1280px)"
+            srcSet="/hero-xl.webp"
+            type="image/webp"
+          />
+          <source
+            media="(max-width: 1920px)"
+            srcSet="/hero-2xl.webp"
+            type="image/webp"
+          />
+          <img
+            src="/hero-2xl.webp"
+            alt="hero"
+            className="h-full w-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            onLoad={(e) => {
+              // Remove blur when image loads
+              const target = e.target as HTMLImageElement;
+              const placeholder = target.parentElement?.previousElementSibling;
+              if (placeholder) {
+                placeholder.style.opacity = '0';
+                placeholder.style.transition = 'opacity 0.3s ease-out';
+              }
+            }}
+          />
+        </picture>
       </div>
 
       {/* Content - rendered server-side with CSS animations */}

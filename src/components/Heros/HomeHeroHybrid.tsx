@@ -1,36 +1,20 @@
-import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { Utensils } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import { HomeHeroClientImage } from "./HomeHeroClient";
 
-// Import hero image for build-time optimization
-import heroImage from "../../../public/hero.webp";
-
-// High-quality LQIP for smooth transition (20px width)
-const placeholderBase64 = "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoUAA4APzmEuVOvKKWisAgB4CcJZgCdACIg3bNj60cQSSlcAP6DgxtEsmCbVWOH6sZuItVyjk6VpLuprY1gXUodTrwpbHtG4mRPscq/2jCTKLCUgThfwOCASM7AuGYzAaQAAA==";
-
-export async function HomeHeroUltraOptimized({ locale }: { locale: string }) {
+export async function HomeHeroHybrid({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "Home" });
   const tNav = await getTranslations({ locale, namespace: "Navigation" });
 
   return (
     <div className="relative flex h-[70vh] w-screen items-center justify-center">
-      {/* Hero image - loads immediately, no animation blocking LCP */}
+      {/* Hero image - client component for smooth loading */}
       <div className="relative h-full w-full overflow-hidden">
         <div className="absolute z-10 h-full w-full bg-black/40" />
-        <Image
-          src={heroImage}
-          alt="hero"
-          quality={60}
-          sizes="(max-width: 640px) 640px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, (max-width: 1280px) 1280px, 1920px"
-          style={{ objectFit: "cover" }}
-          className="h-full w-full"
-          priority
-          placeholder="blur"
-          blurDataURL={placeholderBase64}
-        />
+        <HomeHeroClientImage alt="hero" />
       </div>
 
       {/* Content - rendered server-side with CSS animations */}
