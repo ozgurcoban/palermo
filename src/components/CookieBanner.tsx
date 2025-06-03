@@ -53,6 +53,10 @@ export function CookieBanner() {
     };
     localStorage.setItem("cookie-consent", JSON.stringify(allAccepted));
     
+    if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+      console.log('[CookieBanner] All cookies accepted:', allAccepted);
+    }
+    
     // Small delay for smooth animation
     setTimeout(() => {
       setIsVisible(false);
@@ -70,6 +74,10 @@ export function CookieBanner() {
     };
     localStorage.setItem("cookie-consent", JSON.stringify(selectedPreferences));
     setShowSettings(false);
+    
+    if (process.env.NODE_ENV === 'production' && typeof window !== 'undefined') {
+      console.log('[CookieBanner] Selected preferences saved:', selectedPreferences);
+    }
     
     // Small delay for smooth animation
     setTimeout(() => {
