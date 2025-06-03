@@ -26,7 +26,7 @@ const AboutComponents: React.FC<Props> = ({ aboutData }) => {
   return (
     <>
       <PageHero
-        imageUrl="/images/hero/about-hero-bar-atmosphere.png"
+        imageUrl="/images/hero/about-hero-bar.webp"
         imageAlt="about hero"
         badge={
           <Badge className="pointer-events-none mb-4 rounded-sm bg-muted-foreground/80 px-4 py-2 font-medium text-secondary opacity-90">

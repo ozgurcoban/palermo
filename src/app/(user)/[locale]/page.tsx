@@ -8,7 +8,7 @@ import { token } from "../../../../sanity/lib/token";
 import { getClient } from "../../../../sanity/lib/client";
 import { CATEGORIES_QUERY, HOME_QUERY } from "../../../../sanity/lib/queries";
 import PreviewProvider from "@/components/PreviewProvider";
-import HomeComponents from "@/components/PagesComponents/HomePage/HomeComponents";
+import HomeComponentsOptimized from "@/components/PagesComponents/HomePage/HomeComponentsOptimized";
 import PreviewHomePage from "@/components/PagesComponents/HomePage/PreviewHomePage";
 import { constructMetadata } from "@/lib/metadata";
 
@@ -54,10 +54,11 @@ export default async function IndexPage({ params: { locale } }: Props) {
     );
 
   return (
-    <HomeComponents
+    <HomeComponentsOptimized
       homeData={homeData}
       news={news.data}
       categoriesData={categoriesData}
+      locale={locale}
     />
   );
 }
