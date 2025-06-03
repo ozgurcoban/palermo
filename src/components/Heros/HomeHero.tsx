@@ -95,7 +95,11 @@ export function HomeHero() {
             <Link 
               href="/lunch" 
               className="flex items-center gap-2"
-              onClick={trackLunchCTAClick}
+              onClick={() => {
+                // Track the click
+                trackLunchCTAClick();
+                // Let the navigation proceed normally
+              }}
             >
               <Utensils className="h-4 w-4" />
               <Localization text="Navigation.lunch" />

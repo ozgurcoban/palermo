@@ -17,7 +17,8 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
   const t = useTranslations("Lunch");
   const locale = useGetLocale();
 
-  const scrollToLunch = () => {
+  const scrollToLunch = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
     trackLunchPageCTAClick();
     const lunchSection = document.getElementById("lunch");
     if (lunchSection) {

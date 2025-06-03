@@ -26,7 +26,8 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
     return animation.stop; // Stop the animation when the component unmounts
   }, [y]);
 
-  const scrollToMenu = () => {
+  const scrollToMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     trackMenuCTAClick();
     const menu = document.getElementById("menu");
     if (menu) {
@@ -46,6 +47,7 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
       className="relative flex items-center gap-1 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
       onClick={scrollToMenu}
       type="button"
+      aria-label="Scroll to menu section"
     >
       <motion.div style={{ translateY }} className="pointer-events-none">
         <ArrowDown className="size-4" />

@@ -16,7 +16,8 @@ type Props = {
 const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
   const t = useTranslations("MenuPage");
 
-  const scrollToMenu = () => {
+  const scrollToMenu = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
     trackMenuPageCTAClick();
     const menuSection = document.getElementById("menu");
     if (menuSection) {
