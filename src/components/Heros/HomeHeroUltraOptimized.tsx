@@ -20,11 +20,11 @@ export async function HomeHeroUltraOptimized({ locale }: { locale: string }) {
         <Image
           src={heroImage}
           alt="hero"
-          priority
           quality={75}
           sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, (max-width: 1920px) 1920px, 2560px"
           style={{ objectFit: "cover" }}
           className="h-full w-full"
+          loading="eager"
         />
       </div>
 
