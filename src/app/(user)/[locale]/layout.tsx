@@ -64,9 +64,7 @@ export default async function LocaleLayout({
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        <link rel="preconnect" href="https://www.palermo-uppsala.se" />
-        <link rel="dns-prefetch" href="https://www.palermo-uppsala.se" />
-        <link rel="preload" as="image" href="/hero.webp" type="image/webp" />
+        <link rel="preconnect" href="/_next/image" />
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
       </head>
       <body className="overflow-x-hidden">

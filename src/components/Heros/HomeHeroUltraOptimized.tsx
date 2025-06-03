@@ -22,10 +22,16 @@ export async function HomeHeroUltraOptimized({ locale }: { locale: string }) {
           alt="hero"
           priority
           placeholder="blur"
-          quality={85}
+          quality={75}
           sizes="100vw"
-          style={{ objectFit: "cover" }}
+          style={{ 
+            objectFit: "cover",
+            width: '100%',
+            height: '100%',
+          }}
           className="h-full w-full"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
 
