@@ -165,25 +165,26 @@ p {
   top: 1px;
 }
 
+/* Border image classes - images removed, keeping structure for future use */
 .border-image,
 .dark-border-image {
-  border-image-source: url(../../../public/images/border.png);
+  /* border-image-source: url(../../../public/images/border.png); */
   border-image-slice: 70 0 70 fill;
   border-image-width: 30px 0;
   border-image-outset: 0;
 }
 
 .dark-border-image {
-  border-image-source: url(../../../public/images/dark-border.png);
+  /* border-image-source: url(../../../public/images/dark-border.png); */
 }
 
 .green-bg {
   border: 1px solid #f8eee2;
-  border-image-source: url(../../../public/images/green-bg.png);
+  /* border-image-source: url(../../../public/images/green-bg.png); */
   border-image-slice: 30;
   border-image-width: 30px;
   border-image-outset: 10;
-  background-image: url(../../../public/images/green-bg.png);
+  /* background-image: url(../../../public/images/green-bg.png); */
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -195,7 +196,7 @@ p {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url(../../../public/images/wave.svg);
+  /* background-image: url(../../../public/images/wave.svg); */
 }
 
 .swiper-button-prev,
