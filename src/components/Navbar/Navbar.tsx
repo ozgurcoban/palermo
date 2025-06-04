@@ -12,17 +12,17 @@ import { background, opacity } from "./anim";
 import { Button } from "../ui/button";
 import { event } from "@/lib/gtag";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "../ui/theme-toggle";
+import ThemeToggle from "../ui/theme-toggle";
 
 export function Navbar() {
   const handleClick = useCallback((clickEvent: React.MouseEvent) => {
     clickEvent.preventDefault();
-    
+
     // Track the CTA click
     event({
-      action: 'click',
-      category: 'navigation',
-      label: 'hitta_till_oss_cta',
+      action: "click",
+      category: "navigation",
+      label: "hitta_till_oss_cta",
     });
 
     const contactElement = document.getElementById("contact");
@@ -71,16 +71,40 @@ export function Navbar() {
   ];
   return (
     <header className="relative z-30 h-[132px] w-screen" id="navbar">
-      <div className="container flex h-full items-center gap-14">
+      <div className="container flex h-full items-center gap-6">
         <Link href={"/"} className="flex-1 cursor-default">
-          <Image
-            src="/logo.png"
-            alt="logo"
-            width={100}
-            height={100}
-            style={{ cursor: "pointer" }}
-            priority
-          />
+          <div className="h-[90px] w-[90px] sm:h-[100px] sm:w-[100px] md:h-[110px] md:w-[110px]">
+            {/* Light mode logo */}
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={110}
+              height={110}
+              style={{
+                cursor: "pointer",
+                borderRadius: "50%",
+                width: "100%",
+                height: "100%",
+              }}
+              priority
+              className="block dark:hidden"
+            />
+            {/* Dark mode logo */}
+            <Image
+              src="/dark-logo.webp"
+              alt="logo"
+              width={110}
+              height={110}
+              style={{
+                cursor: "pointer",
+                borderRadius: "50%",
+                width: "100%",
+                height: "100%",
+              }}
+              priority
+              className="hidden dark:block"
+            />
+          </div>
         </Link>
         <div className="hidden flex-1 justify-end md:justify-center lg:flex">
           <NavLinks navbarLinks={navbarLinks} />

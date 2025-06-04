@@ -62,6 +62,12 @@ export default async function LocaleLayout({
       className={` ${lato.variable} ${lobster.variable} ${recoleta.variable} ${graduate.variable} `}
       suppressHydrationWarning
     >
+      <head>
+        <link rel="preconnect" href="https://cdn.sanity.io" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        <link rel="preconnect" href="/_next/image" />
+        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
+      </head>
       <body className="overflow-x-hidden">
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
         <Script
