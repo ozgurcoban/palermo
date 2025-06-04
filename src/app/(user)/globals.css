@@ -179,10 +179,12 @@ p {
   top: 1px;
 }
 
+/* Border images temporarily disabled - files missing */
+/*
 .border-image,
 .dark-border-image {
   border-image-source: url(../../../public/images/border.png);
-  /* border-image-slice: 70 0 70; */
+  border-image-slice: 70 0 70;
   border-image-width: 30px 0;
   border-image-outset: 0;
 }
@@ -190,7 +192,10 @@ p {
 .dark-border-image {
   border-image-source: url(../../../public/images/dark-border.png);
 }
+*/
 
+/* Green background temporarily disabled - files missing */
+/*
 .green-bg {
   border: 1px solid #f8eee2;
   border-image-source: url(../../../public/images/green-bg.png);
@@ -202,6 +207,7 @@ p {
   background-position: center center;
   background-size: cover;
 }
+*/
 
 .spacer {
   aspect-ratio: 960/200;
