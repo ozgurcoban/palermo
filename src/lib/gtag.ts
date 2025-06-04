@@ -3,132 +3,175 @@ export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!;
 // Check if we should track (not in dev/preview)
 export const canTrack = () => {
   return (
-    typeof window !== 'undefined' &&
+    typeof window !== "undefined" &&
     GA_TRACKING_ID &&
-    (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') &&
-    process.env.VERCEL_ENV !== 'preview'
+    (process.env.NODE_ENV === "production" ||
+      process.env.NODE_ENV === "development") &&
+    process.env.VERCEL_ENV !== "preview"
   );
 };
 
 // Log page views
 export const pageview = (url: string) => {
   if (!canTrack()) return;
-  
+
   // Check if gtag is available
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', GA_TRACKING_ID, {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("config", GA_TRACKING_ID, {
       page_path: url,
     });
   }
 };
 
 // GA4 event tracking
-export const event = (eventName: string, parameters: Record<string, any> = {}) => {
+export const event = (
+  eventName: string,
+  parameters: Record<string, any> = {},
+) => {
   if (!canTrack()) return;
-  
+
   // Check if gtag is available
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', eventName, parameters);
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", eventName, parameters);
   }
 };
 
 // Restaurant-specific events
 export const trackMenuView = (categoryName: string) => {
-  event('view_menu_category', {
+  event("view_menu_category", {
     category_name: categoryName,
-    engagement_time_msec: Date.now()
+    engagement_time_msec: Date.now(),
   });
 };
 
 export const trackContactFormSubmit = () => {
-  event('form_submit', {
-    form_name: 'contact_form',
-    form_location: 'contact_section'
+  event("form_submitted", {
+    event_category: "Form",
+    event_label: "Contact Form Sent",
+    form_type: "contact"
   });
 };
 
 export const trackContactFormStart = () => {
-  event('form_start', {
-    form_name: 'contact_form',
-    form_location: 'contact_section'
+  event("form_started", {
+    event_category: "Form", 
+    event_label: "Contact Form Begun",
+    form_type: "contact"
   });
 };
 
 export const trackPhoneClick = () => {
-  event('contact_click', {
-    contact_method: 'phone',
-    link_text: '018-13 18 20'
+  event("phone_clicked", {
+    event_category: "Contact",
+    event_label: "Phone Number",
+    contact_method: "phone"
   });
 };
 
 export const trackEmailClick = () => {
-  event('contact_click', {
-    contact_method: 'email',
-    link_text: 'email_address'
+  event("email_clicked", {
+    event_category: "Contact",
+    event_label: "Email Address",
+    contact_method: "email"
   });
 };
 
 export const trackAddressClick = () => {
-  event('contact_click', {
-    contact_method: 'address',
-    link_text: 'physical_address'
+  event("address_clicked", {
+    event_category: "Contact",
+    event_label: "Physical Address",
+    contact_method: "address"
   });
 };
 
 export const trackDeliveryAppClick = (appName: string) => {
-  event(`${appName.toLowerCase().replace(/\s+/g, '')}_clicked`, {
+  event(`${appName.toLowerCase().replace(/\s+/g, "_")}_clicked`, {
+    event_category: "External Link",
+    event_label: `${appName} Delivery App`,
     app_name: appName,
-    link_category: 'delivery_app'
+    link_domain: appName.toLowerCase().replace(" ", ""),
+    conversion_event: true,
+    outbound_link: true,
   });
 };
 
 export const trackLunchTabView = (tabName: string) => {
-  event('select_content', {
-    content_type: 'lunch_tab',
-    item_id: tabName.toLowerCase().replace(' ', '_')
+  event("select_content", {
+    content_type: "lunch_tab",
+    item_id: tabName.toLowerCase().replace(" ", "_"),
   });
 };
 
 export const trackMenuCTAClick = () => {
-  event('select_promotion', {
-    promotion_id: 'menu_cta',
-    promotion_name: 'Menu CTA Hero',
-    creative_name: 'hero_section',
-    creative_slot: 'primary_cta'
+  event("hero_menu_click", {
+    event_category: "CTA",
+    event_label: "Menu - Hero",
+    action: "scroll_to_menu"
   });
 };
 
 export const trackLunchCTAClick = () => {
-  event('select_promotion', {
-    promotion_id: 'lunch_cta',
-    promotion_name: 'Lunch CTA Hero',
-    creative_name: 'hero_section',
-    creative_slot: 'secondary_cta'
+  event("hero_lunch_click", {
+    event_category: "CTA",
+    event_label: "Lunch - Hero",
+    action: "navigate_to_lunch"
   });
 };
 
 export const trackLunchPageCTAClick = () => {
-  event('select_promotion', {
-    promotion_id: 'lunch_page_cta',
-    promotion_name: 'Lunch Page Hero CTA',
-    creative_name: 'page_hero',
-    creative_slot: 'primary_cta'
+  event("lunch_page_cta_click", {
+    event_category: "CTA",
+    event_label: "Lunch Page Hero CTA",
+    action: "scroll_to_lunch"
   });
 };
 
 export const trackLunchOpeningHoursClick = () => {
-  event('page_view', {
-    page_title: 'Lunch Page',
-    page_location: window.location.href,
-    referrer_source: 'opening_hours_section'
+  event("lunch_hours_click", {
+    event_category: "Contact",
+    event_label: "Lunch Hours",
+    action: "view_info"
   });
 };
 
 export const trackMenuPageCTAClick = () => {
-  event('select_promotion', {
-    promotion_id: 'menu_page_cta',
-    promotion_name: 'Menu Page Hero CTA',
-    creative_name: 'page_hero',
-    creative_slot: 'primary_cta'
+  event("menu_page_cta_click", {
+    event_category: "CTA",
+    event_label: "Menu Page Hero CTA",
+    action: "book_table"
+  });
+};
+
+export const trackThemeToggle = (fromTheme: string, toTheme: string) => {
+  event(`theme_${toTheme}`, {
+    event_category: "UI",
+    event_label: `${fromTheme} → ${toTheme}`,
+    from_theme: fromTheme,
+    to_theme: toTheme
+  });
+};
+
+export const trackFAQClick = (index: number) => {
+  event(`faq_${index + 1}`, {
+    event_category: 'Content',
+    event_label: `FAQ Question ${index + 1}`,
+    faq_index: index
+  });
+};
+
+export const trackSocialClick = (platform: string) => {
+  event(`${platform}_clicked`, {
+    event_category: 'Social',
+    event_label: `${platform} Link`,
+    platform: platform
+  });
+};
+
+export const trackScrollDepth = (percentage: number, pageName: string) => {
+  event(`scroll_${percentage}_${pageName}`, {
+    event_category: 'Engagement',
+    event_label: `${pageName} - ${percentage}%`,
+    scroll_depth: percentage,
+    page_name: pageName
   });
 };

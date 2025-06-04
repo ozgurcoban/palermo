@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { Utensils } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import ScrollToMenu from "../ScrollToMenu";
+import { trackLunchCTAClick } from "@/lib/gtag";
 
 // Import hero image for build-time optimization
 import heroImage from "../../../public/hero.webp";
@@ -11,9 +15,13 @@ import heroImage from "../../../public/hero.webp";
 // High-quality LQIP for smooth transition (20px width)
 const placeholderBase64 = "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoUAA4APzmEuVOvKKWisAgB4CcJZgCdACIg3bNj60cQSSlcAP6DgxtEsmCbVWOH6sZuItVyjk6VpLuprY1gXUodTrwpbHtG4mRPscq/2jCTKLCUgThfwOCASM7AuGYzAaQAAA==";
 
-export async function HomeHeroUltraOptimized({ locale }: { locale: string }) {
-  const t = await getTranslations({ locale, namespace: "Home" });
-  const tNav = await getTranslations({ locale, namespace: "Navigation" });
+export function HomeHeroUltraOptimized({ locale }: { locale: string }) {
+  const t = useTranslations("Home");
+  const tNav = useTranslations("Navigation");
+
+  const handleLunchClick = () => {
+    trackLunchCTAClick();
+  };
 
   return (
     <div className="relative flex h-[70vh] w-screen items-center justify-center">
@@ -58,34 +66,16 @@ export async function HomeHeroUltraOptimized({ locale }: { locale: string }) {
           size="lg"
           className="hero-fade-4 group border-2 border-white bg-white/20 font-medium uppercase tracking-wide text-white backdrop-blur-sm transition-all hover:bg-white/30 hover:text-white lg:hidden"
         >
-          <Link href="/lunch" className="flex items-center gap-2">
+          <Link href="/lunch" className="flex items-center gap-2" onClick={handleLunchClick}>
             <Utensils className="h-4 w-4" />
             {tNav("lunch")}
           </Link>
         </Button>
 
-        {/* Main CTA - matching ScrollToMenu design */}
-        <Button
-          asChild
-          className="hero-fade-5 relative flex items-center gap-1 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-        >
-          <a href="#menu" className="flex items-center gap-1">
-            <svg
-              className="size-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-            <span className="pointer-events-none">{t("HomeHero.cta")}</span>
-          </a>
-        </Button>
+        {/* Main CTA with tracking */}
+        <div className="hero-fade-5">
+          <ScrollToMenu>{t("HomeHero.cta")}</ScrollToMenu>
+        </div>
       </div>
     </div>
   );

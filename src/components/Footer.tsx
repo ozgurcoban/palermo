@@ -1,7 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { FacebookIcon, InstagramIcon } from "lucide-react";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { trackSocialClick } from "@/lib/gtag";
 
 import {
   HomeIcon,
@@ -96,6 +98,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                   target="_blank"
                   aria-label="Facebook"
                   className="transition-all duration-300 hover:text-accent"
+                  onClick={() => trackSocialClick('facebook')}
                 >
                   <FacebookIcon />
                 </Link>
@@ -106,6 +109,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                   target="_blank"
                   aria-label="Instagram"
                   className="transition-all duration-300 hover:text-primary"
+                  onClick={() => trackSocialClick('instagram')}
                 >
                   <InstagramIcon />
                 </Link>

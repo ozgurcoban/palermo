@@ -19,9 +19,10 @@ export function Navbar() {
     clickEvent.preventDefault();
 
     // Track the CTA click
-    event('scroll_to_section', {
-      section_name: 'contact',
-      trigger_element: 'navbar_cta_button'
+    event('navbar_contact_click', {
+      event_category: 'CTA',
+      event_label: 'Contact - Navbar',
+      action: 'scroll_to_section'
     });
 
     const contactElement = document.getElementById("contact");

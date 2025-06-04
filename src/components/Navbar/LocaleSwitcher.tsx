@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useRouter, usePathname } from "@/navigation";
+import { event } from "@/lib/gtag";
 
 export default function LocaleSwitcher() {
   const t = useTranslations("LocaleSwitcher");
@@ -19,6 +20,14 @@ export default function LocaleSwitcher() {
   const pathname = usePathname();
 
   function onSelectChange(nextLocale: string) {
+    // Track language switch
+    event(`lang_${nextLocale}`, {
+      event_category: 'Navigation',
+      event_label: `${locale} → ${nextLocale}`,
+      from_lang: locale,
+      to_lang: nextLocale
+    });
+    
     // @ts-ignore
     router.replace(pathname, { locale: nextLocale });
   }

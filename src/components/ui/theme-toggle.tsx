@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { trackThemeToggle } from "@/lib/gtag";
 
 /**
  * A sleek dark-/light-mode toggle using Framer Motion + Tailwind + lucide-react.
@@ -26,15 +27,21 @@ export default function ThemeToggle() {
   const isDark = theme === "dark";
 
   const handleClick = async () => {
+    const currentTheme = isDark ? "dark" : "light";
+    const newTheme = isDark ? "light" : "dark";
+    
+    // Track theme toggle
+    trackThemeToggle(currentTheme, newTheme);
+    
     // Check if browser supports View Transitions API
     if (!document.startViewTransition) {
-      setTheme(isDark ? "light" : "dark");
+      setTheme(newTheme);
       return;
     }
 
     // Use View Transitions API for smooth transition
     await document.startViewTransition(() => {
-      setTheme(isDark ? "light" : "dark");
+      setTheme(newTheme);
     }).finished;
   };
 
