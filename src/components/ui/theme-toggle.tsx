@@ -25,7 +25,18 @@ export default function ThemeToggle() {
 
   const isDark = theme === "dark";
 
-  const handleClick = () => setTheme(isDark ? "light" : "dark");
+  const handleClick = async () => {
+    // Check if browser supports View Transitions API
+    if (!document.startViewTransition) {
+      setTheme(isDark ? "light" : "dark");
+      return;
+    }
+    
+    // Use View Transitions API for smooth transition
+    await document.startViewTransition(() => {
+      setTheme(isDark ? "light" : "dark");
+    }).finished;
+  };
 
   return (
     <motion.button

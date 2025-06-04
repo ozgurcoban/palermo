@@ -9,6 +9,12 @@
   scroll-behavior: smooth;
 }
 
+/* Dark mode transition using View Transitions API (if supported) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+
 @layer utilities {
   .animation-delay-200 {
     animation-delay: 200ms;
@@ -114,7 +120,7 @@ p {
 
 /* Hero title with stroke effect - Palermo branded style */
 .hero-title {
-  @apply font-graduate text-center text-[12vw] font-bold leading-tight tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)] md:text-[calc(2.6rem_+_3.5vw)] lg:text-[calc(2.6rem_+_3.8vw)];
+  @apply text-center font-graduate text-[12vw] font-bold leading-tight tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)] md:text-[calc(2.6rem_+_3.5vw)] lg:text-[calc(2.6rem_+_3.8vw)];
   color: #4a3728;
   -webkit-text-stroke: 6px white;
   paint-order: stroke fill;
@@ -128,7 +134,7 @@ p {
 
 /* Variant without stroke for PageHero */
 .hero-title-simple {
-  @apply font-graduate text-center text-[8vw] font-bold leading-tight tracking-wider sm:text-5xl md:text-6xl lg:text-7xl;
+  @apply text-center font-graduate text-[8vw] font-bold leading-tight tracking-wider sm:text-5xl md:text-6xl lg:text-7xl;
   color: white;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
