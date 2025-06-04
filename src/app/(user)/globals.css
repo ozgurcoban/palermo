@@ -209,6 +209,8 @@ p {
 }
 */
 
+/* Spacer temporarily disabled - wave.svg file missing */
+/*
 .spacer {
   aspect-ratio: 960/200;
   width: 100%;
@@ -217,6 +219,7 @@ p {
   background-size: cover;
   background-image: url(../../../public/images/wave.svg);
 }
+*/
 
 .swiper-button-prev,
 .swiper-button-next {
