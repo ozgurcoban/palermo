@@ -12,15 +12,14 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: white;
   outline: none;
   cursor: pointer;
-  @apply border-dark border-2 bg-light;
+  @apply border-2 border-border bg-background;
 }
 
 .radio:checked {
   font-size: 16px;
-  background-color: white;
+  @apply bg-muted;
   position: relative;
 }
 
@@ -30,7 +29,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  @apply bg-dark;
+  @apply bg-primary;
   position: absolute;
   top: 50%;
   left: 50%;

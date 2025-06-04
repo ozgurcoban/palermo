@@ -11,6 +11,8 @@ import MobileNav from "./MobileNav";
 import { background, opacity } from "./anim";
 import { Button } from "../ui/button";
 import { event } from "@/lib/gtag";
+import { cn } from "@/lib/utils";
+import { ThemeToggle } from "../ui/theme-toggle";
 
 export function Navbar() {
   const handleClick = useCallback((clickEvent: React.MouseEvent) => {
@@ -83,7 +85,8 @@ export function Navbar() {
         <div className="hidden flex-1 justify-end md:justify-center lg:flex">
           <NavLinks navbarLinks={navbarLinks} />
         </div>
-        <div className="items-center justify-end gap-2 md:flex md:flex-1">
+        <div className="flex flex-1 items-center justify-end gap-4">
+          <ThemeToggle />
           <Button
             variant="secondary"
             size="lg"
