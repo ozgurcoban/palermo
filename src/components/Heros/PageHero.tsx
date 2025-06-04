@@ -51,17 +51,7 @@ export function PageHero({
     <div
       className={`relative flex w-screen items-center justify-center ${height}`}
     >
-      <MotionDiv
-        className="relative h-full w-full overflow-hidden"
-        variants={fadeVariants}
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true }}
-        transition={{
-          duration: 1.5,
-          ease: "easeOut",
-        }}
-      >
+      <div className="relative h-full w-full overflow-hidden">
         <div
           className={`absolute z-10 h-full w-full bg-gradient-to-b ${overlayGradient}`}
         />
@@ -73,8 +63,10 @@ export function PageHero({
           style={{ objectFit: "cover" }}
           className="h-full w-full object-[50%_50%] lg:object-[50%_60%] xl:object-[50%_75%]"
           priority
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
         />
-      </MotionDiv>
+      </div>
 
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
         {badge && <FadeUp delay={badgeDelay}>{badge}</FadeUp>}
