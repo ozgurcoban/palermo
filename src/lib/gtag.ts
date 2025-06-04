@@ -4,9 +4,9 @@ export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!;
 export const canTrack = () => {
   return (
     typeof window !== 'undefined' &&
-    process.env.NODE_ENV === 'production' &&
-    process.env.VERCEL_ENV !== 'preview' &&
-    GA_TRACKING_ID
+    GA_TRACKING_ID &&
+    (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') &&
+    process.env.VERCEL_ENV !== 'preview'
   );
 };
 
@@ -76,9 +76,8 @@ export const trackAddressClick = () => {
 };
 
 export const trackDeliveryAppClick = (appName: string) => {
-  event('external_link_click', {
-    link_domain: appName.toLowerCase().replace(' ', ''),
-    link_text: appName,
+  event(`${appName.toLowerCase().replace(/\s+/g, '')}_clicked`, {
+    app_name: appName,
     link_category: 'delivery_app'
   });
 };
