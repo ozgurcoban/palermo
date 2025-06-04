@@ -107,7 +107,7 @@ export function CookieBanner() {
         }}
         className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
       >
-        <Card className="mx-auto max-w-4xl border-0 bg-white/95 shadow-2xl backdrop-blur-md">
+        <Card className="mx-auto max-w-4xl border-2 border-accent/30 bg-background/95 shadow-2xl backdrop-blur-md">
           <CardContent className="p-4 md:p-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div className="flex-1 space-y-3">
@@ -179,7 +179,7 @@ export function CookieBanner() {
                       </Button>
                     </DialogTrigger>
                     
-                    <DialogContent className="max-w-md">
+                    <DialogContent className="w-[calc(100vw-2rem)] max-w-md mx-auto">
                       <DialogHeader>
                         <DialogTitle className="flex items-center gap-2 font-recoleta">
                           <ShieldCheckIcon className="h-5 w-5 text-accent" />

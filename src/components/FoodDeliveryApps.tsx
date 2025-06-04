@@ -58,12 +58,12 @@ export default function FoodDeliveryApps() {
         <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
           {deliveryApps.map((app, index) => (
             <FadeUp key={app.name} delay={0.3 + index * 0.1}>
-              <Card className="border-0 bg-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+              <Card className="bg-card border shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl">
                 <CardHeader className="pb-4">
                   <div className="flex h-20 items-center justify-center">
                     {app.name === "Uber Eats" && (
                       <CardTitle className="text-4xl">
-                        <span className="text-black">Uber</span>
+                        <span className="text-foreground">Uber</span>
                         <span className="text-[#06C167]">Eats</span>
                       </CardTitle>
                     )}
