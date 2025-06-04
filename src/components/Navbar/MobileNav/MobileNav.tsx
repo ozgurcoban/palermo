@@ -23,7 +23,7 @@ export const MobileNav: React.FC<IMobileNav> = ({ links, onCloseMenu }) => {
       initial="initial"
       animate="enter"
       exit="exit"
-      className={"overflow-hidden bg-light"}
+      className={"overflow-hidden bg-card/95 backdrop-blur-md border-t border-border shadow-lg"}
       id="mobile-menu"
       role="navigation"
       aria-label="Mobile navigation"

@@ -82,7 +82,7 @@ export default function ContactForm() {
                     <FormControl>
                       <Input
                         placeholder={t("name")}
-                        className="h-12 border border-gray-300 bg-white px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        className="h-12 border border-border bg-background px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
                         onFocus={handleFormStart}
                         {...field}
                       />
@@ -102,7 +102,7 @@ export default function ContactForm() {
                       <Input
                         type="email"
                         placeholder={t("email")}
-                        className="h-12 border border-gray-300 bg-white px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        className="h-12 border border-border bg-background px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
                         {...field}
                       />
                     </FormControl>
@@ -121,7 +121,7 @@ export default function ContactForm() {
                   <FormControl>
                     <Textarea
                       placeholder={t("message")}
-                      className="min-h-[140px] resize-none border border-gray-300 bg-white p-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                      className="min-h-[140px] resize-none border border-border bg-background p-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
                       {...field}
                     />
                   </FormControl>

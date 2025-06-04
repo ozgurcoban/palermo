@@ -41,7 +41,7 @@ const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
           initial="initial"
           animate="enter"
           exit="exit"
-          className={""}
+          className={"text-muted-foreground"}
         >
           <Localization text="Navigation.mobile.siteLanguage" />
         </motion.li>
@@ -54,8 +54,8 @@ const NavFooter = ({ onCloseMenu }: { onCloseMenu: () => void }) => {
             exit="exit"
             key={cur}
             onClick={() => onSelectChange(cur)}
-            className={`cursor-pointer ${
-              locale === cur ? "text-[#9f9689]" : ""
+            className={`cursor-pointer transition-colors hover:text-accent ${
+              locale === cur ? "text-primary font-medium" : "text-muted-foreground"
             }`}
           >
             {t("locale", { locale: cur })}

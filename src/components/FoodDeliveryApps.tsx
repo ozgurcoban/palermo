@@ -58,7 +58,7 @@ export default function FoodDeliveryApps() {
         <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
           {deliveryApps.map((app, index) => (
             <FadeUp key={app.name} delay={0.3 + index * 0.1}>
-              <Card className="border-0 bg-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1">
+              <Card className="border-0 bg-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                 <CardHeader className="pb-4">
                   <div className="flex h-20 items-center justify-center">
                     {app.name === "Uber Eats" && (
@@ -73,7 +73,9 @@ export default function FoodDeliveryApps() {
                       </CardTitle>
                     )}
                     {app.name === "Wolt" && (
-                      <CardTitle className="text-4xl text-[#009DE0]">Wolt</CardTitle>
+                      <CardTitle className="text-4xl text-[#009DE0]">
+                        Wolt
+                      </CardTitle>
                     )}
                   </div>
                 </CardHeader>
@@ -84,7 +86,7 @@ export default function FoodDeliveryApps() {
 
                   <Button
                     asChild
-                    className="w-full bg-accent hover:bg-accent/90"
+                    className="w-full"
                     size="lg"
                   >
                     <a
@@ -103,9 +105,9 @@ export default function FoodDeliveryApps() {
             </FadeUp>
           ))}
         </div>
-        
+
         <FadeUp delay={0.6}>
-          <p className="text-body text-center mt-8 text-muted-foreground">
+          <p className="text-body mt-8 text-center text-muted-foreground">
             {t("deliveryAreas")}
           </p>
         </FadeUp>
