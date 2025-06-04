@@ -16,6 +16,7 @@ import Script from "next/script";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
 import { criticalCSS } from "@/lib/critical-css";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 type Props = {
   children: ReactNode;
@@ -68,23 +69,30 @@ export default async function LocaleLayout({
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
       </head>
       <body className="overflow-x-hidden">
-        <GoogleAnalytics />
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
         <Script
           id="restaurant-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantSchema) }}
         />
-        <IntlProvider params={{ locale }}>
-          <Toaster />
-          <Navbar />
-          <ScrollTop />
-          <main>
-            {children}
-            <ContactInfoSection contactData={contactData} lunchData={lunchData} />
-          </main>
-          <Footer contactData={contactData} />
-          <CookieBanner />
-        </IntlProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <IntlProvider params={{ locale }}>
+            <Toaster />
+            <Navbar />
+            <ScrollTop />
+            <main>
+              {children}
+              <ContactInfoSection contactData={contactData} lunchData={lunchData} />
+            </main>
+            <Footer contactData={contactData} />
+            <CookieBanner />
+          </IntlProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

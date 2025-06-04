@@ -22,7 +22,7 @@ const ScrollTop = () => {
       <button
         title="Scroll Top"
         aria-label="Scroll Top"
-        className={`fixed z-20 right-10 bottom-10 border bg-light rounded-full p-3 flex items-center justify-center transition-all duration-500 ${
+        className={`fixed z-20 right-10 bottom-10 border border-border bg-card hover:bg-accent hover:text-accent-foreground rounded-full p-3 flex items-center justify-center transition-all duration-500 shadow-lg ${
           showBtn ? "opacity-100" : "opacity-0"
         }`}
       >

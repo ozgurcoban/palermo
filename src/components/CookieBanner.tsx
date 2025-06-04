@@ -52,16 +52,15 @@ export function CookieBanner() {
       timestamp: Date.now(),
     };
     localStorage.setItem("cookie-consent", JSON.stringify(allAccepted));
-
-
+    
     // Small delay for smooth animation
     setTimeout(() => {
       setIsVisible(false);
       setIsAccepting(false);
     }, 300);
-
+    
     // Trigger analytics loading dynamically
-    window.dispatchEvent(new Event("cookie-consent-updated"));
+    window.dispatchEvent(new Event('cookie-consent-updated'));
   };
 
   const acceptSelected = () => {
@@ -71,15 +70,14 @@ export function CookieBanner() {
     };
     localStorage.setItem("cookie-consent", JSON.stringify(selectedPreferences));
     setShowSettings(false);
-
-
+    
     // Small delay for smooth animation
     setTimeout(() => {
       setIsVisible(false);
     }, 100);
-
+    
     // Trigger analytics loading dynamically
-    window.dispatchEvent(new Event("cookie-consent-updated"));
+    window.dispatchEvent(new Event('cookie-consent-updated'));
   };
 
   const rejectAll = () => {
@@ -89,7 +87,7 @@ export function CookieBanner() {
       timestamp: Date.now(),
     };
     localStorage.setItem("cookie-consent", JSON.stringify(rejected));
-
+    
     // Small delay for smooth animation
     setTimeout(() => {
       setIsVisible(false);
@@ -100,193 +98,169 @@ export function CookieBanner() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0, scale: 0.95 }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut",
-          }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
-        >
-          <Card className="mx-auto max-w-4xl border-0 bg-white/95 shadow-2xl backdrop-blur-md">
-            <CardContent className="p-4 md:p-6">
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div className="flex-1 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <CookieIcon className="h-5 w-5 text-accent" />
-                    <Badge variant="secondary" className="font-medium">
-                      {t("banner.badge", { defaultValue: "🍪 Cookies" })}
-                    </Badge>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h3 className="font-recoleta text-lg font-semibold text-primary">
-                      {t("banner.title", {
-                        defaultValue:
-                          "Vi använder cookies för bästa upplevelse",
-                      })}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {t("banner.description", {
-                        defaultValue:
-                          "Vi använder cookies för att förbättra din upplevelse och analysera trafik för att förbättra vår webbplats. Du kan välja vilka cookies du accepterar.",
-                      })}
-                    </p>
-                  </div>
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 100, opacity: 0, scale: 0.95 }}
+        transition={{ 
+          duration: 0.4, 
+          ease: "easeOut"
+        }}
+        className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+      >
+        <Card className="mx-auto max-w-4xl border-2 border-accent/30 bg-background/95 shadow-2xl backdrop-blur-md">
+          <CardContent className="p-4 md:p-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="flex-1 space-y-3">
+                <div className="flex items-center gap-2">
+                  <CookieIcon className="h-5 w-5 text-accent" />
+                  <Badge variant="secondary" className="font-medium">
+                    {t("banner.badge", { defaultValue: "🍪 Cookies" })}
+                  </Badge>
                 </div>
-
-                <Separator
-                  orientation="vertical"
-                  className="hidden h-20 md:block"
-                />
-                <Separator className="md:hidden" />
-
-                <div className="flex flex-col gap-3 md:min-w-[300px]">
-                  <div className="flex flex-col gap-2 sm:flex-row">
-                    <Button
-                      onClick={acceptAll}
-                      disabled={isAccepting}
-                      className="text-accent-foreground flex-1 bg-secondary font-medium transition-all hover:bg-accent/90"
-                    >
-                      <AnimatePresence mode="wait">
-                        {isAccepting ? (
-                          <motion.div
-                            key="check"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="flex items-center gap-2"
-                          >
-                            <Check className="h-4 w-4" />
-                            <span>
-                              {t("banner.accepted", {
-                                defaultValue: "Accepterat!",
-                              })}
-                            </span>
-                          </motion.div>
-                        ) : (
-                          <motion.span
-                            key="text"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                          >
-                            {t("banner.acceptAll", {
-                              defaultValue: "Acceptera alla",
-                            })}
-                          </motion.span>
-                        )}
-                      </AnimatePresence>
-                    </Button>
-
-                    <Dialog open={showSettings} onOpenChange={setShowSettings}>
-                      <DialogTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className="flex-1 border-secondary/30 hover:bg-accent/5"
-                        >
-                          <SettingsIcon className="mr-2 h-4 w-4" />
-                          {t("banner.settings", {
-                            defaultValue: "Inställningar",
-                          })}
-                        </Button>
-                      </DialogTrigger>
-
-                      <DialogContent className="max-w-md">
-                        <DialogHeader>
-                          <DialogTitle className="flex items-center gap-2 font-recoleta">
-                            <ShieldCheckIcon className="h-5 w-5 text-accent" />
-                            {t("settings.title", {
-                              defaultValue: "Cookie-inställningar",
-                            })}
-                          </DialogTitle>
-                          <DialogDescription className="text-sm">
-                            {t("settings.description", {
-                              defaultValue:
-                                "Välj vilka cookies du vill acceptera. Nödvändiga cookies krävs för webbplatsens funktion och analys-cookies hjälper oss förbättra webbplatsen.",
-                            })}
-                          </DialogDescription>
-                        </DialogHeader>
-
-                        <div className="space-y-4 py-4">
-                          <div className="flex items-center justify-between">
-                            <div className="space-y-1">
-                              <Label className="font-medium">
-                                {t("settings.necessary", {
-                                  defaultValue: "Nödvändiga",
-                                })}
-                              </Label>
-                              <p className="text-xs text-muted-foreground">
-                                {t("settings.necessaryDesc", {
-                                  defaultValue:
-                                    "Krävs för webbplatsens grundläggande funktioner",
-                                })}
-                              </p>
-                            </div>
-                            <Switch checked={true} disabled />
-                          </div>
-
-                          <Separator />
-
-                          <div className="flex items-center justify-between">
-                            <div className="space-y-1">
-                              <Label className="font-medium">
-                                {t("settings.analytics", {
-                                  defaultValue: "Analys",
-                                })}
-                              </Label>
-                              <p className="text-xs text-muted-foreground">
-                                {t("settings.analyticsDesc", {
-                                  defaultValue:
-                                    "Hjälper oss förstå hur du använder webbplatsen",
-                                })}
-                              </p>
-                            </div>
-                            <Switch
-                              checked={preferences.analytics}
-                              onCheckedChange={(checked) =>
-                                setPreferences({
-                                  ...preferences,
-                                  analytics: checked,
-                                })
-                              }
-                            />
-                          </div>
-                        </div>
-
-                        <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            onClick={() => setShowSettings(false)}
-                            className="flex-1"
-                          >
-                            {t("settings.cancel", { defaultValue: "Avbryt" })}
-                          </Button>
-                          <Button
-                            onClick={acceptSelected}
-                            className="flex-1 bg-secondary hover:bg-accent/90"
-                          >
-                            {t("settings.save", { defaultValue: "Spara" })}
-                          </Button>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  </div>
-
-                  <Button
-                    variant="ghost"
-                    onClick={rejectAll}
-                    className="text-xs text-muted-foreground hover:text-foreground"
-                  >
-                    {t("banner.rejectAll", { defaultValue: "Avvisa alla" })}
-                  </Button>
+                
+                <div className="space-y-2">
+                  <h3 className="font-recoleta text-lg font-semibold text-primary">
+                    {t("banner.title", { 
+                      defaultValue: "Vi använder cookies för bästa upplevelse" 
+                    })}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {t("banner.description", { 
+                      defaultValue: "Vi använder cookies för att förbättra din upplevelse och analysera trafik för att förbättra vår webbplats. Du kan välja vilka cookies du accepterar." 
+                    })}
+                  </p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+
+              <Separator orientation="vertical" className="hidden md:block h-20" />
+              <Separator className="md:hidden" />
+
+              <div className="flex flex-col gap-3 md:min-w-[300px]">
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <Button
+                    onClick={acceptAll}
+                    disabled={isAccepting}
+                    className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground font-medium transition-all"
+                  >
+                    <AnimatePresence mode="wait">
+                      {isAccepting ? (
+                        <motion.div
+                          key="check"
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="flex items-center gap-2"
+                        >
+                          <Check className="h-4 w-4" />
+                          <span>{t("banner.accepted", { defaultValue: "Accepterat!" })}</span>
+                        </motion.div>
+                      ) : (
+                        <motion.span
+                          key="text"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                        >
+                          {t("banner.acceptAll", { defaultValue: "Acceptera alla" })}
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </Button>
+                  
+                  <Dialog open={showSettings} onOpenChange={setShowSettings}>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="flex-1 border-accent/30 hover:bg-accent/5"
+                      >
+                        <SettingsIcon className="mr-2 h-4 w-4" />
+                        {t("banner.settings", { defaultValue: "Inställningar" })}
+                      </Button>
+                    </DialogTrigger>
+                    
+                    <DialogContent className="w-[calc(100vw-2rem)] max-w-md mx-auto">
+                      <DialogHeader>
+                        <DialogTitle className="flex items-center gap-2 font-recoleta">
+                          <ShieldCheckIcon className="h-5 w-5 text-accent" />
+                          {t("settings.title", { defaultValue: "Cookie-inställningar" })}
+                        </DialogTitle>
+                        <DialogDescription className="text-sm">
+                          {t("settings.description", { 
+                            defaultValue: "Välj vilka cookies du vill acceptera. Nödvändiga cookies krävs för webbplatsens funktion och analys-cookies hjälper oss förbättra webbplatsen." 
+                          })}
+                        </DialogDescription>
+                      </DialogHeader>
+                      
+                      <div className="space-y-4 py-4">
+                        <div className="flex items-center justify-between">
+                          <div className="space-y-1">
+                            <Label className="font-medium">
+                              {t("settings.necessary", { defaultValue: "Nödvändiga" })}
+                            </Label>
+                            <p className="text-xs text-muted-foreground">
+                              {t("settings.necessaryDesc", { 
+                                defaultValue: "Krävs för webbplatsens grundläggande funktioner" 
+                              })}
+                            </p>
+                          </div>
+                          <Switch checked={true} disabled />
+                        </div>
+
+                        <Separator />
+
+                        <div className="flex items-center justify-between">
+                          <div className="space-y-1">
+                            <Label className="font-medium">
+                              {t("settings.analytics", { defaultValue: "Analys" })}
+                            </Label>
+                            <p className="text-xs text-muted-foreground">
+                              {t("settings.analyticsDesc", { 
+                                defaultValue: "Hjälper oss förstå hur du använder webbplatsen" 
+                              })}
+                            </p>
+                          </div>
+                          <Switch
+                            checked={preferences.analytics}
+                            onCheckedChange={(checked) =>
+                              setPreferences({ ...preferences, analytics: checked })
+                            }
+                          />
+                        </div>
+
+                      </div>
+
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          onClick={() => setShowSettings(false)}
+                          className="flex-1"
+                        >
+                          {t("settings.cancel", { defaultValue: "Avbryt" })}
+                        </Button>
+                        <Button
+                          onClick={acceptSelected}
+                          className="flex-1 bg-accent hover:bg-accent/90"
+                        >
+                          {t("settings.save", { defaultValue: "Spara" })}
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+
+                <Button
+                  variant="ghost"
+                  onClick={rejectAll}
+                  className="text-xs text-muted-foreground hover:text-foreground"
+                >
+                  {t("banner.rejectAll", { defaultValue: "Avvisa alla" })}
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
       )}
     </AnimatePresence>
   );

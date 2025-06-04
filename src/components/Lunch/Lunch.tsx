@@ -84,7 +84,7 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
   return (
     <div className="w-full" id="lunch" data-scroll-target="lunch">
       <FadeUp delay={0.9}>
-        <div className="w-full rounded border-4 bg-white sm:border-8 md:border-[12px]">
+        <div className="w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px]">
           <div
             style={{
               boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
@@ -129,18 +129,15 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
                 )}
               </TabsList>
 
-              <div
-                className="h-[70vh] overflow-y-scroll sm:h-[80vh] md:h-[85vh]"
-                ref={scrollRef}
-              >
+              <div className="h-[70vh] overflow-y-scroll" ref={scrollRef}>
                 {dagensLunch && (
                   <TabsContent value="dagens" className="mt-0">
-                    <div className="sticky top-0 z-10 mb-3 border-b bg-white pb-2 sm:mb-4 sm:pb-4">
+                    <div className="sticky top-0 z-10 mb-3 border-b border-border bg-white pb-2 dark:bg-card sm:mb-4 sm:pb-4">
                       <h3 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
                         {dagensLunch.title?.[locale] || "Dagens lunch"}
                       </h3>
                       {dagensLunch.description?.[locale] && (
-                        <p className="mb-1 text-center text-xs text-dark/85 sm:mb-2 sm:text-sm">
+                        <p className="mb-1 text-center text-xs text-muted-foreground sm:mb-2 sm:text-sm">
                           {dagensLunch.description[locale]}
                         </p>
                       )}
@@ -155,12 +152,12 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
 
                 {lunchPizza && (
                   <TabsContent value="pizza" className="mt-0">
-                    <div className="sticky top-0 z-10 mb-3 border-b bg-white pb-2 sm:mb-4 sm:pb-4">
+                    <div className="sticky top-0 z-10 mb-3 border-b border-border bg-white pb-2 dark:bg-card sm:mb-4 sm:pb-4">
                       <h3 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
                         {lunchPizza.title?.[locale] || "Lunchpizza"}
                       </h3>
                       {lunchPizza.description?.[locale] && (
-                        <p className="mb-1 text-center text-xs text-dark/85 sm:mb-2 sm:text-sm">
+                        <p className="mb-1 text-center text-xs text-muted-foreground sm:mb-2 sm:text-sm">
                           {lunchPizza.description[locale]}
                         </p>
                       )}
@@ -175,12 +172,12 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
 
                 {monthlySpecial && (
                   <TabsContent value="monthly" className="mt-0">
-                    <div className="sticky top-0 z-10 mb-3 border-b bg-white pb-2 sm:mb-4 sm:pb-4">
+                    <div className="sticky top-0 z-10 mb-3 border-b border-border bg-white pb-2 dark:bg-card sm:mb-4 sm:pb-4">
                       <h3 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
                         {monthlySpecial.title?.[locale] || "Månadens tips"}
                       </h3>
                       {monthlySpecial.description?.[locale] && (
-                        <p className="mb-1 text-center text-xs text-dark/85 sm:mb-2 sm:text-sm">
+                        <p className="mb-1 text-center text-xs text-muted-foreground sm:mb-2 sm:text-sm">
                           {monthlySpecial.description[locale]}
                         </p>
                       )}

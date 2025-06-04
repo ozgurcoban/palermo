@@ -28,7 +28,7 @@ export default function ContactForm() {
   const t = useTranslations("ContactSection");
   const b = useTranslations("Buttons");
   const [hasStartedForm, setHasStartedForm] = useState(false);
-
+  
   const form = useForm<ContactFormInputs>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
@@ -45,7 +45,7 @@ export default function ContactForm() {
     }
   };
 
-  const processForm: SubmitHandler<ContactFormInputs> = async (data) => {
+  const processForm: SubmitHandler<ContactFormInputs> = async data => {
     const result = await sendMail(data);
 
     if (result?.success) {
@@ -66,92 +66,90 @@ export default function ContactForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(processForm)} className="space-y-6">
-        <div className="mb-8">
-          <h3 className="title-card mb-4">{t("formTitle")}</h3>
-          <p className="text-base text-muted-foreground">
-            {t("formDescription")}
-          </p>
-        </div>
-
-        <div className="grid gap-6">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {/* Name field */}
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      placeholder={t("name")}
-                      className="h-12 border border-gray-300 bg-white px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
-                      onFocus={handleFormStart}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Email field */}
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder={t("email")}
-                      className="h-12 border border-gray-300 bg-white px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <div className="mb-8">
+            <h3 className="title-card mb-4">{t("formTitle")}</h3>
+            <p className="text-base text-muted-foreground">{t("formDescription")}</p>
           </div>
 
-          {/* Message field */}
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Textarea
-                    placeholder={t("message")}
-                    className="min-h-[140px] resize-none border border-gray-300 bg-white p-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="grid gap-6">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {/* Name field */}
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        placeholder={t("name")}
+                        className="h-12 border border-border bg-background px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        onFocus={handleFormStart}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-          <p className="text-sm italic text-muted-foreground">
-            {t("privacyNote")}
-          </p>
+              {/* Email field */}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder={t("email")}
+                        className="h-12 border border-border bg-background px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-          <Button
-            type="submit"
-            size="lg"
-            className="mt-2 bg-secondary hover:bg-accent/90"
-            disabled={form.formState.isSubmitting}
-          >
-            {form.formState.isSubmitting ? (
-              <span className="flex items-center gap-2">
-                <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                {t("sending")}
-              </span>
-            ) : (
-              b("submit")
-            )}
-          </Button>
-        </div>
+            {/* Message field */}
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea
+                      placeholder={t("message")}
+                      className="min-h-[140px] resize-none border border-border bg-background p-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <p className="text-sm text-muted-foreground italic">
+              {t("privacyNote")}
+            </p>
+
+            <Button
+              type="submit"
+              size="lg"
+              className="mt-2 bg-accent hover:bg-accent/90"
+              disabled={form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  {t("sending")}
+                </span>
+              ) : (
+                b("submit")
+              )}
+            </Button>
+          </div>
       </form>
     </Form>
   );

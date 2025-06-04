@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const siteConfig = {
   name: "Palermo Uppsala",
   url: "https://palermo-uppsala.se",
-  ogImage: "/images/hero/menu-hero.png",
+  ogImage: "/hero.webp",
   links: {
     facebook: "https://www.facebook.com/profile.php?id=100046443356150",
     instagram: "https://www.instagram.com/palermo_uppsala",
@@ -206,7 +206,7 @@ export function getFAQData(
         {
           question: "Har ni plats för större sällskap?",
           answer:
-            "Jadå! Vi har plats upp till 50 personer för allt från födelsedagskalas och tentafiranden till examenspartyn och företagsfester. Ring gärna eller använd kontaktformuläret så fixar vi ett bra upplägg.",
+            "Jadå! Vi har plats upp till 50 personer för allt från födelsedagskalas och tentafiranden till examenspartyn och företagsfester. Ring gärna eller använd kontaktformuläret nedan så fixar vi ett bra upplägg.",
         },
       ]
     : [
@@ -240,7 +240,7 @@ export function getFAQData(
         {
           question: "Do you have space for larger groups?",
           answer:
-            "Yes! We can accommodate up to 50 people for everything from birthday parties and post-exam celebrations to graduation dinners and corporate events. Just call or use our contact form and we'll set something up.",
+            "Yes! We can accommodate up to 50 people for everything from birthday parties and post-exam celebrations to graduation dinners and corporate events. Just call or use our contact form below and we'll set something up.",
         },
       ];
 }

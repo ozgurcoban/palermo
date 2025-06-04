@@ -9,6 +9,21 @@
   scroll-behavior: smooth;
 }
 
+/* Dark mode transition using View Transitions API (if supported) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+}
+
 @layer base {
   :root {
     --background: 24 75% 95%;
@@ -34,27 +49,27 @@
     --accent-soft-apricot: 24, 60%, 90%;
   }
   .dark {
-    --background: 24 50% 10%;
-    --foreground: 24 5% 90%;
-    --card: 24 50% 10%;
-    --card-foreground: 24 5% 90%;
-    --popover: 24 50% 5%;
-    --popover-foreground: 24 5% 90%;
-    --primary: 24 27% 24%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 24 30% 20%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 14 30% 25%;
-    --muted-foreground: 24 5% 60%;
-    --accent: 14 30% 25%;
-    --accent-foreground: 24 5% 90%;
-    --destructive: 0 72% 30%;
-    --destructive-foreground: 24 5% 90%;
-    --border: 24 30% 28%;
-    --input: 24 30% 28%;
-    --ring: 24 27% 24%;
+    --background: 220 26% 8%;
+    --foreground: 220 5% 90%;
+    --card: 220 26% 11%;
+    --card-foreground: 220 5% 90%;
+    --popover: 220 26% 6%;
+    --popover-foreground: 220 5% 90%;
+    --primary: 210 25% 55%;
+    --primary-foreground: 220 26% 8%;
+    --secondary: 220 14% 20%;
+    --secondary-foreground: 220 5% 90%;
+    --muted: 215 20% 28%;
+    --muted-foreground: 220 10% 65%;
+    --accent: 210 20% 40%;
+    --accent-foreground: 220 5% 90%;
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 220 5% 90%;
+    --border: 215 20% 32%;
+    --input: 215 20% 32%;
+    --ring: 210 25% 55%;
     --radius: 0.5rem;
-    --accent-soft-apricot: 24, 10%, 20%;
+    --accent-soft-apricot: 220, 15%, 25%;
   }
 }
 
@@ -105,7 +120,7 @@ p {
 
 /* Hero title with stroke effect - Palermo branded style */
 .hero-title {
-  @apply font-graduate text-center text-[12vw] font-bold leading-tight tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)] md:text-[calc(2.6rem_+_3.5vw)] lg:text-[calc(2.6rem_+_3.8vw)];
+  @apply text-center font-graduate text-[12vw] font-bold leading-tight tracking-wider drop-shadow-[0_4px_8px_rgba(0,0,0,0.7)] md:text-[calc(2.6rem_+_3.5vw)] lg:text-[calc(2.6rem_+_3.8vw)];
   color: #4a3728;
   -webkit-text-stroke: 6px white;
   paint-order: stroke fill;
@@ -119,7 +134,7 @@ p {
 
 /* Variant without stroke for PageHero */
 .hero-title-simple {
-  @apply font-graduate text-center text-[8vw] font-bold leading-tight tracking-wider sm:text-5xl md:text-6xl lg:text-7xl;
+  @apply text-center font-graduate text-[8vw] font-bold leading-tight tracking-wider sm:text-5xl md:text-6xl lg:text-7xl;
   color: white;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
@@ -138,13 +153,12 @@ p {
 .burger::after,
 .burger::before {
   content: "";
-  height: 2px;
+  height: 1.6px;
   width: 100%;
   background-color: hsl(var(--foreground));
   position: relative;
   display: block;
   transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
-  border-radius: 9999px;
 }
 
 .burger::after {
@@ -165,26 +179,25 @@ p {
   top: 1px;
 }
 
-/* Border image classes - images removed, keeping structure for future use */
 .border-image,
 .dark-border-image {
-  /* border-image-source: url(../../../public/images/border.png); */
-  border-image-slice: 70 0 70 fill;
+  border-image-source: url(../../../public/images/border.png);
+  /* border-image-slice: 70 0 70; */
   border-image-width: 30px 0;
   border-image-outset: 0;
 }
 
 .dark-border-image {
-  /* border-image-source: url(../../../public/images/dark-border.png); */
+  border-image-source: url(../../../public/images/dark-border.png);
 }
 
 .green-bg {
   border: 1px solid #f8eee2;
-  /* border-image-source: url(../../../public/images/green-bg.png); */
+  border-image-source: url(../../../public/images/green-bg.png);
   border-image-slice: 30;
   border-image-width: 30px;
   border-image-outset: 10;
-  /* background-image: url(../../../public/images/green-bg.png); */
+  background-image: url(../../../public/images/green-bg.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -196,7 +209,7 @@ p {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  /* background-image: url(../../../public/images/wave.svg); */
+  background-image: url(../../../public/images/wave.svg);
 }
 
 .swiper-button-prev,
@@ -281,22 +294,6 @@ p {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
-}
-
-/* Page Hero CSS animations */
-@keyframes pageHeroFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.page-hero-fade {
-  animation: pageHeroFadeUp 0.7s ease-out both;
 }
 
 @layer base {

@@ -58,7 +58,7 @@ export default function ContactInfoSection({
             <div className="flex flex-col gap-6">
               {contact_infos && (
                 <FadeUp delay={0.4}>
-                  <Card className="border-0 bg-white/80 shadow-lg">
+                  <Card className="bg-card border shadow-lg">
                     <CardHeader>
                       <CardTitle className="title-card">
                         <Localization text="ContactSection.addressTitle" />
@@ -110,7 +110,7 @@ export default function ContactInfoSection({
               )}
               {opening_hours && (
                 <FadeUp delay={0.6}>
-                  <Card className="border-0 bg-white/80 shadow-lg">
+                  <Card className="bg-card border shadow-lg">
                     <CardHeader>
                       <CardTitle className="title-card">
                         <Localization text="ContactSection.openingHours" />
@@ -129,7 +129,7 @@ export default function ContactInfoSection({
                               </span>
                             </div>
                             {index < opening_hours.length - 1 && (
-                              <Separator className="mt-3 bg-gray-200" />
+                              <Separator className="mt-3 bg-border" />
                             )}
                           </div>
                         ))}
@@ -177,7 +177,7 @@ export default function ContactInfoSection({
               )}
             </div>
             <FadeUp delay={0.8}>
-              <Card className="h-fit border-0 bg-white/80 shadow-lg">
+              <Card className="h-fit bg-card border shadow-lg">
                 <CardContent className="p-6">
                   <ContactForm />
                 </CardContent>

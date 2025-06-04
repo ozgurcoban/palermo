@@ -59,7 +59,7 @@ export default function NavBody({
             className="uppercase"
           >
             <motion.p
-              className="font-recoleta flex overflow-hidden text-md sm:text-xl py-3 lg:text-[5vw] lg:pr-[2vw]"
+              className="font-recoleta flex overflow-hidden text-md sm:text-xl py-3 lg:text-[5vw] lg:pr-[2vw] text-foreground hover:text-accent transition-colors"
               onMouseOver={() => {
                 setSelectedLink({ isActive: true, index });
               }}

@@ -19,7 +19,20 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
       <div className="flex w-full items-center justify-center">
         {" "}
         <Link href={"/"}>
-          <Image src="/logo.png" alt="logo" width={70} height={70} />
+          <Image
+            src="/logo.png"
+            alt="logo"
+            width={70}
+            height={70}
+            className="block rounded-full dark:hidden"
+          />
+          <Image
+            src="/dark-logo.png"
+            alt="logo"
+            width={70}
+            height={70}
+            className="hidden rounded-full dark:block"
+          />
         </Link>
       </div>
     );
@@ -27,13 +40,13 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
   const { contact_infos, opening_hours } = contactData;
 
   return (
-    <footer className="bg-[#292d36] text-light">
+    <footer className="border-t border-border bg-[#8B7355] text-white dark:bg-muted/50 dark:text-card-foreground">
       <div className="container grid grid-cols-1 gap-y-10 py-16 md:grid-cols-3">
         {/* Opening hours */}
         {opening_hours && (
           <div className="justify-self-center">
             <div className="flex flex-col items-start">
-              <h3 className="text-lg uppercase text-[#e2e8c0]">
+              <h3 className="text-lg uppercase text-[#e2e8c0] dark:text-primary">
                 <Localization text="ContactSection.openingHours" />
               </h3>
 
@@ -56,9 +69,23 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
 
         <div className="order-0 flex flex-col items-center gap-4">
           <Link href={"/"}>
-            <Image src="/logo.png" alt="logo" width={130} height={130} />
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={130}
+              height={130}
+              className="block rounded-full dark:hidden"
+            />
+            <Image
+              src="/dark-logo.png"
+              alt="logo"
+              width={130}
+              height={130}
+              className="hidden rounded-full dark:block"
+              style={{ border: "2px solid #848E97", transform: "scale(1.04)" }}
+            />
           </Link>
-          <p className="text-white">
+          <p className="text-white dark:text-card-foreground">
             <Localization text="Footer.slogan" />
           </p>
           {contact_infos && (
@@ -68,7 +95,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                   href={contact_infos.facebook}
                   target="_blank"
                   aria-label="Facebook"
-                  className="transition-all duration-300 hover:text-primary"
+                  className="transition-all duration-300 hover:text-accent"
                 >
                   <FacebookIcon />
                 </Link>
@@ -90,7 +117,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
         {contact_infos && (
           <div className="justify-self-center">
             <div className="flex flex-col items-start">
-              <h3 className="flex text-lg uppercase text-[#e2e8c0]">
+              <h3 className="flex text-lg uppercase text-[#e2e8c0] dark:text-primary">
                 <Localization text="ContactSection.addressTitle" />
               </h3>
               <ul>
