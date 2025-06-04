@@ -31,7 +31,7 @@ export default function ThemeToggle() {
       setTheme(isDark ? "light" : "dark");
       return;
     }
-    
+
     // Use View Transitions API for smooth transition
     await document.startViewTransition(() => {
       setTheme(isDark ? "light" : "dark");
@@ -65,7 +65,7 @@ export default function ThemeToggle() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="flex h-full w-full items-center justify-center"
           >
-            <Sun className="size-7" />
+            <Sun className="size-6" strokeWidth={1.5} />
           </motion.div>
         ) : (
           <motion.div
@@ -76,7 +76,7 @@ export default function ThemeToggle() {
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             className="flex h-full w-full items-center justify-center"
           >
-            <Moon className="size-7" />
+            <Moon className="size-6" strokeWidth={1.5} />
           </motion.div>
         )}
       </AnimatePresence>

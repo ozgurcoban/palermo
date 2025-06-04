@@ -88,8 +88,6 @@ const MenuContent: React.FC<Props> = ({
     }
   }, [tab]);
 
-
-
   // Get the menu list every time the selected tab changes
   const menus_list = useMemo(() => {
     const filteredList = categories.find(({ _id }) => tab === _id);
@@ -113,14 +111,10 @@ const MenuContent: React.FC<Props> = ({
       ...props,
       ...(id ? { id } : {}),
     };
-    
+
     if (disableAnimations || hasSeenAnimation) {
       // Return children with all props including id
-      return (
-        <div {...elementProps}>
-          {children}
-        </div>
-      );
+      return <div {...elementProps}>{children}</div>;
     }
     return <FadeUp {...elementProps}>{children}</FadeUp>;
   };
@@ -150,15 +144,17 @@ const MenuContent: React.FC<Props> = ({
             />
           </div>
           <div
-            className="sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border"
+            className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
             ref={scrollRef}
           >
             {getCategory?.description && (
               <div className="mx-auto mb-3 max-w-md text-justify">
-                <p className="text-muted-foreground">{getCategory.description?.[locale]}</p>
+                <p className="text-muted-foreground">
+                  {getCategory.description?.[locale]}
+                </p>
               </div>
             )}
-            <div className="sticky top-0 mx-auto flex max-w-md items-center bg-white dark:bg-card z-10">
+            <div className="sticky top-0 z-10 mx-auto flex max-w-md items-center bg-white dark:bg-card">
               {getCategory?.sub_categories?.some((subCategory) =>
                 subCategory.menu_list.some(
                   (item) =>
@@ -167,7 +163,7 @@ const MenuContent: React.FC<Props> = ({
                 ),
               ) ? (
                 <>
-                  <p className="sticky top-0 w-full whitespace-nowrap text-right text-primary font-medium">
+                  <p className="sticky top-0 w-full whitespace-nowrap text-right font-medium text-primary">
                     {t("dineIn")}
                   </p>
                   <SlashIcon className="h-6 text-primary" />{" "}
@@ -176,7 +172,7 @@ const MenuContent: React.FC<Props> = ({
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <p className="whitespace-nowrap text-primary font-medium">
+                          <p className="whitespace-nowrap font-medium text-primary">
                             {t("takeAway.short")}
                           </p>
                         </TooltipTrigger>
@@ -186,7 +182,7 @@ const MenuContent: React.FC<Props> = ({
                       </Tooltip>
                     </TooltipProvider>
                   ) : (
-                    <p className="whitespace-nowrap text-primary font-medium">
+                    <p className="whitespace-nowrap font-medium text-primary">
                       {t("takeAway.short")}
                     </p>
                   )}
@@ -203,7 +199,7 @@ const MenuContent: React.FC<Props> = ({
                   <Tooltip>
                     <div className="relative z-50 flex w-full justify-end">
                       <TooltipTrigger asChild>
-                        <p className="whitespace-nowrap text-primary font-medium">
+                        <p className="whitespace-nowrap font-medium text-primary">
                           {t("glass.short")}
                         </p>
                       </TooltipTrigger>
@@ -215,7 +211,7 @@ const MenuContent: React.FC<Props> = ({
                   <SlashIcon className="h-6 text-primary" />
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <p className="whitespace-nowrap text-primary font-medium">
+                      <p className="whitespace-nowrap font-medium text-primary">
                         {t("bottle.short")}
                       </p>
                     </TooltipTrigger>
@@ -226,7 +222,7 @@ const MenuContent: React.FC<Props> = ({
                   <SlashIcon className="h-6 text-primary" />
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <p className="whitespace-nowrap text-primary font-medium">
+                      <p className="whitespace-nowrap font-medium text-primary">
                         {t("carafe.short")}
                       </p>
                     </TooltipTrigger>
@@ -235,17 +231,17 @@ const MenuContent: React.FC<Props> = ({
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-                ) : null}
-              </div>
-              <hr className="mt-4" />
-              <div className="h-full w-full">
-                <MenuItems data={menus_list} />
-              </div>
+              ) : null}
             </div>
-          </AnimWrapper>
-          <AnimWrapper delay={0.2}>
-            <hr />
-          </AnimWrapper>
+            <hr className="mt-4" />
+            <div className="h-full w-full">
+              <MenuItems data={menus_list} />
+            </div>
+          </div>
+        </AnimWrapper>
+        <AnimWrapper delay={0.2}>
+          <hr />
+        </AnimWrapper>
       </AnimWrapper>
     </div>
   );

@@ -100,6 +100,8 @@ export function Navbar() {
                 borderRadius: "50%",
                 width: "100%",
                 height: "100%",
+                border: "2px solid #848E97",
+                transform: "scale(1.04)",
               }}
               priority
               className="hidden dark:block"
@@ -115,7 +117,7 @@ export function Navbar() {
             variant="secondary"
             size="lg"
             onClick={handleClick}
-            className="transform whitespace-nowrap bg-[#5A4B3A] px-4 py-2 font-lato uppercase text-white transition-all duration-200"
+            className="transform whitespace-nowrap bg-[#5A4B3A] px-4 py-2 font-lato uppercase text-white transition-all duration-200 dark:bg-primary dark:hover:bg-primary/90"
           >
             {t("contact")}
           </Button>
@@ -128,16 +130,22 @@ export function Navbar() {
             setIsActive(!isActive);
           }}
           className={
-            "flex cursor-pointer items-center justify-center gap-2 p-2 lg:hidden"
+            "flex cursor-pointer items-center justify-center gap-2 rounded-md px-3 py-4 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:ring-offset-0 lg:hidden"
           }
           aria-label={isActive ? t("closeMenu") : t("openMenu")}
           aria-expanded={isActive}
           aria-controls="mobile-menu"
+          type="button"
+          role="button"
+          tabIndex={0}
         >
           <div
             className={`burger ${isActive ? "burgerActive" : ""}`}
             aria-hidden="true"
           ></div>
+          <span className="sr-only">
+            {isActive ? t("closeMenu") : t("openMenu")}
+          </span>
         </button>
       </div>
       <AnimatePresence mode="wait">

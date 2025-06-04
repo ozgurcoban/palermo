@@ -153,12 +153,12 @@ p {
 .burger::after,
 .burger::before {
   content: "";
-  height: 1px;
+  height: 1.6px;
   width: 100%;
-  background-color: black;
+  background-color: hsl(var(--foreground));
   position: relative;
   display: block;
-  transition: all 1s cubic-bezier(0.76, 0, 0.24, 1);
+  transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .burger::after {
@@ -182,7 +182,7 @@ p {
 .border-image,
 .dark-border-image {
   border-image-source: url(../../../public/images/border.png);
-  border-image-slice: 70 0 70 fill;
+  /* border-image-slice: 70 0 70; */
   border-image-width: 30px 0;
   border-image-outset: 0;
 }
