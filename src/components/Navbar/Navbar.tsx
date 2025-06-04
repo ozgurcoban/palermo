@@ -19,10 +19,9 @@ export function Navbar() {
     clickEvent.preventDefault();
 
     // Track the CTA click
-    event({
-      action: "click",
-      category: "navigation",
-      label: "hitta_till_oss_cta",
+    event('scroll_to_section', {
+      section_name: 'contact',
+      trigger_element: 'navbar_cta_button'
     });
 
     const contactElement = document.getElementById("contact");
