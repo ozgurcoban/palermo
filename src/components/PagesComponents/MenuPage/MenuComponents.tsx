@@ -20,38 +20,38 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
   // Check for hash in URL or sessionStorage flag
   useEffect(() => {
     const checkAndScroll = () => {
-      // Check hash first (works on desktop)
-      if (window.location.hash === "#food-delivery") {
+      // Function to perform the actual scroll with a nice pause
+      const performScroll = () => {
         const deliverySection = document.getElementById("food-delivery");
         if (deliverySection) {
           const navbarHeight = 132;
           const offsetPosition = deliverySection.getBoundingClientRect().top + window.scrollY - navbarHeight - 20;
           
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-          
-          // Clear hash after scrolling
-          window.history.replaceState(null, "", window.location.pathname);
+          // Add a longer pause before scrolling for better UX
+          setTimeout(() => {
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }, 800); // Longer pause to let user see the page loaded
         }
+      };
+      
+      // Check hash first (works on desktop)
+      if (window.location.hash === "#food-delivery") {
+        performScroll();
+        
+        // Clear hash after scrolling
+        setTimeout(() => {
+          window.history.replaceState(null, "", window.location.pathname);
+        }, 1000);
       }
       
       // Also check sessionStorage (fallback for iOS)
       const shouldScrollToDelivery = sessionStorage.getItem("scrollToDelivery");
       if (shouldScrollToDelivery === "true") {
         sessionStorage.removeItem("scrollToDelivery");
-        
-        const deliverySection = document.getElementById("food-delivery");
-        if (deliverySection) {
-          const navbarHeight = 132;
-          const offsetPosition = deliverySection.getBoundingClientRect().top + window.scrollY - navbarHeight - 20;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        }
+        performScroll();
       }
     };
     
