@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Menu from "@/components/Menu";
 import { PageHeroOptimized as PageHero } from "@/components/Heros";
 import FadeUp from "@/components/ui/FadeUp";
@@ -16,6 +16,53 @@ type Props = {
 
 const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
   const t = useTranslations("MenuPage");
+
+  // Check for hash in URL or sessionStorage flag
+  useEffect(() => {
+    const checkAndScroll = () => {
+      // Check hash first (works on desktop)
+      if (window.location.hash === "#food-delivery") {
+        const deliverySection = document.getElementById("food-delivery");
+        if (deliverySection) {
+          const navbarHeight = 132;
+          const offsetPosition = deliverySection.getBoundingClientRect().top + window.scrollY - navbarHeight - 20;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+          
+          // Clear hash after scrolling
+          window.history.replaceState(null, "", window.location.pathname);
+        }
+      }
+      
+      // Also check sessionStorage (fallback for iOS)
+      const shouldScrollToDelivery = sessionStorage.getItem("scrollToDelivery");
+      if (shouldScrollToDelivery === "true") {
+        sessionStorage.removeItem("scrollToDelivery");
+        
+        const deliverySection = document.getElementById("food-delivery");
+        if (deliverySection) {
+          const navbarHeight = 132;
+          const offsetPosition = deliverySection.getBoundingClientRect().top + window.scrollY - navbarHeight - 20;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      }
+    };
+    
+    // Try immediately
+    checkAndScroll();
+    
+    // Also try after a delay for slow-loading pages
+    const timeoutId = setTimeout(checkAndScroll, 500);
+    
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   const scrollToMenu = () => {
     // Track the click event safely

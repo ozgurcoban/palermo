@@ -25,19 +25,24 @@ export function FAQ() {
   
   const handleDeliveryClick = () => {
     trackFAQCTAClick(2, "delivery", "menu#food-delivery");
-    router.push("/menu");
-    // Wait for navigation then scroll
-    setTimeout(() => {
-      const deliverySection = document.getElementById("food-delivery");
-      if (deliverySection) {
-        const navbarHeight = 132;
-        const offsetPosition = deliverySection.getBoundingClientRect().top + window.scrollY - navbarHeight;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+    
+    // For desktop browsers - try hash navigation first
+    if (typeof window !== "undefined") {
+      // Detect if we're likely on iOS Safari
+      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+      
+      if (isIOSSafari) {
+        // iOS Safari fallback - use sessionStorage
+        sessionStorage.setItem("scrollToDelivery", "true");
+        router.push("/menu");
+      } else {
+        // Desktop/other browsers - try direct hash navigation
+        window.location.href = "/menu#food-delivery";
       }
-    }, 300);
+    } else {
+      // Fallback if window is not available
+      router.push("/menu");
+    }
   };
 
   useEffect(() => {
@@ -64,7 +69,6 @@ export function FAQ() {
         // Format lunch info
         if (lunchData) {
           const lunchPrice = lunchData.dagensLunch?.price || 119;
-          const pizzaPrice = lunchData.lunchPizza?.price || 119;
           const timeInfo = lunchData.timeInfo;
           const numberOfDishes = lunchData.dagensLunch?.items?.length || 9;
 
