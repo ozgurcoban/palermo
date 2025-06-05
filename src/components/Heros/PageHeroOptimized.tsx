@@ -52,6 +52,8 @@ export function PageHeroOptimized({
           className="h-full w-full object-[50%_50%] lg:object-[50%_60%] xl:object-[50%_75%]"
           priority
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL="data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoUAA4APzmEuVOvKKWisAgB4CcJZgCdACIg3bNj60cQSSlcAP6DgxtEsmCbVWOH6sZuItVyjk6VpLuprY1gXUodTrwpbHtG4mRPscq/2jCTKLCUgThfwOCASM7AuGYzAaQAAA=="
         />
       </div>
 
