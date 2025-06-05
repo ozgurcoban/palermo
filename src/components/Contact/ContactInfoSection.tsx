@@ -15,7 +15,12 @@ import Localization from "../localization";
 import FadeUp from "../ui/FadeUp";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { trackLunchOpeningHoursClick, trackPhoneClick, trackEmailClick, trackAddressClick } from "@/lib/gtag";
+import {
+  trackLunchOpeningHoursClick,
+  trackPhoneClick,
+  trackEmailClick,
+  trackAddressClick,
+} from "@/lib/gtag";
 
 export default function ContactInfoSection({
   contactData,
@@ -58,7 +63,7 @@ export default function ContactInfoSection({
             <div className="flex flex-col gap-6">
               {contact_infos && (
                 <FadeUp delay={0.4}>
-                  <Card className="bg-card border shadow-lg">
+                  <Card className="border bg-card shadow-lg">
                     <CardHeader>
                       <CardTitle className="title-card">
                         <Localization text="ContactSection.addressTitle" />
@@ -68,8 +73,10 @@ export default function ContactInfoSection({
                       {contact_infos.address && (
                         <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
                           <HomeIcon className="size-5 text-accent" />
-                          <Link 
-                            href="#" 
+                          <Link
+                            href="https://www.google.com/maps/search/?api=1&query=Sysslomansgatan+7%2C+Uppsala"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="text-base"
                             onClick={trackAddressClick}
                           >
@@ -80,8 +87,8 @@ export default function ContactInfoSection({
                       {contact_infos.telephone && (
                         <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
                           <ChatBubbleIcon className="size-5 text-accent" />
-                          <Link 
-                            href={`tel:+4618131820`} 
+                          <Link
+                            href={`tel:+4618131820`}
                             className="text-base"
                             onClick={trackPhoneClick}
                           >
@@ -110,7 +117,7 @@ export default function ContactInfoSection({
               )}
               {opening_hours && (
                 <FadeUp delay={0.6}>
-                  <Card className="bg-card border shadow-lg">
+                  <Card className="border bg-card shadow-lg">
                     <CardHeader>
                       <CardTitle className="title-card">
                         <Localization text="ContactSection.openingHours" />
@@ -151,7 +158,10 @@ export default function ContactInfoSection({
                               </div>
                               <div className="flex items-center justify-between">
                                 <span className="text-base font-medium transition-colors group-hover:text-accent">
-                                  {lunchData.timeInfo.days[locale].charAt(0).toUpperCase() + lunchData.timeInfo.days[locale].slice(1)}
+                                  {lunchData.timeInfo.days[locale]
+                                    .charAt(0)
+                                    .toUpperCase() +
+                                    lunchData.timeInfo.days[locale].slice(1)}
                                 </span>
                                 <span className="text-base text-muted-foreground transition-colors group-hover:text-accent">
                                   {lunchData.timeInfo.hours}
@@ -177,7 +187,7 @@ export default function ContactInfoSection({
               )}
             </div>
             <FadeUp delay={0.8}>
-              <Card className="h-fit bg-card border shadow-lg">
+              <Card className="h-fit border bg-card shadow-lg">
                 <CardContent className="p-6">
                   <ContactForm />
                 </CardContent>
