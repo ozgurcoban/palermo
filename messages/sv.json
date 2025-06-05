@@ -95,7 +95,7 @@
     "hero": {
       "badge": "ÖPPET ALLA DAGAR",
       "title": "Meny - Pizza, pasta och mer i Uppsala",
-      "description": "Från krispig vesuvio till klassiska kötträtter • Take away eller sitt ner",
+      "description": "Från krispig vesuvio till klassiska kötträtter •  Perfekt för både vardagskvällar och hängmys",
       "cta": "Se hela menyn"
     },
     "content": {
@@ -117,8 +117,15 @@
     "description": "<p>Es ist leider ein Problem aufgetreten.</p><p>Du kannst versuchen <retry>diese Seite neu zu laden</retry>.</p>"
   },
   "NotFoundPage": {
-    "title": "Sidan kan ej hittas",
-    "description": "Var god kontrollera adressfältet i din webbläsare eller använd navigeringen för att byta till en känd sida."
+    "title": "Oj! Den pizzan finns inte på menyn",
+    "description": "Antingen har du beställt något vi inte har, eller så har du hamnat på fel ställe. Oroa dig inte, vi har gott om andra alternativ!",
+    "joke": "Ta en kaffe medan du funderar på vart du skulle",
+    "goBack": "Gå tillbaka",
+    "goHome": "Till startsidan",
+    "viewMenu": "Se menyn",
+    "quickLinks": "Eller kolla in:",
+    "lunch": "Dagens lunch",
+    "location": "Sysslomansgatan 7, Uppsala"
   },
   "Metadata": {
     "title": "Palermo - Uppsalas mest välkomnande restaurang",
@@ -175,7 +182,7 @@
   "Lunch": {
     "hero": {
       "title": "Lunch i Uppsala - varje vardag på Palermo",
-      "description": "Dagens lunch {price} kr • Alltid med sallad, bröd & kaffe",
+      "description": "Från {price} SEK • Välj mellan {count} rätter + lunchpizza • Sallad, bröd & kaffe ingår",
       "cta": "Se dagens lunch"
     },
     "content": {

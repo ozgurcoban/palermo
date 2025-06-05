@@ -12,11 +12,33 @@ import { useGetLocale } from "@/config";
 import { getFAQData } from "@/lib/metadata";
 import { getClient } from "../../../sanity/lib/client";
 import { CONTACT_QUERY, LUNCH_QUERY } from "../../../sanity/lib/queries";
+import { Link, useRouter } from "@/navigation";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { trackFAQCTAClick } from "@/lib/gtag";
 
 export function FAQ() {
   const locale = useGetLocale();
+  const router = useRouter();
   const [openingHours, setOpeningHours] = useState<string | undefined>();
   const [lunchInfo, setLunchInfo] = useState<string | undefined>();
+  
+  const handleDeliveryClick = () => {
+    trackFAQCTAClick(2, "delivery", "menu#food-delivery");
+    router.push("/menu");
+    // Wait for navigation then scroll
+    setTimeout(() => {
+      const deliverySection = document.getElementById("food-delivery");
+      if (deliverySection) {
+        const navbarHeight = 132;
+        const offsetPosition = deliverySection.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    }, 300);
+  };
 
   useEffect(() => {
     async function fetchOpeningHours() {
@@ -100,8 +122,62 @@ export function FAQ() {
                 <AccordionTrigger className="text-left text-base md:text-lg">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="whitespace-pre-line text-base leading-relaxed text-muted-foreground">
-                  {faq.answer}
+                <AccordionContent className="text-base leading-relaxed text-muted-foreground">
+                  <div className="space-y-4">
+                    <p className="whitespace-pre-line">{faq.answer}</p>
+                    {index === 0 && (
+                      <Link href="/lunch">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="group"
+                          onClick={() => trackFAQCTAClick(0, "lunch", "/lunch")}
+                        >
+                          {locale === "sv"
+                            ? "Se lunchmenyn"
+                            : "View lunch menu"}
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </Link>
+                    )}
+                    {index === 2 && (
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="group"
+                        onClick={handleDeliveryClick}
+                      >
+                        {locale === "sv" ? "Se leveransalternativ" : "View delivery options"}
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    )}
+                    {index === 4 && (
+                      <Link href="/menu">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="group"
+                          onClick={() => trackFAQCTAClick(4, "menu", "/menu")}
+                        >
+                          {locale === "sv" ? "Utforska menyn" : "Explore menu"}
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </Link>
+                    )}
+                    {index === 5 && (
+                      <a href="#contact">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="group"
+                          onClick={() => trackFAQCTAClick(5, "contact", "#contact")}
+                        >
+                          {locale === "sv" ? "Kontakta oss" : "Contact us"}
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </a>
+                    )}
+                  </div>
                 </AccordionContent>
               </AccordionItem>
             ))}

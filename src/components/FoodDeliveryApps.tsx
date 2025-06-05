@@ -41,7 +41,7 @@ export default function FoodDeliveryApps() {
   ];
 
   return (
-    <section className="w-screen bg-accent-soft-apricot py-20">
+    <section id="food-delivery" className="w-screen bg-accent-soft-apricot py-20">
       <div className="container">
         <FadeUp delay={0.2}>
           <div className="text-center">

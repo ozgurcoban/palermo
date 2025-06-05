@@ -71,8 +71,9 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
         })}
         description={t("hero.description", {
           price: lunchData?.dagensLunch?.price || 119,
+          count: (lunchData?.dagensLunch?.items?.length || 8) + (lunchData?.monthlySpecial ? 1 : 0),
           defaultValue:
-            "Daily lunch {price} SEK • Salad, bread & coffee included",
+            "Från {price} SEK • Välj mellan {count} rätter + lunchpizza • Sallad, bröd & kaffe ingår",
         })}
         ctaText={t("hero.cta", { defaultValue: "Se dagens lunch" })}
         ctaAction={scrollToLunch}

@@ -175,3 +175,14 @@ export const trackScrollDepth = (percentage: number, pageName: string) => {
     page_name: pageName
   });
 };
+
+export const trackFAQCTAClick = (faqIndex: number, ctaType: string, destination: string) => {
+  event(`faq_cta_click`, {
+    event_category: 'CTA',
+    event_label: `FAQ ${faqIndex + 1} - ${ctaType}`,
+    faq_index: faqIndex,
+    cta_type: ctaType,
+    destination: destination,
+    action: 'navigate'
+  });
+};

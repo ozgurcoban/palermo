@@ -68,7 +68,7 @@ const MenuFoodItem: React.FC<Food> = ({
           {description[locale]}
         </span>
       )}
-      {badge && (
+      {badge && badge[locale] && badge[locale].trim() && (
         <Badge variant="secondary" className="self-start text-xs font-medium uppercase">
           {badge[locale]}
         </Badge>
@@ -116,7 +116,7 @@ const MenuWineItem: React.FC<Wine> = ({
           {description[locale]}
         </span>
       )}
-      {badge && (
+      {badge && badge[locale] && badge[locale].trim() && (
         <Badge variant="secondary" className="ml-1 self-start text-xs font-medium uppercase">
           {badge[locale]}
         </Badge>

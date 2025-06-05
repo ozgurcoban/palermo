@@ -2,6 +2,30 @@ const withNextIntl = require('next-intl/plugin')();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    async redirects() {
+        return [
+            {
+                source: '/en/om-oss',
+                destination: '/en',
+                permanent: true,
+            },
+            {
+                source: '/en/about',
+                destination: '/en',
+                permanent: true,
+            },
+            {
+                source: '/sv/om-oss',
+                destination: '/sv',
+                permanent: true,
+            },
+            {
+                source: '/om-oss',
+                destination: '/sv',
+                permanent: true,
+            },
+        ];
+    },
     images: {
         remotePatterns: [
             {

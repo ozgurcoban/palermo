@@ -113,8 +113,15 @@
     "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
   },
   "NotFoundPage": {
-    "title": "Page not found",
-    "description": "Please double-check the browser address bar or use the navigation to go to a known page."
+    "title": "Oops! That pizza isn't on the menu",
+    "description": "Either you've ordered something we don't have, or you've taken a wrong turn. Don't worry, we have plenty of other options!",
+    "joke": "Have a coffee while you figure out where you're going",
+    "goBack": "Go back",
+    "goHome": "Go home",
+    "viewMenu": "View menu",
+    "quickLinks": "Or check out:",
+    "lunch": "Today's lunch",
+    "location": "Sysslomansgatan 7, Uppsala"
   },
   "Metadata": {
     "title": "Palermo - Uppsalas most welcoming restaurant",
@@ -170,7 +177,7 @@
   "Lunch": {
     "hero": {
       "title": "Weekday lunch at Palermo Uppsala",
-      "description": "Daily lunch {price} SEK • Salad, bread & coffee included",
+      "description": "From {price} SEK • Choose from {count} dishes + lunch pizza • Salad, bread & coffee included",
       "cta": "View today's lunch"
     },
     "content": {
