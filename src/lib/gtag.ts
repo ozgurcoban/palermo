@@ -48,15 +48,15 @@ export const trackContactFormSubmit = () => {
   event("form_submitted", {
     event_category: "Form",
     event_label: "Contact Form Sent",
-    form_type: "contact"
+    form_type: "contact",
   });
 };
 
 export const trackContactFormStart = () => {
   event("form_started", {
-    event_category: "Form", 
+    event_category: "Form",
     event_label: "Contact Form Begun",
-    form_type: "contact"
+    form_type: "contact",
   });
 };
 
@@ -64,7 +64,7 @@ export const trackPhoneClick = () => {
   event("phone_clicked", {
     event_category: "Contact",
     event_label: "Phone Number",
-    contact_method: "phone"
+    contact_method: "phone",
   });
 };
 
@@ -72,7 +72,7 @@ export const trackEmailClick = () => {
   event("email_clicked", {
     event_category: "Contact",
     event_label: "Email Address",
-    contact_method: "email"
+    contact_method: "email",
   });
 };
 
@@ -80,7 +80,7 @@ export const trackAddressClick = () => {
   event("address_clicked", {
     event_category: "Contact",
     event_label: "Physical Address",
-    contact_method: "address"
+    contact_method: "address",
   });
 };
 
@@ -106,7 +106,7 @@ export const trackMenuCTAClick = () => {
   event("hero_menu_click", {
     event_category: "CTA",
     event_label: "Menu - Hero",
-    action: "scroll_to_menu"
+    action: "scroll_to_menu",
   });
 };
 
@@ -114,7 +114,7 @@ export const trackLunchCTAClick = () => {
   event("hero_lunch_click", {
     event_category: "CTA",
     event_label: "Lunch - Hero",
-    action: "navigate_to_lunch"
+    action: "navigate_to_lunch",
   });
 };
 
@@ -122,7 +122,7 @@ export const trackLunchPageCTAClick = () => {
   event("lunch_page_cta_click", {
     event_category: "CTA",
     event_label: "Lunch Page Hero CTA",
-    action: "scroll_to_lunch"
+    action: "scroll_to_lunch",
   });
 };
 
@@ -130,7 +130,7 @@ export const trackLunchOpeningHoursClick = () => {
   event("lunch_hours_click", {
     event_category: "Contact",
     event_label: "Lunch Hours",
-    action: "view_info"
+    action: "view_info",
   });
 };
 
@@ -138,7 +138,7 @@ export const trackMenuPageCTAClick = () => {
   event("menu_page_cta_click", {
     event_category: "CTA",
     event_label: "Menu Page Hero CTA",
-    action: "book_table"
+    action: "scroll_to_menu",
   });
 };
 
@@ -147,42 +147,46 @@ export const trackThemeToggle = (fromTheme: string, toTheme: string) => {
     event_category: "UI",
     event_label: `${fromTheme} → ${toTheme}`,
     from_theme: fromTheme,
-    to_theme: toTheme
+    to_theme: toTheme,
   });
 };
 
 export const trackFAQClick = (index: number) => {
   event(`faq_${index + 1}`, {
-    event_category: 'Content',
+    event_category: "Content",
     event_label: `FAQ Question ${index + 1}`,
-    faq_index: index
+    faq_index: index,
   });
 };
 
 export const trackSocialClick = (platform: string) => {
   event(`${platform}_clicked`, {
-    event_category: 'Social',
+    event_category: "Social",
     event_label: `${platform} Link`,
-    platform: platform
+    platform: platform,
   });
 };
 
 export const trackScrollDepth = (percentage: number, pageName: string) => {
   event(`scroll_${percentage}_${pageName}`, {
-    event_category: 'Engagement',
+    event_category: "Engagement",
     event_label: `${pageName} - ${percentage}%`,
     scroll_depth: percentage,
-    page_name: pageName
+    page_name: pageName,
   });
 };
 
-export const trackFAQCTAClick = (faqIndex: number, ctaType: string, destination: string) => {
+export const trackFAQCTAClick = (
+  faqIndex: number,
+  ctaType: string,
+  destination: string,
+) => {
   event(`faq_cta_click`, {
-    event_category: 'CTA',
+    event_category: "CTA",
     event_label: `FAQ ${faqIndex + 1} - ${ctaType}`,
     faq_index: faqIndex,
     cta_type: ctaType,
     destination: destination,
-    action: 'navigate'
+    action: "navigate",
   });
 };

@@ -120,7 +120,7 @@
     "goHome": "Go home",
     "viewMenu": "View menu",
     "quickLinks": "Or check out:",
-    "lunch": "Today's lunch",
+    "lunch": "Lunch menu",
     "location": "Sysslomansgatan 7, Uppsala"
   },
   "Metadata": {
@@ -178,7 +178,7 @@
     "hero": {
       "title": "Weekday lunch at Palermo Uppsala",
       "description": "From {price} SEK • Choose from {count} dishes + lunch pizza • Salad, bread & coffee included",
-      "cta": "View today's lunch"
+      "cta": "View lunch menu"
     },
     "content": {
       "title": "Uppsala's most laid-back lunch",
