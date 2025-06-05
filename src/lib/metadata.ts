@@ -57,11 +57,11 @@ export function constructMetadata({
   noIndex = false,
 }: MetadataConfig): Metadata {
   return {
-    title: `${title} | ${siteConfig.name}`,
+    title,
     description,
     metadataBase: new URL(siteConfig.url),
     openGraph: {
-      title: `${title} | ${siteConfig.name}`,
+      title,
       description,
       type: "website",
       locale: locale === "sv" ? "sv_SE" : "en_US",
