@@ -191,7 +191,7 @@ const MenuContent: React.FC<Props> = ({
           style={{
             boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
           }}
-          className="flex h-[90vh] flex-col gap-5 px-3 pb-4 pt-6 sm:h-[80vh] sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
+          className="flex h-[85vh] flex-col gap-5 px-3 pb-4 pt-6 sm:h-[80vh] sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
         >
           <div className="flex flex-col" ref={wrapperRef}>
             {useChips ? (

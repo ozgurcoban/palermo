@@ -44,7 +44,7 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
       if (menu) {
         const navbarHeight = 132; // Height of navbar
         const menuPosition = menu.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = menuPosition - navbarHeight + 30; // Changed from -20 to +30 for 50px lower
+        const offsetPosition = menuPosition - navbarHeight + 110; // Changed from -20 to +30 for 50px lower
 
         window.scrollTo({
           top: offsetPosition,
