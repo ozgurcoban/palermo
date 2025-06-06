@@ -102,10 +102,10 @@ export const trackLunchTabView = (tabName: string) => {
   });
 };
 
-export const trackMenuCTAClick = () => {
-  event("hero_menu_click", {
+export const trackHomeHeroMenuClick = () => {
+  event("home_hero_menu_click", {
     event_category: "CTA",
-    event_label: "Menu - Hero",
+    event_label: "Menu - Home Hero",
     action: "scroll_to_menu",
   });
 };

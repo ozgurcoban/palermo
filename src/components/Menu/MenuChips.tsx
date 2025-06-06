@@ -131,11 +131,11 @@ const MenuChips: React.FC<MenuChipsProps> = ({
             <div className="flex gap-1.5 items-center">
               {selectedCategories.length === 0 ? (
                 <Badge variant="outline" className="text-xs px-2.5 py-0.5 whitespace-nowrap">
-                  Alla
+                  {locale === 'sv' ? 'Alla' : 'All'}
                 </Badge>
               ) : showAllActive ? (
                 <Badge variant="default" className="text-xs px-2.5 py-0.5 whitespace-nowrap">
-                  Alla
+                  {locale === 'sv' ? 'Alla' : 'All'}
                 </Badge>
               ) : (
                 <>
@@ -195,7 +195,7 @@ const MenuChips: React.FC<MenuChipsProps> = ({
                     className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <X className="h-3 w-3" />
-                    Rensa filter
+                    {locale === 'sv' ? 'Rensa filter' : 'Clear filter'}
                   </motion.button>
                 )}
               </AnimatePresence>
@@ -230,7 +230,7 @@ const MenuChips: React.FC<MenuChipsProps> = ({
                 : "border-2 hover:border-primary/50 hover:bg-primary/5"
             }`}
           >
-            Alla
+            {locale === 'sv' ? 'Alla' : 'All'}
           </Badge>
         </motion.button>
 
@@ -275,7 +275,9 @@ const MenuChips: React.FC<MenuChipsProps> = ({
                 exit={{ opacity: 0, y: -10 }}
                 className="mt-3 text-xs text-muted-foreground"
               >
-                Visar {selectedCategories.length} av {categories.length} kategorier
+                {locale === 'sv' 
+                  ? `Visar ${selectedCategories.length} av ${categories.length} kategorier`
+                  : `Showing ${selectedCategories.length} of ${categories.length} categories`}
               </motion.div>
             )}
           </AnimatePresence>

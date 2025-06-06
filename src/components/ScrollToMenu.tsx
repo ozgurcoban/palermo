@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { ArrowDown } from "lucide-react";
 import { motion, useTransform, useMotionValue, animate } from "framer-motion";
 import { useEffect } from "react";
-import { trackMenuCTAClick } from "@/lib/gtag";
+import { trackHomeHeroMenuClick } from "@/lib/gtag";
 
 const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
   const y = useMotionValue(0);
@@ -31,7 +31,7 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
 
     // Track the click event safely
     try {
-      trackMenuCTAClick();
+      trackHomeHeroMenuClick();
     } catch (error) {
       // Silently ignore tracking errors
     }

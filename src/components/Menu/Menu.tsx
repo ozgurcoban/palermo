@@ -111,18 +111,16 @@ const MenuContent: React.FC<Props> = ({
     if (useChips) {
       // Chips mode: multi-select filtering
       if (selectedCategories.length === 0) {
-        return categories.flatMap((category) => [
-          ...(category.sub_categories ?? []),
-          ...(category.menu_list ?? []),
-        ]);
+        // Return all categories with structure intact for "Alla"
+        return categories;
       }
 
-      const filteredCategories = categories.filter(({ _id }) =>
-        selectedCategories.includes(_id),
-      );
+      // Sort categories based on selection order
+      const filteredCategories = selectedCategories
+        .map(selectedId => categories.find(({ _id }) => _id === selectedId))
+        .filter(Boolean) as Category[];
 
-      // Instead of flatMap, return categories with their structure intact
-      // This allows us to show category headers
+      // Return categories in the order they were selected
       return filteredCategories;
     } else {
       // Tabs mode: single category selection
@@ -213,7 +211,7 @@ const MenuContent: React.FC<Props> = ({
             )}
           </div>
           <div
-            className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
+            className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 w-full overflow-y-scroll text-center md:mt-8"
             ref={scrollRef}
             data-scroll-container="menu-items"
           >
@@ -306,12 +304,11 @@ const MenuContent: React.FC<Props> = ({
                 </TooltipProvider>
               ) : null}
             </div>
-            <hr className="mt-4" />
             <div className="h-full w-full">
               <MenuItems
                 data={menus_list}
                 showCategoryHeaders={
-                  !!useChips && selectedCategories.length > 1
+                  !!useChips && (selectedCategories.length === 0 || selectedCategories.length >= 1)
                 }
               />
             </div>
