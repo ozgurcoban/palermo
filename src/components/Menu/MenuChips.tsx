@@ -216,7 +216,8 @@ const MenuChips: React.FC<MenuChipsProps> = ({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => {
-            // Visa bara collapsed med "Alla", rensa INTE filter
+            // Clear filters and show all items
+            onClearAll();
             setShowAllActive(true);
             setIsExpanded(false);
           }}
