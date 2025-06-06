@@ -43,7 +43,7 @@ const MenuContent: React.FC<Props> = ({
   const locale = useGetLocale();
 
   // Mobile detection
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -97,7 +97,7 @@ const MenuContent: React.FC<Props> = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log("scrollRef.current:", scrollRef.current);
+    // Removed debug log
   }, []);
 
   useEffect(() => {
@@ -123,13 +123,15 @@ const MenuContent: React.FC<Props> = ({
       // Return categories in the order they were selected
       return filteredCategories;
     } else {
-      // Tabs mode: single category selection
+      // Tabs mode: single category selection (desktop)
       const filteredList = categories.find(({ _id }) => tab === _id);
-      if (filteredList)
+      if (filteredList) {
+        // For desktop, return subcategories and direct menu items
         return [
           ...(filteredList.sub_categories ?? []),
           ...(filteredList.menu_list ?? []),
         ];
+      }
       else return [];
     }
   }, [useChips, selectedCategories, tab, categories]);
@@ -211,22 +213,29 @@ const MenuContent: React.FC<Props> = ({
             )}
           </div>
           <div
-            className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 w-full overflow-y-scroll text-center md:mt-8"
+            className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
             ref={scrollRef}
             data-scroll-container="menu-items"
           >
-            <div className="sticky top-0 z-10 mx-auto hidden max-w-md items-center bg-white dark:bg-card md:flex">
-              {!useChips &&
-              menus_list.some((item) =>
-                "menu_list" in item
-                  ? item.menu_list?.some(
-                      (menuItem) =>
-                        "takeawayPrice" in menuItem.priceSection &&
-                        menuItem.priceSection.takeawayPrice,
-                    )
-                  : "priceSection" in item &&
+            {!useChips && getCategory && (
+              <div className="mx-auto mb-6 max-w-md">
+                <h2 className="font-recoleta text-3xl font-medium text-primary text-center mb-3">
+                  {getCategory.title[locale]}
+                </h2>
+                {getCategory.description && (
+                  <p className="text-muted-foreground text-justify">
+                    {getCategory.description[locale]}
+                  </p>
+                )}
+              </div>
+            )}
+            <div className={`sticky top-0 z-10 mx-auto max-w-md items-center bg-white dark:bg-card ${useChips ? 'hidden' : 'flex'}`}>
+              {getCategory?.sub_categories?.some((subCategory) =>
+                subCategory.menu_list.some(
+                  (item) =>
                     "takeawayPrice" in item.priceSection &&
                     item.priceSection.takeawayPrice,
+                ),
               ) ? (
                 <>
                   <p className="sticky top-0 w-full whitespace-nowrap text-right font-medium text-primary">
@@ -254,17 +263,12 @@ const MenuContent: React.FC<Props> = ({
                   )}
                 </>
               ) : null}
-              {!useChips &&
-              menus_list.some((item) =>
-                "menu_list" in item
-                  ? item.menu_list?.some(
-                      (menuItem) =>
-                        "glassPrice" in menuItem.priceSection &&
-                        menuItem.priceSection.glassPrice,
-                    )
-                  : "priceSection" in item &&
+              {getCategory?.sub_categories?.some((subCategory) =>
+                subCategory.menu_list.some(
+                  (item) =>
                     "glassPrice" in item.priceSection &&
                     item.priceSection.glassPrice,
+                ),
               ) ? (
                 <TooltipProvider>
                   <Tooltip>
@@ -304,11 +308,17 @@ const MenuContent: React.FC<Props> = ({
                 </TooltipProvider>
               ) : null}
             </div>
+            {!useChips && (getCategory?.sub_categories?.some(subCategory => 
+              subCategory.menu_list.some(item => 
+                ("takeawayPrice" in item.priceSection && item.priceSection.takeawayPrice) ||
+                ("glassPrice" in item.priceSection && item.priceSection.glassPrice)
+              )
+            )) && <hr className="mt-4" />}
             <div className="h-full w-full">
               <MenuItems
                 data={menus_list}
                 showCategoryHeaders={
-                  !!useChips && (selectedCategories.length === 0 || selectedCategories.length >= 1)
+                  useChips && (selectedCategories.length === 0 || selectedCategories.length >= 1)
                 }
               />
             </div>

@@ -10,7 +10,7 @@ const MenuItem: React.FC<{ item: SubCategory | Food | Wine }> = ({ item }) => {
 
   if (item._type === "foods") return <MenuFoodItem {...(item as Food)} />;
   if (item._type === "wines") return <MenuWineItem {...(item as Wine)} />;
-  if (item._type === "sub_categories") return (
+  if (item._type === "subcategories") return (
     <li className="flex flex-col items-center gap-2 text-center">
       <h3 className="w-full font-recoleta text-2xl font-medium tracking-tight">
         {(item as SubCategory).title[locale]}
