@@ -163,19 +163,31 @@ const MenuContent: React.FC<Props> = ({
     setSelectedCategories([]);
   };
 
-  // Conditional wrapper for animations
-  const AnimWrapper = ({ children, id, ...props }: any) => {
+  // Conditional wrapper for animations - only animate the outer menu container
+  const AnimWrapper = ({ children, id, variants, onlyInitial = false, ...props }: any) => {
     // Always ensure the id is passed through
     const elementProps = {
       ...props,
       ...(id ? { id } : {}),
     };
 
-    if (disableAnimations || hasSeenAnimation) {
-      // Return children with all props including id
+    // If onlyInitial is true, only animate on first load, never on updates
+    if (onlyInitial && hasSeenAnimation) {
       return <div {...elementProps}>{children}</div>;
     }
-    return <FadeUp {...elementProps}>{children}</FadeUp>;
+
+    if (disableAnimations) {
+      // No animations at all
+      return <div {...elementProps}>{children}</div>;
+    }
+    
+    if (hasSeenAnimation) {
+      // Use simple fade animation instead of custom variants
+      return <FadeUp {...elementProps}>{children}</FadeUp>;
+    }
+    
+    // First time: use custom animation variants if provided
+    return <FadeUp variants={variants} {...elementProps}>{children}</FadeUp>;
   };
 
   return (
@@ -187,6 +199,7 @@ const MenuContent: React.FC<Props> = ({
         className="w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px]"
         id="menu"
         data-scroll-target="menu"
+        onlyInitial={true}
       >
         <div
           style={{
@@ -217,7 +230,7 @@ const MenuContent: React.FC<Props> = ({
             data-scroll-container="menu-items"
           >
             {!useChips && getCategory && (
-              <div className="mx-auto mb-6 max-w-md">
+              <div className="mx-auto mb-6 max-w-md" key={getCategory._id}>
                 <h2 className="font-recoleta text-3xl font-medium text-primary text-center mb-3">
                   {getCategory.title[locale]}
                 </h2>
@@ -315,6 +328,7 @@ const MenuContent: React.FC<Props> = ({
             )) && <hr className="mt-4" />}
             <div className="h-full w-full">
               <MenuItems
+                key={useChips ? selectedCategories.join('-') : tab}
                 data={menus_list}
                 showCategoryHeaders={
                   useChips && (selectedCategories.length === 0 || selectedCategories.length >= 1)
