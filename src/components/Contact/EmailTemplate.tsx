@@ -2,13 +2,18 @@ interface ContactFormEmailProps {
   name: string;
   email: string;
   message: string;
+  locale: string;
 }
 
 const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
   name,
   email,
   message,
-}) => (
+  locale,
+}) => {
+  const isEnglish = locale === 'en';
+  
+  return (
   <div
     style={{
       fontFamily: "system-ui, -apple-system, sans-serif",
@@ -26,13 +31,15 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
         borderBottom: "1px solid #E4E4E7",
       }}
     >
-      <div style={{ 
-        fontSize: "20px", 
-        fontWeight: "600", 
-        color: "#09090B",
-        marginBottom: "24px",
-        letterSpacing: "-0.025em"
-      }}>
+      <div
+        style={{
+          fontSize: "20px",
+          fontWeight: "600",
+          color: "#09090B",
+          marginBottom: "24px",
+          letterSpacing: "-0.025em",
+        }}
+      >
         PALERMO UPPSALA
       </div>
       <h1
@@ -44,7 +51,7 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
           letterSpacing: "-0.025em",
         }}
       >
-        Tack för ditt meddelande!
+        {isEnglish ? "Thank you for your message!" : "Tack för ditt meddelande!"}
       </h1>
     </div>
 
@@ -60,7 +67,7 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
             margin: "0 0 16px 0",
           }}
         >
-          Hej {name},
+          {isEnglish ? `Hello ${name},` : `Hej ${name},`}
         </p>
         <p
           style={{
@@ -70,8 +77,10 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
             margin: 0,
           }}
         >
-          Vi har tagit emot ditt meddelande och kommer att svara dig så snart
-          som möjligt, vanligtvis inom 24 timmar.
+          {isEnglish 
+            ? "We have received your message and will respond as quickly as possible, usually within 24 hours."
+            : "Vi har tagit emot ditt meddelande och kommer att svara dig så snart som möjligt, vanligtvis inom 24 timmar."
+          }
         </p>
       </div>
 
@@ -93,7 +102,16 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
             fontWeight: "500",
           }}
         >
-          🍕 Behöver du snabb hjälp? Ring oss direkt på <a href="tel:+4618131820" style={{ color: "#92400E", fontWeight: "600" }}>018-13 18 20</a>
+          {isEnglish 
+            ? "🍕 Need quick help? Call us directly at "
+            : "🍕 Behöver du snabb hjälp? Ring oss direkt på "
+          }
+          <a
+            href="tel:+4618131820"
+            style={{ color: "#92400E", fontWeight: "600" }}
+          >
+            018-13 18 20
+          </a>
         </p>
       </div>
 
@@ -109,7 +127,7 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
             letterSpacing: "-0.025em",
           }}
         >
-          Ditt meddelande:
+          {isEnglish ? "Your message:" : "Ditt meddelande:"}
         </h2>
         <div
           style={{
@@ -144,7 +162,7 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
             letterSpacing: "-0.025em",
           }}
         >
-          Våra kontaktuppgifter:
+          {isEnglish ? "Our contact information:" : "Våra kontaktuppgifter:"}
         </h3>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <tr>
@@ -156,12 +174,15 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
                 width: "120px",
               }}
             >
-              📍 Adress:
+              {isEnglish ? "📍 Address:" : "📍 Adress:"}
             </td>
             <td
               style={{ padding: "8px 0", color: "#09090B", fontSize: "14px" }}
             >
-              <a href="https://maps.google.com/?q=Sysslomansgatan+7,+Uppsala" style={{ color: "#09090B", textDecoration: "none" }}>
+              <a
+                href="https://maps.google.com/?q=Sysslomansgatan+7,+Uppsala"
+                style={{ color: "#09090B", textDecoration: "none" }}
+              >
                 Sysslomansgatan 7, Uppsala
               </a>
             </td>
@@ -170,12 +191,15 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
             <td
               style={{ padding: "8px 0", color: "#71717A", fontSize: "14px" }}
             >
-              📞 Telefon:
+              {isEnglish ? "📞 Phone:" : "📞 Telefon:"}
             </td>
             <td
               style={{ padding: "8px 0", color: "#09090B", fontSize: "14px" }}
             >
-              <a href="tel:+4618131820" style={{ color: "#09090B", textDecoration: "none" }}>
+              <a
+                href="tel:+4618131820"
+                style={{ color: "#09090B", textDecoration: "none" }}
+              >
                 018-13 18 20
               </a>
             </td>
@@ -189,19 +213,19 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
                 verticalAlign: "top",
               }}
             >
-              🕐 Öppettider:
+              {isEnglish ? "🕐 Opening hours:" : "🕐 Öppettider:"}
             </td>
             <td
               style={{ padding: "8px 0", color: "#09090B", fontSize: "14px" }}
             >
               <div style={{ lineHeight: "1.5" }}>
-                <strong>Måndag:</strong> 11:00 - 01:00
+                <strong>{isEnglish ? "Monday:" : "Måndag:"}</strong> 11:00 - 01:00
                 <br />
-                <strong>Tis-Fre:</strong> 11:00 - 03:00
+                <strong>{isEnglish ? "Tue-Fri:" : "Tis-Fre:"}</strong> 11:00 - 03:00
                 <br />
-                <strong>Lördag:</strong> 12:00 - 03:00
+                <strong>{isEnglish ? "Saturday:" : "Lördag:"}</strong> 12:00 - 03:00
                 <br />
-                <strong>Söndag:</strong> 12:00 - 01:00
+                <strong>{isEnglish ? "Sunday:" : "Söndag:"}</strong> 12:00 - 01:00
                 <br />
                 <div
                   style={{
@@ -210,10 +234,13 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
                     borderTop: "1px solid #E4E4E7",
                   }}
                 >
-                  <strong>Lunch vardagar:</strong> 11:00 - 15:00
+                  <strong>{isEnglish ? "Lunch weekdays:" : "Lunch vardagar:"}</strong> 11:00 - 15:00
                   <br />
                   <span style={{ fontSize: "13px", color: "#71717A" }}>
-                    119 kr inkl. sallad, bröd & kaffe
+                    {isEnglish 
+                      ? "119 SEK incl. salad, bread & coffee"
+                      : "119 kr inkl. sallad, bröd & kaffe"
+                    }
                   </span>
                 </div>
               </div>
@@ -235,18 +262,23 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
       }}
     >
       <p style={{ margin: "0 0 12px 0", color: "#18181B", fontWeight: "500" }}>
-        Vi ses snart på Palermo! 🍕
+        {isEnglish ? "See you soon at Palermo! 🍕" : "Vi ses snart på Palermo! 🍕"}
       </p>
       <p style={{ margin: "0", fontSize: "12px", color: "#52525B" }}>
         <a
           href="https://www.palermo-uppsala.se"
-          style={{ color: "#18181B", textDecoration: "underline", textUnderlineOffset: "2px" }}
+          style={{
+            color: "#18181B",
+            textDecoration: "underline",
+            textUnderlineOffset: "2px",
+          }}
         >
           www.palermo-uppsala.se
         </a>
       </p>
     </div>
   </div>
-);
+  );
+};
 
 export default ContactFormEmail;

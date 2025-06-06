@@ -6,7 +6,7 @@ import { ContactFormSchema } from "@/lib/ContactFormSchema";
 import ContactFormEmail from "@/components/Contact/EmailTemplate";
 import AdminEmailTemplate from "@/components/Contact/AdminEmailTemplate";
 
-type ContactFormInputs = z.infer<typeof ContactFormSchema>;
+type ContactFormInputs = z.infer<typeof ContactFormSchema> & { locale: string };
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendMail(data: ContactFormInputs) {
@@ -14,6 +14,7 @@ export async function sendMail(data: ContactFormInputs) {
 
   if (result.success) {
     const { name, email, message } = result.data;
+    const { locale } = data;
 
     try {
       // Skicka e-post till Palermo
@@ -37,9 +38,15 @@ export async function sendMail(data: ContactFormInputs) {
       const customerEmail = await resend.emails.send({
         from: "Palermo Uppsala <noreply@palermo-uppsala.se>", // Ändra när domänen är verifierad
         to: [email], // Kundens e-post
-        subject: "Tack för ditt meddelande - Palermo Uppsala",
-        text: `Hej ${name},\n\nVi har tagit emot ditt meddelande och återkommer så snart som möjligt.\n\nMed vänliga hälsningar,\nPalermo Uppsala`,
-        react: ContactFormEmail({ name, email, message }),
+        subject:
+          locale === "en"
+            ? "Thank you for your message - Palermo Uppsala"
+            : "Tack för ditt meddelande - Palermo Uppsala",
+        text:
+          locale === "en"
+            ? `Hello ${name},\n\nWe have received your message and will get back to you as soon as possible.\n\nBest regards,\nPalermo Uppsala`
+            : `Hej ${name},\n\nVi har tagit emot ditt meddelande och återkommer så snart som möjligt.\n\nMed vänliga hälsningar,\nPalermo Uppsala`,
+        react: ContactFormEmail({ name, email, message, locale }),
       });
 
       if (customerEmail.error) {

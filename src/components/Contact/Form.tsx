@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from "zod";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 
 import { ContactFormSchema } from "@/lib/ContactFormSchema";
@@ -28,6 +28,7 @@ export type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 export default function ContactForm() {
   const t = useTranslations("ContactSection");
   const b = useTranslations("Buttons");
+  const locale = useLocale();
   const [hasStartedForm, setHasStartedForm] = useState(false);
   
   const form = useForm<ContactFormInputs>({
@@ -47,7 +48,7 @@ export default function ContactForm() {
   };
 
   const processForm: SubmitHandler<ContactFormInputs> = async data => {
-    const result = await sendMail(data);
+    const result = await sendMail({ ...data, locale });
 
     if (result?.success) {
       trackContactFormSubmit();
