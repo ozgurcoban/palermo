@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import MenuTabs from "./MenuTabs";
+import MenuChips from "./MenuChips";
 import MenuItems from "./MenuItems";
 import FadeUp from "../ui/FadeUp";
 import { useGetLocale } from "@/config";
@@ -41,6 +42,20 @@ const MenuContent: React.FC<Props> = ({
   const t = useTranslations("Home.Menu");
   const locale = useGetLocale();
 
+  // Mobile detection
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
+
+  const useChips = isMobile;
+
   // Check if animations should be disabled based on localStorage (24-hour cooldown)
   // Initialize to true to avoid hydration mismatch, then update on client
   const [hasSeenAnimation, setHasSeenAnimation] = useState(true);
@@ -70,7 +85,10 @@ const MenuContent: React.FC<Props> = ({
     }
   }, [disableAnimations]);
 
-  // The tab category index and its value
+  // Selected categories for multi-select filtering (chips mode)
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  // Single tab selection (tabs mode)
   const [tab, setTab] = useState(categories[0]._id);
 
   // Ref for scrollable div
@@ -79,30 +97,71 @@ const MenuContent: React.FC<Props> = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Removed debug log
+    console.log("scrollRef.current:", scrollRef.current);
   }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo(0, 0);
     }
-  }, [tab]);
+  }, [selectedCategories, tab]);
 
-  // Get the menu list every time the selected tab changes
+  // Get the menu list based on mode
   const menus_list = useMemo(() => {
-    const filteredList = categories.find(({ _id }) => tab === _id);
-    if (filteredList)
-      return [
-        ...(filteredList.sub_categories ?? []),
-        ...(filteredList.menu_list ?? []),
-      ];
-    else return [];
-  }, [tab, categories]);
+    if (useChips) {
+      // Chips mode: multi-select filtering
+      if (selectedCategories.length === 0) {
+        return categories.flatMap((category) => [
+          ...(category.sub_categories ?? []),
+          ...(category.menu_list ?? []),
+        ]);
+      }
 
-  const getCategory = useMemo(
-    () => categories.find((category) => tab === category._id),
-    [categories, tab],
-  );
+      const filteredCategories = categories.filter(({ _id }) =>
+        selectedCategories.includes(_id),
+      );
+
+      // Instead of flatMap, return categories with their structure intact
+      // This allows us to show category headers
+      return filteredCategories;
+    } else {
+      // Tabs mode: single category selection
+      const filteredList = categories.find(({ _id }) => tab === _id);
+      if (filteredList)
+        return [
+          ...(filteredList.sub_categories ?? []),
+          ...(filteredList.menu_list ?? []),
+        ];
+      else return [];
+    }
+  }, [useChips, selectedCategories, tab, categories]);
+
+  // Get category for description display
+  const getCategory = useMemo(() => {
+    if (useChips) {
+      if (selectedCategories.length === 0) return null;
+      return categories.find((category) =>
+        selectedCategories.includes(category._id),
+      );
+    } else {
+      return categories.find((category) => tab === category._id);
+    }
+  }, [useChips, categories, selectedCategories, tab]);
+
+  // Handler functions for chips
+  const handleCategoryToggle = (categoryId: string) => {
+    setSelectedCategories((prev) => {
+      if (prev.includes(categoryId)) {
+        return prev.filter((id) => id !== categoryId);
+      } else {
+        return [...prev, categoryId];
+      }
+    });
+  };
+
+  const handleClearAll = () => {
+    setSelectedCategories([]);
+  };
 
   // Conditional wrapper for animations
   const AnimWrapper = ({ children, id, ...props }: any) => {
@@ -134,33 +193,42 @@ const MenuContent: React.FC<Props> = ({
           style={{
             boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
           }}
-          className="flex h-[80vh] flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
+          className="flex h-[90vh] flex-col gap-5 px-3 pb-4 pt-6 sm:h-[80vh] sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
         >
           <div className="flex flex-col" ref={wrapperRef}>
-            <MenuTabs
-              tabs={categories}
-              selectedTab={tab}
-              setSelectedTab={setTab}
-            />
+            {useChips ? (
+              <MenuChips
+                categories={categories}
+                selectedCategories={selectedCategories}
+                onCategoryToggle={handleCategoryToggle}
+                onClearAll={handleClearAll}
+                scrollContainerRef={scrollRef}
+              />
+            ) : (
+              <MenuTabs
+                tabs={categories}
+                selectedTab={tab}
+                setSelectedTab={setTab}
+              />
+            )}
           </div>
           <div
             className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
             ref={scrollRef}
+            data-scroll-container="menu-items"
           >
-            {getCategory?.description && (
-              <div className="mx-auto mb-3 max-w-md text-justify">
-                <p className="text-muted-foreground">
-                  {getCategory.description?.[locale]}
-                </p>
-              </div>
-            )}
-            <div className="sticky top-0 z-10 mx-auto flex max-w-md items-center bg-white dark:bg-card">
-              {getCategory?.sub_categories?.some((subCategory) =>
-                subCategory.menu_list.some(
-                  (item) =>
+            <div className="sticky top-0 z-10 mx-auto hidden max-w-md items-center bg-white dark:bg-card md:flex">
+              {!useChips &&
+              menus_list.some((item) =>
+                "menu_list" in item
+                  ? item.menu_list?.some(
+                      (menuItem) =>
+                        "takeawayPrice" in menuItem.priceSection &&
+                        menuItem.priceSection.takeawayPrice,
+                    )
+                  : "priceSection" in item &&
                     "takeawayPrice" in item.priceSection &&
                     item.priceSection.takeawayPrice,
-                ),
               ) ? (
                 <>
                   <p className="sticky top-0 w-full whitespace-nowrap text-right font-medium text-primary">
@@ -188,12 +256,17 @@ const MenuContent: React.FC<Props> = ({
                   )}
                 </>
               ) : null}
-              {getCategory?.sub_categories?.some((subCategory) =>
-                subCategory.menu_list.some(
-                  (item) =>
+              {!useChips &&
+              menus_list.some((item) =>
+                "menu_list" in item
+                  ? item.menu_list?.some(
+                      (menuItem) =>
+                        "glassPrice" in menuItem.priceSection &&
+                        menuItem.priceSection.glassPrice,
+                    )
+                  : "priceSection" in item &&
                     "glassPrice" in item.priceSection &&
                     item.priceSection.glassPrice,
-                ),
               ) ? (
                 <TooltipProvider>
                   <Tooltip>
@@ -235,7 +308,12 @@ const MenuContent: React.FC<Props> = ({
             </div>
             <hr className="mt-4" />
             <div className="h-full w-full">
-              <MenuItems data={menus_list} />
+              <MenuItems
+                data={menus_list}
+                showCategoryHeaders={
+                  !!useChips && selectedCategories.length > 1
+                }
+              />
             </div>
           </div>
         </AnimWrapper>

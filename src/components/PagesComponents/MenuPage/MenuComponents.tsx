@@ -25,8 +25,12 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
         const deliverySection = document.getElementById("food-delivery");
         if (deliverySection) {
           const navbarHeight = 132;
-          const offsetPosition = deliverySection.getBoundingClientRect().top + window.scrollY - navbarHeight - 20;
-          
+          const offsetPosition =
+            deliverySection.getBoundingClientRect().top +
+            window.scrollY -
+            navbarHeight -
+            20;
+
           // Add a longer pause before scrolling for better UX
           setTimeout(() => {
             window.scrollTo({
@@ -36,17 +40,17 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
           }, 800); // Longer pause to let user see the page loaded
         }
       };
-      
+
       // Check hash first (works on desktop)
       if (window.location.hash === "#food-delivery") {
         performScroll();
-        
+
         // Clear hash after scrolling
         setTimeout(() => {
           window.history.replaceState(null, "", window.location.pathname);
         }, 1000);
       }
-      
+
       // Also check sessionStorage (fallback for iOS)
       const shouldScrollToDelivery = sessionStorage.getItem("scrollToDelivery");
       if (shouldScrollToDelivery === "true") {
@@ -54,13 +58,13 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
         performScroll();
       }
     };
-    
+
     // Try immediately
     checkAndScroll();
-    
+
     // Also try after a delay for slow-loading pages
     const timeoutId = setTimeout(checkAndScroll, 500);
-    
+
     return () => clearTimeout(timeoutId);
   }, []);
 
@@ -137,7 +141,10 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
             </p>
           </FadeUp>
           <FadeUp delay={1.3}>
-            <Menu categories={categoriesData} disableAnimations />
+            <Menu
+              categories={categoriesData}
+              disableAnimations
+            />
           </FadeUp>
         </div>
       </section>
