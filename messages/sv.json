@@ -84,11 +84,12 @@
     "formTitle": "Har du frågor?",
     "formDescription": "Vi svarar så snart som möjligt.",
     "privacyNote": "Inga uppgifter sparas, varken internt eller för marknadsföring.",
+    "sending": "Skickar...",
     "Form": {
       "title": "Tack för att du hörde av dig!",
       "description": "Ditt meddelande är viktigt för oss. Vi går igenom ditt mail och återkommer till dig så snart vi kan. Skål! 🍻",
-      "destructiveTitle": "Hoppsan! Något gick snett.",
-      "destructiveDescription": "Tyvärr kunde vi inte skicka ditt meddelande. Var god försök igen senare."
+      "errorTitle": "Hoppsan! Något gick snett.",
+      "errorDescription": "Tyvärr kunde vi inte skicka ditt meddelande. Var god försök igen senare."
     }
   },
   "MenuPage": {
@@ -140,7 +141,7 @@
     },
 
     "lunch": {
-      "title": "Billig Lunch Uppsala - Dagens Lunch på Palermo | 119 kr",
+      "title": "Lunch Uppsala - Dagens Lunch på Palermo från 119 kr",
       "description": "Prisvärd lunch i Uppsala. Dagens lunch från 119 kr inkl sallad, bröd & kaffe. Palermo restaurang serverar lunch mån-fre 11-15. Se lunchmeny."
     }
   },

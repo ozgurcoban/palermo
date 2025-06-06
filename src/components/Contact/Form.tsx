@@ -21,6 +21,7 @@ import {
 import { toast } from "@/components/ui/use-toast";
 import { sendMail } from "@/app/(user)/_actions";
 import { trackContactFormSubmit, trackContactFormStart } from "@/lib/gtag";
+import { CheckCircle2, XCircle } from "lucide-react";
 
 export type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 
@@ -52,15 +53,30 @@ export default function ContactForm() {
       trackContactFormSubmit();
       toast({
         title: t("Form.title"),
-        description: t("Form.description"),
+        description: (
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-foreground" />
+            <span>{t("Form.description")}</span>
+          </div>
+        ),
       });
       form.reset();
+      setHasStartedForm(false);
       return;
     }
+    
+    // Log error for debugging
+    console.error("Form submission error:", result?.error);
+    
     toast({
       variant: "destructive",
       title: t("Form.errorTitle"),
-      description: t("Form.errorDescription"),
+      description: (
+        <div className="flex items-center gap-2">
+          <XCircle className="h-4 w-4" />
+          <span>{t("Form.errorDescription")}</span>
+        </div>
+      ),
     });
   };
   return (

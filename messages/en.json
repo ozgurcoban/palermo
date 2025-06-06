@@ -84,6 +84,7 @@
     "formTitle": "Ask a question",
     "formDescription": "We'll get back to you as soon as possible.",
     "privacyNote": "No data is stored, neither internally nor for marketing purposes.",
+    "sending": "Sending...",
     "Form": {
       "title": "Thank You for Reaching Out!",
       "description": "Your message is important to us. We're reviewing your email and will get back to you as quickly as possible. Cheers! 🍻",
@@ -135,7 +136,7 @@
       "description": "View Palermo pizzeria menu with prices. Pizza, pasta, meat dishes in Uppsala. Affordable restaurant on Sysslomansgatan. Takeaway & dine-in."
     },
     "lunch": {
-      "title": "Cheap Lunch Uppsala - Daily Lunch at Palermo | 119 SEK",
+      "title": "Lunch Uppsala - Daily Lunch at Palermo from 119 SEK",
       "description": "Affordable lunch in Uppsala. Daily lunch from 119 SEK incl salad, bread & coffee. Palermo restaurant serves lunch Mon-Fri 11-15. View lunch menu."
     }
   },
