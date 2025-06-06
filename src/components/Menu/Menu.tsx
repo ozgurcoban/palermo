@@ -188,8 +188,7 @@ const MenuContent: React.FC<Props> = ({
         id="menu"
         data-scroll-target="menu"
       >
-        <AnimWrapper
-          delay={0.5}
+        <div
           style={{
             boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
           }}
@@ -323,10 +322,8 @@ const MenuContent: React.FC<Props> = ({
               />
             </div>
           </div>
-        </AnimWrapper>
-        <AnimWrapper delay={0.2}>
-          <hr />
-        </AnimWrapper>
+        </div>
+        <hr />
       </AnimWrapper>
     </div>
   );
