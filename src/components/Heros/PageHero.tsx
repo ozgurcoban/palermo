@@ -1,20 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import MotionDiv from "@/components/ui/MotionDiv";
-import FadeUp from "@/components/ui/FadeUp";
+import { useEffect, useState, useRef } from "react";
 import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 
-const fadeVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-};
 
 interface HeroProps {
   imageUrl: string;
@@ -47,8 +38,28 @@ export function PageHero({
   ctaAction,
   ctaDelay = 0.9,
 }: HeroProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), 50);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <div
+      ref={heroRef}
       className={`relative flex w-screen items-center justify-center ${height}`}
     >
       <div className="relative h-full w-full overflow-hidden">
@@ -69,20 +80,24 @@ export function PageHero({
       </div>
 
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
-        {badge && <FadeUp delay={badgeDelay}>{badge}</FadeUp>}
+        {badge && (
+          <div className={`transition-all duration-700 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            {badge}
+          </div>
+        )}
 
-        <FadeUp delay={titleDelay}>
-          <h1 className="hero-title-simple mb-3 sm:mb-4">{title}</h1>
-        </FadeUp>
+        <h1 className={`hero-title-simple mb-3 sm:mb-4 transition-all duration-700 ease-out transform delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          {title}
+        </h1>
 
-        <FadeUp delay={descriptionDelay}>
-          <p className="hero-description">{description}</p>
-        </FadeUp>
+        <p className={`hero-description transition-all duration-700 ease-out transform delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          {description}
+        </p>
       </div>
       
       {/* Mobile CTA button */}
       {ctaText && ctaAction && (
-        <FadeUp delay={ctaDelay} className="absolute bottom-6 z-20 flex flex-col items-center lg:hidden">
+        <div className={`absolute bottom-6 z-20 flex flex-col items-center lg:hidden transition-all duration-500 ease-out delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
           <Button
             onClick={ctaAction}
             className="group flex items-center gap-2 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
@@ -92,7 +107,7 @@ export function PageHero({
             <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-1" />
             <span>{ctaText}</span>
           </Button>
-        </FadeUp>
+        </div>
       )}
     </div>
   );
