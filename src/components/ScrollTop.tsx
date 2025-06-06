@@ -1,15 +1,29 @@
 "use client";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const ScrollTop = () => {
   const [showBtn, setShowBtn] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const onScroll = () => {
-      const { scrollY } = window;
-      setShowBtn(scrollY > 132);
+      const currentScrollY = window.scrollY;
+      
+      // Only show button if:
+      // 1. We're past the threshold (132px)
+      // 2. AND we're scrolling down (current > last)
+      if (currentScrollY > 132 && currentScrollY > lastScrollY.current) {
+        setShowBtn(true);
+      } else if (currentScrollY < lastScrollY.current) {
+        // Hide immediately when scrolling up
+        setShowBtn(false);
+      }
+      
+      // Update last scroll position
+      lastScrollY.current = currentScrollY;
     };
+    
     //add eventlistener to window
     window.addEventListener("scroll", onScroll, { passive: true });
     // remove event on unmount to prevent a memory leak with the cleanup

@@ -130,7 +130,7 @@ export function FAQ() {
                   <div className="space-y-4">
                     <p className="whitespace-pre-line">{faq.answer}</p>
                     {index === 0 && (
-                      <Link href="/lunch">
+                      <Link href="/lunch" className="inline-block mt-2">
                         <Button 
                           variant="outline" 
                           size="sm" 
@@ -145,18 +145,20 @@ export function FAQ() {
                       </Link>
                     )}
                     {index === 2 && (
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="group"
-                        onClick={handleDeliveryClick}
-                      >
-                        {locale === "sv" ? "Se leveransalternativ" : "View delivery options"}
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Button>
+                      <div className="mt-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="group"
+                          onClick={handleDeliveryClick}
+                        >
+                          {locale === "sv" ? "Se leveransalternativ" : "View delivery options"}
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
+                      </div>
                     )}
                     {index === 4 && (
-                      <Link href="/menu">
+                      <Link href="/menu" className="inline-block mt-2">
                         <Button 
                           variant="outline" 
                           size="sm" 
@@ -169,7 +171,7 @@ export function FAQ() {
                       </Link>
                     )}
                     {index === 5 && (
-                      <a href="#contact">
+                      <a href="#contact" className="inline-block mt-2">
                         <Button 
                           variant="outline" 
                           size="sm" 
