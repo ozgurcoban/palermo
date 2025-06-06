@@ -19,7 +19,7 @@ export async function sendMail(data: ContactFormInputs) {
       // Skicka e-post till Palermo
       const adminEmail = await resend.emails.send({
         from: "Palermo Uppsala <noreply@palermo-uppsala.se>",
-        to: ["info@palermo-uppsala.se"], // Palermos e-post
+        to: ["info@palermo-uppsala.se"],
         subject: `Nytt meddelande från ${name} - Palermo hemsida`,
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
         react: AdminEmailTemplate({ name, email, message }),

@@ -26,11 +26,15 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
         borderBottom: "1px solid #E4E4E7",
       }}
     >
-      <img
-        src="https://www.palermo-uppsala.se/logo.png"
-        alt="Palermo Uppsala"
-        style={{ height: "50px", marginBottom: "24px" }}
-      />
+      <div style={{ 
+        fontSize: "20px", 
+        fontWeight: "600", 
+        color: "#09090B",
+        marginBottom: "24px",
+        letterSpacing: "-0.025em"
+      }}>
+        PALERMO UPPSALA
+      </div>
       <h1
         style={{
           color: "#09090B",

@@ -82,86 +82,56 @@ const AdminEmailTemplate: React.FC<Readonly<AdminEmailTemplateProps>> = ({
         >
           Kundinformation
         </h2>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <tr>
-            <td
-              style={{
-                padding: "12px",
-                backgroundColor: "#F4F4F5",
-                border: "1px solid #E4E4E7",
-                fontSize: "14px",
-                fontWeight: "600",
-                width: "140px",
-              }}
-            >
-              Namn
-            </td>
-            <td
-              style={{
-                padding: "12px",
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #E4E4E7",
-                fontSize: "15px",
-              }}
-            >
+        <div style={{ display: "block" }}>
+          <div style={{ 
+            marginBottom: "12px", 
+            padding: "12px", 
+            backgroundColor: "#F4F4F5", 
+            borderRadius: "6px",
+            border: "1px solid #E4E4E7"
+          }}>
+            <div style={{ fontSize: "12px", color: "#71717A", fontWeight: "600", marginBottom: "4px" }}>
+              NAMN
+            </div>
+            <div style={{ fontSize: "15px", color: "#09090B" }}>
               {name}
-            </td>
-          </tr>
-          <tr>
-            <td
-              style={{
-                padding: "12px",
-                backgroundColor: "#F4F4F5",
-                border: "1px solid #E4E4E7",
-                fontSize: "14px",
-                fontWeight: "600",
-              }}
-            >
-              E-post
-            </td>
-            <td
-              style={{
-                padding: "12px",
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #E4E4E7",
-                fontSize: "15px",
-              }}
-            >
-              <a
-                href={`mailto:${email}`}
-                style={{ color: "#DC2626", textDecoration: "none" }}
-              >
+            </div>
+          </div>
+          
+          <div style={{ 
+            marginBottom: "12px", 
+            padding: "12px", 
+            backgroundColor: "#F4F4F5", 
+            borderRadius: "6px",
+            border: "1px solid #E4E4E7"
+          }}>
+            <div style={{ fontSize: "12px", color: "#71717A", fontWeight: "600", marginBottom: "4px" }}>
+              E-POST
+            </div>
+            <div style={{ fontSize: "15px" }}>
+              <a href={`mailto:${email}`} style={{ color: "#DC2626", textDecoration: "none" }}>
                 {email}
               </a>
-            </td>
-          </tr>
-          <tr>
-            <td
-              style={{
-                padding: "12px",
-                backgroundColor: "#F4F4F5",
-                border: "1px solid #E4E4E7",
-                fontSize: "14px",
-                fontWeight: "600",
-              }}
-            >
-              Datum & tid
-            </td>
-            <td
-              style={{
-                padding: "12px",
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #E4E4E7",
-                fontSize: "15px",
-              }}
-            >
+            </div>
+          </div>
+          
+          <div style={{ 
+            padding: "12px", 
+            backgroundColor: "#F4F4F5", 
+            borderRadius: "6px",
+            border: "1px solid #E4E4E7"
+          }}>
+            <div style={{ fontSize: "12px", color: "#71717A", fontWeight: "600", marginBottom: "4px" }}>
+              DATUM & TID
+            </div>
+            <div style={{ fontSize: "15px", color: "#09090B" }}>
               {new Date().toLocaleString("sv-SE", {
-                dateStyle: "full",
+                dateStyle: "short",
                 timeStyle: "short",
               })}
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Message */}
@@ -208,7 +178,7 @@ const AdminEmailTemplate: React.FC<Readonly<AdminEmailTemplateProps>> = ({
           href={`mailto:${email}?subject=Re: Ditt meddelande till Palermo Uppsala&body=Hej ${name},%0D%0A%0D%0ATack för ditt meddelande!%0D%0A%0D%0A[Skriv ditt svar här]%0D%0A%0D%0A------ Ursprungligt meddelande ------%0D%0ADatum: ${new Date().toLocaleDateString("sv-SE")}%0D%0AFrån: ${name} <${email}>%0D%0A%0D%0A${encodeURIComponent(message).replace(/%0A/g, "%0D%0A")}`}
           style={{
             display: "inline-block",
-            backgroundColor: "#DC2626",
+            backgroundColor: "#18181B",
             color: "#FFFFFF",
             padding: "12px 24px",
             borderRadius: "6px",
@@ -220,23 +190,22 @@ const AdminEmailTemplate: React.FC<Readonly<AdminEmailTemplateProps>> = ({
         >
           Svara kund
         </a>
-        <a
-          href={`tel:${email}`}
+        <span
           style={{
             display: "inline-block",
-            backgroundColor: "#FFFFFF",
-            color: "#09090B",
+            backgroundColor: "#F4F4F5",
+            color: "#71717A",
             padding: "12px 24px",
             borderRadius: "6px",
-            textDecoration: "none",
             fontWeight: "500",
             fontSize: "14px",
             letterSpacing: "-0.025em",
             border: "1px solid #E4E4E7",
+            fontFamily: "monospace",
           }}
         >
-          Kopiera e-post
-        </a>
+          {email}
+        </span>
       </div>
     </div>
 
