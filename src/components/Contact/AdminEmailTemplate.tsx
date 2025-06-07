@@ -1,3 +1,5 @@
+import * as React from "react";
+
 interface AdminEmailTemplateProps {
   name: string;
   email: string;
@@ -8,223 +10,132 @@ const AdminEmailTemplate: React.FC<Readonly<AdminEmailTemplateProps>> = ({
   name,
   email,
   message,
-}) => (
-  <div
-    style={{
-      fontFamily: "system-ui, -apple-system, sans-serif",
-      color: "#09090B",
-      maxWidth: "600px",
-      margin: "0 auto",
-    }}
-  >
-    {/* Header */}
-    <div
-      style={{
-        backgroundColor: "#18181B",
-        padding: "30px",
-        textAlign: "center",
-      }}
-    >
-      <h1
-        style={{
-          color: "#FFFFFF",
-          margin: 0,
-          fontSize: "24px",
-          fontWeight: "600",
-          letterSpacing: "-0.025em",
-        }}
-      >
-        Nytt meddelande från hemsidan
-      </h1>
-    </div>
+}) => {
+  const currentDate = new Date().toLocaleString("sv-SE", {
+    timeZone: "Europe/Stockholm",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
-    {/* Content */}
-    <div
-      style={{
-        backgroundColor: "#FFFFFF",
-        padding: "32px",
-        border: "1px solid #E4E4E7",
-      }}
-    >
-      {/* Alert box */}
-      <div
-        style={{
-          backgroundColor: "#FEE2E2",
-          border: "1px solid #FECACA",
-          borderRadius: "8px",
-          padding: "16px",
-          marginBottom: "24px",
-        }}
-      >
-        <p
-          style={{
-            color: "#991B1B",
-            fontSize: "14px",
-            margin: 0,
-            fontWeight: "600",
-          }}
-        >
-          ⚡ Nytt kundmeddelande inväntar svar
+  const replySubject = `Re: Ditt meddelande till Palermo Uppsala`;
+  const replyBody = `Hej ${name},
+
+Tack för ditt meddelande!
+
+[Skriv ditt svar här]
+
+------ Ursprungligt meddelande ------
+Datum: ${currentDate}
+Från: ${name} <${email}>
+
+${message}`;
+
+  const replyMailto = `mailto:${email}?subject=${encodeURIComponent(replySubject)}&body=${encodeURIComponent(replyBody)}`;
+
+  return (
+    <div style={{ fontFamily: "Arial, sans-serif", maxWidth: "600px", margin: "0 auto", backgroundColor: "#ffffff" }}>
+      {/* Header */}
+      <div style={{ backgroundColor: "#18181B", color: "#ffffff", padding: "20px", textAlign: "center" }}>
+        <h1 style={{ margin: "0", fontSize: "24px", fontWeight: "bold" }}>Palermo Uppsala</h1>
+        <p style={{ margin: "5px 0 0 0", fontSize: "14px", opacity: "0.8" }}>Nytt meddelande från hemsidan</p>
+      </div>
+
+      {/* Alert Box */}
+      <div style={{ backgroundColor: "#FEF3C7", border: "1px solid #FDE68A", borderRadius: "8px", padding: "16px", margin: "20px" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ backgroundColor: "#92400E", color: "#ffffff", borderRadius: "50%", width: "24px", height: "24px", display: "flex", alignItems: "center", justifyContent: "center", marginRight: "12px", fontSize: "14px", fontWeight: "bold" }}>!</div>
+          <div>
+            <h3 style={{ color: "#92400E", margin: "0", fontSize: "16px", fontWeight: "600" }}>Ny kundförfrågan</h3>
+            <p style={{ color: "#92400E", margin: "4px 0 0 0", fontSize: "14px" }}>En kund har skickat ett meddelande via kontaktformuläret</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div style={{ padding: "0 20px 20px 20px" }}>
+        {/* Customer Information */}
+        <div style={{ backgroundColor: "#F9FAFB", border: "1px solid #E5E7EB", borderRadius: "8px", overflow: "hidden", marginBottom: "20px" }}>
+          <div style={{ backgroundColor: "#F3F4F6", padding: "12px 16px", borderBottom: "1px solid #E5E7EB" }}>
+            <h3 style={{ margin: "0", fontSize: "16px", fontWeight: "600", color: "#374151" }}>Kundinformation</h3>
+          </div>
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <tr>
+              <td style={{ padding: "12px 16px", borderBottom: "1px solid #E5E7EB", fontWeight: "600", color: "#374151", width: "30%" }}>Namn</td>
+              <td style={{ padding: "12px 16px", borderBottom: "1px solid #E5E7EB", color: "#6B7280" }}>{name}</td>
+            </tr>
+            <tr>
+              <td style={{ padding: "12px 16px", borderBottom: "1px solid #E5E7EB", fontWeight: "600", color: "#374151" }}>E-post</td>
+              <td style={{ padding: "12px 16px", borderBottom: "1px solid #E5E7EB", color: "#6B7280" }}>
+                <a href={`mailto:${email}`} style={{ color: "#92400E", textDecoration: "none" }}>{email}</a>
+              </td>
+            </tr>
+            <tr>
+              <td style={{ padding: "12px 16px", fontWeight: "600", color: "#374151" }}>Datum & tid</td>
+              <td style={{ padding: "12px 16px", color: "#6B7280" }}>{currentDate}</td>
+            </tr>
+          </table>
+        </div>
+
+        {/* Message */}
+        <div style={{ backgroundColor: "#F9FAFB", border: "1px solid #E5E7EB", borderRadius: "8px", overflow: "hidden", marginBottom: "20px" }}>
+          <div style={{ backgroundColor: "#F3F4F6", padding: "12px 16px", borderBottom: "1px solid #E5E7EB" }}>
+            <h3 style={{ margin: "0", fontSize: "16px", fontWeight: "600", color: "#374151" }}>Meddelande</h3>
+          </div>
+          <div style={{ padding: "16px", color: "#374151", lineHeight: "1.6", whiteSpace: "pre-wrap" }}>
+            {message}
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div style={{ textAlign: "center", marginTop: "30px" }}>
+          <a
+            href={replyMailto}
+            style={{
+              display: "inline-block",
+              backgroundColor: "#92400E",
+              color: "#ffffff",
+              padding: "12px 24px",
+              borderRadius: "6px",
+              textDecoration: "none",
+              fontWeight: "600",
+              marginRight: "12px",
+              fontSize: "14px"
+            }}
+          >
+            Svara kund
+          </a>
+          <a
+            href={`mailto:${email}`}
+            style={{
+              display: "inline-block",
+              backgroundColor: "#6B7280",
+              color: "#ffffff",
+              padding: "12px 24px",
+              borderRadius: "6px",
+              textDecoration: "none",
+              fontWeight: "600",
+              fontSize: "14px"
+            }}
+          >
+            Kopiera e-post
+          </a>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div style={{ backgroundColor: "#F9FAFB", padding: "20px", textAlign: "center", borderTop: "1px solid #E5E7EB" }}>
+        <p style={{ margin: "0", fontSize: "12px", color: "#6B7280" }}>
+          Detta meddelande skickades automatiskt från kontaktformuläret på{" "}
+          <a href="https://palermo-uppsala.se" style={{ color: "#92400E", textDecoration: "none" }}>
+            palermo-uppsala.se
+          </a>
         </p>
       </div>
-
-      {/* Customer info */}
-      <div style={{ marginBottom: "32px" }}>
-        <h2
-          style={{
-            color: "#09090B",
-            fontSize: "18px",
-            fontWeight: "600",
-            marginTop: 0,
-            marginBottom: "16px",
-            letterSpacing: "-0.025em",
-          }}
-        >
-          Kundinformation
-        </h2>
-        <div style={{ display: "block" }}>
-          <div style={{ 
-            marginBottom: "12px", 
-            padding: "12px", 
-            backgroundColor: "#F4F4F5", 
-            borderRadius: "6px",
-            border: "1px solid #E4E4E7"
-          }}>
-            <div style={{ fontSize: "12px", color: "#71717A", fontWeight: "600", marginBottom: "4px" }}>
-              NAMN
-            </div>
-            <div style={{ fontSize: "15px", color: "#09090B" }}>
-              {name}
-            </div>
-          </div>
-          
-          <div style={{ 
-            marginBottom: "12px", 
-            padding: "12px", 
-            backgroundColor: "#F4F4F5", 
-            borderRadius: "6px",
-            border: "1px solid #E4E4E7"
-          }}>
-            <div style={{ fontSize: "12px", color: "#71717A", fontWeight: "600", marginBottom: "4px" }}>
-              E-POST
-            </div>
-            <div style={{ fontSize: "15px" }}>
-              <a href={`mailto:${email}`} style={{ color: "#DC2626", textDecoration: "none" }}>
-                {email}
-              </a>
-            </div>
-          </div>
-          
-          <div style={{ 
-            padding: "12px", 
-            backgroundColor: "#F4F4F5", 
-            borderRadius: "6px",
-            border: "1px solid #E4E4E7"
-          }}>
-            <div style={{ fontSize: "12px", color: "#71717A", fontWeight: "600", marginBottom: "4px" }}>
-              DATUM & TID
-            </div>
-            <div style={{ fontSize: "15px", color: "#09090B" }}>
-              {new Date().toLocaleString("sv-SE", {
-                dateStyle: "short",
-                timeStyle: "short",
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Message */}
-      <div>
-        <h2
-          style={{
-            color: "#09090B",
-            fontSize: "18px",
-            fontWeight: "600",
-            marginTop: 0,
-            marginBottom: "16px",
-            letterSpacing: "-0.025em",
-          }}
-        >
-          Kundens meddelande
-        </h2>
-        <div
-          style={{
-            color: "#18181B",
-            lineHeight: "1.625",
-            whiteSpace: "pre-wrap",
-            backgroundColor: "#FAFAFA",
-            padding: "24px",
-            borderRadius: "8px",
-            border: "1px solid #E4E4E7",
-            fontSize: "15px",
-          }}
-        >
-          {message}
-        </div>
-      </div>
-
-      {/* Action buttons */}
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: "32px",
-          display: "flex",
-          gap: "12px",
-          justifyContent: "center",
-        }}
-      >
-        <a
-          href={`mailto:${email}?subject=Re: Ditt meddelande till Palermo Uppsala&body=Hej ${name},%0D%0A%0D%0ATack för ditt meddelande!%0D%0A%0D%0A[Skriv ditt svar här]%0D%0A%0D%0A------ Ursprungligt meddelande ------%0D%0ADatum: ${new Date().toLocaleDateString("sv-SE")}%0D%0AFrån: ${name} <${email}>%0D%0A%0D%0A${encodeURIComponent(message).replace(/%0A/g, "%0D%0A")}`}
-          style={{
-            display: "inline-block",
-            backgroundColor: "#18181B",
-            color: "#FFFFFF",
-            padding: "12px 24px",
-            borderRadius: "6px",
-            textDecoration: "none",
-            fontWeight: "500",
-            fontSize: "14px",
-            letterSpacing: "-0.025em",
-          }}
-        >
-          Svara kund
-        </a>
-        <span
-          style={{
-            display: "inline-block",
-            backgroundColor: "#F4F4F5",
-            color: "#71717A",
-            padding: "12px 24px",
-            borderRadius: "6px",
-            fontWeight: "500",
-            fontSize: "14px",
-            letterSpacing: "-0.025em",
-            border: "1px solid #E4E4E7",
-            fontFamily: "monospace",
-          }}
-        >
-          {email}
-        </span>
-      </div>
     </div>
-
-    {/* Footer */}
-    <div
-      style={{
-        backgroundColor: "#F4F4F5",
-        padding: "20px",
-        textAlign: "center",
-        fontSize: "12px",
-        color: "#71717A",
-      }}
-    >
-      <p style={{ margin: 0 }}>
-        Detta är ett automatiskt meddelande från kontaktformuläret på
-        palermo-uppsala.se
-      </p>
-    </div>
-  </div>
-);
+  );
+};
 
 export default AdminEmailTemplate;

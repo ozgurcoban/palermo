@@ -7,4 +7,5 @@ export const ContactFormSchema = z.object({
     .string()
     .nonempty("Message is required.")
     .min(6, { message: "Message must be at least 6 characters." }),
+  recaptchaToken: z.string().optional(),
 });

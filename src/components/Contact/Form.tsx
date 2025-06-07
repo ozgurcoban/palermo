@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from "zod";
 import { useTranslations, useLocale } from "next-intl";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 import { ContactFormSchema } from "@/lib/ContactFormSchema";
 
@@ -30,6 +31,7 @@ export default function ContactForm() {
   const b = useTranslations("Buttons");
   const locale = useLocale();
   const [hasStartedForm, setHasStartedForm] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
   
   const form = useForm<ContactFormInputs>({
     resolver: zodResolver(ContactFormSchema),
@@ -47,8 +49,24 @@ export default function ContactForm() {
     }
   };
 
-  const processForm: SubmitHandler<ContactFormInputs> = async data => {
-    const result = await sendMail({ ...data, locale });
+  const processForm: SubmitHandler<ContactFormInputs> = useCallback(async (data) => {
+    if (!executeRecaptcha) {
+      console.error("reCAPTCHA not available");
+      toast({
+        variant: "destructive",
+        title: t("Form.errorTitle"),
+        description: (
+          <div className="flex items-center gap-2">
+            <XCircle className="h-4 w-4" />
+            <span>{t("Form.errorDescription")}</span>
+          </div>
+        ),
+      });
+      return;
+    }
+
+    const recaptchaToken = await executeRecaptcha("contact_form");
+    const result = await sendMail({ ...data, recaptchaToken, locale });
 
     if (result?.success) {
       trackContactFormSubmit();
@@ -79,7 +97,7 @@ export default function ContactForm() {
         </div>
       ),
     });
-  };
+  }, [executeRecaptcha, locale, t, form]);
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(processForm)} className="space-y-6">
