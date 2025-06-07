@@ -177,7 +177,7 @@ export function getFAQData(
   return locale === "sv"
     ? [
         {
-          question: "Vad kostar dagens lunch på Palermo?",
+          question: "Vad kostar lunchen på Palermo?",
           answer:
             lunchInfo ||
             "Dagens lunch kostar från 119 kr och serveras vardagar 11:00-15:00. I priset ingår huvudrätt, sallad, bröd och kaffe. Välj mellan 9 olika rätter eller 24st lunchpizza.",
@@ -211,7 +211,7 @@ export function getFAQData(
       ]
     : [
         {
-          question: "How much is the daily lunch at Palermo?",
+          question: "How much is the lunch at Palermo?",
           answer:
             lunchInfo ||
             "Our weekday lunch special is from 119 SEK, served 11:00-15:00. It includes a main course, plus salad bar, bread and coffee. Pick from 9 daily classics or any of our 24 lunch pizzas.",

@@ -171,7 +171,8 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
                   padding: "8px 0",
                   color: "#71717A",
                   fontSize: "14px",
-                  width: "120px",
+                  width: "140px",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {isEnglish ? "📍 Address:" : "📍 Adress:"}
@@ -189,7 +190,12 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
             </tr>
             <tr>
               <td
-                style={{ padding: "8px 0", color: "#71717A", fontSize: "14px" }}
+                style={{
+                  padding: "8px 0",
+                  color: "#71717A",
+                  fontSize: "14px",
+                  whiteSpace: "nowrap",
+                }}
               >
                 {isEnglish ? "📞 Phone:" : "📞 Telefon:"}
               </td>
@@ -211,6 +217,7 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
                   color: "#71717A",
                   fontSize: "14px",
                   verticalAlign: "top",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {isEnglish ? "🕐 Opening hours:" : "🕐 Öppettider:"}
@@ -218,7 +225,7 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
               <td
                 style={{ padding: "8px 0", color: "#09090B", fontSize: "14px" }}
               >
-                <div style={{ lineHeight: "1.5" }}>
+                <div style={{ lineHeight: "1.5", whiteSpace: "nowrap" }}>
                   <strong>{isEnglish ? "Monday:" : "Måndag:"}</strong> 11:00 -
                   01:00
                   <br />
@@ -245,8 +252,8 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
                     <br />
                     <span style={{ fontSize: "13px", color: "#71717A" }}>
                       {isEnglish
-                        ? "119 SEK incl. salad, bread & coffee"
-                        : "119 kr inkl. sallad, bröd & kaffe"}
+                        ? "Incl. salad, bread & coffee"
+                        : "Inkl. sallad, bröd & kaffe"}
                     </span>
                   </div>
                 </div>
@@ -271,8 +278,8 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
           style={{ margin: "0 0 12px 0", color: "#18181B", fontWeight: "500" }}
         >
           {isEnglish
-            ? "See you soon at Palermo! 🍕"
-            : "Vi ses snart på Palermo! 🍕"}
+            ? "See you soon at Palermo! 🍻"
+            : "Vi ses snart på Palermo! 🍻"}
         </p>
         <p style={{ margin: "0", fontSize: "12px", color: "#52525B" }}>
           <a

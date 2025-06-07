@@ -22,15 +22,17 @@ export function FAQ() {
   const router = useRouter();
   const [openingHours, setOpeningHours] = useState<string | undefined>();
   const [lunchInfo, setLunchInfo] = useState<string | undefined>();
-  
+
   const handleDeliveryClick = () => {
     trackFAQCTAClick(2, "delivery", "menu#food-delivery");
-    
+
     // For desktop browsers - try hash navigation first
     if (typeof window !== "undefined") {
       // Detect if we're likely on iOS Safari
-      const isIOSSafari = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
-      
+      const isIOSSafari =
+        /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+        !(window as any).MSStream;
+
       if (isIOSSafari) {
         // iOS Safari fallback - use sessionStorage
         sessionStorage.setItem("scrollToDelivery", "true");
@@ -81,7 +83,7 @@ export function FAQ() {
 
           if (locale === "sv") {
             setLunchInfo(
-              `Dagens lunch kostar från ${lunchPrice} kr och serveras vardagar ${timeInfo?.hours || "11:00-15:00"}. ` +
+              `Lunch kostar från ${lunchPrice} kr och serveras vardagar ${timeInfo?.hours || "11:00-15:00"}. ` +
                 `I priset ingår huvudrätt, sallad, bröd och kaffe. ` +
                 `Välj mellan ${totalDishes} olika rätter eller ${numberOfPizzas}st lunchpizza.`,
             );
@@ -130,10 +132,10 @@ export function FAQ() {
                   <div className="space-y-4">
                     <p className="whitespace-pre-line">{faq.answer}</p>
                     {index === 0 && (
-                      <Link href="/lunch" className="inline-block mt-2">
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
+                      <Link href="/lunch" className="mt-2 inline-block">
+                        <Button
+                          variant="outline"
+                          size="sm"
                           className="group"
                           onClick={() => trackFAQCTAClick(0, "lunch", "/lunch")}
                         >
@@ -146,22 +148,24 @@ export function FAQ() {
                     )}
                     {index === 2 && (
                       <div className="mt-2">
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
+                        <Button
+                          variant="outline"
+                          size="sm"
                           className="group"
                           onClick={handleDeliveryClick}
                         >
-                          {locale === "sv" ? "Se leveransalternativ" : "View delivery options"}
+                          {locale === "sv"
+                            ? "Se leveransalternativ"
+                            : "View delivery options"}
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Button>
                       </div>
                     )}
                     {index === 4 && (
-                      <Link href="/menu" className="inline-block mt-2">
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
+                      <Link href="/menu" className="mt-2 inline-block">
+                        <Button
+                          variant="outline"
+                          size="sm"
                           className="group"
                           onClick={() => trackFAQCTAClick(4, "menu", "/menu")}
                         >
@@ -171,12 +175,14 @@ export function FAQ() {
                       </Link>
                     )}
                     {index === 5 && (
-                      <a href="#contact" className="inline-block mt-2">
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
+                      <a href="#contact" className="mt-2 inline-block">
+                        <Button
+                          variant="outline"
+                          size="sm"
                           className="group"
-                          onClick={() => trackFAQCTAClick(5, "contact", "#contact")}
+                          onClick={() =>
+                            trackFAQCTAClick(5, "contact", "#contact")
+                          }
                         >
                           {locale === "sv" ? "Kontakta oss" : "Contact us"}
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
