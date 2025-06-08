@@ -157,40 +157,6 @@ p {
   @apply max-w-2xl break-words font-lato text-sm text-light/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-base md:text-lg lg:text-xl xl:text-2xl;
 }
 
-.burger {
-  width: 22.5px;
-  position: relative;
-  pointer-events: none;
-}
-
-.burger::after,
-.burger::before {
-  content: "";
-  height: 1.6px;
-  width: 100%;
-  background-color: hsl(var(--foreground));
-  position: relative;
-  display: block;
-  transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.burger::after {
-  top: -4px;
-}
-
-.burger::before {
-  top: 4px;
-}
-
-.burgerActive::after {
-  transform: rotate(45deg);
-  top: -1px;
-}
-
-.burgerActive::before {
-  transform: rotate(-45deg);
-  top: 1px;
-}
 
 /* Border images temporarily disabled - files missing */
 /*
@@ -316,6 +282,196 @@ p {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+}
+
+
+/* Theme toggle animations */
+@keyframes ripple {
+  from {
+    transform: scale(0);
+    opacity: 0.15;
+  }
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 0.8s ease-out;
+}
+
+.theme-toggle:active {
+  transform: scale(0.9) rotate(15deg);
+  transition: transform 0.1s;
+}
+
+/* FadeUp animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+/* MaskText animation */
+@keyframes maskReveal {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-maskReveal {
+  animation: maskReveal 0.75s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+.mask-text-item {
+  display: block;
+}
+
+/* Subtle bounce animation for ScrollToMenu */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 0.9s ease-in-out 3.2s 2;
+}
+
+/* Menu chips animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out forwards;
+}
+
+.chip-button {
+  transition: transform 0.2s ease;
+}
+
+.chip-button:hover {
+  transform: scale(1.05);
+}
+
+.chip-button:active {
+  transform: scale(0.95);
+}
+
+/* CookieBanner animations */
+@keyframes slideUpFade {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDownFade {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100px) scale(0.95);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slideUpFade {
+  animation: slideUpFade 0.4s ease-out forwards;
+}
+
+.animate-slideDownFade {
+  animation: slideDownFade 0.4s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Hero image animation */
+@keyframes heroReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    width: 0%;
+    height: 30%;
+  }
+  30% {
+    transform: scale(1.1);
+    width: 100%;
+    height: 30%;
+  }
+  60% {
+    transform: scale(1.1);
+    width: 100%;
+    height: 80%;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.hero-image-container {
+  animation: heroReveal 2s ease-in-out forwards;
 }
 
 @layer base {

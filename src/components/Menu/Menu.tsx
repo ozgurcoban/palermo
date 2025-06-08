@@ -194,7 +194,6 @@ const MenuContent: React.FC<Props> = ({
     <div className="border-image w-full">
       <AnimWrapper
         delay={0}
-        duration={0.5}
         variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
         className="w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px]"
         id="menu"

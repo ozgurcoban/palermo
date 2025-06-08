@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import MaskText from "../ui/MaskText";
 import GalleryImage from "./GalleryImage";
 import { useGetLocale } from "@/config";
-import urlFor from "@/lib/urlFor";
+import { getOptimizedImageUrl, imageSizes } from "@/lib/sanity-image";
 import { useTranslations } from "next-intl";
 import { GalleryCarousel } from "./GalleryCarousel";
 import { useImagePreloader } from "@/lib/useImagePreloader";
@@ -27,10 +27,12 @@ export const Gallery = ({
   const [favouriteList, setFavouriteList] = useState<string[]>([]);
   const [showMore, setShowMore] = useState(false);
 
-  // Prepare image URLs for preloading
+  // Prepare optimized image URLs for preloading
   const imageUrls = useMemo(() => {
     if (!data?.images) return [];
-    return data.images.map((image) => urlFor(image).url());
+    return data.images.map((image) => 
+      getOptimizedImageUrl(image, imageSizes.gallery.desktop.width, imageSizes.gallery.desktop.height)
+    );
   }, [data?.images]);
 
   // Preload images
@@ -81,7 +83,7 @@ export const Gallery = ({
               <GalleryImage
                 key={image._key}
                 imageId={image._key}
-                src={urlFor(image).url()}
+                src={getOptimizedImageUrl(image, imageSizes.gallery.desktop.width, imageSizes.gallery.desktop.height)}
                 i={i}
                 favouriteList={favouriteList}
                 setFavouriteList={setFavouriteList}

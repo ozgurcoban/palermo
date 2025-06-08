@@ -1,43 +1,23 @@
 import React from "react";
 import MotionDiv from "./MotionDiv";
-import { MotionProps } from "framer-motion";
 
-interface FadeUp extends MotionProps {
+interface FadeUp {
   children?: React.ReactNode;
   delay?: number;
-  duration?: number;
   className?: string;
-  transition?: MotionProps["transition"];
 }
-
-const variants = {
-  initial: {
-    y: 30,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-  },
-};
 
 const FadeUp: React.FC<FadeUp> = ({
   children,
-  className,
-  delay,
-  duration,
-  transition,
-  ...props
+  className = "",
+  delay = 0,
 }) => {
   return (
     <MotionDiv
-      variants={variants}
-      initial={"initial"}
-      className={className}
-      whileInView={"animate"}
-      viewport={{ once: true }}
-      transition={{ delay, duration, ease: "easeIn", ...transition }}
-      {...props}
+      className={`${className} opacity-0 translate-y-8`}
+      animationClass="animate-fadeUp"
+      onInView={true}
+      delay={delay}
     >
       {children}
     </MotionDiv>

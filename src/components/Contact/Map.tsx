@@ -7,7 +7,7 @@ function Map() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <FadeUp delay={0.3} duration={0.8}>
+    <FadeUp delay={0.3}>
       <div className="relative h-[500px] w-full overflow-hidden rounded-lg">
         {/* Loading skeleton */}
         {!isLoaded && (

@@ -1,7 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 
 type MaskText = {
   phrases: string[];
@@ -13,41 +12,51 @@ type MaskText = {
 const MaskText: React.FC<MaskText> = ({
   phrases,
   className,
-  delay,
+  delay = 0,
   as = "p",
 }) => {
-  const animation = {
-    initial: { y: "100%" },
+  const Tag = as;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
-    enter: (i: number) => ({
-      y: "0",
-      transition: {
-        duration: 0.75,
-        ease: [0.33, 1, 0.68, 1],
-        delay: (delay ?? 0) + 0.075 * i,
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
       },
-    }),
-  };
+      { threshold: 0.1 }
+    );
 
-  const Tag = motion[as] || motion.p;
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <>
+    <div ref={containerRef}>
       {phrases.map((phrase, index) => {
+        const animationDelay = delay + 0.075 * index;
         return (
           <div key={phrase} className={cn("overflow-hidden", className)}>
             <Tag
-              custom={index}
-              variants={animation}
-              initial="initial"
-              whileInView={"enter"}
-              viewport={{ once: true }}
+              className={`mask-text-item ${isInView ? 'animate-maskReveal' : 'translate-y-full'}`}
+              style={{
+                animationDelay: isInView ? `${animationDelay}s` : undefined,
+              }}
             >
               {phrase}
             </Tag>
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

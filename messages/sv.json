@@ -14,38 +14,6 @@
       "description": "Från hjärtliga måltider till glada samlingar – bläddra igenom våra minnen och känn dig som hemma",
       "button": "Se mer"
     },
-    "About": {
-      "introduction": {
-        "title": "Välkommen till Palermo",
-        "description": "Palermo är mer än en restaurang – det är en mötesplats där berättelser blir levande. Här skapas minnen att bevara. Välkommen hem, välkommen till Palermo."
-      },
-      "quickFacts": {
-        "title": "Fakta om Palermo",
-        "facts": [
-          {
-            "title": "Åretrunt inglasad uteservering.",
-            "description": "En populär och livlig mötesplats året runt.",
-            "icon": "Users"
-          },
-          {
-            "title": "Äkta pizzor & vällagad comfort food.",
-            "description": "Äkta svenska pizzor & andra klassiker.",
-            "icon": "Pizza"
-          },
-          {
-            "title": "Vänlig och avslappnad atmosfär.",
-            "description": "Som en inställd föreläsning – välkomnande och livligt.",
-            "icon": "Beer"
-          },
-          {
-            "title": "Endast kortbetalning.",
-            "description": "Snabbt, smidigt och helt utan krångel.",
-            "icon": "CreditCard"
-          }
-        ]
-      },
-      "button": "Läs mer"
-    },
     "Menu": {
       "title": "Testa oss",
       "categories": "Våra kategorier",
@@ -66,9 +34,6 @@
         "short": "Kar",
         "full": "Karaff"
       }
-    },
-    "News": {
-      "title": "Var först med att veta"
     }
   },
   "ContactSection": {
@@ -154,11 +119,7 @@
     "home": "Hem",
     "menu": "Meny",
     "lunch": "lunch",
-    "about": "Om oss",
-    "news": "Nyheter",
     "contact": "Hitta till oss",
-    "openMenu": "Öppna meny",
-    "closeMenu": "Stäng meny",
     "mobile": {
       "siteLanguage": "Språk:"
     }
@@ -189,13 +150,6 @@
     "content": {
       "title": "Uppsalas mest avslappnade lunch",
       "description": "Glöm stela business luncher. Här möts studenter och Uppsalabor över rejäl husmanskost och pizza mitt i centrum. Perfekt när plånboken är tunn men magen skriker - och ja, det är därför vi fortfarande kör samma schyssta priser som förr."
-    }
-  },
-  "AboutPage": {
-    "hero": {
-      "badge": "Sedan 1991",
-      "title": "Om oss",
-      "description": "Uppsalas mest naturliga mötesplats i över 30 år"
     }
   },
   "Cookies": {

@@ -1,34 +1,30 @@
 import React from "react";
-import { INewsItem } from "@/types/generated";
 import Gallery from "@/components/Gallery";
 import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
 import { FAQ } from "@/components/FAQ";
 import { HomeHeroUltraOptimized } from "@/components/Heros/HomeHeroUltraOptimized";
-import ScrollTracker from "@/components/ScrollTracker";
 
 // Import Menu normally to avoid dynamic import issues
 import Menu from "@/components/Menu";
 
 type Props = {
   homeData: HomePage;
-  news: INewsItem[];
   categoriesData: Category[];
   locale: string;
 };
 
 const HomeComponentsOptimized: React.FC<Props> = ({
   homeData,
-  news,
   categoriesData,
   locale,
 }) => {
   const faqSchema = generateFAQSchema(locale as "sv" | "en");
 
-  const { gallery_section, story_section } = homeData;
+  const { gallery_section } = homeData;
 
   return (
-    <ScrollTracker pageName="home">
+    <>
       <Script
         id="faq-schema"
         type="application/ld+json"
@@ -43,7 +39,7 @@ const HomeComponentsOptimized: React.FC<Props> = ({
       </section>
       <Gallery data={gallery_section} />
       <FAQ />
-    </ScrollTracker>
+    </>
   );
 };
 

@@ -66,9 +66,6 @@
         "short": "Car",
         "full": "Carafe"
       }
-    },
-    "News": {
-      "title": "Be first to know"
     }
   },
   "ContactSection": {
@@ -149,11 +146,7 @@
     "home": "Home",
     "menu": "Menu",
     "lunch": "Lunch",
-    "about": "About",
-    "news": "News",
     "contact": "where to find us",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
     "mobile": {
       "siteLanguage": "Site language:"
     }
@@ -184,13 +177,6 @@
     "content": {
       "title": "Uppsala's most laid-back lunch",
       "description": "No stuffy business lunches here. Just students and locals gathering over proper comfort food and pizza downtown. Perfect for tight budgets and big appetites - which is exactly why we've kept our prices honest since day one."
-    }
-  },
-  "AboutPage": {
-    "hero": {
-      "badge": "Since 1991",
-      "title": "About Us",
-      "description": "Uppsala's most natural meeting place for over 30 years"
     }
   },
   "Cookies": {

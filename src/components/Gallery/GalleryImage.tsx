@@ -56,7 +56,7 @@ const GalleryImage: React.FC<Props> = ({
       )}
       
       <Image
-        src={`${src}?w=600&h=400&fit=crop&auto=format`}
+        src={src}
         alt={`Gallery image ${i + 1}`}
         fill
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

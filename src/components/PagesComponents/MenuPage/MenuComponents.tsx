@@ -8,7 +8,6 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import FoodDeliveryApps from "@/components/FoodDeliveryApps";
 import { trackMenuPageCTAClick } from "@/lib/gtag";
-import ScrollTracker from "@/components/ScrollTracker";
 
 type Props = {
   categoriesData: Category[];
@@ -108,7 +107,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
   };
 
   return (
-    <ScrollTracker pageName="menu">
+    <>
       <PageHero
         imageUrl="/images/hero/menu-hero.webp"
         imageAlt="menu hero"
@@ -150,7 +149,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
       </section>
 
       <FoodDeliveryApps />
-    </ScrollTracker>
+    </>
   );
 };
 

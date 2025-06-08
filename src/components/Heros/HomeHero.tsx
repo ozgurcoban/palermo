@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import MotionDiv from "@/components/ui/MotionDiv";
 import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import Localization from "@/components/localization";
@@ -12,18 +11,6 @@ import { Link } from "@/navigation";
 import { Utensils } from "lucide-react";
 import { trackLunchCTAClick } from "@/lib/gtag";
 
-const variants = {
-  initial: {
-    opacity: 0,
-    scale: 0.5,
-  },
-  animate: {
-    scale: [0.5, 1.1, 1.1, 1],
-    width: ["0%", "100%", "100%", "100%", "100%"],
-    height: ["30%", "30%", "80%", "100%"],
-    opacity: [1, 1, 1],
-  },
-};
 
 export function HomeHero() {
   const t = useTranslations("Home");
@@ -31,19 +18,8 @@ export function HomeHero() {
 
   return (
     <div className="relative flex h-[70vh] w-screen items-center justify-center">
-      <MotionDiv
-        className="relative h-full overflow-hidden"
-        variants={variants}
-        initial="initial"
-        whileInView={"animate"}
-        viewport={{ once: true }}
-        transition={{
-          duration: 2,
-          ease: "easeInOut",
-          times: [0, 0.3, 0.6, 1],
-          damping: 16,
-          stiffness: 100,
-        }}
+      <div
+        className="relative h-full overflow-hidden hero-image-container"
       >
         <div className="absolute z-10 h-full w-full bg-black/40" />
         <Image
@@ -54,10 +30,10 @@ export function HomeHero() {
           style={{ objectFit: "cover" }}
           className="h-full w-full"
         />
-      </MotionDiv>
+      </div>
 
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
-        <FadeUp delay={0.5} duration={0.7}>
+        <FadeUp delay={0.5} >
           <Badge
             variant="secondary"
             className="pointer-events-none mb-4 rounded-sm bg-muted-foreground/70 px-4 py-2 font-medium text-secondary backdrop-blur-sm"
@@ -71,13 +47,13 @@ export function HomeHero() {
           </Badge>
         </FadeUp>
 
-        <FadeUp delay={0.8} duration={0.7}>
+        <FadeUp delay={0.8} >
           <h1 className="hero-title mb-4">
             <Localization text="Home.HomeHero.title" />
           </h1>
         </FadeUp>
         {/* Hero description */}
-        <FadeUp delay={1.1} duration={0.7}>
+        <FadeUp delay={1.1} >
           <p className="break-words font-lato text-[4vw] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[22px] lg:text-[26px] lg:leading-[85px]">
             <Localization text="Home.HomeHero.description" />
           </p>
@@ -85,7 +61,7 @@ export function HomeHero() {
       </div>
       <div className="absolute bottom-6 z-20 flex flex-col items-center gap-3">
         {/* Lunch button - only visible on mobile/tablet */}
-        <FadeUp className="lg:hidden" delay={1.4} duration={0.7}>
+        <FadeUp className="lg:hidden" delay={1.4} >
           <Button
             asChild
             variant="ghost"
@@ -108,7 +84,7 @@ export function HomeHero() {
         </FadeUp>
 
         {/* Main CTA button */}
-        <FadeUp delay={1.7} duration={0.7}>
+        <FadeUp delay={1.7} >
           <ScrollToMenu>{t("HomeHero.cta")}</ScrollToMenu>
         </FadeUp>
       </div>

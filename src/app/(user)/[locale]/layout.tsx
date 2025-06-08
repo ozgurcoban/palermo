@@ -8,7 +8,6 @@ import { lobster, lato, recoleta, graduate } from "@/lib/fonts";
 import IntlProvider from "@/providers/IntlProvider";
 import ContactInfoSection from "@/components/Contact/ContactInfoSection";
 import { Toaster } from "@/components/ui/toaster";
-import ScrollTop from "@/components/ScrollTop";
 import { CONTACT_QUERY, LUNCH_QUERY } from "../../../../sanity/lib/queries";
 import { getClient } from "../../../../sanity/lib/client";
 import { generateRestaurantSchema } from "@/lib/metadata";
@@ -84,7 +83,6 @@ export default async function LocaleLayout({
           <IntlProvider params={{ locale }}>
             <Toaster />
             <Navbar />
-            <ScrollTop />
             <main>
               {children}
               <ContactInfoSection contactData={contactData} lunchData={lunchData} />

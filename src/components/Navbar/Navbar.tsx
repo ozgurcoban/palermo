@@ -5,13 +5,9 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import NavLinks from "./NavLinks";
 import { Link } from "@/navigation";
-import { useEffect, useState, useCallback } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import MobileNav from "./MobileNav";
-import { background, opacity } from "./anim";
+import { useCallback } from "react";
 import { Button } from "../ui/button";
 import { event } from "@/lib/gtag";
-import { cn } from "@/lib/utils";
 import ThemeToggle from "../ui/theme-toggle";
 
 export function Navbar() {
@@ -35,12 +31,6 @@ export function Navbar() {
   }, []);
 
   const t = useTranslations("Navigation");
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    const body = document.querySelector("body");
-    if (body) body.style.overflowY = isActive ? "hidden" : "auto";
-  }, [isActive]);
 
   const navbarLinks = [
     {
@@ -58,16 +48,6 @@ export function Navbar() {
       href: "/lunch",
       src: "lunch.jpg",
     },
-    // {
-    //   title: t("about"),
-    //   href: "/about",
-    //   src: "home.jpg",
-    // },
-    // {
-    //   title: t("news"),
-    //   href: "/news",
-    //   src: "news.jpg",
-    // },
   ];
   return (
     <header className="relative z-30 h-[132px] w-screen" id="navbar">
@@ -125,48 +105,6 @@ export function Navbar() {
             <LocaleSwitcher />
           </div>
         </div>
-        <button
-          onClick={() => {
-            setIsActive(!isActive);
-          }}
-          className={
-            "flex cursor-pointer items-center justify-center gap-2 rounded-md px-3 py-4 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:ring-offset-0 lg:hidden"
-          }
-          aria-label={isActive ? t("closeMenu") : t("openMenu")}
-          aria-expanded={isActive}
-          aria-controls="mobile-menu"
-          type="button"
-          role="button"
-          tabIndex={0}
-        >
-          <div
-            className={`burger ${isActive ? "burgerActive" : ""}`}
-            aria-hidden="true"
-          ></div>
-          <span className="sr-only">
-            {isActive ? t("closeMenu") : t("openMenu")}
-          </span>
-        </button>
-      </div>
-      <AnimatePresence mode="wait">
-        {isActive && (
-          <MobileNav
-            onCloseMenu={() => setIsActive(false)}
-            links={navbarLinks}
-          />
-        )}
-      </AnimatePresence>
-
-      <div className="relative">
-        <motion.div
-          variants={background}
-          initial="initial"
-          animate={isActive ? "open" : "closed"}
-          onClick={() => setIsActive(false)}
-          className={
-            "absolute left-0 top-full z-40 h-full w-full bg-dark opacity-80"
-          }
-        ></motion.div>
       </div>
     </header>
   );

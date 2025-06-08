@@ -20,43 +20,10 @@ interface Contact extends Base {
   }[];
 }
 
-interface AboutPage extends Base {
-  images?: Image[];
-  banner?: LocalizedText[];
-  sections?: AboutSection[];
-}
-
-interface AboutUsSection extends Base {
-  title: LocalizedText;
-  description: LocalizedText;
-  image: Image;
-  quickFacts?: {
-    title?: LocalizedText;
-    facts?: Fact[];
-  };
-}
-
-interface Fact {
-  title: LocalizedText;
-  description: LocalizedText;
-}
-
-interface AboutSection extends Base {
-  title: LocalizedText;
-  description: LocalizedText;
-  image: Image;
-}
-//   title: LocalizedText;
-//   description: LocalizedText;
-//   image: Image;
-// }
 
 interface HomePage extends Base {
   banner?: LocalizedText[];
   gallery_section?: GallerySection;
-  story_section?: AboutUsSection;
-  testimonials_section?: TestimonialSection;
-  wall_section?: WallSection;
 }
 
 interface GallerySection {
@@ -65,19 +32,7 @@ interface GallerySection {
   images: Image[];
 }
 
-interface WallSection {
-  title?: LocalizedText;
-  images?: Image[];
-}
 
-interface TestimonialSection {
-  title: LocalizedText;
-  testimonials: {
-    author: string;
-    testimonial: LocalizedText;
-    image?: Image;
-  }[];
-}
 
 interface Image {
   _type: "image";

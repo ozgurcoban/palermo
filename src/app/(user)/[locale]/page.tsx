@@ -1,8 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { locales } from "@/config";
-import { getNews } from "@/lib/getNews";
-import { INewsItem } from "@/types/generated";
 import { draftMode } from "next/headers";
 import { token } from "../../../../sanity/lib/token";
 import { getClient } from "../../../../sanity/lib/client";
@@ -34,7 +32,6 @@ export default async function IndexPage({ params: { locale } }: Props) {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
-  const news: { data: INewsItem[] } = await getNews();
 
   const isDraft = draftMode().isEnabled;
   const client = getClient(isDraft ? token : undefined);
@@ -47,7 +44,6 @@ export default async function IndexPage({ params: { locale } }: Props) {
       <PreviewProvider token={token}>
         <PreviewHomePage
           homeData={homeData}
-          news={news.data}
           categoriesData={categoriesData}
         />
       </PreviewProvider>
@@ -56,7 +52,6 @@ export default async function IndexPage({ params: { locale } }: Props) {
   return (
     <HomeComponentsOptimized
       homeData={homeData}
-      news={news.data}
       categoriesData={categoriesData}
       locale={locale}
     />

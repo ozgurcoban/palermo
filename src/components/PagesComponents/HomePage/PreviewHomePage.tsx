@@ -4,15 +4,12 @@ import { useGetLocale } from "@/config";
 
 import { CATEGORIES_QUERY, HOME_QUERY } from "../../../../sanity/lib/queries";
 import HomeComponentsOptimized from "./HomeComponentsOptimized";
-import { INewsItem } from "@/types/generated";
 
 export default function PreviewHomePage({
   homeData,
-  news,
   categoriesData,
 }: {
   homeData: HomePage;
-  news: INewsItem[];
   categoriesData: Category[];
   lunchData?: LunchConfiguration;
 }) {
@@ -24,6 +21,6 @@ export default function PreviewHomePage({
   );
 
   return (
-    <HomeComponentsOptimized homeData={data} news={news} categoriesData={categories} locale={locale} />
+    <HomeComponentsOptimized homeData={data} categoriesData={categories} locale={locale} />
   );
 }

@@ -3,7 +3,6 @@
 import { useGetLocale } from "@/config";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
-import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown, ChevronUp } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
@@ -115,11 +114,9 @@ const MenuChips: React.FC<MenuChipsProps> = ({
     <div className="w-full">
       {/* Collapsed view - show always when not expanded */}
       {!isExpanded ? (
-        <motion.div 
+        <div 
           ref={containerRef}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-between gap-2 p-2.5 bg-muted/50 rounded-lg"
+          className="flex items-center justify-between gap-2 p-2.5 bg-muted/50 rounded-lg animate-slideIn"
         >
           <button
             onClick={() => setIsExpanded(true)}
@@ -173,7 +170,7 @@ const MenuChips: React.FC<MenuChipsProps> = ({
               <ChevronDown className="h-4 w-4" />
             </button>
           </div>
-        </motion.div>
+        </div>
       ) : (
         /* Expanded view */
         <>
@@ -182,23 +179,18 @@ const MenuChips: React.FC<MenuChipsProps> = ({
               {t("categories")}
             </span>
             <div className="flex items-center gap-3">
-              <AnimatePresence>
-                {hasFilters && !isAllSelected && (
-                  <motion.button
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    onClick={() => {
-                      onClearAll();
-                      setShowAllActive(false);
-                    }}
-                    className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <X className="h-3 w-3" />
-                    {locale === 'sv' ? 'Rensa filter' : 'Clear filter'}
-                  </motion.button>
-                )}
-              </AnimatePresence>
+              {hasFilters && !isAllSelected && (
+                <button
+                  onClick={() => {
+                    onClearAll();
+                    setShowAllActive(false);
+                  }}
+                  className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-all duration-200 animate-scaleIn"
+                >
+                  <X className="h-3 w-3" />
+                  {locale === 'sv' ? 'Rensa filter' : 'Clear filter'}
+                </button>
+              )}
               {hasFilters && (
                 <button
                   onClick={() => setIsExpanded(false)}
@@ -212,16 +204,14 @@ const MenuChips: React.FC<MenuChipsProps> = ({
       
       <div className="flex flex-wrap gap-2">
         {/* "Alla" chip */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+        <button
           onClick={() => {
             // Clear filters and show all items
             onClearAll();
             setShowAllActive(true);
             setIsExpanded(false);
           }}
-          className="focus:outline-none focus:ring-2 focus:ring-primary/30 rounded-full"
+          className="focus:outline-none focus:ring-2 focus:ring-primary/30 rounded-full chip-button"
         >
           <Badge
             variant={isAllSelected ? "default" : "outline"}
@@ -233,24 +223,22 @@ const MenuChips: React.FC<MenuChipsProps> = ({
           >
             {locale === 'sv' ? 'Alla' : 'All'}
           </Badge>
-        </motion.button>
+        </button>
 
         {/* Category chips */}
         {categories.map((category) => {
           const isSelected = selectedCategories.includes(category._id);
           
           return (
-            <motion.button
+            <button
               key={category._id}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               onClick={() => {
                 setJustInteracted(true);
                 onCategoryToggle(category._id);
                 setShowAllActive(false);
                 setTimeout(() => setJustInteracted(false), 1000);
               }}
-              className="focus:outline-none focus:ring-2 focus:ring-primary/30 rounded-full"
+              className="focus:outline-none focus:ring-2 focus:ring-primary/30 rounded-full chip-button"
             >
               <Badge
                 variant={isSelected ? "default" : "outline"}
@@ -262,26 +250,21 @@ const MenuChips: React.FC<MenuChipsProps> = ({
               >
                 {category.title[locale]}
               </Badge>
-            </motion.button>
+            </button>
           );
         })}
       </div>
 
           {/* Filter count indicator */}
-          <AnimatePresence>
-            {hasFilters && !isAllSelected && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="mt-3 text-xs text-muted-foreground"
-              >
-                {locale === 'sv' 
-                  ? `Visar ${selectedCategories.length} av ${categories.length} kategorier`
-                  : `Showing ${selectedCategories.length} of ${categories.length} categories`}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {hasFilters && !isAllSelected && (
+            <div
+              className="mt-3 text-xs text-muted-foreground animate-slideIn"
+            >
+              {locale === 'sv' 
+                ? `Visar ${selectedCategories.length} av ${categories.length} kategorier`
+                : `Showing ${selectedCategories.length} of ${categories.length} categories`}
+            </div>
+          )}
         </>
       )}
     </div>

@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CookieIcon, ShieldCheckIcon, SettingsIcon, Check } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   Dialog,
   DialogContent,
@@ -95,17 +94,10 @@ export function CookieBanner() {
   };
 
   return (
-    <AnimatePresence>
+    <>
       {isVisible && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0, scale: 0.95 }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut",
-          }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+        <div
+          className={`fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6 ${isVisible ? 'animate-slideUpFade' : 'animate-slideDownFade'}`}
         >
           <Card className="mx-auto max-w-4xl border-2 border-amber-200 bg-amber-50 shadow-2xl backdrop-blur-md dark:border-accent/30 dark:bg-background">
             <CardContent className="p-4 md:p-6">
@@ -147,36 +139,22 @@ export function CookieBanner() {
                       disabled={isAccepting}
                       className="text-accent-foreground flex-1 bg-accent font-medium transition-all hover:bg-accent/90"
                     >
-                      <AnimatePresence mode="wait">
-                        {isAccepting ? (
-                          <motion.div
-                            key="check"
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="flex items-center gap-2"
-                          >
-                            <Check className="h-4 w-4" />
-                            <span>
-                              {t("banner.accepted", {
-                                defaultValue: "Accepterat!",
-                              })}
-                            </span>
-                          </motion.div>
-                        ) : (
-                          <motion.span
-                            key="text"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                          >
-                            {t("banner.acceptAll", {
-                              defaultValue: "Acceptera alla",
+                      {isAccepting ? (
+                        <div className="flex items-center gap-2 animate-scaleIn">
+                          <Check className="h-4 w-4" />
+                          <span>
+                            {t("banner.accepted", {
+                              defaultValue: "Accepterat!",
                             })}
-                          </motion.span>
-                        )}
-                      </AnimatePresence>
+                          </span>
+                        </div>
+                      ) : (
+                        <span className="animate-fadeIn">
+                          {t("banner.acceptAll", {
+                            defaultValue: "Acceptera alla",
+                          })}
+                        </span>
+                      )}
                     </Button>
 
                     <Dialog open={showSettings} onOpenChange={setShowSettings}>
@@ -284,8 +262,8 @@ export function CookieBanner() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

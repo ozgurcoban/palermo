@@ -3,7 +3,7 @@
 
 import React, { useRef, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import urlFor from "@/lib/urlFor";
+import { getOptimizedImageUrl, imageSizes } from "@/lib/sanity-image";
 import FadeUp from "@/components/ui/FadeUp";
 import MaskText from "@/components/ui/MaskText";
 import {
@@ -46,9 +46,11 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
   const carouselRef = useRef<HTMLDivElement>(null);
   const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>({});
 
-  // Prepare image URLs for preloading
+  // Prepare optimized image URLs for preloading
   const imageUrls = useMemo(() => {
-    return galleryData.images.map((image) => urlFor(image).url());
+    return galleryData.images.map((image) => 
+      getOptimizedImageUrl(image, imageSizes.hero.desktop.width, imageSizes.hero.desktop.height)
+    );
   }, [galleryData.images]);
 
   // Preload images
@@ -142,10 +144,10 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
                     )}
                     
                     <Image
-                      src={urlFor(image).url()}
+                      src={getOptimizedImageUrl(image, imageSizes.hero.desktop.width, imageSizes.hero.desktop.height)}
                       alt={`Gallery image ${index + 1}`}
-                      width={1200}
-                      height={800}
+                      width={imageSizes.hero.desktop.width}
+                      height={imageSizes.hero.desktop.height}
                       priority={index < 2}
                       loading={index < 2 ? "eager" : "lazy"}
                       className={cn(

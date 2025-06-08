@@ -1,17 +1,9 @@
 import createMiddleware from 'next-intl/middleware';
 import { pathnames, locales, localePrefix } from './config';
 
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
 export default async function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
-  
-  // Redirect /news and /[locale]/news to home
-  if (pathname === '/news' || pathname === '/en/news' || pathname === '/sv/news') {
-    const locale = pathname.startsWith('/en') ? '/en' : '/sv';
-    return NextResponse.redirect(new URL(locale === '/sv' ? '/' : locale, request.url));
-  }
-  
   const handleI18nRouting = createMiddleware({
     defaultLocale: 'sv',
     locales,

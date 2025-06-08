@@ -3,7 +3,6 @@ import { Link } from "@/navigation";
 import { usePathname } from "@/navigation";
 import React from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 type NavLinks = {
   navbarLinks: {
@@ -33,22 +32,13 @@ const NavLinks = ({ navbarLinks }: NavLinks) => {
             <span className="relative py-2">
               {title}
               {/* Combined hover and active underline */}
-              <motion.span
-                className="absolute bottom-0 left-0 h-0.5 bg-foreground/20"
-                initial={false}
-                animate={{
-                  width: isPathname(href) ? "100%" : "0%",
-                  backgroundColor: isPathname(href) 
-                    ? "hsl(var(--foreground))" 
-                    : "hsl(var(--foreground) / 0.2)",
-                }}
-                whileHover={{
-                  width: "100%",
-                  backgroundColor: isPathname(href) 
-                    ? "hsl(var(--foreground))" 
-                    : "hsl(var(--foreground) / 0.5)",
-                }}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
+              <span
+                className={cn(
+                  "absolute bottom-0 left-0 h-0.5 transition-all duration-200 ease-in-out",
+                  isPathname(href) 
+                    ? "w-full bg-foreground" 
+                    : "w-0 bg-foreground/20 group-hover:w-full group-hover:bg-foreground/50"
+                )}
               />
             </span>
           </Link>

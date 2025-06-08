@@ -6,5 +6,5 @@ const client = getClient();
 const builder = imageUrlBuilder(client);
 
 export default function urlFor(source: any) {
-  return builder.image(source);
+  return builder.image(source).auto('format').quality(85);
 }
