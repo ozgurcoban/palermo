@@ -14,9 +14,8 @@ import { generateRestaurantSchema } from "@/lib/metadata";
 import Script from "next/script";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
-import { criticalCSS } from "@/lib/critical-css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { NonCriticalCSS } from "@/components/NonCriticalCSS";
+import "../globals.css";
 
 type Props = {
   children: ReactNode;
@@ -69,7 +68,6 @@ export default async function LocaleLayout({
         {/* Preconnect for reCAPTCHA when needed */}
         <link rel="dns-prefetch" href="https://www.google.com" />
         <link rel="dns-prefetch" href="https://www.gstatic.com" />
-        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
       </head>
       <body className="overflow-x-hidden">
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
@@ -78,7 +76,6 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantSchema) }}
         />
-        <NonCriticalCSS />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
