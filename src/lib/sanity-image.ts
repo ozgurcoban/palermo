@@ -157,18 +157,41 @@ export function getBackgroundImage(source: any, width = 1920): string {
 }
 
 // Quick optimized image helper for common sizes
-export function getOptimizedImageUrl(source: any, width: number, height?: number): string {
+export function getOptimizedImageUrl(source: any, width: number, height?: number, quality = 85): string {
   const imageBuilder = urlFor(source)
     .width(width)
     .fit('crop')
     .auto('format')
-    .quality(85);
+    .quality(quality);
   
   if (height) {
     imageBuilder.height(height);
   }
   
   return imageBuilder.url();
+}
+
+// Optimized carousel image with responsive loading
+export function getCarouselImage(source: any): OptimizedImage {
+  const { mobile, tablet, desktop } = imageSizes.carousel;
+  
+  // Generate srcSet with different sizes and quality optimized for carousel
+  const srcSet = [
+    `${getOptimizedImageUrl(source, mobile.width, mobile.height, 80)} ${mobile.width}w`,
+    `${getOptimizedImageUrl(source, tablet.width, tablet.height, 80)} ${tablet.width}w`,
+    `${getOptimizedImageUrl(source, desktop.width, desktop.height, 80)} ${desktop.width}w`,
+  ].join(', ');
+  
+  // Sizes attribute for responsive loading
+  const sizes = `(max-width: 640px) ${mobile.width}px, (max-width: 1024px) ${tablet.width}px, ${desktop.width}px`;
+  
+  return {
+    src: getOptimizedImageUrl(source, desktop.width, desktop.height, 80),
+    srcSet,
+    sizes,
+    width: desktop.width,
+    height: desktop.height,
+  };
 }
 
 // Predefined sizes for common use cases
@@ -182,6 +205,11 @@ export const imageSizes = {
     mobile: { width: 800, height: 600 },
     tablet: { width: 1200, height: 800 },
     desktop: { width: 1920, height: 1080 }
+  },
+  carousel: {
+    mobile: { width: 800, height: 400 },
+    tablet: { width: 1200, height: 500 },
+    desktop: { width: 1600, height: 600 }
   },
   thumbnail: {
     small: { width: 150, height: 150 },

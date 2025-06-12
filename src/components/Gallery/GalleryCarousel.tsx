@@ -3,7 +3,7 @@
 
 import React, { useRef, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import { getOptimizedImageUrl, imageSizes } from "@/lib/sanity-image";
+import { getOptimizedImageUrl, getCarouselImage, imageSizes, getBlurDataUrl } from "@/lib/sanity-image";
 import FadeUp from "@/components/ui/FadeUp";
 import MaskText from "@/components/ui/MaskText";
 import {
@@ -48,8 +48,9 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
 
   // Prepare optimized image URLs for preloading
   const imageUrls = useMemo(() => {
-    return galleryData.images.map((image) => 
-      getOptimizedImageUrl(image, imageSizes.hero.desktop.width, imageSizes.hero.desktop.height)
+    // Only preload first image in carousel size
+    return galleryData.images.slice(0, 1).map((image) => 
+      getOptimizedImageUrl(image, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height, 80)
     );
   }, [galleryData.images]);
 
@@ -86,7 +87,7 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
         });
       },
       {
-        threshold: 0.5, // Trigger when 50% of carousel is visible
+        threshold: 0.4, // Trigger when 40% of carousel is visible
       }
     );
 
@@ -144,14 +145,14 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
                     )}
                     
                     <Image
-                      src={getOptimizedImageUrl(image, imageSizes.hero.desktop.width, imageSizes.hero.desktop.height)}
+                      {...getCarouselImage(image)}
                       alt={`Gallery image ${index + 1}`}
-                      width={imageSizes.hero.desktop.width}
-                      height={imageSizes.hero.desktop.height}
-                      priority={index < 2}
-                      loading={index < 2 ? "eager" : "lazy"}
+                      priority={index === 0}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      placeholder="blur"
+                      blurDataURL={getBlurDataUrl(image)}
                       className={cn(
-                        "h-full w-full object-cover transition-all duration-700",
+                        "h-full w-full object-cover transition-all duration-300",
                         loadingStates[image._key] === false 
                           ? "opacity-100 group-hover:scale-105" 
                           : "opacity-0"
