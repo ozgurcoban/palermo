@@ -1,12 +1,20 @@
 import React from "react";
-import Gallery from "@/components/Gallery";
+import dynamic from "next/dynamic";
 import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
-import { FAQ } from "@/components/FAQ";
 import { HomeHero } from "@/components/Heros";
-
-// Import Menu normally to avoid dynamic import issues
 import Menu from "@/components/Menu";
+
+// Dynamic imports for below-the-fold components
+const Gallery = dynamic(() => import("@/components/Gallery"), {
+  loading: () => <div className="h-[600px] animate-pulse bg-gray-100" />,
+  ssr: true,
+});
+
+const FAQ = dynamic(() => import("@/components/FAQ").then(mod => ({ default: mod.FAQ })), {
+  loading: () => <div className="h-[400px] animate-pulse bg-gray-50" />,
+  ssr: true,
+});
 
 type Props = {
   homeData: HomePage;

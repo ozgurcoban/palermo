@@ -470,10 +470,6 @@ p {
   }
 }
 
-/* Hero image container - no animation for better LCP */
-.hero-image-container {
-  /* animation removed for performance */
-}
 
 @layer base {
   * {

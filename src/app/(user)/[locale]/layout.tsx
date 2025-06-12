@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { ReactNode } from "react";
+import dynamic from "next/dynamic";
 import { locales } from "@/config";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { lato, recoleta, graduate } from "@/lib/fonts";
 import IntlProvider from "@/providers/IntlProvider";
-import ContactInfoSection from "@/components/Contact/ContactInfoSection";
 import { Toaster } from "@/components/ui/toaster";
 import { CONTACT_QUERY, LUNCH_QUERY } from "../../../../sanity/lib/queries";
 import { getClient } from "../../../../sanity/lib/client";
@@ -18,12 +18,21 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import { criticalCSS } from "@/lib/critical-css";
 import "../globals.css";
 
+// Dynamic import for ContactInfoSection to reduce initial bundle size
+const ContactInfoSection = dynamic(
+  () => import("@/components/Contact/ContactInfoSection"),
+  {
+    loading: () => <div className="h-[800px] animate-pulse bg-accent-soft-apricot" />,
+    ssr: true,
+  }
+);
+
 type Props = {
   children: ReactNode;
   params: { locale: string };
 };
 
-export const revalidate = 30;
+export const revalidate = 86400; // 24 hours
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

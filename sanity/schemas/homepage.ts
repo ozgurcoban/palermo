@@ -6,35 +6,6 @@ export default defineType({
   title: 'Home Page',
   type: 'document',
   fields: [
-    // Define the banner section
-    defineField({
-      name: 'banner',
-      title: 'Banner Section',
-      type: 'array',
-      description: 'Enter the banner texts',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          title: 'Text',
-          fieldsets: [
-            {
-              title: 'Translations',
-              name: 'translations',
-              options: {collapsible: true},
-            },
-          ],
-          // Dynamically define one field per language
-          fields: supportedLanguages.map((lang) =>
-            defineField({
-              title: lang.title,
-              name: lang.id,
-              type: 'string',
-              fieldset: lang.isDefault ? undefined : 'translations',
-            }),
-          ),
-        }),
-      ],
-    }),
     // Define the gallery section
     defineField({
       name: 'gallery_section',

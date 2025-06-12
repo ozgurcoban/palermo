@@ -24,6 +24,8 @@ export async function generateMetadata({ params: { locale } }: Props) {
   });
 }
 
+export const revalidate = 86400; // 24 hours
+
 export default async function IndexPage({ params: { locale } }: Props) {
   // Validate that the incoming `locale` parameter is valid
   const isValidLocale = locales.some((cur) => cur === locale);

@@ -30,8 +30,8 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
   galleryData,
 }) => {
   const locale = useGetLocale();
-  const title = galleryData.title[locale];
-  const description = galleryData.description?.[locale];
+  const title = galleryData.title?.[locale] || "";
+  const description = galleryData.description?.[locale] || "";
   const plugin = useRef(Autoplay({ 
     delay: 4000, 
     stopOnInteraction: false,
@@ -44,11 +44,13 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
   const [count, setCount] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>({});
 
   // Prepare optimized image URLs for preloading
   const imageUrls = useMemo(() => {
     // Preload first image with the same size as we use in the component
+    if (!galleryData.images || galleryData.images.length === 0) {
+      return [];
+    }
     return galleryData.images.slice(0, 1).map((image) => 
       getOptimizedImageUrl(image, 900, 450, 90)
     );
@@ -79,7 +81,10 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
         entries.forEach((entry) => {
           if (entry.isIntersecting && !isInView) {
             setIsInView(true);
-            plugin.current.play();
+            // Only play if we have images
+            if (galleryData.images && galleryData.images.length > 0) {
+              plugin.current.play();
+            }
           } else if (!entry.isIntersecting && isInView) {
             setIsInView(false);
             plugin.current.stop();
@@ -100,7 +105,12 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
         observer.unobserve(currentRef);
       }
     };
-  }, [isInView]);
+  }, [isInView, galleryData.images]);
+
+  // Early return if no images (after all hooks)
+  if (!galleryData.images || galleryData.images.length === 0) {
+    return null;
+  }
 
   return (
     <section className="relative h-full w-screen bg-accent-soft-apricot py-40">
@@ -133,7 +143,11 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
             plugins={[plugin.current]}
             className="relative w-full overflow-hidden"
             onMouseEnter={() => plugin.current.stop()}
-            onMouseLeave={() => plugin.current.play()}
+            onMouseLeave={() => {
+              if (galleryData.images && galleryData.images.length > 0) {
+                plugin.current.play();
+              }
+            }}
           >
             <CarouselContent className="-ml-4">
               {galleryData.images.map((image, index) => (
@@ -151,12 +165,6 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
                         sizes="(max-width: 640px) 531px, (max-width: 1024px) 711px, 1200px"
                         className="object-cover transition-all duration-300 group-hover:scale-105"
                         quality={90}
-                        onLoad={() => {
-                          setLoadingStates(prev => ({ ...prev, [image._key]: false }));
-                        }}
-                        onError={() => {
-                          setLoadingStates(prev => ({ ...prev, [image._key]: false }));
-                        }}
                       />
                     </div>
                     <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-20" />

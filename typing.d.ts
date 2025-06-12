@@ -22,7 +22,6 @@ interface Contact extends Base {
 
 
 interface HomePage extends Base {
-  banner?: LocalizedText[];
   gallery_section?: GallerySection;
 }
 

@@ -62,7 +62,13 @@ export function FAQ() {
               ? "Vi har öppet alla dagar!"
               : "We are open every day!";
           const hours = contactData.opening_hours
-            .map((hour) => `${hour.day[locale]}: ${hour.time}`)
+            .map((hour) => {
+              if (!hour.day || !hour.day[locale]) {
+                console.error("Missing day translation for hour:", hour);
+                return `${hour.time}`;
+              }
+              return `${hour.day[locale]}: ${hour.time}`;
+            })
             .join("\n");
 
           setOpeningHours(`${intro}\n${hours}`);

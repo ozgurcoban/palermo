@@ -48,7 +48,7 @@ export const Gallery = ({
     }
   }, []);
 
-  if (!data) return;
+  if (!data || !data.images || data.images.length === 0) return null;
 
   const { title, description, images } = data;
 
@@ -61,18 +61,20 @@ export const Gallery = ({
   return (
     <section className="relative h-full w-screen bg-accent-soft-apricot py-40">
       <div className="container flex flex-col items-center">
-        <MaskText
-          delay={0.2}
-          phrases={[title[locale]]}
-          className="title-secondary text-center font-recoleta font-bold leading-tight"
-          as="h2"
-        />
+        {title && (
+          <MaskText
+            delay={0.2}
+            phrases={[title[locale] || ""]}
+            className="title-secondary text-center font-recoleta font-bold leading-tight"
+            as="h2"
+          />
+        )}
 
         {description && (
           <div className="mt-6 w-full">
             <MaskText
               delay={0.4}
-              phrases={[description[locale]]}
+              phrases={[description[locale] || ""]}
               className="text-body mx-auto max-w-md text-justify opacity-80"
             />
           </div>
