@@ -15,6 +15,7 @@ import Script from "next/script";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { criticalCSS } from "@/lib/critical-css";
 import "../globals.css";
 
 type Props = {
@@ -62,6 +63,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <head>
+        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="preconnect" href="/_next/image" />
