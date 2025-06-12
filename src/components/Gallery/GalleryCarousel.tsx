@@ -48,9 +48,9 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
 
   // Prepare optimized image URLs for preloading
   const imageUrls = useMemo(() => {
-    // Only preload first image in carousel size
+    // Only preload first image in carousel size with optimized quality
     return galleryData.images.slice(0, 1).map((image) => 
-      getOptimizedImageUrl(image, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height, 80)
+      getOptimizedImageUrl(image, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height, 75)
     );
   }, [galleryData.images]);
 

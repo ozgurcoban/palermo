@@ -58,8 +58,9 @@ export function Navbar() {
             <Image
               src="/logo.png"
               alt="logo"
-              width={110}
-              height={110}
+              width={90}
+              height={90}
+              sizes="(min-width: 768px) 110px, (min-width: 640px) 100px, 90px"
               style={{
                 cursor: "pointer",
                 borderRadius: "50%",
@@ -73,8 +74,9 @@ export function Navbar() {
             <Image
               src="/dark-logo.webp"
               alt="logo"
-              width={110}
-              height={110}
+              width={90}
+              height={90}
+              sizes="(min-width: 768px) 110px, (min-width: 640px) 100px, 90px"
               style={{
                 cursor: "pointer",
                 borderRadius: "50%",

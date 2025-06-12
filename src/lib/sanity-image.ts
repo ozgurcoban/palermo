@@ -176,17 +176,21 @@ export function getCarouselImage(source: any): OptimizedImage {
   const { mobile, tablet, desktop } = imageSizes.carousel;
   
   // Generate srcSet with different sizes and quality optimized for carousel
+  // Using 75% quality for better compression
   const srcSet = [
-    `${getOptimizedImageUrl(source, mobile.width, mobile.height, 80)} ${mobile.width}w`,
-    `${getOptimizedImageUrl(source, tablet.width, tablet.height, 80)} ${tablet.width}w`,
-    `${getOptimizedImageUrl(source, desktop.width, desktop.height, 80)} ${desktop.width}w`,
+    `${getOptimizedImageUrl(source, mobile.width, mobile.height, 75)} ${mobile.width}w`,
+    `${getOptimizedImageUrl(source, tablet.width, tablet.height, 75)} ${tablet.width}w`,
+    `${getOptimizedImageUrl(source, desktop.width, desktop.height, 75)} ${desktop.width}w`,
+    // Add 2x versions for retina displays
+    `${getOptimizedImageUrl(source, mobile.width * 2, mobile.height * 2, 75)} ${mobile.width * 2}w`,
+    `${getOptimizedImageUrl(source, tablet.width * 2, tablet.height * 2, 75)} ${tablet.width * 2}w`,
   ].join(', ');
   
-  // Sizes attribute for responsive loading
-  const sizes = `(max-width: 640px) ${mobile.width}px, (max-width: 1024px) ${tablet.width}px, ${desktop.width}px`;
+  // Sizes attribute for responsive loading - matching actual display sizes
+  const sizes = `(max-width: 640px) ${mobile.width}px, ${tablet.width}px`;
   
   return {
-    src: getOptimizedImageUrl(source, desktop.width, desktop.height, 80),
+    src: getOptimizedImageUrl(source, desktop.width, desktop.height, 75),
     srcSet,
     sizes,
     width: desktop.width,
@@ -207,9 +211,9 @@ export const imageSizes = {
     desktop: { width: 1920, height: 1080 }
   },
   carousel: {
-    mobile: { width: 800, height: 400 },
-    tablet: { width: 1200, height: 500 },
-    desktop: { width: 1600, height: 600 }
+    mobile: { width: 531, height: 400 },
+    tablet: { width: 711, height: 400 },
+    desktop: { width: 711, height: 400 }
   },
   thumbnail: {
     small: { width: 150, height: 150 },
