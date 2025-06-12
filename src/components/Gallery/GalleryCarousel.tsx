@@ -50,7 +50,7 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
   const imageUrls = useMemo(() => {
     // Only preload first image in carousel size with optimized quality
     return galleryData.images.slice(0, 1).map((image) => 
-      getOptimizedImageUrl(image, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height, 75)
+      getOptimizedImageUrl(image, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height, 85)
     );
   }, [galleryData.images]);
 
@@ -139,11 +139,6 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
               {galleryData.images.map((image, index) => (
                 <CarouselItem key={image._key} className="basis-full pl-4">
                   <div className="group relative h-[400px] w-full overflow-hidden rounded-lg md:h-[500px] lg:h-[600px]">
-                    {/* Loading skeleton */}
-                    {loadingStates[image._key] !== false && (
-                      <div className="absolute inset-0 animate-pulse bg-gray-200" />
-                    )}
-                    
                     <Image
                       {...getCarouselImage(image)}
                       alt={`Gallery image ${index + 1}`}
@@ -151,12 +146,7 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
                       loading={index === 0 ? "eager" : "lazy"}
                       placeholder="blur"
                       blurDataURL={getBlurDataUrl(image)}
-                      className={cn(
-                        "h-full w-full object-cover transition-all duration-300",
-                        loadingStates[image._key] === false 
-                          ? "opacity-100 group-hover:scale-105" 
-                          : "opacity-0"
-                      )}
+                      className="h-full w-full object-cover transition-all duration-300 group-hover:scale-105"
                       onLoad={() => {
                         setLoadingStates(prev => ({ ...prev, [image._key]: false }));
                       }}

@@ -140,9 +140,11 @@ function generateSrcSet(source: any, width: number, height?: number): string {
 // Helper to get blur data URL for placeholder
 export function getBlurDataUrl(source: any): string {
   return urlFor(source)
-    .width(20)
-    .blur(10)
-    .quality(20)
+    .width(40)
+    .height(30)
+    .blur(20)
+    .quality(30)
+    .fit('crop')
     .url();
 }
 
@@ -173,28 +175,32 @@ export function getOptimizedImageUrl(source: any, width: number, height?: number
 
 // Optimized carousel image with responsive loading
 export function getCarouselImage(source: any): OptimizedImage {
-  const { mobile, tablet, desktop } = imageSizes.carousel;
+  // Use exact displayed dimensions from Lighthouse
+  const mobileDimensions = { width: 531, height: 400 };
+  const tabletDimensions = { width: 711, height: 400 };
+  const desktopDimensions = { width: 1200, height: 600 };
   
-  // Generate srcSet with different sizes and quality optimized for carousel
-  // Using 75% quality for better compression
+  // Generate srcSet with exact sizes to avoid oversized images
   const srcSet = [
-    `${getOptimizedImageUrl(source, mobile.width, mobile.height, 75)} ${mobile.width}w`,
-    `${getOptimizedImageUrl(source, tablet.width, tablet.height, 75)} ${tablet.width}w`,
-    `${getOptimizedImageUrl(source, desktop.width, desktop.height, 75)} ${desktop.width}w`,
-    // Add 2x versions for retina displays
-    `${getOptimizedImageUrl(source, mobile.width * 2, mobile.height * 2, 75)} ${mobile.width * 2}w`,
-    `${getOptimizedImageUrl(source, tablet.width * 2, tablet.height * 2, 75)} ${tablet.width * 2}w`,
+    // Mobile: exact size as displayed
+    `${getOptimizedImageUrl(source, mobileDimensions.width, mobileDimensions.height, 85)} ${mobileDimensions.width}w`,
+    // Tablet: exact size as displayed  
+    `${getOptimizedImageUrl(source, tabletDimensions.width, tabletDimensions.height, 85)} ${tabletDimensions.width}w`,
+    // Desktop: larger for quality
+    `${getOptimizedImageUrl(source, desktopDimensions.width, desktopDimensions.height, 85)} ${desktopDimensions.width}w`,
+    // 2x for retina mobile only (to save bandwidth)
+    `${getOptimizedImageUrl(source, mobileDimensions.width * 2, mobileDimensions.height * 2, 85)} ${mobileDimensions.width * 2}w`,
   ].join(', ');
   
-  // Sizes attribute for responsive loading - matching actual display sizes
-  const sizes = `(max-width: 640px) ${mobile.width}px, ${tablet.width}px`;
+  // Sizes matching exact display dimensions
+  const sizes = `(max-width: 640px) ${mobileDimensions.width}px, (max-width: 1024px) ${tabletDimensions.width}px, ${desktopDimensions.width}px`;
   
   return {
-    src: getOptimizedImageUrl(source, desktop.width, desktop.height, 75),
+    src: getOptimizedImageUrl(source, desktopDimensions.width, desktopDimensions.height, 85),
     srcSet,
     sizes,
-    width: desktop.width,
-    height: desktop.height,
+    width: desktopDimensions.width,
+    height: desktopDimensions.height,
   };
 }
 
@@ -213,7 +219,7 @@ export const imageSizes = {
   carousel: {
     mobile: { width: 531, height: 400 },
     tablet: { width: 711, height: 400 },
-    desktop: { width: 711, height: 400 }
+    desktop: { width: 1200, height: 600 }
   },
   thumbnail: {
     small: { width: 150, height: 150 },
