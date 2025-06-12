@@ -16,6 +16,12 @@ interface OptimizedImage {
   height?: number;
 }
 
+interface CarouselImageProps {
+  src: string;
+  width: number;
+  height: number;
+}
+
 // Default breakpoints matching Tailwind
 const DEFAULT_BREAKPOINTS = {
   sm: 640,
@@ -168,40 +174,43 @@ export function getOptimizedImageUrl(source: any, width: number, height?: number
   
   if (height) {
     imageBuilder.height(height);
+    // Force exact dimensions with rect parameter
+    imageBuilder.rect(0, 0, width, height);
   }
   
   return imageBuilder.url();
 }
 
-// Optimized carousel image with responsive loading
-export function getCarouselImage(source: any): OptimizedImage {
-  // Use exact displayed dimensions from Lighthouse
-  const mobileDimensions = { width: 531, height: 400 };
-  const tabletDimensions = { width: 711, height: 400 };
-  const desktopDimensions = { width: 1200, height: 600 };
-  
-  // Generate srcSet with exact sizes to avoid oversized images
-  const srcSet = [
-    // Mobile: exact size as displayed
-    `${getOptimizedImageUrl(source, mobileDimensions.width, mobileDimensions.height, 85)} ${mobileDimensions.width}w`,
-    // Tablet: exact size as displayed  
-    `${getOptimizedImageUrl(source, tabletDimensions.width, tabletDimensions.height, 85)} ${tabletDimensions.width}w`,
-    // Desktop: larger for quality
-    `${getOptimizedImageUrl(source, desktopDimensions.width, desktopDimensions.height, 85)} ${desktopDimensions.width}w`,
-    // 2x for retina mobile only (to save bandwidth)
-    `${getOptimizedImageUrl(source, mobileDimensions.width * 2, mobileDimensions.height * 2, 85)} ${mobileDimensions.width * 2}w`,
-  ].join(', ');
-  
-  // Sizes matching exact display dimensions
-  const sizes = `(max-width: 640px) ${mobileDimensions.width}px, (max-width: 1024px) ${tabletDimensions.width}px, ${desktopDimensions.width}px`;
+// Optimized carousel image for Next.js Image component
+export function getCarouselImage(source: any): CarouselImageProps {
+  // Desktop dimensions for src (Next.js will handle responsive sizes)
+  const width = 1200;
+  const height = 600;
   
   return {
-    src: getOptimizedImageUrl(source, desktopDimensions.width, desktopDimensions.height, 85),
-    srcSet,
-    sizes,
-    width: desktopDimensions.width,
-    height: desktopDimensions.height,
+    src: getOptimizedImageUrl(source, width, height, 85),
+    width,
+    height,
+    // Let Next.js handle srcSet generation based on deviceSizes
   };
+}
+
+// Get responsive carousel image URL based on viewport
+export function getResponsiveCarouselUrl(source: any): string {
+  // This will be called client-side to get the appropriate image
+  if (typeof window === 'undefined') {
+    return getOptimizedImageUrl(source, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height, 85);
+  }
+  
+  const width = window.innerWidth;
+  
+  if (width <= 640) {
+    return getOptimizedImageUrl(source, imageSizes.carousel.mobile.width, imageSizes.carousel.mobile.height, 85);
+  } else if (width <= 1024) {
+    return getOptimizedImageUrl(source, imageSizes.carousel.tablet.width, imageSizes.carousel.tablet.height, 85);
+  }
+  
+  return getOptimizedImageUrl(source, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height, 85);
 }
 
 // Predefined sizes for common use cases
