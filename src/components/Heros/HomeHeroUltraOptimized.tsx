@@ -30,14 +30,15 @@ export function HomeHeroUltraOptimized({ locale }: { locale: string }) {
         <div className="absolute z-10 h-full w-full bg-black/40" />
         <Image
           src={heroImage}
-          alt="hero"
-          quality={60}
-          sizes="(max-width: 640px) 640px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, (max-width: 1280px) 1280px, 1920px"
+          alt="Palermo Restaurant Interior"
+          quality={75}
+          sizes="100vw"
           style={{ objectFit: "cover" }}
           className="h-full w-full"
           priority
           placeholder="blur"
           blurDataURL={placeholderBase64}
+          loading="eager"
         />
       </div>
 

@@ -141,8 +141,10 @@ function generateSrcSet(source: any, width: number, height?: number): string {
 export function getBlurDataUrl(source: any): string {
   return urlFor(source)
     .width(20)
+    .height(20)
     .blur(10)
     .quality(20)
+    .format('webp')
     .url();
 }
 
@@ -157,35 +159,48 @@ export function getBackgroundImage(source: any, width = 1920): string {
 }
 
 // Quick optimized image helper for common sizes
-export function getOptimizedImageUrl(source: any, width: number, height?: number): string {
+export function getOptimizedImageUrl(
+  source: any, 
+  width: number, 
+  height?: number,
+  quality: number = 85
+): string {
   const imageBuilder = urlFor(source)
     .width(width)
     .fit('crop')
     .auto('format')
-    .quality(85);
+    .quality(quality);
   
   if (height) {
     imageBuilder.height(height);
   }
   
+  // Auto format is better than forcing specific formats
+  // Next.js will handle format negotiation
+  
   return imageBuilder.url();
 }
 
-// Predefined sizes for common use cases
+// Predefined sizes for common use cases - optimized for performance
 export const imageSizes = {
   gallery: {
-    mobile: { width: 300, height: 200 },
-    tablet: { width: 400, height: 300 },
-    desktop: { width: 600, height: 400 }
+    mobile: { width: 640, height: 480 },
+    tablet: { width: 768, height: 576 },
+    desktop: { width: 1024, height: 768 }
   },
   hero: {
-    mobile: { width: 800, height: 600 },
-    tablet: { width: 1200, height: 800 },
+    mobile: { width: 640, height: 360 },
+    tablet: { width: 1024, height: 576 },
     desktop: { width: 1920, height: 1080 }
   },
+  carousel: {
+    mobile: { width: 640, height: 400 },
+    tablet: { width: 900, height: 450 },
+    desktop: { width: 1200, height: 600 }
+  },
   thumbnail: {
-    small: { width: 150, height: 150 },
-    medium: { width: 300, height: 300 },
+    small: { width: 200, height: 200 },
+    medium: { width: 400, height: 400 },
     large: { width: 600, height: 600 }
   }
 };

@@ -65,6 +65,13 @@ export default async function LocaleLayout({
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="preconnect" href="/_next/image" />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/hero.webp"
+          imageSrcSet="/_next/image?url=%2Fhero.webp&w=640&q=75 640w, /_next/image?url=%2Fhero.webp&w=1024&q=75 1024w, /_next/image?url=%2Fhero.webp&w=1920&q=75 1920w"
+          imageSizes="100vw"
+        />
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
       </head>
       <body className="overflow-x-hidden">

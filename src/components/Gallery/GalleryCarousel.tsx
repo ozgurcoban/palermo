@@ -3,7 +3,7 @@
 
 import React, { useRef, useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import { getOptimizedImageUrl, imageSizes } from "@/lib/sanity-image";
+import { getOptimizedImageUrl, getBlurDataUrl, imageSizes } from "@/lib/sanity-image";
 import FadeUp from "@/components/ui/FadeUp";
 import MaskText from "@/components/ui/MaskText";
 import {
@@ -144,12 +144,15 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
                     )}
                     
                     <Image
-                      src={getOptimizedImageUrl(image, imageSizes.hero.desktop.width, imageSizes.hero.desktop.height)}
+                      src={getOptimizedImageUrl(image, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height)}
                       alt={`Gallery image ${index + 1}`}
-                      width={imageSizes.hero.desktop.width}
-                      height={imageSizes.hero.desktop.height}
-                      priority={index < 2}
-                      loading={index < 2 ? "eager" : "lazy"}
+                      width={imageSizes.carousel.desktop.width}
+                      height={imageSizes.carousel.desktop.height}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                      priority={index === 0}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      placeholder="blur"
+                      blurDataURL={getBlurDataUrl(image)}
                       className={cn(
                         "h-full w-full object-cover transition-all duration-700",
                         loadingStates[image._key] === false 
