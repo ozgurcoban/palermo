@@ -16,6 +16,7 @@ import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
 import { criticalCSS } from "@/lib/critical-css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { NonCriticalCSS } from "@/components/NonCriticalCSS";
 
 type Props = {
   children: ReactNode;
@@ -65,6 +66,9 @@ export default async function LocaleLayout({
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="preconnect" href="/_next/image" />
+        {/* Preconnect for reCAPTCHA when needed */}
+        <link rel="dns-prefetch" href="https://www.google.com" />
+        <link rel="dns-prefetch" href="https://www.gstatic.com" />
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
       </head>
       <body className="overflow-x-hidden">
@@ -74,6 +78,7 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantSchema) }}
         />
+        <NonCriticalCSS />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

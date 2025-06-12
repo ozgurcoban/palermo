@@ -470,8 +470,9 @@ p {
   }
 }
 
+/* Hero image container - no animation for better LCP */
 .hero-image-container {
-  animation: heroReveal 2s ease-in-out forwards;
+  /* animation removed for performance */
 }
 
 @layer base {

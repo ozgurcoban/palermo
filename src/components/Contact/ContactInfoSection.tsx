@@ -9,7 +9,7 @@ import {
 import ContactForm from "./Form";
 import Link from "next/link";
 import { Link as IntlLink } from "@/navigation";
-import { RecaptchaProvider } from "@/providers/RecaptchaProvider";
+import { LazyRecaptchaProvider } from "@/providers/LazyRecaptchaProvider";
 import Map from "./Map";
 import { useGetLocale } from "@/config";
 import Localization from "../localization";
@@ -35,9 +35,9 @@ export default function ContactInfoSection({
     return (
       <section className="border-image w-screen pt-28" id="contact">
         <div className="container py-16">
-          <RecaptchaProvider>
+          <LazyRecaptchaProvider>
             <ContactForm />
-          </RecaptchaProvider>
+          </LazyRecaptchaProvider>
         </div>
       </section>
     );
@@ -192,9 +192,9 @@ export default function ContactInfoSection({
             <FadeUp delay={0.8}>
               <Card className="h-fit border bg-card shadow-lg">
                 <CardContent className="p-6">
-                  <RecaptchaProvider>
+                  <LazyRecaptchaProvider>
                     <ContactForm />
-                  </RecaptchaProvider>
+                  </LazyRecaptchaProvider>
                 </CardContent>
               </Card>
             </FadeUp>

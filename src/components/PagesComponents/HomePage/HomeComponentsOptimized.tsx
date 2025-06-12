@@ -3,7 +3,7 @@ import Gallery from "@/components/Gallery";
 import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
 import { FAQ } from "@/components/FAQ";
-import { HomeHeroUltraOptimized } from "@/components/Heros/HomeHeroUltraOptimized";
+import { HomeHero } from "@/components/Heros";
 
 // Import Menu normally to avoid dynamic import issues
 import Menu from "@/components/Menu";
@@ -31,7 +31,7 @@ const HomeComponentsOptimized: React.FC<Props> = ({
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <HomeHeroUltraOptimized locale={locale} />
+      <HomeHero />
       <section className="w-full py-16 md:py-20">
         <div className="container">
           <Menu categories={categoriesData} />
