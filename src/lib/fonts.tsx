@@ -1,4 +1,3 @@
-import { Lobster, Lato, Graduate } from "next/font/google";
 import localFont from "next/font/local";
 
 export const recoleta = localFont({
@@ -19,24 +18,26 @@ export const recoleta = localFont({
   preload: true,
 });
 
-export const lato = Lato({
-  subsets: ["latin"],
+export const lato = localFont({
+  src: [
+    {
+      path: "../fonts/Lato-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/Lato-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-lato",
-  weight: ["400", "700"],
   display: "swap",
   preload: true,
 });
 
-export const lobster = Lobster({
-  subsets: ["latin"],
-  variable: "--font-lobster",
-  weight: "400",
-  display: "swap",
-  preload: false,
-});
-
-export const graduate = Graduate({
-  subsets: ["latin"],
+export const graduate = localFont({
+  src: "../fonts/Graduate-Regular.woff2",
   variable: "--font-graduate",
   weight: "400",
   display: "swap",

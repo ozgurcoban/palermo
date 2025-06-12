@@ -22,10 +22,6 @@ const config = {
   			recoleta: [
   				'var(--font-recoleta)'
   			],
-  			lobster: [
-  				'var(--font-lobster)',
-  				'sans-serif'
-  			],
   			graduate: [
   				'var(--font-graduate)',
   				'sans-serif'

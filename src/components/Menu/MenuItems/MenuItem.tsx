@@ -51,7 +51,7 @@ const MenuFoodItem: React.FC<Food> = ({
 
         <div className="mx-2 mt-3 h-[1px] flex-1 bg-accent/50" />
         <div>
-          <span className="text-md whitespace-nowrap font-lobster text-primary">
+          <span className="text-md whitespace-nowrap font-recoletta text-primary">
             {price} {!takeawayPrice ? <span>kr</span> : null}
           </span>
           {takeawayPrice && (
