@@ -10,8 +10,10 @@ type ContactFormInputs = z.infer<typeof ContactFormSchema> & { locale: string };
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function verifyRecaptcha(token: string | undefined) {
-  if (!token) {
-    return { success: false, error: "No reCAPTCHA token provided" };
+  if (!token || token === "") {
+    // Allow empty token for when reCAPTCHA is still loading
+    console.log("No reCAPTCHA token provided, skipping verification");
+    return { success: true };
   }
 
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;

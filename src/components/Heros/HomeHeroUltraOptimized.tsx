@@ -31,7 +31,7 @@ export function HomeHeroUltraOptimized({ locale }: { locale: string }) {
         <Image
           src={heroImage}
           alt="Palermo Restaurant Interior"
-          quality={75}
+          quality={65}
           sizes="100vw"
           style={{ objectFit: "cover" }}
           className="h-full w-full"

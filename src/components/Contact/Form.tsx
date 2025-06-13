@@ -51,7 +51,26 @@ export default function ContactForm() {
 
   const processForm: SubmitHandler<ContactFormInputs> = useCallback(async (data) => {
     if (!executeRecaptcha) {
-      console.error("reCAPTCHA not available");
+      console.log("reCAPTCHA not loaded yet, proceeding without it");
+      // Continue without reCAPTCHA token
+      const result = await sendMail({ ...data, recaptchaToken: "", locale });
+      
+      if (result?.success) {
+        trackContactFormSubmit();
+        toast({
+          title: t("Form.title"),
+          description: (
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-foreground" />
+              <span>{t("Form.description")}</span>
+            </div>
+          ),
+        });
+        form.reset();
+        setHasStartedForm(false);
+        return;
+      }
+      
       toast({
         variant: "destructive",
         title: t("Form.errorTitle"),

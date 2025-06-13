@@ -4,9 +4,9 @@ import { ReactNode } from "react";
 import { locales } from "@/config";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { lobster, lato, recoleta, graduate } from "@/lib/fonts";
+import { lato, recoleta, graduate } from "@/lib/fonts";
 import IntlProvider from "@/providers/IntlProvider";
-import ContactInfoSection from "@/components/Contact/ContactInfoSection";
+import ContactInfoSectionLazy from "@/components/Contact/ContactInfoSectionLazy";
 import { Toaster } from "@/components/ui/toaster";
 import { CONTACT_QUERY, LUNCH_QUERY } from "../../../../sanity/lib/queries";
 import { getClient } from "../../../../sanity/lib/client";
@@ -58,19 +58,25 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={` ${lato.variable} ${lobster.variable} ${recoleta.variable} ${graduate.variable} `}
+      className={`${lato.variable} ${recoleta.variable} ${graduate.variable}`}
       suppressHydrationWarning
     >
       <head>
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        <link rel="preconnect" href="/_next/image" />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/hero.webp"
-          imageSrcSet="/_next/image?url=%2Fhero.webp&w=640&q=75 640w, /_next/image?url=%2Fhero.webp&w=1024&q=75 1024w, /_next/image?url=%2Fhero.webp&w=1920&q=75 1920w"
-          imageSizes="100vw"
+        <link
+          rel="preload"
+          href="/_next/static/media/Lato-Regular-latin.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/_next/static/media/Recoleta-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
       </head>
@@ -92,7 +98,7 @@ export default async function LocaleLayout({
             <Navbar />
             <main>
               {children}
-              <ContactInfoSection contactData={contactData} lunchData={lunchData} />
+              <ContactInfoSectionLazy contactData={contactData} lunchData={lunchData} />
             </main>
             <Footer contactData={contactData} />
             <CookieBanner />
