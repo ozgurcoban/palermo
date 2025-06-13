@@ -3,12 +3,12 @@ import localFont from "next/font/local";
 export const recoleta = localFont({
   src: [
     {
-      path: "../fonts/Recoleta-Regular.woff",
+      path: "../fonts/Recoleta-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../fonts/Recoleta-Bold.woff",
+      path: "../fonts/Recoleta-Bold.woff2",
       weight: "700",
       style: "normal",
     },
@@ -21,12 +21,12 @@ export const recoleta = localFont({
 export const lato = localFont({
   src: [
     {
-      path: "../fonts/Lato-Regular.woff2",
+      path: "../fonts/Lato-Regular-latin.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../fonts/Lato-Bold.woff2",
+      path: "../fonts/Lato-Bold-latin.woff2",
       weight: "700",
       style: "normal",
     },
@@ -36,10 +36,11 @@ export const lato = localFont({
   preload: true,
 });
 
+
 export const graduate = localFont({
   src: "../fonts/Graduate-Regular.woff2",
   variable: "--font-graduate",
   weight: "400",
   display: "swap",
-  preload: false,
+  preload: true,
 });

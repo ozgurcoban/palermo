@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { lato, recoleta, graduate } from "@/lib/fonts";
 import IntlProvider from "@/providers/IntlProvider";
+import ContactInfoSectionLazy from "@/components/Contact/ContactInfoSectionLazy";
 import { Toaster } from "@/components/ui/toaster";
 import { CONTACT_QUERY, LUNCH_QUERY } from "../../../../sanity/lib/queries";
 import { getClient } from "../../../../sanity/lib/client";
@@ -15,17 +16,7 @@ import Script from "next/script";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ThemeProvider } from "@/providers/ThemeProvider";
-import { criticalCSS } from "@/lib/critical-css";
 import "../globals.css";
-
-// Dynamic import for ContactInfoSection to reduce initial bundle size
-const ContactInfoSection = dynamic(
-  () => import("@/components/Contact/ContactInfoSection"),
-  {
-    loading: () => <div className="h-[800px] animate-pulse bg-accent-soft-apricot" />,
-    ssr: true,
-  }
-);
 
 type Props = {
   children: ReactNode;
@@ -68,17 +59,27 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={` ${lato.variable} ${recoleta.variable} ${graduate.variable} `}
+      className={`${lato.variable} ${recoleta.variable} ${graduate.variable}`}
       suppressHydrationWarning
     >
       <head>
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        <link rel="preconnect" href="/_next/image" />
-        {/* Preconnect for reCAPTCHA when needed */}
-        <link rel="dns-prefetch" href="https://www.google.com" />
-        <link rel="dns-prefetch" href="https://www.gstatic.com" />
+        <link
+          rel="preload"
+          href="/_next/static/media/Lato-Regular-latin.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/_next/static/media/Recoleta-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="overflow-x-hidden">
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
@@ -98,7 +99,7 @@ export default async function LocaleLayout({
             <Navbar />
             <main>
               {children}
-              <ContactInfoSection contactData={contactData} lunchData={lunchData} />
+              <ContactInfoSectionLazy contactData={contactData} lunchData={lunchData} />
             </main>
             <Footer contactData={contactData} />
             <CookieBanner />

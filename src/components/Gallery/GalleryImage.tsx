@@ -8,6 +8,7 @@ type Props = {
   i: number;
   imageId: string;
   src: string;
+  blurDataURL?: string;
   favouriteList: string[];
   setFavouriteList: React.Dispatch<React.SetStateAction<string[]>>;
 };
@@ -16,6 +17,7 @@ const GalleryImage: React.FC<Props> = ({
   imageId,
   i,
   src,
+  blurDataURL,
   favouriteList,
   setFavouriteList,
 }) => {
@@ -63,6 +65,8 @@ const GalleryImage: React.FC<Props> = ({
         loading={i < 3 ? "eager" : "lazy"}
         priority={i < 1}
         quality={75}
+        placeholder={blurDataURL ? "blur" : "empty"}
+        blurDataURL={blurDataURL}
         className={cn(
           "object-cover transition-all duration-700",
           isLoading ? "opacity-0" : "opacity-100 hover:scale-105"

@@ -153,20 +153,34 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
               {galleryData.images.map((image, index) => (
                 <CarouselItem key={image._key} className="basis-full pl-4">
                   <div className="group relative h-[400px] w-full overflow-hidden rounded-lg md:h-[500px] lg:h-[600px]">
-                    <div className="relative h-full w-full">
-                      <Image
-                        src={getOptimizedImageUrl(image, 900, 450, 90)}
-                        alt={`Gallery image ${index + 1}`}
-                        fill
-                        priority={index === 0}
-                        loading={index === 0 ? "eager" : "lazy"}
-                        placeholder="blur"
-                        blurDataURL={getBlurDataUrl(image)}
-                        sizes="(max-width: 640px) 531px, (max-width: 1024px) 711px, 1200px"
-                        className="object-cover transition-all duration-300 group-hover:scale-105"
-                        quality={90}
-                      />
-                    </div>
+                    {/* Loading skeleton */}
+                    {loadingStates[image._key] !== false && (
+                      <div className="absolute inset-0 animate-pulse bg-gray-200" />
+                    )}
+                    
+                    <Image
+                      src={getOptimizedImageUrl(image, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height)}
+                      alt={`Gallery image ${index + 1}`}
+                      width={imageSizes.carousel.desktop.width}
+                      height={imageSizes.carousel.desktop.height}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                      priority={index === 0}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      placeholder="blur"
+                      blurDataURL={getBlurDataUrl(image)}
+                      className={cn(
+                        "h-full w-full object-cover transition-all duration-700",
+                        loadingStates[image._key] === false 
+                          ? "opacity-100 group-hover:scale-105" 
+                          : "opacity-0"
+                      )}
+                      onLoad={() => {
+                        setLoadingStates(prev => ({ ...prev, [image._key]: false }));
+                      }}
+                      onError={() => {
+                        setLoadingStates(prev => ({ ...prev, [image._key]: false }));
+                      }}
+                    />
                     <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-20" />
                   </div>
                 </CarouselItem>

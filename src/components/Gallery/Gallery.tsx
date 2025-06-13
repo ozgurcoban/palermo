@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import MaskText from "../ui/MaskText";
 import GalleryImage from "./GalleryImage";
 import { useGetLocale } from "@/config";
-import { getOptimizedImageUrl, imageSizes } from "@/lib/sanity-image";
+import { getOptimizedImageUrl, getBlurDataUrl, imageSizes } from "@/lib/sanity-image";
 import { useTranslations } from "next-intl";
 import { GalleryCarousel } from "./GalleryCarousel";
 import { useImagePreloader } from "@/lib/useImagePreloader";
@@ -86,6 +86,7 @@ export const Gallery = ({
                 key={image._key}
                 imageId={image._key}
                 src={getOptimizedImageUrl(image, imageSizes.gallery.desktop.width, imageSizes.gallery.desktop.height)}
+                blurDataURL={getBlurDataUrl(image)}
                 i={i}
                 favouriteList={favouriteList}
                 setFavouriteList={setFavouriteList}

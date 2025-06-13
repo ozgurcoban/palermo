@@ -146,11 +146,11 @@ function generateSrcSet(source: any, width: number, height?: number): string {
 // Helper to get blur data URL for placeholder
 export function getBlurDataUrl(source: any): string {
   return urlFor(source)
-    .width(40)
-    .height(30)
-    .blur(20)
-    .quality(30)
-    .fit('crop')
+    .width(20)
+    .height(20)
+    .blur(10)
+    .quality(20)
+    .format('webp')
     .url();
 }
 
@@ -165,7 +165,12 @@ export function getBackgroundImage(source: any, width = 1920): string {
 }
 
 // Quick optimized image helper for common sizes
-export function getOptimizedImageUrl(source: any, width: number, height?: number, quality = 85): string {
+export function getOptimizedImageUrl(
+  source: any, 
+  width: number, 
+  height?: number,
+  quality: number = 85
+): string {
   const imageBuilder = urlFor(source)
     .width(width)
     .fit('crop')
@@ -178,61 +183,32 @@ export function getOptimizedImageUrl(source: any, width: number, height?: number
     imageBuilder.rect(0, 0, width, height);
   }
   
+  // Auto format is better than forcing specific formats
+  // Next.js will handle format negotiation
+  
   return imageBuilder.url();
 }
 
-// Optimized carousel image for Next.js Image component
-export function getCarouselImage(source: any): CarouselImageProps {
-  // Desktop dimensions for src (Next.js will handle responsive sizes)
-  const width = 1200;
-  const height = 600;
-  
-  return {
-    src: getOptimizedImageUrl(source, width, height, 85),
-    width,
-    height,
-    // Let Next.js handle srcSet generation based on deviceSizes
-  };
-}
-
-// Get responsive carousel image URL based on viewport
-export function getResponsiveCarouselUrl(source: any): string {
-  // This will be called client-side to get the appropriate image
-  if (typeof window === 'undefined') {
-    return getOptimizedImageUrl(source, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height, 85);
-  }
-  
-  const width = window.innerWidth;
-  
-  if (width <= 640) {
-    return getOptimizedImageUrl(source, imageSizes.carousel.mobile.width, imageSizes.carousel.mobile.height, 85);
-  } else if (width <= 1024) {
-    return getOptimizedImageUrl(source, imageSizes.carousel.tablet.width, imageSizes.carousel.tablet.height, 85);
-  }
-  
-  return getOptimizedImageUrl(source, imageSizes.carousel.desktop.width, imageSizes.carousel.desktop.height, 85);
-}
-
-// Predefined sizes for common use cases
+// Predefined sizes for common use cases - optimized for performance
 export const imageSizes = {
   gallery: {
-    mobile: { width: 300, height: 200 },
-    tablet: { width: 400, height: 300 },
-    desktop: { width: 600, height: 400 }
+    mobile: { width: 640, height: 480 },
+    tablet: { width: 768, height: 576 },
+    desktop: { width: 1024, height: 768 }
   },
   hero: {
-    mobile: { width: 800, height: 600 },
-    tablet: { width: 1200, height: 800 },
+    mobile: { width: 640, height: 360 },
+    tablet: { width: 1024, height: 576 },
     desktop: { width: 1920, height: 1080 }
   },
   carousel: {
-    mobile: { width: 531, height: 400 },
-    tablet: { width: 711, height: 400 },
+    mobile: { width: 640, height: 400 },
+    tablet: { width: 900, height: 450 },
     desktop: { width: 1200, height: 600 }
   },
   thumbnail: {
-    small: { width: 150, height: 150 },
-    medium: { width: 300, height: 300 },
+    small: { width: 200, height: 200 },
+    medium: { width: 400, height: 400 },
     large: { width: 600, height: 600 }
   }
 };
