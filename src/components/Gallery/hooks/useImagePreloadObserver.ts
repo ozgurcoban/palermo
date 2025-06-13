@@ -3,13 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { IMAGE_PRELOAD_CONFIG } from "../constants";
 
-export function useImagePreloadObserver() {
+export function useImagePreloadObserver(elementRef?: React.RefObject<HTMLDivElement>) {
   const [shouldLoadImages, setShouldLoadImages] = useState(false);
   const [hasInitialized, setHasInitialized] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
+  const internalRef = useRef<HTMLDivElement>(null);
+  const refToUse = elementRef || internalRef;
 
   useEffect(() => {
-    const currentRef = elementRef.current;
+    const currentRef = refToUse.current;
     
     if (!currentRef) return;
     
@@ -37,5 +38,5 @@ export function useImagePreloadObserver() {
     };
   }, []);
 
-  return { shouldLoadImages, hasInitialized, elementRef };
+  return { shouldLoadImages, hasInitialized, elementRef: refToUse };
 }

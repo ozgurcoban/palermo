@@ -6,14 +6,16 @@ import { AUTOPLAY_CONFIG_INTERSECTION } from "../constants";
 interface UseAutoplayObserverProps {
   onEnterView: () => void;
   onLeaveView: () => void;
+  elementRef?: React.RefObject<HTMLDivElement>;
 }
 
-export function useAutoplayObserver({ onEnterView, onLeaveView }: UseAutoplayObserverProps) {
+export function useAutoplayObserver({ onEnterView, onLeaveView, elementRef }: UseAutoplayObserverProps) {
   const [isInView, setIsInView] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
+  const internalRef = useRef<HTMLDivElement>(null);
+  const refToUse = elementRef || internalRef;
 
   useEffect(() => {
-    const currentRef = elementRef.current;
+    const currentRef = refToUse.current;
     
     if (!currentRef) return;
     
@@ -44,5 +46,5 @@ export function useAutoplayObserver({ onEnterView, onLeaveView }: UseAutoplayObs
     };
   }, [isInView, onEnterView, onLeaveView]);
 
-  return { isInView, elementRef };
+  return { isInView, elementRef: refToUse };
 }

@@ -39,8 +39,11 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
   // Refs
   const plugin = useRef(Autoplay(AUTOPLAY_CONFIG));
   
-  // Custom hooks - separate observers for preloading vs autoplay
-  const { shouldLoadImages, hasInitialized, elementRef: preloadRef } = useImagePreloadObserver();
+  // Shared ref for both observers
+  const sharedElementRef = useRef<HTMLDivElement>(null);
+  
+  // Custom hooks - separate observers for preloading vs autoplay using shared ref
+  const { shouldLoadImages, hasInitialized } = useImagePreloadObserver(sharedElementRef);
   
   const handleAutoplayEnter = useCallback(() => {
     plugin.current.play();
@@ -50,9 +53,10 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
     plugin.current.stop();
   }, []);
 
-  const { isInView, elementRef: autoplayRef } = useAutoplayObserver({
+  const { isInView } = useAutoplayObserver({
     onEnterView: handleAutoplayEnter,
     onLeaveView: handleAutoplayLeave,
+    elementRef: sharedElementRef,
   });
 
   const { api, setApi, current, count, scrollTo } = useCarouselState();
@@ -86,10 +90,7 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
         <GalleryHeader title={title} description={description} />
 
         <FadeUp delay={0.3} className="relative mt-36 w-full">
-          <div ref={(node) => {
-            if (preloadRef.current !== node) preloadRef.current = node;
-            if (autoplayRef.current !== node) autoplayRef.current = node;
-          }}>
+          <div ref={sharedElementRef}>
             <Carousel
               setApi={setApi}
               opts={CAROUSEL_CONFIG}
