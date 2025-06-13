@@ -16,6 +16,7 @@ import Script from "next/script";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { criticalCSS } from "@/lib/critical-css";
 import "../globals.css";
 
 type Props = {

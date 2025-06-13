@@ -58,4 +58,4 @@ const nextConfig = {
   poweredByHeader: false,
 };
 
-module.exports = withBundleAnalyzer(withNextIntl(nextConfig));
+module.exports = withNextIntl(nextConfig);
