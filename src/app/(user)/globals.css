@@ -119,6 +119,31 @@
   }
 }
 
+/* Disable all animations during language switch */
+html.no-animations *,
+html.no-animations *::before,
+html.no-animations *::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+
+/* Force elements to their final state */
+html.no-animations .animate-fadeUp,
+html.no-animations .opacity-0,
+html.no-animations .translate-y-8,
+html.no-animations .translate-y-full {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Specifically target bottom bar animation */
+html.no-animations .bottom-bar-slide-up {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
 html::-webkit-scrollbar {
   width: 7px;
   background-color: hsl(var(--secondary));

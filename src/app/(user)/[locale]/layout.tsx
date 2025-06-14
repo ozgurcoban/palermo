@@ -3,6 +3,7 @@ import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { locales } from "@/config";
+import { cookies } from "next/headers";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { lato, recoleta, graduate } from "@/lib/fonts";
@@ -16,6 +17,7 @@ import Script from "next/script";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { LanguageSwitchChecker } from "@/components/LanguageSwitchChecker";
 import { criticalCSS } from "@/lib/critical-css";
 import MobileBottomBar from "@/components/MobileBottomBar";
 import "../globals.css";
@@ -57,17 +59,28 @@ export default async function LocaleLayout({
   const lunchData = await client.fetch<LunchConfiguration>(LUNCH_QUERY);
 
   const restaurantSchema = generateRestaurantSchema(locale as "sv" | "en");
+  
+  // Check for language switch cookie
+  const cookieStore = cookies();
+  const isLanguageSwitching = cookieStore.get("langSwitch")?.value === "true";
 
   return (
     <html
       lang={locale}
-      className={`${lato.variable} ${recoleta.variable} ${graduate.variable}`}
+      className={`${lato.variable} ${recoleta.variable} ${graduate.variable} ${isLanguageSwitching ? "no-animations" : ""}`}
       suppressHydrationWarning
     >
       <head>
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        <script dangerouslySetInnerHTML={{__html: `
+          // Check for language switch immediately before React hydration
+          if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('langSwitch') === 'true') {
+            document.documentElement.classList.add('no-animations');
+            // Don't remove here - let React component handle it properly
+          }
+        `}} />
       </head>
       <body className="overflow-x-hidden">
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
@@ -83,6 +96,7 @@ export default async function LocaleLayout({
           disableTransitionOnChange
         >
           <IntlProvider params={{ locale }}>
+            <LanguageSwitchChecker />
             <Toaster />
             <Navbar />
             <main>

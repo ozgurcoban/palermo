@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { useRouter, usePathname } from "@/navigation";
 import { event } from "@/lib/gtag";
+import { setLanguageSwitchFlag } from "@/lib/cookie-utils";
 
 export default function LocaleSwitcher() {
   const t = useTranslations("LocaleSwitcher");
@@ -20,6 +21,16 @@ export default function LocaleSwitcher() {
   const pathname = usePathname();
 
   function onSelectChange(nextLocale: string) {
+    // Save current scroll position
+    const scrollY = window.scrollY;
+    sessionStorage.setItem('scrollPosition', scrollY.toString());
+    
+    // Set flag to disable animations
+    setLanguageSwitchFlag();
+    
+    // Add no-animations class immediately
+    document.documentElement.classList.add("no-animations");
+    
     // Track language switch
     event(`lang_${nextLocale}`, {
       event_category: 'Navigation',
@@ -28,8 +39,10 @@ export default function LocaleSwitcher() {
       to_lang: nextLocale
     });
     
-    // @ts-ignore
-    router.replace(pathname, { locale: nextLocale });
+    // Small delay to ensure storage is set before navigation
+    setTimeout(() => {
+      router.replace(pathname, { locale: nextLocale });
+    }, 10);
   }
 
   return (

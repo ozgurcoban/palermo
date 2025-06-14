@@ -7,15 +7,18 @@ import { useTranslations } from "next-intl";
 import { useGetLocale } from "@/config";
 import type { AppPathnames } from "@/config";
 import { useRouter } from "@/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { event } from "@/lib/gtag";
+import { setLanguageSwitchFlag } from "@/lib/cookie-utils";
+import { useIsLanguageSwitching } from "@/components/LanguageSwitchChecker";
 
 const MobileBottomBar = () => {
   const pathname = usePathname();
   const locale = useGetLocale();
   const router = useRouter();
   const t = useTranslations("MobileBottomBar");
-  const [isLanguageSwitching, setIsLanguageSwitching] = useState(false);
+  const [isLocalSwitching, setIsLocalSwitching] = useState(false);
+  const isLanguageSwitching = useIsLanguageSwitching();
 
   const navItems = [
     {
@@ -39,10 +42,20 @@ const MobileBottomBar = () => {
   ];
 
   const handleLanguageToggle = async () => {
-    if (isLanguageSwitching) return;
+    if (isLocalSwitching) return;
     
-    setIsLanguageSwitching(true);
+    setIsLocalSwitching(true);
     const nextLocale = locale === "sv" ? "en" : "sv";
+    
+    // Save current scroll position
+    const scrollY = window.scrollY;
+    sessionStorage.setItem('scrollPosition', scrollY.toString());
+    
+    // Set flag to disable animations
+    setLanguageSwitchFlag();
+    
+    // Add no-animations class immediately
+    document.documentElement.classList.add("no-animations");
     
     // Track language switch
     event(`mobile_bottom_lang_${nextLocale}`, {
@@ -52,14 +65,20 @@ const MobileBottomBar = () => {
       to_lang: nextLocale
     });
     
-    // @ts-ignore
-    router.replace(pathname, { locale: nextLocale });
-    setTimeout(() => setIsLanguageSwitching(false), 300);
+    // Small delay to ensure storage is set before navigation
+    setTimeout(() => {
+      router.replace(pathname, { locale: nextLocale });
+    }, 10);
+    
+    // Reset local state after a short delay
+    setTimeout(() => {
+      setIsLocalSwitching(false);
+    }, 300);
   };
 
   return (
     <nav
-      className="bottom-bar-slide-up fixed bottom-4 left-4 right-4 z-50 lg:hidden"
+      className={`fixed bottom-4 left-4 right-4 z-50 lg:hidden ${!isLanguageSwitching ? 'bottom-bar-slide-up' : ''}`}
       role="navigation"
       aria-label="Mobile navigation"
     >
@@ -113,7 +132,7 @@ const MobileBottomBar = () => {
           {/* Ripple effect */}
           <span 
             className={`absolute inset-0 rounded-full bg-white/10 transition-all duration-300 ${
-              isLanguageSwitching ? 'scale-150 opacity-0' : 'scale-100 opacity-100'
+              isLocalSwitching ? 'scale-150 opacity-0' : 'scale-100 opacity-100'
             }`}
           />
           
@@ -121,7 +140,7 @@ const MobileBottomBar = () => {
           <div className="relative h-full w-full flex items-center justify-center">
             <span 
               className={`text-xs font-medium text-white/90 tracking-wider transition-all duration-300 ${
-                isLanguageSwitching ? 'transform scale-110' : 'transform scale-100'
+                isLocalSwitching ? 'transform scale-110' : 'transform scale-100'
               }`}
             >
               {locale.toUpperCase()}
