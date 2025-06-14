@@ -9,13 +9,7 @@
       },
       "cta": "Kolla in menyn"
     },
-    "Gallery": {
-      "title": "Ögonblick hos Oss",
-      "description": "Från hjärtliga måltider till glada samlingar – bläddra igenom våra minnen och känn dig som hemma",
-      "button": "Se mer"
-    },
     "Menu": {
-      "title": "Testa oss",
       "categories": "Våra kategorier",
       "dineIn": "Servering",
       "menuItemsLabel": "Menylista",
@@ -44,7 +38,6 @@
     "phone": "Telefon",
     "email": "E-post",
     "openingHours": "Öppettider",
-    "getInTouch": "Kontakta oss",
     "name": "Namn",
     "namePlaceholder": "Ditt namn",
     "emailPlaceholder": "din@epost.se",
@@ -78,17 +71,10 @@
     }
   },
   "Buttons": {
-    "readMore": "Läs mer",
-    "submit": "Skicka",
-    "seeMore": "Se mer"
-  },
-  "PathnamesPage": {
-    "title": "Pfadnamen",
-    "description": "<p>Auch die Pfadnamen sind internationalisiert.</p><p>Wenn du die Standardsprache Englisch verwendest, siehst du <code>/en/pathnames</code> in der Adressleiste des Browsers auf dieser Seite.</p><p>Wenn du die Sprache auf Deutsch änderst, wird die URL entsprechend lokalisiert (<code>/de/pfadnamen</code>).</p>"
+    "submit": "Skicka"
   },
   "Error": {
-    "title": "Etwas ist schief gelaufen!",
-    "description": "<p>Es ist leider ein Problem aufgetreten.</p><p>Du kannst versuchen <retry>diese Seite neu zu laden</retry>.</p>"
+    "description": "<p>Vi har tyvärr stött på ett fel.</p><p>Du kan försöka <retry>ladda om sidan</retry> du besökte.</p>"
   },
   "NotFoundPage": {
     "title": "Oj! Den pizzan finns inte på menyn",
@@ -103,7 +89,6 @@
   },
   "Metadata": {
     "title": "Palermo Uppsala - Pizza & restaurang på Sysslomansgatan",
-    "description": "Prisvärd restaurang & pizzeria i Uppsala centrum. Pizza, pasta, kötträtter & lunch. Öppet alla dagar på Sysslomansgatan 7.\n☎️ 018-13 18 20",
     "home": {
       "title": "Palermo Uppsala - Pizza & Restaurang på Sysslomansgatan",
       "description": "Palermo pizzeria i Uppsala centrum. Prisvärd restaurang med pizza, pasta & lunch från 119 kr. Öppet alla dagar.\n☎️ 018-13 18 20"
@@ -112,7 +97,6 @@
       "title": "Meny Palermo Uppsala - Pizza, Pizzeria & Restaurang",
       "description": "Se Palermo pizzeria meny med priser. Pizza, pasta, kötträtter i Uppsala. Prisvärd restaurang på Sysslomansgatan. Take away & servering."
     },
-
     "lunch": {
       "title": "Lunch Uppsala - Dagens Lunch på Palermo från 119 kr",
       "description": "Prisvärd lunch i Uppsala. Dagens lunch från 119 kr inkl sallad, bröd & kaffe. Palermo restaurang serverar lunch mån-fre 11-15. Se lunchmeny."
@@ -120,7 +104,6 @@
   },
   "LocaleSwitcher": {
     "label": "Ändra språk",
-    "title": "Språk",
     "locale": "{locale, select, sv {Svenska} en {Engelska} other {Okänd}}"
   },
   "Navigation": {
@@ -128,28 +111,9 @@
     "menu": "Meny",
     "lunch": "lunch",
     "contact": "Hitta till oss",
-    "mobile": {
-      "siteLanguage": "Språk:"
-    },
     "goToHomepage": "Palermo - Gå till startsidan",
     "scrollToContact": "Rulla till kontaktformuläret",
-    "mobileNavigation": "Mobilnavigering",
-    "navigationButtons": "Navigeringsknappar",
     "opensInNewTab": "(öppnas i ny flik)"
-  },
-  "PageLayout": {
-    "links": {
-      "docs": {
-        "title": "Dokumentation",
-        "description": "Erfahre mehr über next-intl in der offiziellen Dokumentation.",
-        "href": "https://next-intl-docs.vercel.app/"
-      },
-      "source": {
-        "title": "Quellcode",
-        "description": "Sieh dir den Quellcode dieses Beispiels auf GitHub an.",
-        "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router"
-      }
-    }
   },
   "Footer": {
     "slogan": "Uppsalas (inofficiella) 14:e nation"
@@ -201,13 +165,5 @@
     "lunch": "Lunch",
     "mobileNavigation": "Mobilnavigering",
     "navigationButtons": "Navigeringsknappar"
-  },
-  "SEOSection": {
-    "title": "Prisvärd pizza, kötträtter och mer i hjärtat av Uppsala",
-    "badge": "UTFORSKA PALERMOS MENY MED PRISVÄRD PIZZA, PASTA OCH MER – MITT I HJÄRTAT AV UPPSALA",
-    "heading": "En meny för alla smaker och plånböcker",
-    "description1": "Palermo är en prisvärd restaurang i hjärtat av Uppsala – närmare bestämt på Sysslomansgatan 7. Här möts våra gäster av en varierad meny med allt från pizza till kötträtter.",
-    "description2": "Hos oss hittar du alltid något som passar dina smaklökar. Oavsett om du är sugen på en klassisk pizza, pasta eller något av våra kötträtter – Uppsalas på bord efter middag och när mage snackar. Vår meny är uppdelad i tydliga kategorier som gör det enkelt att hitta vad du är sugen på.",
-    "description3": "Oavsett om du är sugen på en krämig pizza, en fyllig pastarätt eller kanske en klassisk köttbit – Palermo erbjuder något för alla smaker. Vår proffsiga personal gör att medelsa sario är låga i Uppsala. Huvudrestaurangen ligger bara studenten och familjer."
   }
 }

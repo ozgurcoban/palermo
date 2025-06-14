@@ -4,51 +4,13 @@
       "title": "Palermo",
       "description": "Uppsala's go-to spot for pizza and good times",
       "badge": {
-        "main": "UPPSALAS (UNOFFICIAL) 14:",
+        "main": "UPPSALAS (UNOFFICIAL) 14",
         "suffix": "th NATION"
       },
       "cta": "Check out the menu"
     },
-    "Gallery": {
-      "title": "Beautiful moments in Palermo",
-      "description": "From hearty meals to joyful gatherings – browse through our memories and feel at home.",
-      "button": "Ses more"
-    },
-    "About": {
-      "introduction": {
-        "title": "Welcome to Palermo",
-        "description": "Palermo is more than just a restaurant—it’s a gathering place where stories come to life. A place where memories are made to last.Welcome home. Welcome to Palermo."
-      },
-      "quickFacts": {
-        "title": "Quick facts",
-        "facts": [
-          {
-            "title": "Year-round enclosed terrace.",
-            "description": "A popular, cosy spot always buzzing with life.",
-            "icon": "Users"
-          },
-          {
-            "title": "Authentic pizzas & hearty comfort food.",
-            "description": "Genuine Swedish pizzas and other timeless classics.",
-            "icon": "Pizza"
-          },
-          {
-            "title": "Friendly, relaxed vibe.",
-            "description": "Like a cancelled lecture – welcoming and lively.",
-            "icon": "Beer"
-          },
-          {
-            "title": "Card payments only.",
-            "description": "A cash-free experience for smooth and hassle-free service.",
-            "icon": "CreditCard"
-          }
-        ]
-      },
-      "button": "Read more"
-    },
     "Menu": {
-      "title": "Try us, you'll love us",
-      "categories": "our amazing categories",
+      "categories": "Our categories",
       "dineIn": "Dine-in",
       "menuItemsLabel": "Menu items",
       "takeAway": {
@@ -76,7 +38,6 @@
     "phone": "Phone",
     "email": "Email",
     "openingHours": "Opening hours",
-    "getInTouch": "Get in touch",
     "name": "Name",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "your@email.com",
@@ -110,12 +71,9 @@
     }
   },
   "Buttons": {
-    "readMore": "Read more",
-    "submit": "Submit",
-    "seeMore": "See more"
+    "submit": "Submit"
   },
   "Error": {
-    "title": "Something went wrong!",
     "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
   },
   "NotFoundPage": {
@@ -131,7 +89,6 @@
   },
   "Metadata": {
     "title": "Palermo Uppsala - Pizza & Restaurant on Sysslomansgatan",
-    "description": "Affordable restaurant & pizzeria in Uppsala city center. Pizza, pasta, meat dishes & lunch. Open every day at Sysslomansgatan 7.\n☎️ 018-13 18 20",
     "home": {
       "title": "Palermo Uppsala - Pizza & Restaurant on Sysslomansgatan",
       "description": "Palermo pizzeria in central Uppsala. Affordable restaurant with pizza, pasta & lunch from 119 SEK. Open every day.\n☎️ 018-13 18 20"
@@ -147,7 +104,6 @@
   },
   "LocaleSwitcher": {
     "label": "Change language",
-    "title": "Language",
     "locale": "{locale, select, sv {Swedish} en {English} other {Unknown}}"
   },
   "Navigation": {
@@ -155,28 +111,9 @@
     "menu": "Menu",
     "lunch": "Lunch",
     "contact": "where to find us",
-    "mobile": {
-      "siteLanguage": "Site language:"
-    },
     "goToHomepage": "Palermo - Go to homepage",
     "scrollToContact": "Scroll to contact form",
-    "mobileNavigation": "Mobile navigation",
-    "navigationButtons": "Navigation buttons",
     "opensInNewTab": "(opens in new tab)"
-  },
-  "PageLayout": {
-    "links": {
-      "docs": {
-        "title": "Docs",
-        "description": "Learn more about next-intl in the official docs.",
-        "href": "https://next-intl-docs.vercel.app/"
-      },
-      "source": {
-        "title": "Source code",
-        "description": "Browse the source code of this example on GitHub.",
-        "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router"
-      }
-    }
   },
   "Footer": {
     "slogan": "Uppsalas (unofficial) 14th nation"
@@ -228,13 +165,5 @@
     "lunch": "Lunch",
     "mobileNavigation": "Mobile navigation",
     "navigationButtons": "Navigation buttons"
-  },
-  "SEOSection": {
-    "title": "Affordable pizza, meat dishes and more in the heart of Uppsala",
-    "badge": "EXPLORE PALERMO'S MENU WITH AFFORDABLE PIZZA, PASTA AND MORE – IN THE HEART OF UPPSALA",
-    "heading": "A menu for all tastes and wallets",
-    "description1": "Palermo is an affordable restaurant in the heart of Uppsala – specifically at Sysslomansgatan 7. Here our guests are met with a varied menu with everything from pizza to meat dishes.",
-    "description2": "With us, you'll always find something that suits your taste buds. Whether you're craving a classic pizza, pasta, or one of our meat dishes – Uppsala's on the table after dinner and when the stomach is talking. Our menu is divided into clear categories that make it easy to find what you're craving.",
-    "description3": "Whether you're in the mood for a creamy pizza, a hearty pasta dish, or perhaps a classic cut of meat – Palermo offers something for all tastes. Our professional staff ensures that prices remain low in Uppsala. The main restaurant is perfect for both students and families."
   }
 }
