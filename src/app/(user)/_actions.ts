@@ -10,6 +10,12 @@ type ContactFormInputs = z.infer<typeof ContactFormSchema> & { locale: string };
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function verifyRecaptcha(token: string | undefined) {
+  // Skip reCAPTCHA verification in development
+  if (process.env.NODE_ENV === 'development') {
+    console.log("Development mode: skipping reCAPTCHA verification");
+    return { success: true };
+  }
+
   if (!token || token === "") {
     // Allow empty token for when reCAPTCHA is still loading
     console.log("No reCAPTCHA token provided, skipping verification");
