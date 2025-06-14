@@ -7,6 +7,7 @@ import MenuItem from "../Menu/MenuItems/MenuItem";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import FadeUp from "../ui/FadeUp";
+import { useTranslations } from "next-intl";
 
 type Props = {
   lunchData: LunchConfiguration;
@@ -14,6 +15,7 @@ type Props = {
 
 export const Lunch: React.FC<Props> = ({ lunchData }) => {
   const locale = useGetLocale();
+  const t = useTranslations("Lunch");
   const scrollRef = useRef<HTMLDivElement>(null);
   const [lunchHeight, setLunchHeight] = useState<string>("70vh");
 
@@ -21,8 +23,8 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
     const calculateLunchHeight = () => {
       if (window.innerWidth < 1024) { // lg breakpoint
         const navbar = (document.querySelector('header nav') || 
-                       document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
-        const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
+                       document.querySelector('nav[role="navigation"]:not(.fixed)')) as HTMLElement;
+        const bottomBar = document.querySelector('nav.fixed[role="navigation"]') as HTMLElement;
         
         const navbarHeight = navbar ? navbar.offsetHeight : 80;
         const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120;
@@ -159,13 +161,19 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
                 )}
               </TabsList>
 
-              <div className="flex-1 overflow-y-scroll pb-24 lg:pb-0" ref={scrollRef}>
+              <div 
+                className="flex-1 overflow-y-scroll pb-24 lg:pb-0" 
+                ref={scrollRef}
+                tabIndex={0}
+                role="region"
+                aria-label={t("lunchMenuLabel")}
+              >
                 {dagensLunch && (
                   <TabsContent value="dagens" className="mt-0">
                     <div className="sticky top-0 z-10 mb-3 border-b border-border bg-white pb-2 dark:bg-card sm:mb-4 sm:pb-4">
-                      <h3 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
+                      <h2 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
                         {dagensLunch.title?.[locale] || "Dagens lunch"}
-                      </h3>
+                      </h2>
                       {dagensLunch.description?.[locale] && (
                         <p className="mb-1 text-center text-xs text-muted-foreground sm:mb-2 sm:text-sm">
                           {dagensLunch.description[locale]}
@@ -183,9 +191,9 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
                 {lunchPizza && (
                   <TabsContent value="pizza" className="mt-0">
                     <div className="sticky top-0 z-10 mb-3 border-b border-border bg-white pb-2 dark:bg-card sm:mb-4 sm:pb-4">
-                      <h3 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
+                      <h2 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
                         {lunchPizza.title?.[locale] || "Lunchpizza"}
-                      </h3>
+                      </h2>
                       {lunchPizza.description?.[locale] && (
                         <p className="mb-1 text-center text-xs text-muted-foreground sm:mb-2 sm:text-sm">
                           {lunchPizza.description[locale]}
@@ -203,9 +211,9 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
                 {monthlySpecial && (
                   <TabsContent value="monthly" className="mt-0">
                     <div className="sticky top-0 z-10 mb-3 border-b border-border bg-white pb-2 dark:bg-card sm:mb-4 sm:pb-4">
-                      <h3 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
+                      <h2 className="text-center font-recoleta text-lg sm:text-xl md:text-2xl">
                         {monthlySpecial.title?.[locale] || "Månadens tips"}
-                      </h3>
+                      </h2>
                       {monthlySpecial.description?.[locale] && (
                         <p className="mb-1 text-center text-xs text-muted-foreground sm:mb-2 sm:text-sm">
                           {monthlySpecial.description[locale]}

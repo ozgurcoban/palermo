@@ -17,7 +17,7 @@ const NavLinks = ({ navbarLinks }: NavLinks) => {
   const isPathname = (href: string) => pathname === href;
 
   return (
-    <nav className="hidden list-none gap-10 whitespace-nowrap font-lato text-base uppercase md:flex">
+    <nav className="hidden list-none gap-10 whitespace-nowrap font-lato text-base uppercase md:flex" aria-label="Main navigation">
       {navbarLinks.map(({ href, title }) => (
         <li key={title} className="relative">
           <Link
@@ -28,6 +28,7 @@ const NavLinks = ({ navbarLinks }: NavLinks) => {
               isPathname(href) && "text-foreground"
             )}
             href={href}
+            aria-current={isPathname(href) ? "page" : undefined}
           >
             <span className="relative py-2">
               {title}

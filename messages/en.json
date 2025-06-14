@@ -50,6 +50,7 @@
       "title": "Try us, you'll love us",
       "categories": "our amazing categories",
       "dineIn": "Dine-in",
+      "menuItemsLabel": "Menu items",
       "takeAway": {
         "short": "Take-away",
         "full": ""
@@ -77,7 +78,10 @@
     "openingHours": "Opening hours",
     "getInTouch": "Get in touch",
     "name": "Name",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "your@email.com",
     "message": "Message",
+    "messagePlaceholder": "How can we help you?",
     "formTitle": "Ask a question",
     "formDescription": "We'll get back to you as soon as possible.",
     "privacyNote": "No data is stored, neither internally nor for marketing purposes.",
@@ -99,6 +103,10 @@
     "content": {
       "title": "UPPSALA'S NEIGHBORHOOD RESTAURANT",
       "description": "Palermo has become a natural part of Uppsala. This is where students, families and friends gather over pizza, pasta and hearty comfort food. No complicated fine dining - just well-cooked meals downtown at prices that work for everyone. Exactly how a local restaurant should be."
+    },
+    "pagination": {
+      "previousPage": "Go to previous page",
+      "nextPage": "Go to next page"
     }
   },
   "Buttons": {
@@ -149,7 +157,12 @@
     "contact": "where to find us",
     "mobile": {
       "siteLanguage": "Site language:"
-    }
+    },
+    "goToHomepage": "Palermo - Go to homepage",
+    "scrollToContact": "Scroll to contact form",
+    "mobileNavigation": "Mobile navigation",
+    "navigationButtons": "Navigation buttons",
+    "opensInNewTab": "(opens in new tab)"
   },
   "PageLayout": {
     "links": {
@@ -170,6 +183,7 @@
   },
   "Lunch": {
     "hero": {
+      "badge": "Weekdays 11:00-15:00",
       "title": "Weekday lunch at Palermo Uppsala",
       "description": "From {price} SEK • Choose from {count} dishes + lunch pizza • Salad, bread & coffee included",
       "cta": "View lunch menu"
@@ -177,7 +191,8 @@
     "content": {
       "title": "Uppsala's most laid-back lunch",
       "description": "No stuffy business lunches here. Just students and locals gathering over proper comfort food and pizza downtown. Perfect for tight budgets and big appetites - which is exactly why we've kept our prices honest since day one."
-    }
+    },
+    "lunchMenuLabel": "Lunch menu"
   },
   "Cookies": {
     "banner": {
@@ -210,7 +225,9 @@
   "MobileBottomBar": {
     "home": "Home",
     "menu": "Menu",
-    "lunch": "Lunch"
+    "lunch": "Lunch",
+    "mobileNavigation": "Mobile navigation",
+    "navigationButtons": "Navigation buttons"
   },
   "SEOSection": {
     "title": "Affordable pizza, meat dishes and more in the heart of Uppsala",

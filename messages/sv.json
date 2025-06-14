@@ -18,6 +18,7 @@
       "title": "Testa oss",
       "categories": "Våra kategorier",
       "dineIn": "Servering",
+      "menuItemsLabel": "Menylista",
       "takeAway": {
         "short": "Avh",
         "full": "Avhämtning"
@@ -45,7 +46,10 @@
     "openingHours": "Öppettider",
     "getInTouch": "Kontakta oss",
     "name": "Namn",
+    "namePlaceholder": "Ditt namn",
+    "emailPlaceholder": "din@epost.se",
     "message": "Meddelande",
+    "messagePlaceholder": "Hur kan vi hjälpa dig?",
     "formTitle": "Har du frågor?",
     "formDescription": "Vi svarar så snart som möjligt.",
     "privacyNote": "Inga uppgifter sparas, varken internt eller för marknadsföring.",
@@ -67,6 +71,10 @@
     "content": {
       "title": "Uppsalas vardagsrestaurang",
       "description": "Palermo har blivit en självklar del av Uppsala. Här möts studenter, familjer och kompisgäng över pizza, pasta och rejäl husmanskost. Ingen krånglig fine dining - bara vällagad mat mitt i centrum till priser som funkar för alla. Precis så som en riktig kvarterskrog ska vara."
+    },
+    "pagination": {
+      "previousPage": "Gå till föregående sida",
+      "nextPage": "Gå till nästa sida"
     }
   },
   "Buttons": {
@@ -122,7 +130,12 @@
     "contact": "Hitta till oss",
     "mobile": {
       "siteLanguage": "Språk:"
-    }
+    },
+    "goToHomepage": "Palermo - Gå till startsidan",
+    "scrollToContact": "Rulla till kontaktformuläret",
+    "mobileNavigation": "Mobilnavigering",
+    "navigationButtons": "Navigeringsknappar",
+    "opensInNewTab": "(öppnas i ny flik)"
   },
   "PageLayout": {
     "links": {
@@ -143,6 +156,7 @@
   },
   "Lunch": {
     "hero": {
+      "badge": "Vardagar 11:00-15:00",
       "title": "Lunch i Uppsala - varje vardag på Palermo",
       "description": "Från {price} SEK • Välj mellan {count} rätter + lunchpizza • Sallad, bröd & kaffe ingår",
       "cta": "Se lunchmenyn"
@@ -150,7 +164,8 @@
     "content": {
       "title": "Uppsalas mest avslappnade lunch",
       "description": "Glöm stela business luncher. Här möts studenter och Uppsalabor över rejäl husmanskost och pizza mitt i centrum. Perfekt när plånboken är tunn men magen skriker - och ja, det är därför vi fortfarande kör samma schyssta priser som förr."
-    }
+    },
+    "lunchMenuLabel": "Lunchmeny"
   },
   "Cookies": {
     "banner": {
@@ -183,7 +198,9 @@
   "MobileBottomBar": {
     "home": "Hem",
     "menu": "Meny",
-    "lunch": "Lunch"
+    "lunch": "Lunch",
+    "mobileNavigation": "Mobilnavigering",
+    "navigationButtons": "Navigeringsknappar"
   },
   "SEOSection": {
     "title": "Prisvärd pizza, kötträtter och mer i hjärtat av Uppsala",

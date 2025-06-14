@@ -17,6 +17,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
@@ -119,10 +120,13 @@ export default function ContactForm() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
+                    <FormLabel className="text-base font-medium">
+                      {t("name")}
+                    </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={t("name")}
-                        className="h-12 border border-border bg-background px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        placeholder={t("namePlaceholder")}
+                        className="h-12 border border-border bg-background px-4 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"
                         onFocus={handleFormStart}
                         {...field}
                       />
@@ -138,11 +142,14 @@ export default function ContactForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
+                    <FormLabel className="text-base font-medium">
+                      {t("email")}
+                    </FormLabel>
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder={t("email")}
-                        className="h-12 border border-border bg-background px-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        placeholder={t("emailPlaceholder")}
+                        className="h-12 border border-border bg-background px-4 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"
                         {...field}
                       />
                     </FormControl>
@@ -158,10 +165,13 @@ export default function ContactForm() {
               name="message"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel className="text-base font-medium">
+                    {t("message")}
+                  </FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder={t("message")}
-                      className="min-h-[140px] resize-none border border-border bg-background p-4 text-base placeholder:capitalize focus:border-accent focus:ring-2 focus:ring-accent/20"
+                      placeholder={t("messagePlaceholder")}
+                      className="min-h-[140px] resize-none border border-border bg-background p-4 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"
                       {...field}
                     />
                   </FormControl>

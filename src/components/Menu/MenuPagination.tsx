@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 import FadeUp from "../ui/FadeUp";
 import { IMenuList } from "@/types/generated";
+import { useTranslations } from "next-intl";
 
 interface MenuPagination {
   menus_list: IMenuList[];
@@ -16,6 +17,7 @@ const MenuPagination: React.FC<MenuPagination> = ({
   currentPage,
   setCurrentPage,
 }) => {
+  const t = useTranslations("MenuPage.pagination");
   const indexLength = menus_list ? menus_list.length : 0;
 
   const nextIndex = Math.ceil((indexLength ?? PAGE_SIZE) / PAGE_SIZE);
@@ -45,6 +47,7 @@ const MenuPagination: React.FC<MenuPagination> = ({
           onClick={previousPage}
           disabled={1 >= currentPage}
           title="Previous menu list items"
+          aria-label={t("previousPage")}
         >
           <ArrowLeftCircle className={1 >= currentPage ? "opacity-50" : ""} />
         </button>
@@ -55,6 +58,7 @@ const MenuPagination: React.FC<MenuPagination> = ({
           onClick={nextPage}
           disabled={nextIndex <= currentPage}
           title="Next menu list items"
+          aria-label={t("nextPage")}
         >
           <ArrowRightCircle
             className={nextIndex <= currentPage ? "opacity-50" : ""}

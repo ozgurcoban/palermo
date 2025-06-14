@@ -164,6 +164,7 @@ const MenuChips: React.FC<MenuChipsProps> = ({
             )}
             <button
               onClick={() => setIsExpanded(true)}
+              aria-label={locale === 'sv' ? 'Ändra filter' : 'Change filters'}
               className="flex items-center gap-1 text-sm hover:text-primary transition-colors"
             >
               <span className="hidden sm:inline">{locale === 'sv' ? 'Ändra' : 'Change'}</span>
@@ -194,6 +195,7 @@ const MenuChips: React.FC<MenuChipsProps> = ({
               {hasFilters && (
                 <button
                   onClick={() => setIsExpanded(false)}
+                  aria-label={locale === 'sv' ? 'Stäng filter' : 'Close filters'}
                   className="flex items-center gap-1 text-sm hover:text-primary transition-colors"
                 >
                   <ChevronUp className="h-4 w-4" />

@@ -52,12 +52,12 @@ export function Navbar() {
   return (
     <header className="relative z-30 h-[132px] w-screen" id="navbar">
       <div className="container flex h-full items-center gap-6">
-        <Link href={"/"} className="flex-1 cursor-default">
+        <Link href={"/"} className="flex-1 cursor-default" aria-label={t("goToHomepage")}>
           <div className="h-[90px] w-[90px] sm:h-[100px] sm:w-[100px] md:h-[110px] md:w-[110px]">
             {/* Light mode logo */}
             <Image
               src="/logo.png"
-              alt="logo"
+              alt="Palermo logo"
               width={90}
               height={90}
               sizes="(min-width: 768px) 110px, (min-width: 640px) 100px, 90px"
@@ -73,7 +73,7 @@ export function Navbar() {
             {/* Dark mode logo */}
             <Image
               src="/dark-logo.webp"
-              alt="logo"
+              alt="Palermo logo"
               width={90}
               height={90}
               sizes="(min-width: 768px) 110px, (min-width: 640px) 100px, 90px"
@@ -99,6 +99,7 @@ export function Navbar() {
             variant="secondary"
             size="lg"
             onClick={handleClick}
+            aria-label={t("scrollToContact")}
             className="transform whitespace-nowrap bg-[#5A4B3A] px-4 py-2 font-lato uppercase text-white transition-all duration-200 dark:bg-primary dark:hover:bg-primary/90"
           >
             {t("contact")}

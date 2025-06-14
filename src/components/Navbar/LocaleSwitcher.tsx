@@ -46,7 +46,7 @@ export default function LocaleSwitcher() {
 
   return (
     <Select value={locale} onValueChange={onSelectChange}>
-      <SelectTrigger className="w-max bg-transparent text-primary">
+      <SelectTrigger className="w-max bg-transparent text-primary" aria-label={t("label")}>
         <SelectValue placeholder="Select a language" />
       </SelectTrigger>
       <SelectContent>

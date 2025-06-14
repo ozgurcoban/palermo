@@ -54,8 +54,8 @@ const MenuContent: React.FC<Props> = ({
     const calculateMenuHeight = () => {
       if (window.innerWidth < 1024) { // lg breakpoint
         const navbar = (document.querySelector('header nav') || 
-                       document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
-        const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
+                       document.querySelector('nav[role="navigation"]:not(.fixed)')) as HTMLElement;
+        const bottomBar = document.querySelector('nav.fixed[role="navigation"]') as HTMLElement;
         
         const navbarHeight = navbar ? navbar.offsetHeight : 80;
         const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120;
@@ -257,6 +257,9 @@ const MenuContent: React.FC<Props> = ({
             className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
             ref={scrollRef}
             data-scroll-container="menu-items"
+            tabIndex={0}
+            role="region"
+            aria-label={t("menuItemsLabel")}
           >
             {!useChips && getCategory && (
               <div className="mx-auto mb-6 max-w-md" key={getCategory._id}>
@@ -289,7 +292,7 @@ const MenuContent: React.FC<Props> = ({
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <p className="whitespace-nowrap font-medium text-primary">
-                            {t("takeAway.short")}
+                            <span aria-label={t("takeAway.full")}>{t("takeAway.short")}</span>
                           </p>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -316,7 +319,7 @@ const MenuContent: React.FC<Props> = ({
                     <div className="relative z-50 flex w-full justify-end">
                       <TooltipTrigger asChild>
                         <p className="whitespace-nowrap font-medium text-primary">
-                          {t("glass.short")}
+                          <span aria-label={t("glass.full")}>{t("glass.short")}</span>
                         </p>
                       </TooltipTrigger>
                     </div>
@@ -328,7 +331,7 @@ const MenuContent: React.FC<Props> = ({
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <p className="whitespace-nowrap font-medium text-primary">
-                        {t("bottle.short")}
+                        <span aria-label={t("bottle.full")}>{t("bottle.short")}</span>
                       </p>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -339,7 +342,7 @@ const MenuContent: React.FC<Props> = ({
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <p className="whitespace-nowrap font-medium text-primary">
-                        {t("carafe.short")}
+                        <span aria-label={t("carafe.full")}>{t("carafe.short")}</span>
                       </p>
                     </TooltipTrigger>
                     <TooltipContent>

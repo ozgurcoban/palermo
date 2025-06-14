@@ -41,14 +41,14 @@ export default function FoodDeliveryApps() {
   ];
 
   return (
-    <section id="food-delivery" className="w-screen bg-accent-soft-apricot py-20">
+    <section id="food-delivery" className="w-screen bg-accent-soft-apricot py-20" aria-labelledby="delivery-heading">
       <div className="container">
         <FadeUp delay={0.2}>
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
               {t("subtitle")}
             </Badge>
-            <h2 className="title-secondary mb-6">{t("title")}</h2>
+            <h2 id="delivery-heading" className="title-secondary mb-6">{t("title")}</h2>
             <p className="text-body mx-auto mb-12 max-w-2xl">
               {t("description")}
             </p>
@@ -63,25 +63,28 @@ export default function FoodDeliveryApps() {
                   <div className="flex h-20 items-center justify-center">
                     {app.name === "Uber Eats" && (
                       <CardTitle className="text-4xl">
-                        <span className="text-foreground">Uber</span>
-                        <span className="text-[#06C167]">Eats</span>
+                        <h3 className="sr-only">{app.name}</h3>
+                        <span className="text-foreground" aria-hidden="true">Uber</span>
+                        <span className="text-[#06C167]" aria-hidden="true">Eats</span>
                       </CardTitle>
                     )}
                     {app.name === "Foodora" && (
                       <CardTitle className="text-4xl text-[#D70F64]">
-                        foodora
+                        <h3 className="sr-only">{app.name}</h3>
+                        <span aria-hidden="true">foodora</span>
                       </CardTitle>
                     )}
                     {app.name === "Wolt" && (
                       <CardTitle className="text-4xl text-[#009DE0]">
-                        Wolt
+                        <h3 className="sr-only">{app.name}</h3>
+                        <span aria-hidden="true">Wolt</span>
                       </CardTitle>
                     )}
                   </div>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="mb-6 text-base text-muted-foreground">
-                    Palermo ❤️ {app.name}
+                    Palermo <span aria-hidden="true">❤️</span><span className="sr-only">loves</span> {app.name}
                   </p>
 
                   <Button
@@ -95,9 +98,10 @@ export default function FoodDeliveryApps() {
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2"
                       onClick={() => trackDeliveryAppClick(app.name)}
+                      aria-label={`${app.buttonText} ${t("opensInNewTab")}`}
                     >
-                      {app.buttonText}
-                      <ArrowTopRightIcon className="h-4 w-4" />
+                      <span>{app.buttonText}</span>
+                      <ArrowTopRightIcon className="h-4 w-4" aria-hidden="true" />
                     </a>
                   </Button>
                 </CardContent>
