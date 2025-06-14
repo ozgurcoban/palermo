@@ -1,3 +1,4 @@
-# Headers for all pages on non-production branches
+# Headers for all pages
+# Netlify will respect these on preview deployments
 /*
   X-Robots-Tag: noindex, nofollow
