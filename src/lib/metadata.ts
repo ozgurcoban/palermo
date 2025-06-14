@@ -32,26 +32,28 @@ export const siteConfig = {
   email: "info@palermo-uppsala.se",
 };
 
-// Check if we're in development/preview environment
-// Block everything except main branch in production
+// Platform detection
+const isNetlify = process.env.NETLIFY === "true";
+const isVercel = process.env.VERCEL === "1";
+
+// Netlify is ALWAYS preview/noindex for this project
+// Only Vercel production (main branch) should be indexed
 const isDevelopment =
   process.env.NODE_ENV === "development" ||
-  process.env.VERCEL_ENV === "preview" ||
-  (process.env.VERCEL_GIT_COMMIT_REF &&
-    process.env.VERCEL_GIT_COMMIT_REF !== "main") || // Vercel
-  (process.env.BRANCH && process.env.BRANCH !== "main") || // Netlify BRANCH
-  (process.env.HEAD && process.env.HEAD !== "main") || // Netlify HEAD
-  (process.env.CONTEXT && process.env.CONTEXT !== "production") || // Netlify CONTEXT
-  (process.env.NETLIFY && process.env.CONTEXT !== "production"); // Double-check Netlify
+  isNetlify || // Netlify is always preview
+  (isVercel && process.env.VERCEL_ENV !== "production") || // Vercel non-production
+  (isVercel && process.env.VERCEL_GIT_COMMIT_REF !== "main"); // Vercel non-main branch
 
 // Debug logging (remove in production)
 if (typeof window === "undefined") {
   console.log("Environment check:", {
     NODE_ENV: process.env.NODE_ENV,
-    BRANCH: process.env.BRANCH,
-    HEAD: process.env.HEAD,
-    CONTEXT: process.env.CONTEXT,
     NETLIFY: process.env.NETLIFY,
+    VERCEL: process.env.VERCEL,
+    VERCEL_ENV: process.env.VERCEL_ENV,
+    VERCEL_GIT_COMMIT_REF: process.env.VERCEL_GIT_COMMIT_REF,
+    isNetlify,
+    isVercel,
     isDevelopment,
   });
 }

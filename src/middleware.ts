@@ -12,23 +12,22 @@ export default async function middleware(request: NextRequest) {
   });
   const response = handleI18nRouting(request);
   
-  // Add X-Robots-Tag header for non-production environments
+  // Platform detection for robots control
   const hostname = request.headers.get('host') || '';
-  const url = request.url;
   
-  // Check if this is production (main domain without preview/branch subdomain)
-  const isProduction = 
-    hostname === 'palermo-uppsala.se' || 
-    hostname === 'www.palermo-uppsala.se';
-  
-  // Also check for Netlify preview URLs
-  const isNetlifyPreview = 
+  // Netlify domains are ALWAYS noindex (used as preview)
+  const isNetlifyDomain = 
     hostname.includes('netlify.app') || 
-    hostname.includes('netlify.com') ||
-    url.includes('deploy-preview') ||
-    url.includes('branch');
+    hostname.includes('netlify.com');
   
-  if (!isProduction || isNetlifyPreview) {
+  // Only Vercel production with correct domain should be indexed
+  const isVercelProduction = 
+    (hostname === 'palermo-uppsala.se' || 
+     hostname === 'www.palermo-uppsala.se') &&
+    !isNetlifyDomain;
+  
+  // Set noindex for everything except Vercel production
+  if (!isVercelProduction) {
     response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet, noimageindex');
     // Also set cache control to prevent caching of preview builds
     response.headers.set('Cache-Control', 'no-store, must-revalidate');
