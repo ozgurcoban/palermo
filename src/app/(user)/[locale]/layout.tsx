@@ -17,6 +17,7 @@ import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { criticalCSS } from "@/lib/critical-css";
+import MobileBottomBar from "@/components/MobileBottomBar";
 import "../globals.css";
 
 type Props = {
@@ -89,6 +90,7 @@ export default async function LocaleLayout({
               <ContactInfoSectionLazy contactData={contactData} lunchData={lunchData} />
             </main>
             <Footer contactData={contactData} />
+            <MobileBottomBar />
             <CookieBanner />
           </IntlProvider>
         </ThemeProvider>

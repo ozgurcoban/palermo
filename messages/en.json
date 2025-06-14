@@ -207,6 +207,11 @@
     "orderVia": "Order via {app}",
     "deliveryAreas": "We deliver to: Centrum, Löten, Årsta, Fålhagen, Luthagen, Eriksberg, Gottsunda and all of Uppsala."
   },
+  "MobileBottomBar": {
+    "home": "Home",
+    "menu": "Menu",
+    "lunch": "Lunch"
+  },
   "SEOSection": {
     "title": "Affordable pizza, meat dishes and more in the heart of Uppsala",
     "badge": "EXPLORE PALERMO'S MENU WITH AFFORDABLE PIZZA, PASTA AND MORE – IN THE HEART OF UPPSALA",

@@ -180,6 +180,11 @@
     "orderVia": "Beställ via {app}",
     "deliveryAreas": "Vi levererar till: Centrum, Löten, Årsta, Fålhagen, Luthagen, Eriksberg, Gottsunda och övriga Uppsala."
   },
+  "MobileBottomBar": {
+    "home": "Hem",
+    "menu": "Meny",
+    "lunch": "Lunch"
+  },
   "SEOSection": {
     "title": "Prisvärd pizza, kötträtter och mer i hjärtat av Uppsala",
     "badge": "UTFORSKA PALERMOS MENY MED PRISVÄRD PIZZA, PASTA OCH MER – MITT I HJÄRTAT AV UPPSALA",
