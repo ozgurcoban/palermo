@@ -144,6 +144,34 @@ html.no-animations .bottom-bar-slide-up {
   transform: translateY(0) !important;
 }
 
+/* Preserve theme toggle icons during language switch */
+html.no-animations .theme-icon-wrapper {
+  /* Icons should be visible in their correct state without animation */
+  transition-duration: 0s !important;
+}
+
+/* Dark mode: Sun visible, Moon hidden */
+.dark html.no-animations .theme-toggle .theme-icon-wrapper:first-child {
+  opacity: 1 !important;
+  transform: rotate(0) scale(1) !important;
+}
+
+.dark html.no-animations .theme-toggle .theme-icon-wrapper:last-child {
+  opacity: 0 !important;
+  transform: rotate(90deg) scale(0.5) !important;
+}
+
+/* Light mode: Moon visible, Sun hidden */
+html.no-animations:not(.dark) .theme-toggle .theme-icon-wrapper:first-child {
+  opacity: 0 !important;
+  transform: rotate(-90deg) scale(0.5) !important;
+}
+
+html.no-animations:not(.dark) .theme-toggle .theme-icon-wrapper:last-child {
+  opacity: 1 !important;
+  transform: rotate(0) scale(1) !important;
+}
+
 html::-webkit-scrollbar {
   width: 7px;
   background-color: hsl(var(--secondary));
@@ -379,6 +407,7 @@ p {
 .animate-fadeUp {
   animation: fadeUp 0.6s ease-out forwards;
 }
+
 
 /* MaskText animation */
 @keyframes maskReveal {

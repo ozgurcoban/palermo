@@ -11,17 +11,10 @@ export function LanguageSwitchChecker() {
       // Add no-animations class immediately
       document.documentElement.classList.add('no-animations');
       
-      // Restore scroll position if available
-      const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-      if (savedScrollPosition) {
-        const scrollY = parseInt(savedScrollPosition, 10);
-        // Wait for DOM to be ready, then restore scroll
-        requestAnimationFrame(() => {
-          window.scrollTo(0, scrollY);
-          // Clean up scroll position after restoring
-          sessionStorage.removeItem('scrollPosition');
-        });
-      }
+      // Clean up any leftover scroll data from previous attempts
+      sessionStorage.removeItem('scrollPosition');
+      sessionStorage.removeItem('scrollPercentage');
+      sessionStorage.removeItem('docHeight');
       
       // Keep the flag and no-animations class active for the entire page session
       // They will only be cleared on the next non-language-switch page load

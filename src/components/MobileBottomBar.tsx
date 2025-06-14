@@ -1,13 +1,12 @@
 "use client";
 
 import { Home, Menu, Utensils } from "lucide-react";
-import { Link } from "@/navigation";
 import { usePathname } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useGetLocale } from "@/config";
 import type { AppPathnames } from "@/config";
 import { useRouter } from "@/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { event } from "@/lib/gtag";
 import { setLanguageSwitchFlag } from "@/lib/cookie-utils";
 import { useIsLanguageSwitching } from "@/components/LanguageSwitchChecker";
@@ -47,9 +46,8 @@ const MobileBottomBar = () => {
     setIsLocalSwitching(true);
     const nextLocale = locale === "sv" ? "en" : "sv";
     
-    // Save current scroll position
-    const scrollY = window.scrollY;
-    sessionStorage.setItem('scrollPosition', scrollY.toString());
+    // Smooth scroll to top before language change
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     
     // Set flag to disable animations
     setLanguageSwitchFlag();
@@ -88,9 +86,18 @@ const MobileBottomBar = () => {
           {navItems.map((item) => {
             const IconComponent = item.icon;
             return (
-              <Link
+              <button
                 key={item.href}
-                href={item.href}
+                onClick={() => {
+                  if (!item.isActive) {
+                    // Smooth scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    // Navigate after a short delay
+                    setTimeout(() => {
+                      router.push(item.href);
+                    }, 100);
+                  }
+                }}
                 className={`bottom-nav-item group flex min-h-[60px] min-w-[60px] flex-col items-center justify-center rounded-2xl px-3 py-2 ${
                   item.isActive
                     ? "bg-white/15 text-white scale-105"
@@ -111,7 +118,7 @@ const MobileBottomBar = () => {
                     {item.label}
                   </span>
                 )}
-              </Link>
+              </button>
             );
           })}
         </div>

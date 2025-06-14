@@ -21,9 +21,8 @@ export default function LocaleSwitcher() {
   const pathname = usePathname();
 
   function onSelectChange(nextLocale: string) {
-    // Save current scroll position
-    const scrollY = window.scrollY;
-    sessionStorage.setItem('scrollPosition', scrollY.toString());
+    // Smooth scroll to top before language change
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     
     // Set flag to disable animations
     setLanguageSwitchFlag();
