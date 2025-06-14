@@ -14,10 +14,24 @@ export default async function middleware(request: NextRequest) {
   
   // Add X-Robots-Tag header for non-production environments
   const hostname = request.headers.get('host') || '';
-  const isProduction = hostname.includes('palermo-uppsala.se');
+  const url = request.url;
   
-  if (!isProduction) {
+  // Check if this is production (main domain without preview/branch subdomain)
+  const isProduction = 
+    hostname === 'palermo-uppsala.se' || 
+    hostname === 'www.palermo-uppsala.se';
+  
+  // Also check for Netlify preview URLs
+  const isNetlifyPreview = 
+    hostname.includes('netlify.app') || 
+    hostname.includes('netlify.com') ||
+    url.includes('deploy-preview') ||
+    url.includes('branch');
+  
+  if (!isProduction || isNetlifyPreview) {
     response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet, noimageindex');
+    // Also set cache control to prevent caching of preview builds
+    response.headers.set('Cache-Control', 'no-store, must-revalidate');
   }
   
   return response;

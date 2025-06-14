@@ -38,8 +38,23 @@ const isDevelopment =
   process.env.NODE_ENV === "development" ||
   process.env.VERCEL_ENV === "preview" ||
   (process.env.VERCEL_GIT_COMMIT_REF &&
-    process.env.VERCEL_GIT_COMMIT_REF !== "main") || // Vercel: check only if defined
-  (process.env.BRANCH && process.env.BRANCH !== "main"); // Netlify: check only if defined
+    process.env.VERCEL_GIT_COMMIT_REF !== "main") || // Vercel
+  (process.env.BRANCH && process.env.BRANCH !== "main") || // Netlify BRANCH
+  (process.env.HEAD && process.env.HEAD !== "main") || // Netlify HEAD
+  (process.env.CONTEXT && process.env.CONTEXT !== "production") || // Netlify CONTEXT
+  (process.env.NETLIFY && process.env.CONTEXT !== "production"); // Double-check Netlify
+
+// Debug logging (remove in production)
+if (typeof window === "undefined") {
+  console.log("Environment check:", {
+    NODE_ENV: process.env.NODE_ENV,
+    BRANCH: process.env.BRANCH,
+    HEAD: process.env.HEAD,
+    CONTEXT: process.env.CONTEXT,
+    NETLIFY: process.env.NETLIFY,
+    isDevelopment,
+  });
+}
 
 type MetadataConfig = {
   title: string;
