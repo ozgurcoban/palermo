@@ -38,6 +38,12 @@
     "phone": "Phone",
     "email": "Email",
     "openingHours": "Opening hours",
+    "happyHours": {
+      "title": "Happy Hours",
+      "days": "Every day",
+      "time": "15:00 - 22:00",
+      "description": "Great prices on drinks!"
+    },
     "name": "Name",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "your@email.com",
@@ -63,7 +69,7 @@
     },
     "content": {
       "title": "UPPSALA'S NEIGHBORHOOD RESTAURANT",
-      "description": "Palermo has become a natural part of Uppsala. This is where students, families and friends gather over pizza, pasta and hearty comfort food. No complicated fine dining - just well-cooked meals downtown at prices that work for everyone. Exactly how a local restaurant should be."
+      "description": "Palermo has become a proper part of Uppsala. This is where students, locals and mates gather over pizza, a proper bit of meat, or just for a kanna. No fussy fine dining - just good grub and cold beer in the city centre at prices that work for everyone. Exactly what a proper local pub should be."
     },
     "pagination": {
       "previousPage": "Go to previous page",
@@ -110,13 +116,14 @@
     "home": "Home",
     "menu": "Menu",
     "lunch": "Lunch",
-    "contact": "where to find us",
+    "contact": "contact us",
     "goToHomepage": "Palermo - Go to homepage",
     "scrollToContact": "Scroll to contact form",
     "opensInNewTab": "(opens in new tab)"
   },
   "Footer": {
-    "slogan": "Uppsalas (unofficial) 14th nation"
+    "slogan": "Uppsalas (unofficial) 14th nation",
+    "followUs": "Follow us on Instagram"
   },
   "Lunch": {
     "hero": {

@@ -233,14 +233,14 @@ p {
 
 /* Variant without stroke for PageHero */
 .hero-title-simple {
-  @apply text-center font-graduate text-[8vw] font-bold leading-tight tracking-wider sm:text-5xl md:text-6xl lg:text-7xl;
+  @apply text-center font-graduate text-[8vw] font-bold leading-tight tracking-wider sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl;
   color: white;
   text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 /* Hero description text */
 .hero-description {
-  @apply max-w-2xl break-words font-lato text-sm text-light/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-base md:text-lg lg:text-xl xl:text-2xl;
+  @apply max-w-2xl break-words font-lato text-base leading-relaxed text-light/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-lg md:text-xl lg:text-2xl xl:text-3xl;
 }
 
 

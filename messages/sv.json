@@ -38,6 +38,12 @@
     "phone": "Telefon",
     "email": "E-post",
     "openingHours": "Öppettider",
+    "happyHours": {
+      "title": "Happy Hours",
+      "days": "Alla dagar",
+      "time": "15:00 - 22:00",
+      "description": "Schyssta priser på dricka!"
+    },
     "name": "Namn",
     "namePlaceholder": "Ditt namn",
     "emailPlaceholder": "din@epost.se",
@@ -63,7 +69,7 @@
     },
     "content": {
       "title": "Uppsalas vardagsrestaurang",
-      "description": "Palermo har blivit en självklar del av Uppsala. Här möts studenter, familjer och kompisgäng över pizza, pasta och rejäl husmanskost. Ingen krånglig fine dining - bara vällagad mat mitt i centrum till priser som funkar för alla. Precis så som en riktig kvarterskrog ska vara."
+      "description": "Palermo har blivit en självklar del av Uppsala. Här möts studenter, knegare och kompisgäng över pizza, en rejäl köttbit, eller bara för en dricka. Ingen krånglig fine dining - bara vällagad mat och kall öl mitt i centrum till priser som funkar för alla. Precis så som en riktig kvarterskrog ska vara."
     },
     "pagination": {
       "previousPage": "Gå till föregående sida",
@@ -110,13 +116,14 @@
     "home": "Hem",
     "menu": "Meny",
     "lunch": "lunch",
-    "contact": "Hitta till oss",
+    "contact": "kontakta oss",
     "goToHomepage": "Palermo - Gå till startsidan",
     "scrollToContact": "Rulla till kontaktformuläret",
     "opensInNewTab": "(öppnas i ny flik)"
   },
   "Footer": {
-    "slogan": "Uppsalas (inofficiella) 14:e nation"
+    "slogan": "Uppsalas (inofficiella) 14:e nation",
+    "followUs": "Följ oss på Instagram"
   },
   "Lunch": {
     "hero": {

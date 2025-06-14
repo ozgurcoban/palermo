@@ -36,3 +36,15 @@ export const LUNCH_QUERY = groq`
     }
   }
 `
+
+export const FAQ_QUERY = groq`
+  *[_type=='faq'][0]{
+    questions[]{
+      question,
+      answer,
+      showCTA,
+      ctaType,
+      ctaText
+    }
+  }
+`

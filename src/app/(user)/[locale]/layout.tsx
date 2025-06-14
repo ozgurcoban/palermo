@@ -27,7 +27,7 @@ type Props = {
   params: { locale: string };
 };
 
-export const revalidate = 86400; // 24 hours
+export const revalidate = 60; // 1 minute
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

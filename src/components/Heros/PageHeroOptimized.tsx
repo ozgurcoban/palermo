@@ -22,7 +22,7 @@ interface HeroProps {
 export function PageHeroOptimized({
   imageUrl,
   imageAlt,
-  height = "h-[50vh]",
+  height = "h-[60vh] lg:h-[36vh]",
   overlayGradient = "from-black/30 via-black/40 to-black/50",
   badge,
   title,
@@ -60,7 +60,7 @@ export function PageHeroOptimized({
       {/* Content with CSS animations */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
         {badge && (
-          <div 
+          <div
             className="page-hero-fade"
             style={{ animationDelay: `${badgeDelay}s` }}
           >
@@ -68,24 +68,24 @@ export function PageHeroOptimized({
           </div>
         )}
 
-        <h1 
+        <h1
           className="hero-title-simple page-hero-fade mb-3 sm:mb-4"
           style={{ animationDelay: `${titleDelay}s` }}
         >
           {title}
         </h1>
 
-        <p 
+        <p
           className="hero-description page-hero-fade"
           style={{ animationDelay: `${descriptionDelay}s` }}
         >
           {description}
         </p>
       </div>
-      
+
       {/* Mobile CTA button */}
       {ctaText && ctaAction && (
-        <div 
+        <div
           className="page-hero-fade absolute bottom-6 z-20 flex flex-col items-center lg:hidden"
           style={{ animationDelay: `${ctaDelay}s` }}
         >

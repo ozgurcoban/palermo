@@ -75,15 +75,14 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Button
-      className="relative flex items-center gap-1 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+      className="group flex items-center gap-2 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"
       onClick={scrollToMenu}
+      size="lg"
       type="button"
       aria-label="Scroll to menu section"
     >
-      <div className="animate-bounce-subtle pointer-events-none">
-        <ArrowDown className="size-4" />
-      </div>
-      <span className="pointer-events-none">{children}</span>
+      <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-1" />
+      <span>{children}</span>
     </Button>
   );
 };

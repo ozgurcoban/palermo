@@ -18,6 +18,11 @@ interface Contact extends Base {
     day: LocalizedText;
     time: string;
   }[];
+  happy_hours?: {
+    days: LocalizedText;
+    time: string;
+    description?: LocalizedText;
+  };
 }
 
 
@@ -113,4 +118,16 @@ interface LunchConfiguration extends Base {
     price: number;
     dish?: LunchItem;
   };
+}
+
+interface FAQItem {
+  question: LocalizedText;
+  answer: LocalizedText;
+  showCTA?: boolean;
+  ctaType?: 'lunch' | 'delivery' | 'menu' | 'contact';
+  ctaText?: LocalizedText;
+}
+
+interface FAQ extends Base {
+  questions: FAQItem[];
 }

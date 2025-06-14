@@ -11,7 +11,7 @@ import FadeUp from "@/components/ui/FadeUp";
 import { useGetLocale } from "@/config";
 import { getFAQData } from "@/lib/metadata";
 import { getClient } from "../../../sanity/lib/client";
-import { CONTACT_QUERY, LUNCH_QUERY } from "../../../sanity/lib/queries";
+import { CONTACT_QUERY, LUNCH_QUERY, FAQ_QUERY } from "../../../sanity/lib/queries";
 import { Link, useRouter } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -22,6 +22,8 @@ export function FAQ() {
   const router = useRouter();
   const [openingHours, setOpeningHours] = useState<string | undefined>();
   const [lunchInfo, setLunchInfo] = useState<string | undefined>();
+  const [faqData, setFaqData] = useState<FAQ | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const handleDeliveryClick = () => {
     trackFAQCTAClick(2, "delivery", "menu#food-delivery");
@@ -48,12 +50,13 @@ export function FAQ() {
   };
 
   useEffect(() => {
-    async function fetchOpeningHours() {
+    async function fetchData() {
       try {
         const client = getClient(undefined);
-        const [contactData, lunchData] = await Promise.all([
+        const [contactData, lunchData, faqInfo] = await Promise.all([
           client.fetch<Contact>(CONTACT_QUERY),
           client.fetch<LunchConfiguration>(LUNCH_QUERY),
+          client.fetch<FAQ>(FAQ_QUERY),
         ]);
 
         if (contactData?.opening_hours) {
@@ -72,6 +75,11 @@ export function FAQ() {
             .join("\n");
 
           setOpeningHours(`${intro}\n${hours}`);
+        }
+        
+        // Set FAQ data from Sanity
+        if (faqInfo) {
+          setFaqData(faqInfo);
         }
 
         // Format lunch info
@@ -103,14 +111,75 @@ export function FAQ() {
         }
       } catch (error) {
         console.error("Error fetching FAQ data:", error);
-        // Use default values if fetch fails
+      } finally {
+        setLoading(false);
       }
     }
 
-    fetchOpeningHours();
+    fetchData();
   }, [locale]);
 
-  const faqs = getFAQData(locale as "sv" | "en", openingHours, lunchInfo);
+  // Process FAQ data with dynamic content
+  const processedFAQs = React.useMemo(() => {
+    if (faqData?.questions) {
+      return faqData.questions.map(item => {
+        let processedAnswer = item.answer[locale as keyof LocalizedText];
+        
+        // Replace all occurrences of dynamic content placeholders
+        if (openingHours) {
+          processedAnswer = processedAnswer.replace(/{{openingHours}}/g, openingHours);
+        }
+        if (lunchInfo) {
+          processedAnswer = processedAnswer.replace(/{{lunchInfo}}/g, lunchInfo);
+        }
+        
+        return {
+          question: item.question[locale as keyof LocalizedText],
+          answer: processedAnswer,
+          showCTA: item.showCTA,
+          ctaType: item.ctaType,
+          ctaText: item.ctaText?.[locale as keyof LocalizedText],
+        };
+      });
+    }
+    
+    // Fallback to hardcoded data if Sanity fetch fails
+    return getFAQData(locale as "sv" | "en", openingHours, lunchInfo).map((faq, index) => {
+      // Map the hardcoded CTAs based on index
+      let showCTA = false;
+      let ctaType: 'lunch' | 'delivery' | 'menu' | 'contact' | undefined;
+      let ctaText: string | undefined;
+      
+      if (index === 0) {
+        // Lunch question
+        showCTA = true;
+        ctaType = 'lunch';
+        ctaText = locale === "sv" ? "Se lunchmenyn" : "View lunch menu";
+      } else if (index === 2) {
+        // Delivery question
+        showCTA = true;
+        ctaType = 'delivery';
+        ctaText = locale === "sv" ? "Se leveransalternativ" : "View delivery options";
+      } else if (index === 4) {
+        // Vegan/gluten-free question
+        showCTA = true;
+        ctaType = 'menu';
+        ctaText = locale === "sv" ? "Utforska menyn" : "Explore menu";
+      } else if (index === 5) {
+        // Large groups question
+        showCTA = true;
+        ctaType = 'contact';
+        ctaText = locale === "sv" ? "Kontakta oss" : "Contact us";
+      }
+      
+      return {
+        ...faq,
+        showCTA,
+        ctaType,
+        ctaText,
+      };
+    });
+  }, [faqData, locale, openingHours, lunchInfo]);
 
   return (
     <section className="w-full bg-muted/30 py-16 md:py-20">
@@ -129,7 +198,7 @@ export function FAQ() {
         </FadeUp>
         <FadeUp delay={0.4}>
           <Accordion type="single" collapsible className="mx-auto max-w-3xl">
-            {faqs.map((faq, index) => (
+            {processedFAQs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger className="text-left text-base md:text-lg">
                   {faq.question}
@@ -137,22 +206,21 @@ export function FAQ() {
                 <AccordionContent className="text-base leading-relaxed text-muted-foreground">
                   <div className="space-y-4">
                     <p className="whitespace-pre-line">{faq.answer}</p>
-                    {index === 0 && (
+                    {faq.showCTA && faq.ctaType === 'lunch' && (
                       <Link href="/lunch" className="mt-2 inline-block">
                         <Button
                           variant="outline"
                           size="sm"
                           className="group"
-                          onClick={() => trackFAQCTAClick(0, "lunch", "/lunch")}
+                          onClick={() => trackFAQCTAClick(index, "lunch", "/lunch")}
                         >
-                          {locale === "sv"
-                            ? "Se lunchmenyn"
-                            : "View lunch menu"}
+                          {faq.ctaText || 
+                           (locale === "sv" ? "Se lunchmenyn" : "View lunch menu")}
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Button>
                       </Link>
                     )}
-                    {index === 2 && (
+                    {faq.showCTA && faq.ctaType === 'delivery' && (
                       <div className="mt-2">
                         <Button
                           variant="outline"
@@ -160,37 +228,38 @@ export function FAQ() {
                           className="group"
                           onClick={handleDeliveryClick}
                         >
-                          {locale === "sv"
-                            ? "Se leveransalternativ"
-                            : "View delivery options"}
+                          {faq.ctaText || 
+                           (locale === "sv" ? "Se leveransalternativ" : "View delivery options")}
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Button>
                       </div>
                     )}
-                    {index === 4 && (
+                    {faq.showCTA && faq.ctaType === 'menu' && (
                       <Link href="/menu" className="mt-2 inline-block">
                         <Button
                           variant="outline"
                           size="sm"
                           className="group"
-                          onClick={() => trackFAQCTAClick(4, "menu", "/menu")}
+                          onClick={() => trackFAQCTAClick(index, "menu", "/menu")}
                         >
-                          {locale === "sv" ? "Utforska menyn" : "Explore menu"}
+                          {faq.ctaText || 
+                           (locale === "sv" ? "Utforska menyn" : "Explore menu")}
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Button>
                       </Link>
                     )}
-                    {index === 5 && (
+                    {faq.showCTA && faq.ctaType === 'contact' && (
                       <a href="#contact" className="mt-2 inline-block">
                         <Button
                           variant="outline"
                           size="sm"
                           className="group"
                           onClick={() =>
-                            trackFAQCTAClick(5, "contact", "#contact")
+                            trackFAQCTAClick(index, "contact", "#contact")
                           }
                         >
-                          {locale === "sv" ? "Kontakta oss" : "Contact us"}
+                          {faq.ctaText || 
+                           (locale === "sv" ? "Kontakta oss" : "Contact us")}
                           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Button>
                       </a>

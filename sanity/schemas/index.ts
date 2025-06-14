@@ -6,6 +6,7 @@ import categories from './categories'
 import contactSection from './contact-section'
 import wines from './wines'
 import lunchpage from './lunchpage'
+import faq from './faq'
 
 export const schema: {types: SchemaTypeDefinition[]} = {
   types: [
@@ -16,5 +17,6 @@ export const schema: {types: SchemaTypeDefinition[]} = {
     categories,
     contactSection,
     wines,
+    faq,
   ],
 }

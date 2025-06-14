@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FacebookIcon, InstagramIcon } from "lucide-react";
+import { InstagramIcon } from "lucide-react";
 import Link from "next/link";
 import { trackSocialClick } from "@/lib/gtag";
 
@@ -90,30 +90,20 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
           <p className="text-white dark:text-card-foreground">
             <Localization text="Footer.slogan" />
           </p>
-          {contact_infos && (
-            <div className="flex gap-4">
-              {contact_infos.facebook && (
-                <Link
-                  href={contact_infos.facebook}
-                  target="_blank"
-                  aria-label="Facebook"
-                  className="transition-all duration-300 hover:text-accent"
-                  onClick={() => trackSocialClick('facebook')}
-                >
-                  <FacebookIcon />
-                </Link>
-              )}
-              {contact_infos.instagram && (
-                <Link
-                  href={contact_infos.instagram}
-                  target="_blank"
-                  aria-label="Instagram"
-                  className="transition-all duration-300 hover:text-primary"
-                  onClick={() => trackSocialClick('instagram')}
-                >
-                  <InstagramIcon />
-                </Link>
-              )}
+          {contact_infos && contact_infos.instagram && (
+            <div className="flex flex-col items-center gap-2">
+              <p className="text-sm text-white/90 dark:text-card-foreground/90">
+                <Localization text="Footer.followUs" />
+              </p>
+              <Link
+                href={contact_infos.instagram}
+                target="_blank"
+                aria-label="Instagram"
+                className="transition-all duration-300 hover:text-primary"
+                onClick={() => trackSocialClick('instagram')}
+              >
+                <InstagramIcon size={28} />
+              </Link>
             </div>
           )}
         </div>
@@ -140,10 +130,9 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                 {contact_infos.telephone && (
                   <li className="flex items-center gap-2 pt-3 transition-all duration-300 hover:text-primary">
                     <ChatBubbleIcon className="size-5" />
-                    <a href={`tel:${contact_infos.telephone}`}>
+                    <a href={`tel:+4618131820`}>
                       <Localization text="ContactSection.phone" />
-                      :&nbsp;
-                      {contact_infos.telephone}
+                      :&nbsp; 018-13 18 20
                     </a>
                   </li>
                 )}

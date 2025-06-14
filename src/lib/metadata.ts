@@ -275,8 +275,32 @@ export function generateFAQSchema(
   locale: "sv" | "en",
   openingHours?: string,
   lunchInfo?: string,
+  sanityFAQData?: FAQ,
 ) {
-  const faqs = getFAQData(locale, openingHours, lunchInfo);
+  let faqs: { question: string; answer: string }[];
+  
+  if (sanityFAQData?.questions) {
+    // Use Sanity FAQ data if available
+    faqs = sanityFAQData.questions.map(item => {
+      let processedAnswer = item.answer[locale];
+      
+      // Replace all occurrences of dynamic content placeholders
+      if (openingHours) {
+        processedAnswer = processedAnswer.replace(/{{openingHours}}/g, openingHours);
+      }
+      if (lunchInfo) {
+        processedAnswer = processedAnswer.replace(/{{lunchInfo}}/g, lunchInfo);
+      }
+      
+      return {
+        question: item.question[locale],
+        answer: processedAnswer,
+      };
+    });
+  } else {
+    // Fallback to hardcoded data
+    faqs = getFAQData(locale, openingHours, lunchInfo);
+  }
 
   return {
     "@context": "https://schema.org",

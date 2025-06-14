@@ -143,9 +143,43 @@ export default function ContactInfoSection({
                             )}
                           </div>
                         ))}
+                        
+                        {/* Happy Hours Section */}
+                        {contactData.happy_hours && (
+                          <>
+                            <Separator className="mt-3 bg-border" />
+                            <div className="group -mx-2 rounded-md px-2 pb-2 pt-2">
+                              <div className="mb-2 flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-base font-semibold text-primary">
+                                    <Localization text="ContactSection.happyHours.title" />
+                                  </span>
+                                  <span className="text-2xl">🍺</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-base font-medium first-letter:uppercase">
+                                  {contactData.happy_hours.days[locale]}
+                                </span>
+                                <span className="text-base text-muted-foreground">
+                                  {contactData.happy_hours.time}
+                                </span>
+                              </div>
+                              {contactData.happy_hours.description && (
+                                <div className="mt-2">
+                                  <span className="text-sm text-muted-foreground">
+                                    {contactData.happy_hours.description[locale].charAt(0).toUpperCase() + 
+                                     contactData.happy_hours.description[locale].slice(1)}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                          </>
+                        )}
+                        
                         {lunchData?.timeInfo && (
                           <>
-                            <Separator className="mt-3 bg-gray-200" />
+                            <Separator className="mt-3 bg-border" />
                             <IntlLink
                               href="/lunch"
                               className="group -mx-2 block rounded-md px-2 pb-2 pt-2 transition-all duration-300 hover:bg-accent/5"

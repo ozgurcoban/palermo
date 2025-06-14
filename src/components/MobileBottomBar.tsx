@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Menu, Utensils } from "lucide-react";
+import { Home, ChefHat, Utensils } from "lucide-react";
 import { usePathname } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useGetLocale } from "@/config";
@@ -33,7 +33,7 @@ const MobileBottomBar = () => {
     },
     {
       href: "/menu" as AppPathnames,
-      icon: Menu,
+      icon: ChefHat,
       label: t("menu"),
       isActive: pathname === "/menu" || pathname.includes("/meny"),
     },
@@ -81,7 +81,7 @@ const MobileBottomBar = () => {
 
   return (
     <nav
-      className={`fixed bottom-4 left-4 right-4 z-50 lg:hidden ${mounted && !isLanguageSwitching ? "bottom-bar-slide-up" : ""}`}
+      className={`fixed bottom-2 left-4 right-4 z-50 lg:hidden ${mounted && !isLanguageSwitching ? "bottom-bar-slide-up" : ""}`}
       role="navigation"
       aria-label={t("mobileNavigation")}
     >
@@ -104,6 +104,11 @@ const MobileBottomBar = () => {
                     setTimeout(() => {
                       router.push(item.href);
                     }, 100);
+                  } else {
+                    // If on the current page, scroll to top with a small delay
+                    setTimeout(() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }, 150);
                   }
                 }}
                 aria-label={item.label}

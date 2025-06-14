@@ -24,8 +24,8 @@ export async function HomeHero() {
       </div>
 
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
-        {/* Content wrapper positioned slightly higher */}
-        <div className="flex flex-col items-center -mt-8 sm:-mt-10 lg:-mt-12">
+        {/* Content wrapper positioned slightly higher on mobile, centered on lg */}
+        <div className="flex flex-col items-center -mt-8 sm:-mt-10 lg:mt-0">
           <Badge
             variant="secondary"
             className="animate-fadeUp pointer-events-none mb-4 rounded-sm bg-muted-foreground/70 px-4 py-2 font-medium text-secondary backdrop-blur-sm"

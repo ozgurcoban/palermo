@@ -6,7 +6,6 @@ import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 
-
 interface HeroProps {
   imageUrl: string;
   imageAlt: string;
@@ -26,7 +25,7 @@ interface HeroProps {
 export function PageHero({
   imageUrl,
   imageAlt,
-  height = "h-[50vh]",
+  height = "h-[50vh] sm:h-[65vh] md:h-[60vh] lg:h-[55vh]",
   overlayGradient = "from-black/30 via-black/40 to-black/50",
   badge,
   title,
@@ -48,7 +47,7 @@ export function PageHero({
           setTimeout(() => setIsVisible(true), 50);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (heroRef.current) {
@@ -79,25 +78,35 @@ export function PageHero({
         />
       </div>
 
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
-        {badge && (
-          <div className={`transition-all duration-700 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            {badge}
-          </div>
-        )}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 py-10 text-center sm:px-6 sm:py-8 md:px-8 md:py-0">
+        <div className="mx-auto flex max-w-4xl flex-col items-center">
+          {badge && (
+            <div
+              className={`mb-2 transform transition-all duration-700 ease-out sm:mb-3 md:mb-4 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+            >
+              {badge}
+            </div>
+          )}
 
-        <h1 className={`hero-title-simple mb-3 sm:mb-4 transition-all duration-700 ease-out transform delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          {title}
-        </h1>
+          <h1
+            className={`hero-title-simple mb-2 transform transition-all delay-200 duration-700 ease-out sm:mb-3 md:mb-4 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+          >
+            {title}
+          </h1>
 
-        <p className={`hero-description transition-all duration-700 ease-out transform delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          {description}
-        </p>
+          <p
+            className={`hero-description delay-400 max-w-3xl transform px-2 transition-all duration-700 ease-out sm:px-0 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+          >
+            {description}
+          </p>
+        </div>
       </div>
-      
+
       {/* Mobile CTA button */}
       {ctaText && ctaAction && (
-        <div className={`absolute bottom-6 z-20 flex flex-col items-center lg:hidden transition-all duration-500 ease-out delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+        <div
+          className={`delay-900 absolute bottom-6 z-20 flex flex-col items-center transition-all duration-500 ease-out lg:hidden ${isVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"}`}
+        >
           <Button
             onClick={ctaAction}
             className="group flex items-center gap-2 bg-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg"

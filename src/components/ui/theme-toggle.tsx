@@ -54,21 +54,16 @@ export default function ThemeToggle() {
     <button
       onClick={handleClick}
       aria-label="Toggle theme"
-      className="theme-toggle relative h-11 w-11 overflow-hidden rounded-full bg-transparent transition-transform duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/30"
+      className="theme-toggle relative h-11 w-11 overflow-hidden rounded-full border border-primary/30 bg-transparent transition-all duration-300 hover:scale-110 hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
     >
-      {/* Background ripple */}
-      <span 
-        className={`theme-toggle-ripple absolute inset-0 rounded-full bg-primary/40 ${isAnimating ? 'animate-ripple' : ''}`}
-      />
 
       {/* Icon wrapper */}
-      <div className="relative h-full w-full">
-        <div className={`theme-icon-wrapper absolute inset-0 flex items-center justify-center transition-all duration-300 ${isDark ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'}`}>
+      <div className="relative h-full w-full flex items-center justify-center">
+        {isDark ? (
           <Sun className="size-6" strokeWidth={1.5} />
-        </div>
-        <div className={`theme-icon-wrapper absolute inset-0 flex items-center justify-center transition-all duration-300 ${!isDark ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-50'}`}>
+        ) : (
           <Moon className="size-6" strokeWidth={1.5} />
-        </div>
+        )}
       </div>
     </button>
   );
