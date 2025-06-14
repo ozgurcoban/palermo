@@ -1,19 +1,23 @@
 "use client";
 
-import React, { useMemo, useState, useEffect, useRef } from "react";
+import React from "react";
 import MenuTabs from "./MenuTabs";
 import MenuChips from "./MenuChips";
 import MenuItems from "./MenuItems";
-import FadeUp from "../ui/FadeUp";
-import { useGetLocale } from "@/config";
-import { SlashIcon } from "@radix-ui/react-icons";
 import { useTranslations } from "next-intl";
+import { AnimationWrapper } from "./AnimationWrapper";
+import { PriceLabelsHeader } from "./PriceLabelsHeader";
+import { MenuHeader } from "./MenuHeader";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  useResponsiveHeight,
+  useAnimationState,
+  useCategoryFiltering,
+  useScrollTracking,
+} from "@/hooks/menu";
+import {
+  shouldShowTakeawayLabelsBasedOnScroll,
+  shouldShowGlassLabels,
+} from "./menuUtils";
 
 type Props = {
   categories: Category[];
@@ -40,188 +44,49 @@ const MenuContent: React.FC<Props> = ({
   disableAnimations = false,
 }) => {
   const t = useTranslations("Home.Menu");
-  const locale = useGetLocale();
 
-  // Mobile detection
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [menuHeight, setMenuHeight] = useState<string>("85vh");
+  // Custom hooks
+  const { isMobile, menuHeight } = useResponsiveHeight();
+  const { hasSeenAnimation } = useAnimationState(disableAnimations);
+  const {
+    selectedCategories,
+    tab,
+    menus_list,
+    getCategory,
+    scrollRef,
+    handleCategoryToggle,
+    handleClearAll,
+    setTab,
+  } = useCategoryFiltering({ categories, isMobile });
 
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    const calculateMenuHeight = () => {
-      if (window.innerWidth < 1024) { // lg breakpoint
-        const navbar = (document.querySelector('header nav') || 
-                       document.querySelector('nav[role="navigation"]:not(.fixed)')) as HTMLElement;
-        const bottomBar = document.querySelector('nav.fixed[role="navigation"]') as HTMLElement;
-        
-        const navbarHeight = navbar ? navbar.offsetHeight : 80;
-        const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120;
-        const viewportHeight = window.innerHeight;
-        
-        // Calculate available height with some padding
-        const availableHeight = viewportHeight - navbarHeight - bottomBarHeight - 40; // 40px for extra spacing
-        setMenuHeight(`${availableHeight}px`);
-      } else {
-        setMenuHeight("80vh");
-      }
-    };
-    
-    checkIsMobile();
-    calculateMenuHeight();
-    
-    window.addEventListener("resize", () => {
-      checkIsMobile();
-      calculateMenuHeight();
-    });
-    
-    return () => {
-      window.removeEventListener("resize", checkIsMobile);
-      window.removeEventListener("resize", calculateMenuHeight);
-    };
-  }, []);
+  // Track which category/subcategory is visible in viewport while scrolling
+  const { visibleCategoryId, visibleSubcategoryId } = useScrollTracking({
+    scrollRef,
+    useChips: isMobile,
+    menus_list,
+    selectedCategories,
+  });
 
   const useChips = isMobile;
 
-  // Check if animations should be disabled based on localStorage (24-hour cooldown)
-  // Initialize to true to avoid hydration mismatch, then update on client
-  const [hasSeenAnimation, setHasSeenAnimation] = useState(true);
-
-  useEffect(() => {
-    if (disableAnimations) {
-      setHasSeenAnimation(true);
-      return;
-    }
-
-    // Check localStorage only on client side
-    if (typeof window !== "undefined") {
-      const lastSeen = localStorage.getItem("menu-animation-seen");
-      const now = Date.now();
-      const twentyFourHours = 24 * 60 * 60 * 1000;
-
-      if (lastSeen && now - parseInt(lastSeen) < twentyFourHours) {
-        setHasSeenAnimation(true);
-      } else {
-        // Enable animations on client if not seen recently
-        setHasSeenAnimation(false);
-        // Save after animations complete
-        setTimeout(() => {
-          localStorage.setItem("menu-animation-seen", now.toString());
-        }, 2000);
-      }
-    }
-  }, [disableAnimations]);
-
-  // Selected categories for multi-select filtering (chips mode)
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-
-  // Single tab selection (tabs mode)
-  const [tab, setTab] = useState(categories[0]._id);
-
-  // Ref for scrollable div
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Removed debug log
-  }, []);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo(0, 0);
-    }
-  }, [selectedCategories, tab]);
-
-  // Get the menu list based on mode
-  const menus_list = useMemo(() => {
-    if (useChips) {
-      // Chips mode: multi-select filtering
-      if (selectedCategories.length === 0) {
-        // Return all categories with structure intact for "Alla"
-        return categories;
-      }
-
-      // Sort categories based on selection order
-      const filteredCategories = selectedCategories
-        .map(selectedId => categories.find(({ _id }) => _id === selectedId))
-        .filter(Boolean) as Category[];
-
-      // Return categories in the order they were selected
-      return filteredCategories;
-    } else {
-      // Tabs mode: single category selection (desktop)
-      const filteredList = categories.find(({ _id }) => tab === _id);
-      if (filteredList) {
-        // For desktop, return subcategories and direct menu items
-        return [
-          ...(filteredList.sub_categories ?? []),
-          ...(filteredList.menu_list ?? []),
-        ];
-      }
-      else return [];
-    }
-  }, [useChips, selectedCategories, tab, categories]);
-
-  // Get category for description display
-  const getCategory = useMemo(() => {
-    if (useChips) {
-      if (selectedCategories.length === 0) return null;
-      return categories.find((category) =>
-        selectedCategories.includes(category._id),
-      );
-    } else {
-      return categories.find((category) => tab === category._id);
-    }
-  }, [useChips, categories, selectedCategories, tab]);
-
-  // Handler functions for chips
-  const handleCategoryToggle = (categoryId: string) => {
-    setSelectedCategories((prev) => {
-      if (prev.includes(categoryId)) {
-        return prev.filter((id) => id !== categoryId);
-      } else {
-        return [...prev, categoryId];
-      }
-    });
-  };
-
-  const handleClearAll = () => {
-    setSelectedCategories([]);
-  };
-
-  // Conditional wrapper for animations - only animate the outer menu container
-  const AnimWrapper = ({ children, id, variants, onlyInitial = false, ...props }: any) => {
-    // Always ensure the id is passed through
-    const elementProps = {
-      ...props,
-      ...(id ? { id } : {}),
-    };
-
-    // If onlyInitial is true, only animate on first load, never on updates
-    if (onlyInitial && hasSeenAnimation) {
-      return <div {...elementProps}>{children}</div>;
-    }
-
-    if (disableAnimations) {
-      // No animations at all
-      return <div {...elementProps}>{children}</div>;
-    }
-    
-    if (hasSeenAnimation) {
-      // Use simple fade animation instead of custom variants
-      return <FadeUp {...elementProps}>{children}</FadeUp>;
-    }
-    
-    // First time: use custom animation variants if provided
-    return <FadeUp variants={variants} {...elementProps}>{children}</FadeUp>;
-  };
+  // Calculate what labels to show - dynamic based on scroll position
+  const showTakeawayLabels = shouldShowTakeawayLabelsBasedOnScroll(
+    categories,
+    useChips,
+    visibleCategoryId,
+    getCategory,
+    visibleSubcategoryId,
+    selectedCategories
+  );
+  
+  const showGlassLabels = shouldShowGlassLabels(useChips, getCategory);
+  
 
   return (
     <div className="border-image w-full">
-      <AnimWrapper
+      <AnimationWrapper
+        hasSeenAnimation={hasSeenAnimation}
+        disableAnimations={disableAnimations}
         delay={0}
         variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
         className="w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px]"
@@ -232,11 +97,11 @@ const MenuContent: React.FC<Props> = ({
         <div
           style={{
             boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
-            height: menuHeight
+            height: menuHeight,
           }}
           className="flex flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
         >
-          <div className="flex flex-col" ref={wrapperRef}>
+          <div className="flex flex-col">
             {useChips ? (
               <MenuChips
                 categories={categories}
@@ -261,116 +126,28 @@ const MenuContent: React.FC<Props> = ({
             role="region"
             aria-label={t("menuItemsLabel")}
           >
-            {!useChips && getCategory && (
-              <div className="mx-auto mb-6 max-w-md" key={getCategory._id}>
-                <h2 className="font-recoleta text-3xl font-medium text-primary text-center mb-3">
-                  {getCategory.title[locale]}
-                </h2>
-                {getCategory.description && (
-                  <p className="text-muted-foreground text-justify">
-                    {getCategory.description[locale]}
-                  </p>
-                )}
-              </div>
-            )}
-            <div className={`sticky top-0 z-10 mx-auto max-w-md items-center bg-white dark:bg-card ${useChips ? 'hidden' : 'flex'}`}>
-              {getCategory?.sub_categories?.some((subCategory) =>
-                subCategory.menu_list.some(
-                  (item) =>
-                    "takeawayPrice" in item.priceSection &&
-                    item.priceSection.takeawayPrice,
-                ),
-              ) ? (
-                <>
-                  <p className="sticky top-0 w-full whitespace-nowrap text-right font-medium text-primary">
-                    {t("dineIn")}
-                  </p>
-                  <SlashIcon className="h-6 text-primary" />{" "}
-                  {/* Updated to use text-primary */}
-                  {t("takeAway.full") ? (
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <p className="whitespace-nowrap font-medium text-primary">
-                            <span aria-label={t("takeAway.full")}>{t("takeAway.short")}</span>
-                          </p>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <span>{t("takeAway.full")}</span>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  ) : (
-                    <p className="whitespace-nowrap font-medium text-primary">
-                      {t("takeAway.short")}
-                    </p>
-                  )}
-                </>
-              ) : null}
-              {getCategory?.sub_categories?.some((subCategory) =>
-                subCategory.menu_list.some(
-                  (item) =>
-                    "glassPrice" in item.priceSection &&
-                    item.priceSection.glassPrice,
-                ),
-              ) ? (
-                <TooltipProvider>
-                  <Tooltip>
-                    <div className="relative z-50 flex w-full justify-end">
-                      <TooltipTrigger asChild>
-                        <p className="whitespace-nowrap font-medium text-primary">
-                          <span aria-label={t("glass.full")}>{t("glass.short")}</span>
-                        </p>
-                      </TooltipTrigger>
-                    </div>
-                    <TooltipContent>
-                      <span>{t("glass.full")}</span>
-                    </TooltipContent>
-                  </Tooltip>
-                  <SlashIcon className="h-6 text-primary" />
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <p className="whitespace-nowrap font-medium text-primary">
-                        <span aria-label={t("bottle.full")}>{t("bottle.short")}</span>
-                      </p>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <span>{t("bottle.full")}</span>
-                    </TooltipContent>
-                  </Tooltip>
-                  <SlashIcon className="h-6 text-primary" />
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <p className="whitespace-nowrap font-medium text-primary">
-                        <span aria-label={t("carafe.full")}>{t("carafe.short")}</span>
-                      </p>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <span>{t("carafe.full")}</span>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              ) : null}
-            </div>
-            {!useChips && (getCategory?.sub_categories?.some(subCategory => 
-              subCategory.menu_list.some(item => 
-                ("takeawayPrice" in item.priceSection && item.priceSection.takeawayPrice) ||
-                ("glassPrice" in item.priceSection && item.priceSection.glassPrice)
-              )
-            )) && <hr className="mt-4" />}
+            {!useChips && <MenuHeader category={getCategory} />}
+            
+            <PriceLabelsHeader
+              shouldShowTakeawayLabels={showTakeawayLabels}
+              shouldShowGlassLabels={showGlassLabels}
+            />
+            
             <div className="h-full w-full pb-24 lg:pb-0">
               <MenuItems
-                key={useChips ? selectedCategories.join('-') : tab}
+                key={useChips ? selectedCategories.join("-") : tab}
                 data={menus_list}
                 showCategoryHeaders={
-                  useChips && (selectedCategories.length === 0 || selectedCategories.length >= 1)
+                  useChips &&
+                  (selectedCategories.length === 0 ||
+                    selectedCategories.length >= 1)
                 }
               />
             </div>
           </div>
         </div>
         <hr />
-      </AnimWrapper>
+      </AnimationWrapper>
     </div>
   );
 };
