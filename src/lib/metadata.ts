@@ -33,7 +33,12 @@ export const siteConfig = {
 };
 
 // Platform detection
-const isNetlify = process.env.NETLIFY === "true";
+const isNetlify = 
+  process.env.NETLIFY === "true" || 
+  process.env.NETLIFY === "1" ||
+  !!process.env.NETLIFY_BUILD_BASE ||
+  !!process.env.DEPLOY_URL ||
+  (process.env.URL && process.env.URL.includes('netlify'));
 const isVercel = process.env.VERCEL === "1";
 
 // Netlify is ALWAYS preview/noindex for this project
@@ -49,6 +54,9 @@ if (typeof window === "undefined") {
   console.log("Environment check:", {
     NODE_ENV: process.env.NODE_ENV,
     NETLIFY: process.env.NETLIFY,
+    NETLIFY_BUILD_BASE: process.env.NETLIFY_BUILD_BASE,
+    DEPLOY_URL: process.env.DEPLOY_URL,
+    URL: process.env.URL,
     VERCEL: process.env.VERCEL,
     VERCEL_ENV: process.env.VERCEL_ENV,
     VERCEL_GIT_COMMIT_REF: process.env.VERCEL_GIT_COMMIT_REF,
