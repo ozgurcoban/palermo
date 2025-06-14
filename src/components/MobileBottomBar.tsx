@@ -7,7 +7,7 @@ import { useGetLocale } from "@/config";
 import type { AppPathnames } from "@/config";
 import { useRouter } from "@/navigation";
 import { useState } from "react";
-import { event } from "@/lib/gtag";
+import { event, trackMobileBottomNavClick } from "@/lib/gtag";
 import { setLanguageSwitchFlag } from "@/lib/cookie-utils";
 import { useIsLanguageSwitching } from "@/components/LanguageSwitchChecker";
 
@@ -90,6 +90,9 @@ const MobileBottomBar = () => {
                 key={item.href}
                 onClick={() => {
                   if (!item.isActive) {
+                    // Track navigation click
+                    trackMobileBottomNavClick(item.href, item.label, pathname);
+                    
                     // Smooth scroll to top
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     // Navigate after a short delay

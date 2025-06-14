@@ -190,3 +190,17 @@ export const trackFAQCTAClick = (
     action: "navigate",
   });
 };
+
+export const trackMobileBottomNavClick = (
+  destination: string, 
+  label: string,
+  fromPage: string
+) => {
+  event("mobile_bottom_nav_click", {
+    event_category: "Navigation",
+    event_label: `Mobile Bottom Bar: ${label}`,
+    destination: destination,
+    from_page: fromPage,
+    navigation_method: "mobile_bottom_bar",
+  });
+};
