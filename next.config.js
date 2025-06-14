@@ -14,6 +14,11 @@ const nextConfig = {
         destination: "/en",
         permanent: true,
       },
+      {
+        source: "/en/about-us",
+        destination: "/en",
+        permanent: true,
+      },
     ];
   },
   images: {
