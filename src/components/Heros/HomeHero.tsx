@@ -24,35 +24,36 @@ export async function HomeHero() {
       </div>
 
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
-        <Badge
-          variant="secondary"
-          className="animate-fadeUp pointer-events-none mb-4 rounded-sm bg-muted-foreground/70 px-4 py-2 font-medium text-secondary backdrop-blur-sm"
-          style={{ animationDelay: "0.5s" }}
-        >
-          <span className="uppercase">{t("HomeHero.badge.main")}</span>
-          <span>{t("HomeHero.badge.suffix")}</span>
-        </Badge>
+        {/* Content wrapper positioned slightly higher */}
+        <div className="flex flex-col items-center -mt-8 sm:-mt-10 lg:-mt-12">
+          <Badge
+            variant="secondary"
+            className="animate-fadeUp pointer-events-none mb-4 rounded-sm bg-muted-foreground/70 px-4 py-2 font-medium text-secondary backdrop-blur-sm"
+            style={{ animationDelay: "0.5s" }}
+          >
+            <span className="uppercase">{t("HomeHero.badge.main")}</span>
+            <span>{t("HomeHero.badge.suffix")}</span>
+          </Badge>
 
-        <h1
-          className="hero-title animate-fadeUp mb-4"
-          style={{ animationDelay: "0.8s" }}
-        >
-          {t("HomeHero.title")}
-        </h1>
+          <h1
+            className="hero-title animate-fadeUp mb-4"
+            style={{ animationDelay: "0.8s" }}
+          >
+            {t("HomeHero.title")}
+          </h1>
 
-        {/* Hero description */}
-        <p
-          className="animate-fadeUp break-words font-lato text-[4vw] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[22px] lg:text-[26px] lg:leading-[85px]"
-          style={{ animationDelay: "1.1s" }}
-        >
-          {t("HomeHero.description")}
-        </p>
-      </div>
+          {/* Hero description */}
+          <p
+            className="animate-fadeUp break-words font-lato text-[4vw] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[22px] lg:text-[26px] lg:leading-[85px] mb-16 sm:mb-20 lg:mb-24"
+            style={{ animationDelay: "1.1s" }}
+          >
+            {t("HomeHero.description")}
+          </p>
 
-      <div className="absolute bottom-6 z-20 flex items-center justify-center">
-        {/* Main CTA button */}
-        <div className="animate-fadeUp" style={{ animationDelay: "1.4s" }}>
-          <ScrollToMenu>{t("HomeHero.cta")}</ScrollToMenu>
+          {/* Main CTA button moved up and integrated with content */}
+          <div className="animate-fadeUp" style={{ animationDelay: "1.4s" }}>
+            <ScrollToMenu>{t("HomeHero.cta")}</ScrollToMenu>
+          </div>
         </div>
       </div>
     </div>

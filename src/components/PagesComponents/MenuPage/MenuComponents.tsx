@@ -79,25 +79,49 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
     const delay = 100;
 
     setTimeout(() => {
-      const menuSection = document.getElementById("menu");
-      if (menuSection) {
-        const navbarHeight = 132;
-        const menuPosition =
-          menuSection.getBoundingClientRect().top + window.scrollY;
-        const viewportHeight = window.innerHeight;
-        const menuHeight = menuSection.offsetHeight;
-        const offsetPosition =
-          menuPosition -
-          navbarHeight -
-          (viewportHeight - navbarHeight - menuHeight) / 2 +
-          40;
+      const menu = document.getElementById("menu");
+      if (menu) {
+        const isMobile = window.innerWidth < 1024;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+        if (isMobile) {
+          // Get actual heights of fixed elements
+          const navbar = (document.querySelector('header nav') || 
+                        document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
+          const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
+          
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120; // +16 for bottom-4 spacing
+          
+          // Get menu position
+          const menuRect = menu.getBoundingClientRect();
+          const menuTop = menuRect.top + window.scrollY;
+          
+          // Scroll so menu top is right after navbar
+          const scrollTarget = menuTop - navbarHeight - 10; // 10px gap
+
+          window.scrollTo({
+            top: scrollTarget,
+            behavior: "smooth",
+          });
+        } else {
+          // Desktop: use existing centering logic
+          const navbarHeight = 132;
+          const menuPosition = menu.getBoundingClientRect().top + window.scrollY;
+          const viewportHeight = window.innerHeight;
+          const menuHeight = menu.offsetHeight;
+          const offsetPosition =
+            menuPosition -
+            navbarHeight -
+            (viewportHeight - navbarHeight - menuHeight) / 2 +
+            40;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
       } else {
-        // Fallback: scroll to a fixed position if element not found
+        // Fallback
         window.scrollTo({
           top: 600,
           behavior: "smooth",

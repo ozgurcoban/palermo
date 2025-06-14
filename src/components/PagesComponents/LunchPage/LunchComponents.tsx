@@ -29,25 +29,49 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
     const delay = 100;
 
     setTimeout(() => {
-      const lunchSection = document.getElementById("lunch");
-      if (lunchSection) {
-        const navbarHeight = 132;
-        const lunchPosition =
-          lunchSection.getBoundingClientRect().top + window.scrollY;
-        const viewportHeight = window.innerHeight;
-        const lunchHeight = lunchSection.offsetHeight;
+      const lunch = document.getElementById("lunch");
+      if (lunch) {
+        const isMobile = window.innerWidth < 1024;
 
-        // Same calculation as menu page
-        const offsetPosition =
-          lunchPosition -
-          navbarHeight -
-          (viewportHeight - navbarHeight - lunchHeight) / 2 +
-          20;
+        if (isMobile) {
+          // Get actual heights of fixed elements
+          const navbar = (document.querySelector('header nav') || 
+                        document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
+          const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
+          
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120; // +16 for bottom-4 spacing
+          
+          // Get lunch position
+          const lunchRect = lunch.getBoundingClientRect();
+          const lunchTop = lunchRect.top + window.scrollY;
+          
+          // Scroll so lunch top is right after navbar with more offset
+          const scrollTarget = lunchTop - navbarHeight - 30; // 30px gap for better positioning
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+          window.scrollTo({
+            top: scrollTarget,
+            behavior: "smooth",
+          });
+        } else {
+          // Desktop: use existing centering logic
+          const navbarHeight = 132;
+          const lunchPosition = lunch.getBoundingClientRect().top + window.scrollY;
+          const viewportHeight = window.innerHeight;
+          const lunchHeight = lunch.offsetHeight;
+
+          // Same calculation as menu page
+          const offsetPosition =
+            lunchPosition -
+            navbarHeight -
+            (viewportHeight - navbarHeight - lunchHeight) / 2 +
+            20;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
       }
     }, delay);
   };

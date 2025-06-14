@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useGetLocale } from "@/config";
 import { Clock } from "lucide-react";
 import MenuItem from "../Menu/MenuItems/MenuItem";
@@ -15,6 +15,35 @@ type Props = {
 export const Lunch: React.FC<Props> = ({ lunchData }) => {
   const locale = useGetLocale();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [lunchHeight, setLunchHeight] = useState<string>("70vh");
+
+  useEffect(() => {
+    const calculateLunchHeight = () => {
+      if (window.innerWidth < 1024) { // lg breakpoint
+        const navbar = (document.querySelector('header nav') || 
+                       document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
+        const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
+        
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120;
+        const viewportHeight = window.innerHeight;
+        
+        // Calculate available height with some padding
+        const availableHeight = viewportHeight - navbarHeight - bottomBarHeight - 40; // 40px for extra spacing
+        setLunchHeight(`${availableHeight}px`);
+      } else {
+        setLunchHeight("70vh");
+      }
+    };
+    
+    calculateLunchHeight();
+    
+    window.addEventListener("resize", calculateLunchHeight);
+    
+    return () => {
+      window.removeEventListener("resize", calculateLunchHeight);
+    };
+  }, []);
 
   if (!lunchData) {
     return (
@@ -88,12 +117,13 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
           <div
             style={{
               boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
+              height: lunchHeight
             }}
-            className="px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:px-20"
+            className="flex flex-col px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:px-20"
           >
             <Tabs
               defaultValue={defaultTab}
-              className="w-full"
+              className="flex flex-col h-full w-full"
               onValueChange={handleTabChange}
             >
               <TabsList className="mb-3 grid h-auto w-full grid-cols-3 gap-1 rounded-full p-1 sm:mb-6 sm:gap-2 sm:p-2">
@@ -129,7 +159,7 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
                 )}
               </TabsList>
 
-              <div className="h-[70vh] overflow-y-scroll" ref={scrollRef}>
+              <div className="flex-1 overflow-y-scroll pb-24 lg:pb-0" ref={scrollRef}>
                 {dagensLunch && (
                   <TabsContent value="dagens" className="mt-0">
                     <div className="sticky top-0 z-10 mb-3 border-b border-border bg-white pb-2 dark:bg-card sm:mb-4 sm:pb-4">

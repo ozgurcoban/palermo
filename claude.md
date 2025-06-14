@@ -9,6 +9,7 @@
 
 - ES modules (import/export), destructure imports when possible
 - TypeScript for all files, avoid 'any' type
+- Always have optimizing of the code in mind for keeping it as fast as possible
 
 # React/Next.js essentials
 

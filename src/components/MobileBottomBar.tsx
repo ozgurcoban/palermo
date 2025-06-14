@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useGetLocale } from "@/config";
 import type { AppPathnames } from "@/config";
 import { useRouter } from "@/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { event, trackMobileBottomNavClick } from "@/lib/gtag";
 import { setLanguageSwitchFlag } from "@/lib/cookie-utils";
 import { useIsLanguageSwitching } from "@/components/LanguageSwitchChecker";
@@ -18,6 +18,11 @@ const MobileBottomBar = () => {
   const t = useTranslations("MobileBottomBar");
   const [isLocalSwitching, setIsLocalSwitching] = useState(false);
   const isLanguageSwitching = useIsLanguageSwitching();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navItems = [
     {
@@ -42,32 +47,32 @@ const MobileBottomBar = () => {
 
   const handleLanguageToggle = async () => {
     if (isLocalSwitching) return;
-    
+
     setIsLocalSwitching(true);
     const nextLocale = locale === "sv" ? "en" : "sv";
-    
+
     // Smooth scroll to top before language change
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     // Set flag to disable animations
     setLanguageSwitchFlag();
-    
+
     // Add no-animations class immediately
     document.documentElement.classList.add("no-animations");
-    
+
     // Track language switch
     event(`mobile_bottom_lang_${nextLocale}`, {
-      event_category: 'Navigation',
+      event_category: "Navigation",
       event_label: `Bottom Bar: ${locale} → ${nextLocale}`,
       from_lang: locale,
-      to_lang: nextLocale
+      to_lang: nextLocale,
     });
-    
+
     // Small delay to ensure storage is set before navigation
     setTimeout(() => {
       router.replace(pathname, { locale: nextLocale });
     }, 10);
-    
+
     // Reset local state after a short delay
     setTimeout(() => {
       setIsLocalSwitching(false);
@@ -76,7 +81,7 @@ const MobileBottomBar = () => {
 
   return (
     <nav
-      className={`fixed bottom-4 left-4 right-4 z-50 lg:hidden ${!isLanguageSwitching ? 'bottom-bar-slide-up' : ''}`}
+      className={`fixed bottom-4 left-4 right-4 z-50 lg:hidden ${mounted && !isLanguageSwitching ? "bottom-bar-slide-up" : ""}`}
       role="navigation"
       aria-label="Mobile navigation"
     >
@@ -92,9 +97,9 @@ const MobileBottomBar = () => {
                   if (!item.isActive) {
                     // Track navigation click
                     trackMobileBottomNavClick(item.href, item.label, pathname);
-                    
+
                     // Smooth scroll to top
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                     // Navigate after a short delay
                     setTimeout(() => {
                       router.push(item.href);
@@ -103,21 +108,21 @@ const MobileBottomBar = () => {
                 }}
                 className={`bottom-nav-item group flex min-h-[60px] min-w-[60px] flex-col items-center justify-center rounded-2xl px-3 py-2 ${
                   item.isActive
-                    ? "bg-white/15 text-white scale-105"
-                    : "text-white/70 hover:bg-white/8 hover:text-white/90 hover:scale-102"
+                    ? "scale-105 bg-white/15 text-white"
+                    : "hover:bg-white/8 hover:scale-102 text-white/70 hover:text-white/90"
                 }`}
               >
-                <IconComponent 
-                  size={24} 
+                <IconComponent
+                  size={24}
                   className={`transition-all duration-300 ${
-                    item.isActive ? "mb-1 scale-110" : "mb-1 group-hover:scale-105"
+                    item.isActive
+                      ? "mb-1 scale-110"
+                      : "mb-1 group-hover:scale-105"
                   }`}
                   strokeWidth={1.5}
                 />
                 {item.isActive && (
-                  <span 
-                    className="text-xs font-medium tracking-wide animate-in fade-in duration-200"
-                  >
+                  <span className="text-xs font-medium tracking-wide duration-200 animate-in fade-in">
                     {item.label}
                   </span>
                 )}

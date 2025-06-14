@@ -44,14 +44,43 @@ const MenuContent: React.FC<Props> = ({
 
   // Mobile detection
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [menuHeight, setMenuHeight] = useState<string>("85vh");
 
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
+    
+    const calculateMenuHeight = () => {
+      if (window.innerWidth < 1024) { // lg breakpoint
+        const navbar = (document.querySelector('header nav') || 
+                       document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
+        const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
+        
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120;
+        const viewportHeight = window.innerHeight;
+        
+        // Calculate available height with some padding
+        const availableHeight = viewportHeight - navbarHeight - bottomBarHeight - 40; // 40px for extra spacing
+        setMenuHeight(`${availableHeight}px`);
+      } else {
+        setMenuHeight("80vh");
+      }
+    };
+    
     checkIsMobile();
-    window.addEventListener("resize", checkIsMobile);
-    return () => window.removeEventListener("resize", checkIsMobile);
+    calculateMenuHeight();
+    
+    window.addEventListener("resize", () => {
+      checkIsMobile();
+      calculateMenuHeight();
+    });
+    
+    return () => {
+      window.removeEventListener("resize", checkIsMobile);
+      window.removeEventListener("resize", calculateMenuHeight);
+    };
   }, []);
 
   const useChips = isMobile;
@@ -203,8 +232,9 @@ const MenuContent: React.FC<Props> = ({
         <div
           style={{
             boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
+            height: menuHeight
           }}
-          className="flex h-[85vh] flex-col gap-5 px-3 pb-4 pt-6 sm:h-[80vh] sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
+          className="flex flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
         >
           <div className="flex flex-col" ref={wrapperRef}>
             {useChips ? (
@@ -325,7 +355,7 @@ const MenuContent: React.FC<Props> = ({
                 ("glassPrice" in item.priceSection && item.priceSection.glassPrice)
               )
             )) && <hr className="mt-4" />}
-            <div className="h-full w-full">
+            <div className="h-full w-full pb-24 lg:pb-0">
               <MenuItems
                 key={useChips ? selectedCategories.join('-') : tab}
                 data={menus_list}

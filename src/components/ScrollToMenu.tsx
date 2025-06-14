@@ -5,7 +5,6 @@ import { ArrowDown } from "lucide-react";
 import { trackHomeHeroMenuClick } from "@/lib/gtag";
 
 const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
-
   const scrollToMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -22,14 +21,54 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
     setTimeout(() => {
       const menu = document.getElementById("menu");
       if (menu) {
-        const navbarHeight = 132; // Height of navbar
-        const menuPosition = menu.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = menuPosition - navbarHeight + 110; // Changed from -20 to +30 for 50px lower
+        const isMobile = window.innerWidth < 1024;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+        if (isMobile) {
+          // Get actual heights of fixed elements
+          const navbar = (document.querySelector('header nav') || 
+                        document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
+          const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
+          
+          const navbarHeight = navbar ? navbar.offsetHeight : 80;
+          const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120; // +16 for bottom-4 spacing
+          
+          // Get menu position
+          const menuRect = menu.getBoundingClientRect();
+          const menuTop = menuRect.top + window.scrollY;
+          
+          // Calculate available viewport space
+          const viewportHeight = window.innerHeight;
+          const availableHeight = viewportHeight - navbarHeight - bottomBarHeight;
+          
+          // Scroll so menu top is right after navbar
+          const scrollTarget = menuTop - navbarHeight - 10; // 10px gap
+          
+          console.log("Dynamic scroll calculation:", {
+            navbarHeight,
+            bottomBarHeight,
+            viewportHeight,
+            availableHeight,
+            menuTop,
+            scrollTarget,
+            menuHeight: menuRect.height
+          });
+
+          window.scrollTo({
+            top: scrollTarget,
+            behavior: "smooth",
+          });
+        } else {
+          // Desktop: original behavior
+          menu.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest",
+          });
+
+          setTimeout(() => {
+            window.scrollBy({ top: -100, behavior: "smooth" });
+          }, 500);
+        }
       }
     }, delay);
   };
@@ -41,7 +80,7 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
       type="button"
       aria-label="Scroll to menu section"
     >
-      <div className="pointer-events-none animate-bounce-subtle">
+      <div className="animate-bounce-subtle pointer-events-none">
         <ArrowDown className="size-4" />
       </div>
       <span className="pointer-events-none">{children}</span>
