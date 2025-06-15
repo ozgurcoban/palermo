@@ -169,7 +169,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                     target="_blank"
                     aria-label="Instagram"
                     className="transition-all duration-300 hover:scale-110 hover:text-[#F5E6D3] dark:hover:text-primary"
-                    onClick={() => trackSocialClick("instagram")}
+                    onClick={() => trackSocialClick("instagram", "footer")}
                   >
                     <InstagramIcon size={24} />
                   </a>
@@ -274,7 +274,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                   target="_blank"
                   aria-label="Instagram"
                   className="transition-all duration-300 hover:scale-110 hover:text-[#F5E6D3] dark:hover:text-primary"
-                  onClick={() => trackSocialClick("instagram")}
+                  onClick={() => trackSocialClick("instagram", "footer")}
                 >
                   <InstagramIcon size={24} />
                 </a>

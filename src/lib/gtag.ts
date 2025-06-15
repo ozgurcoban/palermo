@@ -62,14 +62,14 @@ export const trackContactFormStart = () => {
 
 export const trackPhoneClick = () => {
   event("footer_phone_clicked", {
-    event_category: "Contact",
+    event_category: "Footer",
     event_label: "Phone Number",
     contact_method: "phone",
   });
 };
 
 export const trackEmailClick = () => {
-  event("footer_email_clicked", {
+  event("email_clicked", {
     event_category: "Contact",
     event_label: "Email Address",
     contact_method: "email",
@@ -159,11 +159,15 @@ export const trackFAQClick = (index: number) => {
   });
 };
 
-export const trackSocialClick = (platform: string) => {
-  event(`${platform}_clicked`, {
+export const trackSocialClick = (platform: string, location?: string) => {
+  const eventName = location ? `${platform}_${location}_clicked` : `${platform}_clicked`;
+  const label = location ? `${platform} Link - ${location}` : `${platform} Link`;
+  
+  event(eventName, {
     event_category: "Social",
-    event_label: `${platform} Link`,
+    event_label: label,
     platform: platform,
+    location: location || 'unknown'
   });
 };
 
