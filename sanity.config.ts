@@ -128,27 +128,16 @@ const commonConfig = {
   ],
 };
 
-export default defineConfig([
-  {
-    basePath: "/studio/development",
-    name: "PALERMO_STUDIO_DEVELOPMENT",
-    title: "Palermo Studio Development",
-    projectId,
-    dataset: "development",
-    schema,
-    theme: myTheme,
-    ...commonConfig,
-    icon: RocketIcon,
-  },
-  {
-    basePath: "/studio/production",
-    name: "PALERMO_STUDIO_PRODUCTION",
-    title: "Palermo Studio",
-    projectId,
-    dataset: "production",
-    schema,
-    theme: myTheme,
-    ...commonConfig,
-    icon: RobotIcon,
-  },
-]);
+const isDevelopment = dataset === "development";
+
+export default defineConfig({
+  basePath: isDevelopment ? "/studio/development" : "/studio/production",
+  name: isDevelopment ? "PALERMO_STUDIO_DEVELOPMENT" : "PALERMO_STUDIO_PRODUCTION",
+  title: isDevelopment ? "Palermo Studio Development" : "Palermo Studio",
+  projectId,
+  dataset,
+  schema,
+  theme: myTheme,
+  ...commonConfig,
+  icon: isDevelopment ? RocketIcon : RobotIcon,
+});
