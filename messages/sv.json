@@ -168,7 +168,8 @@
     "title": "Beställ hemkörning från Palermo",
     "description": "Sugen på pizza eller pasta hemma i soffan? Vi finns på alla stora appar och levererar över hela Uppsala. Samma goda mat - fast du slipper gå utanför dörren.",
     "orderVia": "Beställ via {app}",
-    "deliveryAreas": "Vi levererar till: Centrum, Löten, Årsta, Fålhagen, Luthagen, Eriksberg, Gottsunda och övriga Uppsala."
+    "deliveryAreas": "Vi levererar till: Centrum, Löten, Årsta, Fålhagen, Luthagen, Eriksberg, Gottsunda och övriga Uppsala.",
+    "opensInNewTab": "(öppnas i ny flik)"
   },
   "MobileBottomBar": {
     "home": "Hem",

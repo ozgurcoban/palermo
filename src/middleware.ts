@@ -4,6 +4,17 @@ import { pathnames, locales, localePrefix } from './config';
 import { NextRequest } from 'next/server';
 
 export default async function middleware(request: NextRequest) {
+  // Skip middleware for static files 
+  const pathname = request.nextUrl.pathname;
+  if (
+    pathname.startsWith('/_next/') ||
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/studio') ||
+    pathname.includes('.') && !pathname.startsWith('/[')
+  ) {
+    return;
+  }
+
   const handleI18nRouting = createMiddleware({
     defaultLocale: 'sv',
     locales,
@@ -38,6 +49,6 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|studio).*)',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };
