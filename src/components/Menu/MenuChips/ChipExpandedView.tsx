@@ -42,6 +42,7 @@ export const ChipExpandedView: React.FC<ChipExpandedViewProps> = ({
     onSetInteracted();
     onCategoryToggle(categoryId);
     onDeactivateShowAll();
+    onCollapse();
   };
 
   return (
