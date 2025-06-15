@@ -94,18 +94,18 @@
     "location": "Sysslomansgatan 7, Uppsala"
   },
   "Metadata": {
-    "title": "Palermo Uppsala - Pizza & Restaurant on Sysslomansgatan",
+    "title": "Palermo Uppsala – Laid-back neighborhood spot & pizzeria",
     "home": {
-      "title": "Palermo Uppsala - Pizza & Restaurant on Sysslomansgatan",
-      "description": "Palermo pizzeria in central Uppsala. Affordable restaurant with pizza, pasta & lunch from 119 SEK. Open every day.\n☎️ 018-13 18 20"
+      "title": "Palermo Uppsala – Laid-back Restaurant & Pizzeria",
+      "description": "Uppsala's most charming neighborhood spot on Sysslomansgatan – pizza, comfort food and cold beer in a laid-back atmosphere. Come for the pizza, stay for the vibe!"
     },
     "menu": {
-      "title": "Menu Palermo Uppsala - Pizza, Pizzeria & Restaurant",
-      "description": "View Palermo pizzeria menu with prices. Pizza, pasta, meat dishes in Uppsala. Affordable restaurant on Sysslomansgatan. Takeaway & dine-in."
+      "title": "Palermo Uppsala Menu – Pizza, pasta & meat dishes",
+      "description": "Explore the menu at Palermo – Uppsala's most charming neighborhood spot. Pizza, pasta, hearty meat dishes and cold beer. Dine-in and takeout on Sysslomansgatan."
     },
     "lunch": {
       "title": "Lunch Uppsala - Weekday Lunch at Palermo",
-      "description": "Weekday lunch in Uppsala at Palermo. Choose from comfort food classics or lunch pizza, includes salad bar, bread & coffee. Served Mon-Fri 11-3. Check out our lunch menu."
+      "description": "Weekday lunch at Uppsala's most charming neighborhood spot. Good comfort food or lunch pizza including salad, bread & coffee. Mon–Fri 11–3."
     }
   },
   "LocaleSwitcher": {
@@ -125,7 +125,7 @@
     "slogan": "Uppsalas (unofficial) 14th nation",
     "followUs": "Follow us on Instagram",
     "quickLinks": "Quick Links",
-    "orderByPhone": "Order by phone",
+    "orderByPhone": "Call us",
     "copyright": "© {year} Palermo Uppsala. All rights reserved.",
     "backToTop": "Back to top"
   },

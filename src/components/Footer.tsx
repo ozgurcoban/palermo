@@ -148,14 +148,6 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                       <Localization text="Navigation.lunch" />
                     </Link>
                   </li>
-                  <li>
-                    <a
-                      href="#contact"
-                      className="transition-colors duration-300 hover:text-[#F5E6D3] dark:hover:text-primary"
-                    >
-                      <Localization text="Navigation.contact" />
-                    </a>
-                  </li>
                 </ul>
               </div>
 

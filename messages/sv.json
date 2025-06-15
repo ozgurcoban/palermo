@@ -94,18 +94,18 @@
     "location": "Sysslomansgatan 7, Uppsala"
   },
   "Metadata": {
-    "title": "Palermo Uppsala - Pizza & restaurang på Sysslomansgatan",
+    "title": "Palermo Uppsala – Skön kvarterskrog & pizzeria",
     "home": {
-      "title": "Palermo Uppsala - Pizza & Restaurang på Sysslomansgatan",
-      "description": "Palermo pizzeria i Uppsala centrum. Prisvärd restaurang med pizza, pasta & lunch från 119 kr. Öppet alla dagar.\n☎️ 018-13 18 20"
+      "title": "Palermo Uppsala – Sk restaurang & pizzeria",
+      "description": "Uppsalas charmigaste kvarterskrog på Sysslomansgatan – pizza, a la carte och kall öl i en avslappnad atmosfär. Kom för pizzan, stanna för stämningen!"
     },
     "menu": {
-      "title": "Meny Palermo Uppsala - Pizza, Pizzeria & Restaurang",
-      "description": "Se Palermo pizzeria meny med priser. Pizza, pasta, kötträtter i Uppsala. Prisvärd restaurang på Sysslomansgatan. Take away & servering."
+      "title": "Palermo Uppsala Meny – Pizza, pasta & kötträtter",
+      "description": "Utforska menyn på Palermo – Uppsalas charmigaste kvarterskrog. Pizza, pasta, rejäla kötträtter och kall öl. Servering och avhämtning på Sysslomansgatan."
     },
     "lunch": {
-      "title": "Lunch Uppsala - Vardagslunch på Palermo",
-      "description": "Lunch i Uppsala centrum. Schysst husmanskost eller lunchpizza med sallad, bröd & kaffe. Mån-fre 11-15 på Palermo."
+      "title": "Lunch Uppsala – God vardagslunch på Palermo",
+      "description": "Vardagslunch på Uppsalas charmigaste kvarterskrog. God husmanskost eller lunchpizza inklusive sallad, bröd & kaffe. Mån–fre 11–15."
     }
   },
   "LocaleSwitcher": {
@@ -125,7 +125,7 @@
     "slogan": "Uppsalas (inofficiella) 14:e nation",
     "followUs": "Följ oss på Instagram",
     "quickLinks": "Snabblänkar",
-    "orderByPhone": "Beställ via telefon",
+    "orderByPhone": "Ring oss",
     "copyright": "© {year} Palermo Uppsala. Alla rättigheter förbehållna.",
     "backToTop": "Till toppen"
   },
