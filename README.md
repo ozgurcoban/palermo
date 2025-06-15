@@ -37,9 +37,9 @@ The project uses a secure environment variable setup:
 
 ### Environment Files Structure
 
-- **`.env.local`** - Contains sensitive API keys (never committed to Git)
-- **`.env.development`** - Development-specific public settings (safe to commit)
-- **`.env.production`** - Production-specific public settings (safe to commit)
+- **`.env.local`** - Contains sensitive API keys
+- **`.env.development`** - Development-specific public settings
+- **`.env.production`** - Production-specific public settings
 
 ### Setup Instructions
 
@@ -49,7 +49,21 @@ The project uses a secure environment variable setup:
 cp .env.local.example .env.local
 ```
 
-2. Fill in your API keys in `.env.local`:
+2. Create environment-specific files:
+
+```bash
+# Create development environment file
+echo "NEXT_PUBLIC_SANITY_DATASET=development
+NEXT_PUBLIC_SANITY_PROJECT_ID=zax24rdo
+NEXT_PUBLIC_VERCEL_URL=localhost:3000" > .env.development
+
+# Create production environment file
+echo "NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_PROJECT_ID=zax24rdo
+NEXT_PUBLIC_VERCEL_URL=www.palermo-uppsala.se" > .env.production
+```
+
+3. Fill in your API keys in `.env.local`:
 
 ```env
 # Sensitive API keys - DO NOT COMMIT
@@ -74,9 +88,8 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=your_ga_id
 
 ### Security Note
 
-- `.env.local` contains sensitive keys and is gitignored
-- `.env.development` and `.env.production` only contain public settings
-- Never commit API keys or tokens to the repository
+- Never commit API keys, tokens, or sensitive environment variables to the repository
+- All environment files are kept local for security
 
 ## Installation
 
