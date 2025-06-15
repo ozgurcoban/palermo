@@ -1,6 +1,8 @@
 import { revalidatePath, revalidateTag } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 
+export const revalidate = 3600
+
 // Environment variable for webhook security
 const REVALIDATE_TOKEN = process.env.REVALIDATE_TOKEN
 
