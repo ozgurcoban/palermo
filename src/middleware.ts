@@ -38,12 +38,6 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/', // Required when i18n is enabled, otherwise middleware won't be executed on index route
-
-    // Set a cookie to remember the previous locale for
-    // all requests that have a locale prefix
-    '/(sv|en)/:path*',
-
-    '/((?!studio|api/|_next/|_static/|_vercel|fonts|images/|[\\w-]+\\.\\w+).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|studio).*)',
   ],
 };
