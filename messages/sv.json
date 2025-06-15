@@ -104,8 +104,8 @@
       "description": "Se Palermo pizzeria meny med priser. Pizza, pasta, kötträtter i Uppsala. Prisvärd restaurang på Sysslomansgatan. Take away & servering."
     },
     "lunch": {
-      "title": "Lunch Uppsala - Dagens Lunch på Palermo från 119 kr",
-      "description": "Prisvärd lunch i Uppsala. Dagens lunch från 119 kr inkl sallad, bröd & kaffe. Palermo restaurang serverar lunch mån-fre 11-15. Se lunchmeny."
+      "title": "Lunch Uppsala - Vardagslunch på Palermo",
+      "description": "Lunch i Uppsala centrum. Schysst husmanskost eller lunchpizza med sallad, bröd & kaffe. Mån-fre 11-15 på Palermo."
     }
   },
   "LocaleSwitcher": {
@@ -115,15 +115,19 @@
   "Navigation": {
     "home": "Hem",
     "menu": "Meny",
-    "lunch": "lunch",
-    "contact": "kontakta oss",
+    "lunch": "Lunch",
+    "contact": "Kontakta oss",
     "goToHomepage": "Palermo - Gå till startsidan",
     "scrollToContact": "Rulla till kontaktformuläret",
     "opensInNewTab": "(öppnas i ny flik)"
   },
   "Footer": {
     "slogan": "Uppsalas (inofficiella) 14:e nation",
-    "followUs": "Följ oss på Instagram"
+    "followUs": "Följ oss på Instagram",
+    "quickLinks": "Snabblänkar",
+    "orderByPhone": "Beställ via telefon",
+    "copyright": "© {year} Palermo Uppsala. Alla rättigheter förbehållna.",
+    "backToTop": "Till toppen"
   },
   "Lunch": {
     "hero": {

@@ -61,7 +61,7 @@ export const trackContactFormStart = () => {
 };
 
 export const trackPhoneClick = () => {
-  event("phone_clicked", {
+  event("footer_phone_clicked", {
     event_category: "Contact",
     event_label: "Phone Number",
     contact_method: "phone",
@@ -69,7 +69,7 @@ export const trackPhoneClick = () => {
 };
 
 export const trackEmailClick = () => {
-  event("email_clicked", {
+  event("footer_email_clicked", {
     event_category: "Contact",
     event_label: "Email Address",
     contact_method: "email",
@@ -192,9 +192,9 @@ export const trackFAQCTAClick = (
 };
 
 export const trackMobileBottomNavClick = (
-  destination: string, 
+  destination: string,
   label: string,
-  fromPage: string
+  fromPage: string,
 ) => {
   event("mobile_bottom_nav_click", {
     event_category: "Navigation",

@@ -33,12 +33,12 @@ export const siteConfig = {
 };
 
 // Platform detection
-const isNetlify = 
-  process.env.NETLIFY === "true" || 
+const isNetlify =
+  process.env.NETLIFY === "true" ||
   process.env.NETLIFY === "1" ||
   !!process.env.NETLIFY_BUILD_BASE ||
   !!process.env.DEPLOY_URL ||
-  (process.env.URL && process.env.URL.includes('netlify'));
+  (process.env.URL && process.env.URL.includes("netlify"));
 const isVercel = process.env.VERCEL === "1";
 
 // Netlify is ALWAYS preview/noindex for this project
@@ -205,7 +205,7 @@ export function getFAQData(
           question: "Vad kostar lunchen på Palermo?",
           answer:
             lunchInfo ||
-            "Dagens lunch kostar från 119 kr och serveras vardagar 11:00-15:00. I priset ingår huvudrätt, sallad, bröd och kaffe. Välj mellan 9 olika rätter eller 24st lunchpizza.",
+            "Vardagslunch kostar från 119 kr och serveras vardagar 11:00-15:00. I priset ingår huvudrätt, sallad, bröd och kaffe. Välj mellan 9 olika rätter eller 24st lunchpizza.",
         },
         {
           question: "Vilka öppettider har Palermo Uppsala?",
@@ -278,20 +278,23 @@ export function generateFAQSchema(
   sanityFAQData?: FAQ,
 ) {
   let faqs: { question: string; answer: string }[];
-  
+
   if (sanityFAQData?.questions) {
     // Use Sanity FAQ data if available
-    faqs = sanityFAQData.questions.map(item => {
+    faqs = sanityFAQData.questions.map((item) => {
       let processedAnswer = item.answer[locale];
-      
+
       // Replace all occurrences of dynamic content placeholders
       if (openingHours) {
-        processedAnswer = processedAnswer.replace(/{{openingHours}}/g, openingHours);
+        processedAnswer = processedAnswer.replace(
+          /{{openingHours}}/g,
+          openingHours,
+        );
       }
       if (lunchInfo) {
         processedAnswer = processedAnswer.replace(/{{lunchInfo}}/g, lunchInfo);
       }
-      
+
       return {
         question: item.question[locale],
         answer: processedAnswer,
