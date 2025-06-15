@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MenuTabs from "./MenuTabs";
 import MenuChips from "./MenuChips";
 import MenuItems from "./MenuItems";
@@ -16,7 +16,7 @@ import {
 } from "@/hooks/menu";
 import {
   shouldShowTakeawayLabelsBasedOnScroll,
-  shouldShowGlassLabels,
+  shouldShowGlassLabelsBasedOnScroll,
 } from "./menuUtils";
 
 type Props = {
@@ -79,7 +79,45 @@ const MenuContent: React.FC<Props> = ({
     selectedCategories
   );
   
-  const showGlassLabels = shouldShowGlassLabels(useChips, getCategory);
+  // Raw calculation of whether wine labels should be shown
+  const shouldShowGlassLabelsRaw = shouldShowGlassLabelsBasedOnScroll(
+    categories,
+    useChips,
+    visibleCategoryId,
+    getCategory,
+    visibleSubcategoryId,
+    selectedCategories
+  );
+
+  // State to track wine label visibility with hysteresis
+  const [showGlassLabels, setShowGlassLabels] = useState(false);
+  const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Apply hysteresis to wine label visibility
+  useEffect(() => {
+    if (shouldShowGlassLabelsRaw) {
+      // Show immediately when entering wine section
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+        hideTimerRef.current = null;
+      }
+      setShowGlassLabels(true);
+    } else if (showGlassLabels) {
+      // Hide with delay when leaving wine section
+      if (!hideTimerRef.current) {
+        hideTimerRef.current = setTimeout(() => {
+          setShowGlassLabels(false);
+          hideTimerRef.current = null;
+        }, 1500); // 1.5s delay before hiding
+      }
+    }
+
+    return () => {
+      if (hideTimerRef.current) {
+        clearTimeout(hideTimerRef.current);
+      }
+    };
+  }, [shouldShowGlassLabelsRaw, showGlassLabels]);
   
 
   return (

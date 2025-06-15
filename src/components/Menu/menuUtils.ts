@@ -200,3 +200,83 @@ export const shouldShowGlassLabels = (
     ),
   ) ?? false;
 };
+
+// Dynamic function to show glass/bottle labels based on scroll position
+// This creates a dynamic effect where labels appear/disappear as user scrolls through wines
+export const shouldShowGlassLabelsBasedOnScroll = (
+  categories: Category[],
+  useChips: boolean,
+  visibleCategoryId: string | null,
+  currentCategory: Category | null | undefined,
+  visibleSubcategoryId: string | null,
+  selectedCategories: string[] = []
+): boolean => {
+  if (useChips) {
+    // Mobile: Show labels when scrolling past wine subcategory
+    if (!visibleSubcategoryId) {
+      return false;
+    }
+    
+    // Find the category containing the visible subcategory
+    for (const category of categories) {
+      const subcategoryIndex = category.sub_categories?.findIndex(
+        sub => sub._id === visibleSubcategoryId
+      ) ?? -1;
+      
+      if (subcategoryIndex !== -1 && category.sub_categories) {
+        // Helper function to check if a subcategory has wine items
+        const hasWineItems = (subcat: any) => 
+          subcat.menu_list?.some((item: any) =>
+            "glassPrice" in item.priceSection &&
+            item.priceSection.glassPrice
+          ) ?? false;
+        
+        // If current subcategory has wines, show labels
+        if (hasWineItems(category.sub_categories[subcategoryIndex])) {
+          return true;
+        }
+        
+        // Check if we're between wine subcategories
+        // Look backwards to find the last wine subcategory
+        let foundWineBefore = false;
+        for (let i = subcategoryIndex - 1; i >= 0; i--) {
+          if (hasWineItems(category.sub_categories[i])) {
+            foundWineBefore = true;
+            break;
+          }
+        }
+        
+        // If we found wine before, check if there's wine coming after
+        if (foundWineBefore) {
+          for (let i = subcategoryIndex + 1; i < category.sub_categories.length; i++) {
+            if (hasWineItems(category.sub_categories[i])) {
+              // We're between wine subcategories, keep labels visible
+              return true;
+            }
+            // Stop if we hit a large gap (more than 3 non-wine subcategories)
+            if (i - subcategoryIndex > 3) {
+              break;
+            }
+          }
+        }
+      }
+    }
+    
+    return false;
+  } else {
+    // Desktop: Show when current category has any subcategories with glass prices
+    if (!currentCategory) return false;
+    
+    // Check if ANY subcategory in current tab has glass prices
+    const hasGlassPrices = currentCategory.sub_categories?.some((subCategory) => {
+      const hasPrice = subCategory.menu_list?.some((item) =>
+        "glassPrice" in item.priceSection &&
+        item.priceSection.glassPrice
+      ) ?? false;
+      
+      return hasPrice;
+    }) ?? false;
+    
+    return hasGlassPrices;
+  }
+};
