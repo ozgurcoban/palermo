@@ -36,7 +36,7 @@ export const Menu: React.FC<Props> = ({
       />
     );
 
-  return;
+  return null;
 };
 
 const MenuContent: React.FC<Props> = ({
@@ -67,26 +67,23 @@ const MenuContent: React.FC<Props> = ({
     selectedCategories,
   });
 
-  const useChips = isMobile;
-
-  // Calculate what labels to show - dynamic based on scroll position
+  // Calculate what labels to show
   const showTakeawayLabels = shouldShowTakeawayLabelsBasedOnScroll(
     categories,
-    useChips,
+    isMobile,
     visibleCategoryId,
     getCategory,
     visibleSubcategoryId,
-    selectedCategories
+    selectedCategories,
   );
-  
-  // Raw calculation of whether wine labels should be shown
+
   const shouldShowGlassLabelsRaw = shouldShowGlassLabelsBasedOnScroll(
     categories,
-    useChips,
+    isMobile,
     visibleCategoryId,
     getCategory,
     visibleSubcategoryId,
-    selectedCategories
+    selectedCategories,
   );
 
   // State to track wine label visibility with hysteresis
@@ -96,19 +93,17 @@ const MenuContent: React.FC<Props> = ({
   // Apply hysteresis to wine label visibility
   useEffect(() => {
     if (shouldShowGlassLabelsRaw) {
-      // Show immediately when entering wine section
       if (hideTimerRef.current) {
         clearTimeout(hideTimerRef.current);
         hideTimerRef.current = null;
       }
       setShowGlassLabels(true);
     } else if (showGlassLabels) {
-      // Hide with delay when leaving wine section
       if (!hideTimerRef.current) {
         hideTimerRef.current = setTimeout(() => {
           setShowGlassLabels(false);
           hideTimerRef.current = null;
-        }, 1500); // 1.5s delay before hiding
+        }, 1500);
       }
     }
 
@@ -118,7 +113,6 @@ const MenuContent: React.FC<Props> = ({
       }
     };
   }, [shouldShowGlassLabelsRaw, showGlassLabels]);
-  
 
   return (
     <div className="border-image w-full">
@@ -139,7 +133,8 @@ const MenuContent: React.FC<Props> = ({
           className="menu-height flex flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
         >
           <div className="flex flex-shrink-0 flex-col">
-            {useChips ? (
+            {/* Mobile version - hidden on desktop */}
+            <div className="block md:hidden">
               <MenuChips
                 categories={categories}
                 selectedCategories={selectedCategories}
@@ -147,14 +142,18 @@ const MenuContent: React.FC<Props> = ({
                 onClearAll={handleClearAll}
                 scrollContainerRef={scrollRef}
               />
-            ) : (
+            </div>
+
+            {/* Desktop version - hidden on mobile */}
+            <div className="hidden md:block">
               <MenuTabs
                 tabs={categories}
                 selectedTab={tab}
                 setSelectedTab={setTab}
               />
-            )}
+            </div>
           </div>
+
           <div
             className="menu-scroll-container scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full text-center md:mt-8"
             ref={scrollRef}
@@ -163,19 +162,22 @@ const MenuContent: React.FC<Props> = ({
             role="region"
             aria-label={t("menuItemsLabel")}
           >
-            {!useChips && <MenuHeader category={getCategory} />}
-            
+            {/* Desktop header - hidden on mobile */}
+            <div className="hidden md:block">
+              <MenuHeader category={getCategory} />
+            </div>
+
             <PriceLabelsHeader
               shouldShowTakeawayLabels={showTakeawayLabels}
               shouldShowGlassLabels={showGlassLabels}
             />
-            
+
             <div className="h-full w-full pb-24 lg:pb-0">
               <MenuItems
-                key={useChips ? selectedCategories.join("-") : tab}
+                key={isMobile ? selectedCategories.join("-") : tab}
                 data={menus_list}
                 showCategoryHeaders={
-                  useChips &&
+                  isMobile &&
                   (selectedCategories.length === 0 ||
                     selectedCategories.length >= 1)
                 }

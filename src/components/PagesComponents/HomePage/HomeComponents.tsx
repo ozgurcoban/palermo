@@ -11,8 +11,8 @@ import { useGetLocale } from "@/config";
 import { FAQ } from "@/components/FAQ";
 
 // Dynamic import for Menu to prevent FOUC
-const MenuResponsive = dynamic(
-  () => import("@/components/Menu").then(mod => ({ default: mod.MenuResponsive })),
+const Menu = dynamic(
+  () => import("@/components/Menu").then(mod => ({ default: mod.Menu })),
   {
     loading: () => <MenuSkeleton />,
     ssr: false,
@@ -43,7 +43,7 @@ const HomeComponents: React.FC<Props> = ({
       <Hero />
       <section className="w-full py-16 md:py-20">
         <div className="container">
-          <MenuResponsive categories={categoriesData} />
+          <Menu categories={categoriesData} />
         </div>
       </section>
       <Gallery data={gallery_section} />

@@ -4,7 +4,7 @@ import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MenuTabsSkeleton } from "./MenuTabsSkeleton";
 import { MenuChipsSkeleton } from "./MenuChipsSkeleton";
-import { MenuItemsSkeleton } from "./MenuItemsSkeleton";
+import { MenuItemsSkeleton } from "./MenuItems/MenuItemsSkeleton";
 import { useResponsiveHeight } from "@/hooks/menu";
 
 export const MenuSkeleton: React.FC = () => {

@@ -20,10 +20,10 @@ const FAQ = dynamic(
 );
 
 // Dynamic import for Menu to prevent FOUC and hydration issues
-const MenuResponsive = dynamic(
+const Menu = dynamic(
   () =>
     import("@/components/Menu").then((mod) => ({
-      default: mod.MenuResponsive,
+      default: mod.Menu,
     })),
   {
     loading: () => <MenuSkeleton />,
@@ -102,7 +102,7 @@ const HomeComponentsOptimized: React.FC<Props> = ({
       <HomeHero />
       <section className="w-full py-16 md:py-20">
         <div className="container">
-          <MenuResponsive categories={categoriesData} />
+          <Menu categories={categoriesData} />
         </div>
       </section>
       <Gallery data={gallery_section} />

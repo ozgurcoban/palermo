@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { useGetLocale } from "@/config";
 import { trackLunchPageCTAClick } from "@/lib/gtag";
+import { useScrollToElement } from "@/hooks/useScrollToElement";
 
 // Dynamic import for Lunch to show skeleton while loading
 const Lunch = dynamic(
@@ -26,6 +27,7 @@ type Props = {
 const LunchComponents: React.FC<Props> = ({ lunchData }) => {
   const t = useTranslations("Lunch");
   const locale = useGetLocale();
+  const scrollToElement = useScrollToElement();
 
   const scrollToLunch = () => {
     // Wrap tracking in try-catch to prevent crashes
@@ -35,47 +37,11 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
       console.error("Tracking error:", error);
     }
 
-    // Small delay to ensure element is rendered
-    const delay = 100;
-
-    setTimeout(() => {
-      const lunch = document.getElementById("lunch");
-      if (lunch) {
-        const isMobile = window.innerWidth < 1024;
-
-        if (isMobile) {
-          // Get lunch position
-          const lunchRect = lunch.getBoundingClientRect();
-          const lunchTop = lunchRect.top + window.scrollY;
-          
-          // Scroll so lunch top is exactly 20px from top of viewport
-          const scrollTarget = lunchTop - 20;
-
-          window.scrollTo({
-            top: scrollTarget,
-            behavior: "smooth",
-          });
-        } else {
-          // Desktop: use existing centering logic
-          const navbarHeight = 132;
-          const lunchPosition = lunch.getBoundingClientRect().top + window.scrollY;
-          const viewportHeight = window.innerHeight;
-          const lunchHeight = lunch.offsetHeight;
-
-          // Same calculation as menu page
-          const offsetPosition =
-            lunchPosition -
-            navbarHeight -
-            (viewportHeight - navbarHeight - lunchHeight) / 2 +
-            20;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        }
-      }
-    }, delay);
+    scrollToElement({
+      elementId: "lunch",
+      mobileOffset: 10,
+      desktopBehavior: "center",
+    });
   };
 
   return (

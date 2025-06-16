@@ -9,10 +9,11 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import FoodDeliveryApps from "@/components/FoodDeliveryApps";
 import { trackMenuPageCTAClick } from "@/lib/gtag";
+import { useScrollToElement } from "@/hooks/useScrollToElement";
 
 // Dynamic import for Menu
-const MenuResponsive = dynamic(
-  () => import("@/components/Menu").then(mod => ({ default: mod.MenuResponsive })),
+const Menu = dynamic(
+  () => import("@/components/Menu").then(mod => ({ default: mod.Menu })),
   {
     loading: () => <MenuSkeleton />,
     ssr: false,
@@ -25,6 +26,7 @@ type Props = {
 
 const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
   const t = useTranslations("MenuPage");
+  const scrollToElement = useScrollToElement();
 
   // Check for hash in URL or sessionStorage flag
   useEffect(() => {
@@ -85,51 +87,11 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
       // Silently ignore tracking errors
     }
 
-    // Small delay to ensure element is rendered
-    const delay = 100;
-
-    setTimeout(() => {
-      const menu = document.getElementById("menu");
-      if (menu) {
-        const isMobile = window.innerWidth < 1024;
-
-        if (isMobile) {
-          // Get menu position
-          const menuRect = menu.getBoundingClientRect();
-          const menuTop = menuRect.top + window.scrollY;
-          
-          // Scroll so menu top is exactly 20px from top of viewport
-          const scrollTarget = menuTop - 20;
-
-          window.scrollTo({
-            top: scrollTarget,
-            behavior: "smooth",
-          });
-        } else {
-          // Desktop: use existing centering logic
-          const navbarHeight = 132;
-          const menuPosition = menu.getBoundingClientRect().top + window.scrollY;
-          const viewportHeight = window.innerHeight;
-          const menuHeight = menu.offsetHeight;
-          const offsetPosition =
-            menuPosition -
-            navbarHeight -
-            (viewportHeight - navbarHeight - menuHeight) / 2 +
-            40;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        }
-      } else {
-        // Fallback
-        window.scrollTo({
-          top: 600,
-          behavior: "smooth",
-        });
-      }
-    }, delay);
+    scrollToElement({
+      elementId: "menu",
+      mobileOffset: 10,
+      desktopBehavior: "center",
+    });
   };
 
   return (
@@ -165,7 +127,7 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
               {t("content.description")}
             </p>
           </FadeUp>
-          <MenuResponsive
+          <Menu
             categories={categoriesData}
             disableAnimations
           />

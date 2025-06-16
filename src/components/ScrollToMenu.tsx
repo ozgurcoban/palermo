@@ -3,8 +3,11 @@
 import { Button } from "./ui/button";
 import { ArrowDown } from "lucide-react";
 import { trackHomeHeroMenuClick } from "@/lib/gtag";
+import { useScrollToElement } from "@/hooks/useScrollToElement";
 
 const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
+  const scrollToElement = useScrollToElement();
+
   const scrollToMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -15,62 +18,12 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
       // Silently ignore tracking errors
     }
 
-    // Small delay to ensure element is rendered
-    const delay = 100;
-
-    setTimeout(() => {
-      const menu = document.getElementById("menu");
-      if (menu) {
-        const isMobile = window.innerWidth < 1024;
-
-        if (isMobile) {
-          // Get actual heights of fixed elements
-          const navbar = (document.querySelector('header nav') || 
-                        document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
-          const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
-          
-          const navbarHeight = navbar ? navbar.offsetHeight : 80;
-          const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120; // +16 for bottom-4 spacing
-          
-          // Get menu position
-          const menuRect = menu.getBoundingClientRect();
-          const menuTop = menuRect.top + window.scrollY;
-          
-          // Calculate available viewport space
-          const viewportHeight = window.innerHeight;
-          const availableHeight = viewportHeight - navbarHeight - bottomBarHeight;
-          
-          // Scroll so menu top is right after navbar
-          const scrollTarget = menuTop - navbarHeight - 10; // 10px gap
-          
-          console.log("Dynamic scroll calculation:", {
-            navbarHeight,
-            bottomBarHeight,
-            viewportHeight,
-            availableHeight,
-            menuTop,
-            scrollTarget,
-            menuHeight: menuRect.height
-          });
-
-          window.scrollTo({
-            top: scrollTarget,
-            behavior: "smooth",
-          });
-        } else {
-          // Desktop: original behavior
-          menu.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-            inline: "nearest",
-          });
-
-          setTimeout(() => {
-            window.scrollBy({ top: -100, behavior: "smooth" });
-          }, 500);
-        }
-      }
-    }, delay);
+    scrollToElement({
+      elementId: "menu",
+      mobileOffset: 10,
+      desktopBehavior: "offset",
+      desktopOffset: 100,
+    });
   };
 
   return (
