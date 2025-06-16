@@ -1,13 +1,23 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Menu from "@/components/Menu";
+import dynamic from "next/dynamic";
+import { MenuSkeleton } from "@/components/Menu";
 import { PageHeroOptimized as PageHero } from "@/components/Heros";
 import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import FoodDeliveryApps from "@/components/FoodDeliveryApps";
 import { trackMenuPageCTAClick } from "@/lib/gtag";
+
+// Dynamic import for Menu
+const MenuResponsive = dynamic(
+  () => import("@/components/Menu").then(mod => ({ default: mod.MenuResponsive })),
+  {
+    loading: () => <MenuSkeleton />,
+    ssr: false,
+  }
+);
 
 type Props = {
   categoriesData: Category[];
@@ -84,20 +94,12 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
         const isMobile = window.innerWidth < 1024;
 
         if (isMobile) {
-          // Get actual heights of fixed elements
-          const navbar = (document.querySelector('header nav') || 
-                        document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
-          const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
-          
-          const navbarHeight = navbar ? navbar.offsetHeight : 80;
-          const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120; // +16 for bottom-4 spacing
-          
           // Get menu position
           const menuRect = menu.getBoundingClientRect();
           const menuTop = menuRect.top + window.scrollY;
           
-          // Scroll so menu top is right after navbar
-          const scrollTarget = menuTop - navbarHeight - 10; // 10px gap
+          // Scroll so menu top is exactly 20px from top of viewport
+          const scrollTarget = menuTop - 20;
 
           window.scrollTo({
             top: scrollTarget,
@@ -151,24 +153,22 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
         ctaAction={scrollToMenu}
       />
 
-      <section className="w-full py-16 md:py-20">
+      <section className="w-full pt-16 pb-8 md:pt-20 md:pb-12">
         <div className="container">
-          <FadeUp delay={0.9}>
+          <FadeUp delay={0.3}>
             <h2 className="title-secondary mb-4 cursor-default text-center">
               {t("content.title")}
             </h2>
           </FadeUp>
-          <FadeUp delay={1.1}>
-            <p className="text-body mx-auto mb-12 max-w-2xl text-center">
+          <FadeUp delay={0.4}>
+            <p className="text-body mx-auto mb-6 max-w-2xl text-center">
               {t("content.description")}
             </p>
           </FadeUp>
-          <FadeUp delay={1.3}>
-            <Menu
-              categories={categoriesData}
-              disableAnimations
-            />
-          </FadeUp>
+          <MenuResponsive
+            categories={categoriesData}
+            disableAnimations
+          />
         </div>
       </section>
 

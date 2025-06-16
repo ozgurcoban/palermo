@@ -3,11 +3,21 @@
 import React from "react";
 import { HomeHero as Hero } from "@/components/Heros";
 import Gallery from "@/components/Gallery";
-import Menu from "@/components/Menu";
+import dynamic from "next/dynamic";
+import { MenuSkeleton } from "@/components/Menu";
 import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
 import { useGetLocale } from "@/config";
 import { FAQ } from "@/components/FAQ";
+
+// Dynamic import for Menu to prevent FOUC
+const MenuResponsive = dynamic(
+  () => import("@/components/Menu").then(mod => ({ default: mod.MenuResponsive })),
+  {
+    loading: () => <MenuSkeleton />,
+    ssr: false,
+  }
+);
 
 type Props = {
   homeData: HomePage;
@@ -33,7 +43,7 @@ const HomeComponents: React.FC<Props> = ({
       <Hero />
       <section className="w-full py-16 md:py-20">
         <div className="container">
-          <Menu categories={categoriesData} />
+          <MenuResponsive categories={categoriesData} />
         </div>
       </section>
       <Gallery data={gallery_section} />

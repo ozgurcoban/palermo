@@ -1,13 +1,23 @@
 "use client";
 
 import React from "react";
-import { Lunch } from "@/components/Lunch/Lunch";
+import dynamic from "next/dynamic";
+import { LunchSkeleton } from "@/components/Lunch";
 import { PageHeroOptimized as PageHero } from "@/components/Heros";
 import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { useGetLocale } from "@/config";
 import { trackLunchPageCTAClick } from "@/lib/gtag";
+
+// Dynamic import for Lunch to show skeleton while loading
+const Lunch = dynamic(
+  () => import("@/components/Lunch"),
+  {
+    loading: () => <LunchSkeleton />,
+    ssr: false,
+  }
+);
 
 type Props = {
   lunchData: LunchConfiguration;
@@ -34,20 +44,12 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
         const isMobile = window.innerWidth < 1024;
 
         if (isMobile) {
-          // Get actual heights of fixed elements
-          const navbar = (document.querySelector('header nav') || 
-                        document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
-          const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
-          
-          const navbarHeight = navbar ? navbar.offsetHeight : 80;
-          const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120; // +16 for bottom-4 spacing
-          
           // Get lunch position
           const lunchRect = lunch.getBoundingClientRect();
           const lunchTop = lunchRect.top + window.scrollY;
           
-          // Scroll so lunch top is right after navbar with more offset
-          const scrollTarget = lunchTop - navbarHeight - 30; // 30px gap for better positioning
+          // Scroll so lunch top is exactly 20px from top of viewport
+          const scrollTarget = lunchTop - 20;
 
           window.scrollTo({
             top: scrollTarget,
@@ -105,19 +107,19 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
 
       <section className="w-full py-16 md:py-20">
         <div className="container">
-          <FadeUp delay={0.9}>
+          <FadeUp delay={0.3}>
             <h2 className="title-secondary mb-4 cursor-default text-center">
               {t("content.title")}
             </h2>
           </FadeUp>
-          <FadeUp delay={1.1}>
+          <FadeUp delay={0.4}>
             <p className="text-body mx-auto mb-12 max-w-2xl text-center">
               {t("content.description")}
             </p>
           </FadeUp>
-          <FadeUp delay={1.2}>
+          <div className="fade-in-fast">
             <Lunch lunchData={lunchData} />
-          </FadeUp>
+          </div>
         </div>
       </section>
     </>
