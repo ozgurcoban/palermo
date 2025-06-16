@@ -109,8 +109,7 @@
     }
   },
   "LocaleSwitcher": {
-    "label": "Change language",
-    "locale": "{locale, select, sv {Swedish} en {English} other {Unknown}}"
+    "label": "Change language"
   },
   "Navigation": {
     "home": "Home",

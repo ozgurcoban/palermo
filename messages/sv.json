@@ -109,8 +109,7 @@
     }
   },
   "LocaleSwitcher": {
-    "label": "Ändra språk",
-    "locale": "{locale, select, sv {Svenska} en {Engelska} other {Okänd}}"
+    "label": "Ändra språk"
   },
   "Navigation": {
     "home": "Hem",

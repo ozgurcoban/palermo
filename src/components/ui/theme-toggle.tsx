@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { trackThemeToggle } from "@/lib/gtag";
+import { Skeleton } from "@/components/ui/skeleton";
 
 /**
  * A sleek dark-/light-mode toggle using CSS animations + Tailwind + lucide-react.
@@ -21,7 +22,9 @@ export default function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return null;
+    return (
+      <Skeleton className="h-11 w-11 rounded-full border border-primary/30" />
+    );
   }
 
   const isDark = theme === "dark";

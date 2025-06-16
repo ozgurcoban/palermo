@@ -14,6 +14,11 @@ import { useRouter, usePathname } from "@/navigation";
 import { event } from "@/lib/gtag";
 import { setLanguageSwitchFlag } from "@/lib/cookie-utils";
 
+const languageNames: Record<string, string> = {
+  sv: "Svenska",
+  en: "English"
+};
+
 export default function LocaleSwitcher() {
   const t = useTranslations("LocaleSwitcher");
   const locale = useLocale();
@@ -47,7 +52,9 @@ export default function LocaleSwitcher() {
   return (
     <Select value={locale} onValueChange={onSelectChange}>
       <SelectTrigger className="w-max bg-transparent text-primary" aria-label={t("label")}>
-        <SelectValue placeholder="Select a language" />
+        <SelectValue>
+          {languageNames[locale] || locale}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
@@ -57,7 +64,7 @@ export default function LocaleSwitcher() {
               key={cur}
               value={cur}
             >
-              {t("locale", { locale: cur })}
+              {languageNames[cur] || cur}
             </SelectItem>
           ))}
         </SelectGroup>
