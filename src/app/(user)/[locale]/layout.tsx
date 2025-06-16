@@ -20,6 +20,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import { LanguageSwitchChecker } from "@/components/LanguageSwitchChecker";
 import { criticalCSS } from "@/lib/critical-css";
 import MobileBottomBar from "@/components/MobileBottomBar";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../globals.css";
 
 type Props = {
@@ -84,6 +85,7 @@ export default async function LocaleLayout({
       </head>
       <body className="overflow-x-hidden">
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
+        <SpeedInsights />
         <Script
           id="restaurant-schema"
           type="application/ld+json"
