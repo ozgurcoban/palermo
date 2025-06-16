@@ -3,11 +3,21 @@
 import React from "react";
 import { HomeHero as Hero } from "@/components/Heros";
 import Gallery from "@/components/Gallery";
-import Menu from "@/components/Menu";
+import dynamic from "next/dynamic";
+import { MenuSkeleton } from "@/components/Menu";
 import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
 import { useGetLocale } from "@/config";
 import { FAQ } from "@/components/FAQ";
+
+// Dynamic import for Menu to prevent FOUC
+const Menu = dynamic(
+  () => import("@/components/Menu").then(mod => ({ default: mod.Menu })),
+  {
+    loading: () => <MenuSkeleton />,
+    ssr: false,
+  }
+);
 
 type Props = {
   homeData: HomePage;

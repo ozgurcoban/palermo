@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import MenuTabs from "./MenuTabs";
 import MenuChips from "./MenuChips";
 import MenuItems from "./MenuItems";
@@ -14,6 +14,7 @@ import {
   useCategoryFiltering,
   useScrollTracking,
 } from "@/hooks/menu";
+import { useHysteresis } from "@/hooks/useHysteresis";
 import {
   shouldShowTakeawayLabelsBasedOnScroll,
   shouldShowGlassLabelsBasedOnScroll,
@@ -36,7 +37,7 @@ export const Menu: React.FC<Props> = ({
       />
     );
 
-  return;
+  return null;
 };
 
 const MenuContent: React.FC<Props> = ({
@@ -46,7 +47,7 @@ const MenuContent: React.FC<Props> = ({
   const t = useTranslations("Home.Menu");
 
   // Custom hooks
-  const { isMobile, menuHeight } = useResponsiveHeight();
+  const { isMobile } = useResponsiveHeight();
   const { hasSeenAnimation } = useAnimationState(disableAnimations);
   const {
     selectedCategories,
@@ -67,58 +68,27 @@ const MenuContent: React.FC<Props> = ({
     selectedCategories,
   });
 
-  const useChips = isMobile;
-
-  // Calculate what labels to show - dynamic based on scroll position
+  // Calculate what labels to show
   const showTakeawayLabels = shouldShowTakeawayLabelsBasedOnScroll(
     categories,
-    useChips,
+    isMobile,
     visibleCategoryId,
     getCategory,
     visibleSubcategoryId,
-    selectedCategories
+    selectedCategories,
   );
-  
-  // Raw calculation of whether wine labels should be shown
+
   const shouldShowGlassLabelsRaw = shouldShowGlassLabelsBasedOnScroll(
     categories,
-    useChips,
+    isMobile,
     visibleCategoryId,
     getCategory,
     visibleSubcategoryId,
-    selectedCategories
+    selectedCategories,
   );
 
-  // State to track wine label visibility with hysteresis
-  const [showGlassLabels, setShowGlassLabels] = useState(false);
-  const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
-
   // Apply hysteresis to wine label visibility
-  useEffect(() => {
-    if (shouldShowGlassLabelsRaw) {
-      // Show immediately when entering wine section
-      if (hideTimerRef.current) {
-        clearTimeout(hideTimerRef.current);
-        hideTimerRef.current = null;
-      }
-      setShowGlassLabels(true);
-    } else if (showGlassLabels) {
-      // Hide with delay when leaving wine section
-      if (!hideTimerRef.current) {
-        hideTimerRef.current = setTimeout(() => {
-          setShowGlassLabels(false);
-          hideTimerRef.current = null;
-        }, 1500); // 1.5s delay before hiding
-      }
-    }
-
-    return () => {
-      if (hideTimerRef.current) {
-        clearTimeout(hideTimerRef.current);
-      }
-    };
-  }, [shouldShowGlassLabelsRaw, showGlassLabels]);
-  
+  const showGlassLabels = useHysteresis(shouldShowGlassLabelsRaw, 1500);
 
   return (
     <div className="border-image w-full">
@@ -135,12 +105,11 @@ const MenuContent: React.FC<Props> = ({
         <div
           style={{
             boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
-            height: menuHeight,
           }}
-          className="flex flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
+          className="menu-height flex flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
         >
-          <div className="flex flex-col">
-            {useChips ? (
+          <div className="flex flex-shrink-0 flex-col">
+            {isMobile ? (
               <MenuChips
                 categories={categories}
                 selectedCategories={selectedCategories}
@@ -156,27 +125,28 @@ const MenuContent: React.FC<Props> = ({
               />
             )}
           </div>
+
           <div
-            className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full overflow-y-scroll text-center md:mt-8"
+            className="menu-scroll-container scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full text-center md:mt-8"
             ref={scrollRef}
             data-scroll-container="menu-items"
             tabIndex={0}
             role="region"
             aria-label={t("menuItemsLabel")}
           >
-            {!useChips && <MenuHeader category={getCategory} />}
-            
+            {!isMobile && <MenuHeader category={getCategory} />}
+
             <PriceLabelsHeader
               shouldShowTakeawayLabels={showTakeawayLabels}
               shouldShowGlassLabels={showGlassLabels}
             />
-            
+
             <div className="h-full w-full pb-24 lg:pb-0">
               <MenuItems
-                key={useChips ? selectedCategories.join("-") : tab}
+                key={isMobile ? selectedCategories.join("-") : tab}
                 data={menus_list}
                 showCategoryHeaders={
-                  useChips &&
+                  isMobile &&
                   (selectedCategories.length === 0 ||
                     selectedCategories.length >= 1)
                 }

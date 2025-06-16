@@ -1,13 +1,24 @@
 "use client";
 
 import React from "react";
-import { Lunch } from "@/components/Lunch/Lunch";
+import dynamic from "next/dynamic";
+import { LunchSkeleton } from "@/components/Lunch";
 import { PageHeroOptimized as PageHero } from "@/components/Heros";
 import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { useGetLocale } from "@/config";
 import { trackLunchPageCTAClick } from "@/lib/gtag";
+import { useScrollToElement } from "@/hooks/useScrollToElement";
+
+// Dynamic import for Lunch to show skeleton while loading
+const Lunch = dynamic(
+  () => import("@/components/Lunch"),
+  {
+    loading: () => <LunchSkeleton />,
+    ssr: false,
+  }
+);
 
 type Props = {
   lunchData: LunchConfiguration;
@@ -16,6 +27,7 @@ type Props = {
 const LunchComponents: React.FC<Props> = ({ lunchData }) => {
   const t = useTranslations("Lunch");
   const locale = useGetLocale();
+  const scrollToElement = useScrollToElement();
 
   const scrollToLunch = () => {
     // Wrap tracking in try-catch to prevent crashes
@@ -25,55 +37,11 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
       console.error("Tracking error:", error);
     }
 
-    // Small delay to ensure element is rendered
-    const delay = 100;
-
-    setTimeout(() => {
-      const lunch = document.getElementById("lunch");
-      if (lunch) {
-        const isMobile = window.innerWidth < 1024;
-
-        if (isMobile) {
-          // Get actual heights of fixed elements
-          const navbar = (document.querySelector('header nav') || 
-                        document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
-          const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
-          
-          const navbarHeight = navbar ? navbar.offsetHeight : 80;
-          const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120; // +16 for bottom-4 spacing
-          
-          // Get lunch position
-          const lunchRect = lunch.getBoundingClientRect();
-          const lunchTop = lunchRect.top + window.scrollY;
-          
-          // Scroll so lunch top is right after navbar with more offset
-          const scrollTarget = lunchTop - navbarHeight - 30; // 30px gap for better positioning
-
-          window.scrollTo({
-            top: scrollTarget,
-            behavior: "smooth",
-          });
-        } else {
-          // Desktop: use existing centering logic
-          const navbarHeight = 132;
-          const lunchPosition = lunch.getBoundingClientRect().top + window.scrollY;
-          const viewportHeight = window.innerHeight;
-          const lunchHeight = lunch.offsetHeight;
-
-          // Same calculation as menu page
-          const offsetPosition =
-            lunchPosition -
-            navbarHeight -
-            (viewportHeight - navbarHeight - lunchHeight) / 2 +
-            20;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        }
-      }
-    }, delay);
+    scrollToElement({
+      elementId: "lunch",
+      mobileOffset: 10,
+      desktopBehavior: "center",
+    });
   };
 
   return (
@@ -105,19 +73,19 @@ const LunchComponents: React.FC<Props> = ({ lunchData }) => {
 
       <section className="w-full py-16 md:py-20">
         <div className="container">
-          <FadeUp delay={0.9}>
+          <FadeUp delay={0.3}>
             <h2 className="title-secondary mb-4 cursor-default text-center">
               {t("content.title")}
             </h2>
           </FadeUp>
-          <FadeUp delay={1.1}>
+          <FadeUp delay={0.4}>
             <p className="text-body mx-auto mb-12 max-w-2xl text-center">
               {t("content.description")}
             </p>
           </FadeUp>
-          <FadeUp delay={1.2}>
+          <div className="fade-in-fast">
             <Lunch lunchData={lunchData} />
-          </FadeUp>
+          </div>
         </div>
       </section>
     </>

@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
 import { HomeHero } from "@/components/Heros";
-import Menu from "@/components/Menu";
+import { MenuSkeleton } from "@/components/Menu";
 
 // Dynamic imports for below-the-fold components
 const Gallery = dynamic(() => import("@/components/Gallery"), {
@@ -11,10 +11,25 @@ const Gallery = dynamic(() => import("@/components/Gallery"), {
   ssr: true,
 });
 
-const FAQ = dynamic(() => import("@/components/FAQ").then(mod => ({ default: mod.FAQ })), {
-  loading: () => <div className="h-[400px] animate-pulse bg-gray-50" />,
-  ssr: true,
-});
+const FAQ = dynamic(
+  () => import("@/components/FAQ").then((mod) => ({ default: mod.FAQ })),
+  {
+    loading: () => <div className="h-[400px] animate-pulse bg-gray-50" />,
+    ssr: true,
+  },
+);
+
+// Dynamic import for Menu to prevent FOUC and hydration issues
+const Menu = dynamic(
+  () =>
+    import("@/components/Menu").then((mod) => ({
+      default: mod.Menu,
+    })),
+  {
+    loading: () => <MenuSkeleton />,
+    ssr: false, // Disable SSR to prevent hydration mismatch
+  },
+);
 
 type Props = {
   homeData: HomePage;
@@ -36,34 +51,43 @@ const HomeComponentsOptimized: React.FC<Props> = ({
   // Generate opening hours string from contact data
   let openingHours: string | undefined;
   if (contactData?.opening_hours) {
-    const intro = locale === "sv" ? "Vi har öppet alla dagar!" : "We are open every day!";
+    const intro =
+      locale === "sv" ? "Vi har öppet alla dagar!" : "We are open every day!";
     const hours = contactData.opening_hours
       .map((hour) => `${hour.day[locale as keyof LocalizedText]}: ${hour.time}`)
       .join("\n");
     openingHours = `${intro}\n${hours}`;
   }
-  
+
   // Generate lunch info string from lunch data
   let lunchInfo: string | undefined;
   if (lunchData) {
     const lunchPrice = lunchData.dagensLunch?.price || 119;
     const timeInfo = lunchData.timeInfo;
     const numberOfDishes = lunchData.dagensLunch?.items?.length || 9;
-    const numberOfPizzas = lunchData.lunchPizza?.subcategoryRef?.menu_list?.length || 24;
+    const numberOfPizzas =
+      lunchData.lunchPizza?.subcategoryRef?.menu_list?.length || 24;
     const totalDishes = numberOfDishes + 1;
-    
+
     if (locale === "sv") {
-      lunchInfo = `Lunch kostar från ${lunchPrice} kr och serveras vardagar ${timeInfo?.hours || "11:00-15:00"}. ` +
+      lunchInfo =
+        `Lunch kostar från ${lunchPrice} kr och serveras vardagar ${timeInfo?.hours || "11:00-15:00"}. ` +
         `I priset ingår huvudrätt, sallad, bröd och kaffe. ` +
         `Välj mellan ${totalDishes} olika rätter eller ${numberOfPizzas}st lunchpizza.`;
     } else {
-      lunchInfo = `Our weekday lunch special is from ${lunchPrice} SEK, served ${timeInfo?.hours || "11:00-15:00"}. ` +
+      lunchInfo =
+        `Our weekday lunch special is from ${lunchPrice} SEK, served ${timeInfo?.hours || "11:00-15:00"}. ` +
         `It includes a main course, plus salad bar, bread and coffee. ` +
         `Pick from ${totalDishes} daily classics or any of our ${numberOfPizzas} lunch pizzas.`;
     }
   }
-  
-  const faqSchema = generateFAQSchema(locale as "sv" | "en", openingHours, lunchInfo, faqData);
+
+  const faqSchema = generateFAQSchema(
+    locale as "sv" | "en",
+    openingHours,
+    lunchInfo,
+    faqData,
+  );
 
   const { gallery_section } = homeData;
 

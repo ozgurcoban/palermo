@@ -1,13 +1,24 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Menu from "@/components/Menu";
+import dynamic from "next/dynamic";
+import { MenuSkeleton } from "@/components/Menu";
 import { PageHeroOptimized as PageHero } from "@/components/Heros";
 import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import FoodDeliveryApps from "@/components/FoodDeliveryApps";
 import { trackMenuPageCTAClick } from "@/lib/gtag";
+import { useScrollToElement } from "@/hooks/useScrollToElement";
+
+// Dynamic import for Menu
+const Menu = dynamic(
+  () => import("@/components/Menu").then(mod => ({ default: mod.Menu })),
+  {
+    loading: () => <MenuSkeleton />,
+    ssr: false,
+  }
+);
 
 type Props = {
   categoriesData: Category[];
@@ -15,6 +26,7 @@ type Props = {
 
 const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
   const t = useTranslations("MenuPage");
+  const scrollToElement = useScrollToElement();
 
   // Check for hash in URL or sessionStorage flag
   useEffect(() => {
@@ -75,59 +87,11 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
       // Silently ignore tracking errors
     }
 
-    // Small delay to ensure element is rendered
-    const delay = 100;
-
-    setTimeout(() => {
-      const menu = document.getElementById("menu");
-      if (menu) {
-        const isMobile = window.innerWidth < 1024;
-
-        if (isMobile) {
-          // Get actual heights of fixed elements
-          const navbar = (document.querySelector('header nav') || 
-                        document.querySelector('[role="navigation"]:not([aria-label="Mobile navigation"])')) as HTMLElement;
-          const bottomBar = document.querySelector('[aria-label="Mobile navigation"]') as HTMLElement;
-          
-          const navbarHeight = navbar ? navbar.offsetHeight : 80;
-          const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120; // +16 for bottom-4 spacing
-          
-          // Get menu position
-          const menuRect = menu.getBoundingClientRect();
-          const menuTop = menuRect.top + window.scrollY;
-          
-          // Scroll so menu top is right after navbar
-          const scrollTarget = menuTop - navbarHeight - 10; // 10px gap
-
-          window.scrollTo({
-            top: scrollTarget,
-            behavior: "smooth",
-          });
-        } else {
-          // Desktop: use existing centering logic
-          const navbarHeight = 132;
-          const menuPosition = menu.getBoundingClientRect().top + window.scrollY;
-          const viewportHeight = window.innerHeight;
-          const menuHeight = menu.offsetHeight;
-          const offsetPosition =
-            menuPosition -
-            navbarHeight -
-            (viewportHeight - navbarHeight - menuHeight) / 2 +
-            40;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        }
-      } else {
-        // Fallback
-        window.scrollTo({
-          top: 600,
-          behavior: "smooth",
-        });
-      }
-    }, delay);
+    scrollToElement({
+      elementId: "menu",
+      mobileOffset: 10,
+      desktopBehavior: "center",
+    });
   };
 
   return (
@@ -151,24 +115,22 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
         ctaAction={scrollToMenu}
       />
 
-      <section className="w-full py-16 md:py-20">
+      <section className="w-full pt-16 pb-8 md:pt-20 md:pb-12">
         <div className="container">
-          <FadeUp delay={0.9}>
+          <FadeUp delay={0.3}>
             <h2 className="title-secondary mb-4 cursor-default text-center">
               {t("content.title")}
             </h2>
           </FadeUp>
-          <FadeUp delay={1.1}>
-            <p className="text-body mx-auto mb-12 max-w-2xl text-center">
+          <FadeUp delay={0.4}>
+            <p className="text-body mx-auto mb-6 max-w-2xl text-center">
               {t("content.description")}
             </p>
           </FadeUp>
-          <FadeUp delay={1.3}>
-            <Menu
-              categories={categoriesData}
-              disableAnimations
-            />
-          </FadeUp>
+          <Menu
+            categories={categoriesData}
+            disableAnimations
+          />
         </div>
       </section>
 

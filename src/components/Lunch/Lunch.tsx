@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, forwardRef } from "react";
 import { useGetLocale } from "@/config";
 import { Clock } from "lucide-react";
 import MenuItem from "../Menu/MenuItems/MenuItem";
@@ -13,39 +13,10 @@ type Props = {
   lunchData: LunchConfiguration;
 };
 
-export const Lunch: React.FC<Props> = ({ lunchData }) => {
+export const Lunch = forwardRef<HTMLDivElement, Props>(({ lunchData }, ref) => {
   const locale = useGetLocale();
   const t = useTranslations("Lunch");
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [lunchHeight, setLunchHeight] = useState<string>("70vh");
-
-  useEffect(() => {
-    const calculateLunchHeight = () => {
-      if (window.innerWidth < 1024) { // lg breakpoint
-        const navbar = (document.querySelector('header nav') || 
-                       document.querySelector('nav[role="navigation"]:not(.fixed)')) as HTMLElement;
-        const bottomBar = document.querySelector('nav.fixed[role="navigation"]') as HTMLElement;
-        
-        const navbarHeight = navbar ? navbar.offsetHeight : 80;
-        const bottomBarHeight = bottomBar ? bottomBar.offsetHeight + 16 : 120;
-        const viewportHeight = window.innerHeight;
-        
-        // Calculate available height with some padding
-        const availableHeight = viewportHeight - navbarHeight - bottomBarHeight - 40; // 40px for extra spacing
-        setLunchHeight(`${availableHeight}px`);
-      } else {
-        setLunchHeight("70vh");
-      }
-    };
-    
-    calculateLunchHeight();
-    
-    window.addEventListener("resize", calculateLunchHeight);
-    
-    return () => {
-      window.removeEventListener("resize", calculateLunchHeight);
-    };
-  }, []);
 
   if (!lunchData) {
     return (
@@ -113,15 +84,14 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
         : "dagens";
 
   return (
-    <div className="w-full" id="lunch" data-scroll-target="lunch">
+    <div className="w-full" id="lunch" data-scroll-target="lunch" ref={ref}>
       <FadeUp delay={0.9}>
         <div className="w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px]">
           <div
             style={{
               boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
-              height: lunchHeight
             }}
-            className="flex flex-col px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:px-20"
+            className="menu-height flex flex-col px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:px-20"
           >
             <Tabs
               defaultValue={defaultTab}
@@ -234,4 +204,6 @@ export const Lunch: React.FC<Props> = ({ lunchData }) => {
       </FadeUp>
     </div>
   );
-};
+});
+
+Lunch.displayName = "Lunch";
