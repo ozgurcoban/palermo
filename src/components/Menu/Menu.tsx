@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import MenuTabs from "./MenuTabs";
 import MenuChips from "./MenuChips";
 import MenuItems from "./MenuItems";
@@ -14,6 +14,7 @@ import {
   useCategoryFiltering,
   useScrollTracking,
 } from "@/hooks/menu";
+import { useHysteresis } from "@/hooks/useHysteresis";
 import {
   shouldShowTakeawayLabelsBasedOnScroll,
   shouldShowGlassLabelsBasedOnScroll,
@@ -86,33 +87,8 @@ const MenuContent: React.FC<Props> = ({
     selectedCategories,
   );
 
-  // State to track wine label visibility with hysteresis
-  const [showGlassLabels, setShowGlassLabels] = useState(false);
-  const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
-
   // Apply hysteresis to wine label visibility
-  useEffect(() => {
-    if (shouldShowGlassLabelsRaw) {
-      if (hideTimerRef.current) {
-        clearTimeout(hideTimerRef.current);
-        hideTimerRef.current = null;
-      }
-      setShowGlassLabels(true);
-    } else if (showGlassLabels) {
-      if (!hideTimerRef.current) {
-        hideTimerRef.current = setTimeout(() => {
-          setShowGlassLabels(false);
-          hideTimerRef.current = null;
-        }, 1500);
-      }
-    }
-
-    return () => {
-      if (hideTimerRef.current) {
-        clearTimeout(hideTimerRef.current);
-      }
-    };
-  }, [shouldShowGlassLabelsRaw, showGlassLabels]);
+  const showGlassLabels = useHysteresis(shouldShowGlassLabelsRaw, 1500);
 
   return (
     <div className="border-image w-full">
@@ -133,8 +109,7 @@ const MenuContent: React.FC<Props> = ({
           className="menu-height flex flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
         >
           <div className="flex flex-shrink-0 flex-col">
-            {/* Mobile version - hidden on desktop */}
-            <div className="block md:hidden">
+            {isMobile ? (
               <MenuChips
                 categories={categories}
                 selectedCategories={selectedCategories}
@@ -142,16 +117,13 @@ const MenuContent: React.FC<Props> = ({
                 onClearAll={handleClearAll}
                 scrollContainerRef={scrollRef}
               />
-            </div>
-
-            {/* Desktop version - hidden on mobile */}
-            <div className="hidden md:block">
+            ) : (
               <MenuTabs
                 tabs={categories}
                 selectedTab={tab}
                 setSelectedTab={setTab}
               />
-            </div>
+            )}
           </div>
 
           <div
@@ -162,10 +134,7 @@ const MenuContent: React.FC<Props> = ({
             role="region"
             aria-label={t("menuItemsLabel")}
           >
-            {/* Desktop header - hidden on mobile */}
-            <div className="hidden md:block">
-              <MenuHeader category={getCategory} />
-            </div>
+            {!isMobile && <MenuHeader category={getCategory} />}
 
             <PriceLabelsHeader
               shouldShowTakeawayLabels={showTakeawayLabels}
