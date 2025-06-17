@@ -2,12 +2,16 @@
   "Home": {
     "HomeHero": {
       "title": "Palermo",
-      "description": "Din lokala pizzeria och restaurang i Uppsala centrum",
+      "description": "Uppsalas charmigaste kvarterskrog & pizzeria | Bar & restaurang",
       "badge": {
         "main": "UPPSALAS (INOFFICIELLA) 14:",
         "suffix": "e NATION"
       },
       "cta": "Kolla in menyn"
+    },
+    "MenuSection": {
+      "title": "Mat & dryck på Palermo",
+      "description": "Pizza, kött, pasta, burgare och allt som hör till - plus vårt sortiment av öl, vin och cider. Hela menyn med priser för servering och avhämtning."
     },
     "Menu": {
       "categories": "Våra kategorier",

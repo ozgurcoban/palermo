@@ -27,8 +27,7 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
     scrollToElement({
       elementId: "menu",
       mobileOffset: 10,
-      desktopBehavior: "offset",
-      desktopOffset: 100,
+      desktopBehavior: "center",
     });
   };
 

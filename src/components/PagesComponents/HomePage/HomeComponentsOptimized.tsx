@@ -5,6 +5,9 @@ import { generateFAQSchema } from "@/lib/metadata";
 import { HomeHero } from "@/components/Heros";
 import { MenuSkeleton } from "@/components/Menu";
 import { IntroSection } from "@/components/IntroSection";
+import { useTranslations } from "next-intl";
+import MaskText from "@/components/ui/MaskText";
+import FadeUp from "@/components/ui/FadeUp";
 
 // Dynamic imports for below-the-fold components
 const Gallery = dynamic(() => import("@/components/Gallery"), {
@@ -91,6 +94,7 @@ const HomeComponentsOptimized: React.FC<Props> = ({
   );
 
   const { gallery_section, intro_section } = homeData;
+  const t = useTranslations("Home");
   
   // Debug log to verify intro_section data
   console.log("intro_section data:", intro_section);
@@ -107,6 +111,19 @@ const HomeComponentsOptimized: React.FC<Props> = ({
       <IntroSection data={intro_section} />
       <section className="w-full py-16 md:py-20">
         <div className="container">
+          <div className="mb-12 text-center">
+            <MaskText
+              as="h2"
+              className="font-graduate text-3xl font-bold leading-tight text-primary md:text-4xl lg:text-5xl mb-6"
+              phrases={[t("MenuSection.title")]}
+              delay={0.2}
+            />
+            <FadeUp delay={0.4}>
+              <p className="text-base leading-relaxed text-muted-foreground md:text-lg max-w-3xl mx-auto">
+                {t("MenuSection.description")}
+              </p>
+            </FadeUp>
+          </div>
           <Menu categories={categoriesData} />
         </div>
       </section>

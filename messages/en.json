@@ -2,12 +2,16 @@
   "Home": {
     "HomeHero": {
       "title": "Palermo",
-      "description": "Uppsala's go-to spot for pizza and good times",
+      "description": "Uppsala's most charming neighborhood pub & pizzeria | Bar & restaurant",
       "badge": {
         "main": "UPPSALAS (UNOFFICIAL) 14",
         "suffix": "th NATION"
       },
       "cta": "Check out the menu"
+    },
+    "MenuSection": {
+      "title": "Food & drinks at Palermo",
+      "description": "Pizza, meat, pasta, burgers and everything in between - plus our selection of beer, wine and cider. Full menu with dine-in and takeaway prices."
     },
     "Menu": {
       "categories": "Our categories",

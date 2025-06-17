@@ -89,7 +89,7 @@ export const GalleryCarousel: React.FC<GalleryCarouselProps> = ({
       <div className="container flex flex-col items-center">
         <GalleryHeader title={title} description={description} />
 
-        <FadeUp delay={0.3} className="relative mt-36 w-full">
+        <FadeUp delay={0.3} className="relative mt-12 w-full">
           <div ref={sharedElementRef}>
             <Carousel
               setApi={setApi}
