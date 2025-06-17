@@ -28,6 +28,19 @@ interface Contact extends Base {
 
 interface HomePage extends Base {
   gallery_section?: GallerySection;
+  intro_section?: IntroSection;
+}
+
+interface IntroSection {
+  title: LocalizedText;
+  highlights: IntroHighlight[];
+  image: Image;
+}
+
+interface IntroHighlight {
+  _key: string;
+  subtitle: LocalizedText;
+  description: LocalizedText;
 }
 
 interface GallerySection {
@@ -42,7 +55,7 @@ interface Image {
   _type: "image";
   _key: string;
   asset: Reference;
-  alt?: string;
+  alt?: string | LocalizedText;
 }
 
 interface Reference {

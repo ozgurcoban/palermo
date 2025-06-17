@@ -9,6 +9,7 @@ import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
 import { useGetLocale } from "@/config";
 import { FAQ } from "@/components/FAQ";
+import { IntroSection } from "@/components/IntroSection";
 
 // Dynamic import for Menu to prevent FOUC
 const Menu = dynamic(
@@ -32,7 +33,7 @@ const HomeComponents: React.FC<Props> = ({
   const locale = useGetLocale();
   const faqSchema = generateFAQSchema(locale as "sv" | "en");
 
-  const { gallery_section } = homeData;
+  const { gallery_section, intro_section } = homeData;
   return (
     <>
       <Script
@@ -41,6 +42,7 @@ const HomeComponents: React.FC<Props> = ({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Hero />
+      <IntroSection data={intro_section} />
       <section className="w-full py-16 md:py-20">
         <div className="container">
           <Menu categories={categoriesData} />

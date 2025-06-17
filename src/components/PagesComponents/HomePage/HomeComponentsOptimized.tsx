@@ -4,6 +4,7 @@ import Script from "next/script";
 import { generateFAQSchema } from "@/lib/metadata";
 import { HomeHero } from "@/components/Heros";
 import { MenuSkeleton } from "@/components/Menu";
+import { IntroSection } from "@/components/IntroSection";
 
 // Dynamic imports for below-the-fold components
 const Gallery = dynamic(() => import("@/components/Gallery"), {
@@ -89,7 +90,10 @@ const HomeComponentsOptimized: React.FC<Props> = ({
     faqData,
   );
 
-  const { gallery_section } = homeData;
+  const { gallery_section, intro_section } = homeData;
+  
+  // Debug log to verify intro_section data
+  console.log("intro_section data:", intro_section);
 
   return (
     <>
@@ -100,6 +104,7 @@ const HomeComponentsOptimized: React.FC<Props> = ({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <HomeHero />
+      <IntroSection data={intro_section} />
       <section className="w-full py-16 md:py-20">
         <div className="container">
           <Menu categories={categoriesData} />
