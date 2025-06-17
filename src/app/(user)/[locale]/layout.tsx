@@ -110,6 +110,7 @@ export default async function LocaleLayout({
             <CookieBanner />
           </IntlProvider>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
