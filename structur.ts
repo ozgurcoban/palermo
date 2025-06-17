@@ -8,8 +8,6 @@ export const getDefaultDocumentNode: DefaultDocumentNodeResolver = (
   if (
     [
       "home",
-      "about",
-      "sections",
       "foods",
       "subcategories",
       "categories",

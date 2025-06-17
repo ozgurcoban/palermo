@@ -37,28 +37,6 @@ const commonConfig = {
                           .title("Lunch Configuration")
                           .filter('_type == "lunch"'),
                       ),
-                    S.listItem()
-                      .title("About Page")
-                      .child(
-                        S.list()
-                          .title("About Page")
-                          .items([
-                            S.listItem()
-                              .title("About Sections")
-                              .child(
-                                S.documentList()
-                                  .title("About Sections")
-                                  .filter('_type == "sections"'),
-                              ),
-                            S.listItem()
-                              .title("About Page")
-                              .child(
-                                S.documentList()
-                                  .title("About Page")
-                                  .filter('_type == "about"'),
-                              ),
-                          ]),
-                      ),
                   ]),
               ),
             S.divider(),
@@ -104,8 +82,6 @@ const commonConfig = {
               (listItem) =>
                 ![
                   "home",
-                  "about",
-                  "sections",
                   "foods",
                   "subcategories",
                   "categories",
