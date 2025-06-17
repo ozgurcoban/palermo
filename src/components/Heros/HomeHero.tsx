@@ -25,7 +25,7 @@ export async function HomeHero() {
 
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-8">
         {/* Content wrapper positioned slightly higher on mobile, centered on lg */}
-        <div className="flex flex-col items-center -mt-8 sm:-mt-10 lg:mt-0">
+        <div className="-mt-8 flex flex-col items-center sm:-mt-10 lg:mt-0">
           <Badge
             variant="secondary"
             className="animate-fadeUp pointer-events-none mb-4 rounded-sm bg-muted-foreground/70 px-4 py-2 font-medium text-secondary backdrop-blur-sm"
@@ -44,14 +44,17 @@ export async function HomeHero() {
 
           {/* Hero description */}
           <p
-            className="animate-fadeUp break-words font-lato text-[4vw] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:text-[22px] lg:text-[26px] lg:leading-[85px] mb-16 sm:mb-20 lg:mb-24"
+            className="animate-fadeUp mb-16 break-words font-lato text-[4vw] text-light opacity-70 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] sm:mb-20 sm:text-[22px] lg:mb-24 lg:text-[26px] lg:leading-[85px]"
             style={{ animationDelay: "1.1s" }}
           >
             {t("HomeHero.description")}
           </p>
 
           {/* Main CTA button moved up and integrated with content */}
-          <div className="animate-fadeUp" style={{ animationDelay: "1.4s" }}>
+          <div
+            className="animate-fadeUp opacity-0"
+            style={{ animationDelay: "1.2s" }}
+          >
             <ScrollToMenu>{t("HomeHero.cta")}</ScrollToMenu>
           </div>
         </div>

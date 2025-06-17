@@ -6,10 +6,10 @@
 :root {
   /* Component heights */
   --navbar-height: 80px;
-  --bottombar-height: 136px; /* 120px + 16px padding */
+  --bottombar-height: 88px; /* Further optimized for maximum menu height */
 
   /* Gap between menu and navbar/bottombar - SMALLER value = TALLER menu */
-  --menu-spacing: 20px;
+  --menu-spacing: 0px;
 
   /* Desktop menu height */
   --menu-height-desktop: 80vh;
@@ -60,7 +60,15 @@
 /* Small mobile devices (iPhone SE, etc) */
 @media (max-width: 767px) and (max-height: 700px) {
   :root {
-    --menu-spacing: 20px; /* Less spacing on small screens */
+    --menu-spacing: 0px; /* No spacing for maximum menu height */
+  }
+}
+
+/* Larger mobile devices (iPhone 15 Pro Max, etc) */
+@media (min-width: 428px) and (max-height: 932px) {
+  :root {
+    --bottombar-height: 130px; /* 40px total reduction in menu height */
+    --menu-spacing: 36px;
   }
 }
 
@@ -478,7 +486,7 @@ p {
 }
 
 .animate-fadeUp {
-  animation: fadeUp 0.6s ease-out forwards;
+  animation: fadeUp 0.6s ease-out both;
 }
 
 /* Fast fade in for components with skeleton loader */

@@ -4,9 +4,15 @@ import { Button } from "./ui/button";
 import { ArrowDown } from "lucide-react";
 import { trackHomeHeroMenuClick } from "@/lib/gtag";
 import { useScrollToElement } from "@/hooks/useScrollToElement";
+import { useState, useEffect } from "react";
 
 const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
   const scrollToElement = useScrollToElement();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollToMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -33,6 +39,7 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
       size="lg"
       type="button"
       aria-label="Scroll to menu section"
+      disabled={!mounted}
     >
       <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-1" />
       <span>{children}</span>
