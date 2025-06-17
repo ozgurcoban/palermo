@@ -31,16 +31,17 @@ export const IntroSection: React.FC<IntroSectionProps> = ({ data }) => {
   return (
     <section className="w-full py-16 md:py-20 lg:py-24">
       <div className="container">
+        {/* Title spanning full width on desktop */}
+        <MaskText
+          as="h2"
+          className="font-graduate text-3xl font-bold leading-tight text-primary md:text-4xl lg:text-5xl mb-10 lg:mb-12 lg:text-center"
+          phrases={[data.title[locale]]}
+          delay={0.2}
+        />
+        
         <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-20">
           {/* Text Column */}
           <div className="flex-1 max-w-prose space-y-8">
-            <MaskText
-              as="h2"
-              className="font-graduate text-3xl font-bold leading-tight text-primary md:text-4xl lg:text-5xl"
-              phrases={[data.title[locale]]}
-              delay={0.2}
-            />
-            
             <div className="space-y-8">
               {data.highlights.map((highlight, index) => (
                 <FadeUp key={highlight._key} delay={0.4 + index * 0.1}>
