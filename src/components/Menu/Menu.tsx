@@ -91,13 +91,13 @@ const MenuContent: React.FC<Props> = ({
   const showGlassLabels = useHysteresis(shouldShowGlassLabelsRaw, 1500);
 
   return (
-    <div id="menu" className="border-image w-full">
+    <div id="menu" className="border-image w-full md:h-full md:flex md:flex-col">
       <AnimationWrapper
         hasSeenAnimation={hasSeenAnimation}
         disableAnimations={disableAnimations}
         delay={0}
         variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
-        className="w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px]"
+        className="w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px] md:flex-1 md:flex md:flex-col md:min-h-0"
         data-scroll-target="menu"
         onlyInitial={true}
       >
@@ -105,7 +105,7 @@ const MenuContent: React.FC<Props> = ({
           style={{
             boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
           }}
-          className="menu-height flex flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20"
+          className="flex flex-col gap-5 px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:flex-row md:px-10 lg:gap-10 lg:px-20 md:flex-1 md:min-h-0"
         >
           <div className="flex flex-shrink-0 flex-col">
             {isMobile ? (
@@ -126,7 +126,7 @@ const MenuContent: React.FC<Props> = ({
           </div>
 
           <div
-            className="menu-scroll-container scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full text-center md:mt-8"
+            className="scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border sticky top-0 mb-1 mt-6 w-full text-center md:mt-8 overflow-y-auto md:flex-1 md:min-h-0"
             ref={scrollRef}
             data-scroll-container="menu-items"
             tabIndex={0}

@@ -115,22 +115,26 @@ const MenuComponents: React.FC<Props> = ({ categoriesData }) => {
         ctaAction={scrollToMenu}
       />
 
-      <section className="w-full pt-16 pb-8 md:pt-20 md:pb-12">
-        <div className="container">
-          <FadeUp delay={0.3}>
-            <h2 className="title-secondary mb-4 cursor-default text-center">
-              {t("content.title")}
-            </h2>
-          </FadeUp>
-          <FadeUp delay={0.4}>
-            <p className="text-body mx-auto mb-6 max-w-2xl text-center">
-              {t("content.description")}
-            </p>
-          </FadeUp>
-          <Menu
-            categories={categoriesData}
-            disableAnimations
-          />
+      <section className="w-full pt-16 pb-8 md:pt-20 md:pb-12 md:flex md:min-h-screen md:items-center">
+        <div className="container md:flex md:h-[calc(100vh-6rem)] md:flex-col md:justify-center">
+          <div className="mb-6 text-center">
+            <FadeUp delay={0.3}>
+              <h2 className="title-secondary mb-4 cursor-default">
+                {t("content.title")}
+              </h2>
+            </FadeUp>
+            <FadeUp delay={0.4}>
+              <p className="text-body mx-auto max-w-2xl">
+                {t("content.description")}
+              </p>
+            </FadeUp>
+          </div>
+          <div className="md:flex-1 md:flex md:flex-col md:min-h-0">
+            <Menu
+              categories={categoriesData}
+              disableAnimations
+            />
+          </div>
         </div>
       </section>
 

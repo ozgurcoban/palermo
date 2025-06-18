@@ -95,7 +95,7 @@ const HomeComponentsOptimized: React.FC<Props> = ({
 
   const { gallery_section, intro_section } = homeData;
   const t = useTranslations("Home");
-  
+
   // Debug log to verify intro_section data
   console.log("intro_section data:", intro_section);
 
@@ -109,22 +109,27 @@ const HomeComponentsOptimized: React.FC<Props> = ({
       />
       <HomeHero />
       <IntroSection data={intro_section} />
-      <section className="w-full py-16 md:py-20">
-        <div className="container">
+      <section className="w-full py-16 md:flex md:min-h-screen md:items-center md:py-12">
+        <div className="container md:flex md:h-[calc(100vh-6rem)] md:flex-col md:justify-center">
           <div className="mb-12 text-center">
             <MaskText
               as="h2"
-              className="font-graduate text-3xl font-bold leading-tight text-primary md:text-4xl lg:text-5xl mb-6"
+              className="mb-6 font-graduate text-3xl font-bold leading-tight text-primary md:text-4xl lg:text-5xl"
               phrases={[t("MenuSection.title")]}
               delay={0.2}
             />
             <FadeUp delay={0.4}>
-              <p className="text-base leading-relaxed text-muted-foreground md:text-lg max-w-3xl mx-auto">
+              <p
+                id="menu-section"
+                className="mx-auto max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg"
+              >
                 {t("MenuSection.description")}
               </p>
             </FadeUp>
           </div>
-          <Menu categories={categoriesData} />
+          <div className="md:flex md:min-h-0 md:flex-1 md:flex-col">
+            <Menu categories={categoriesData} />
+          </div>
         </div>
       </section>
       <Gallery data={gallery_section} />

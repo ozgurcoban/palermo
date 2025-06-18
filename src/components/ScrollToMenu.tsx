@@ -10,10 +10,13 @@ const ScrollToMenu = ({ children }: { children: React.ReactNode }) => {
 
   const handleScrollToMenu = () => {
     trackHomeHeroMenuClick();
+    const isMobile = window.innerWidth < 1024;
+
     scrollToElement({
-      elementId: "menu",
+      elementId: isMobile ? "menu" : "menu-section",
       mobileOffset: 10,
-      desktopBehavior: "center",
+      desktopBehavior: "offset",
+      desktopOffset: -200,
     });
   };
 
