@@ -31,6 +31,7 @@ function Map() {
             src="https://maps.google.com/maps?q=Sysslomansgatan%207,%20753%2011%20Uppsala&t=&z=15&ie=UTF8&iwloc=&output=embed"
             width="100%"
             height="100%"
+            className="dark:map-dark-filter"
             style={{
               border: 0,
               opacity: isLoaded ? 1 : 0,

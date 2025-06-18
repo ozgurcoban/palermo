@@ -8,7 +8,6 @@
   --bottombar-height: 88px;
 }
 
-
 * {
   margin: 0;
   padding: 0;
@@ -73,6 +72,11 @@
   .bottom-nav-item:active {
     transform: scale(0.95);
     transition-duration: 0.1s;
+  }
+
+  /* Dark mode filter for Google Maps */
+  .map-dark-filter {
+    filter: invert(90%) hue-rotate(180deg) saturate(0.5) contrast(0.8);
   }
 }
 
