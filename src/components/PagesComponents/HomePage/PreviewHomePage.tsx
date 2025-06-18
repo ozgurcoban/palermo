@@ -3,7 +3,7 @@ import { useLiveQuery } from "next-sanity/preview";
 import { useGetLocale } from "@/config";
 
 import { CATEGORIES_QUERY, HOME_QUERY } from "../../../../sanity/lib/queries";
-import HomeComponentsOptimized from "./HomeComponentsOptimized";
+import HomeComponents from "./HomeComponents";
 
 export default function PreviewHomePage({
   homeData,
@@ -21,6 +21,6 @@ export default function PreviewHomePage({
   );
 
   return (
-    <HomeComponentsOptimized homeData={data} categoriesData={categories} locale={locale} />
+    <HomeComponents homeData={data} categoriesData={categories} locale={locale} />
   );
 }

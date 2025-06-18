@@ -6,8 +6,7 @@ import { token } from "../../../../sanity/lib/token";
 import { getClient } from "../../../../sanity/lib/client";
 import { CATEGORIES_QUERY, HOME_QUERY, FAQ_QUERY, CONTACT_QUERY, LUNCH_QUERY } from "../../../../sanity/lib/queries";
 import PreviewProvider from "@/components/PreviewProvider";
-import HomeComponentsOptimized from "@/components/PagesComponents/HomePage/HomeComponentsOptimized";
-import PreviewHomePage from "@/components/PagesComponents/HomePage/PreviewHomePage";
+import { HomeComponents, PreviewHomePage } from "@/components/PagesComponents/HomePage";
 import { constructMetadata } from "@/lib/metadata";
 
 type Props = {
@@ -57,7 +56,7 @@ export default async function IndexPage({ params: { locale } }: Props) {
     );
 
   return (
-    <HomeComponentsOptimized
+    <HomeComponents
       homeData={homeData}
       categoriesData={categoriesData}
       locale={locale}

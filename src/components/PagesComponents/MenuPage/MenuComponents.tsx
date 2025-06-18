@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { MenuSkeleton } from "@/components/Menu";
-import { PageHeroOptimized as PageHero } from "@/components/Heros";
+import { PageHero } from "@/components/Heros";
 import FadeUp from "@/components/ui/FadeUp";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
