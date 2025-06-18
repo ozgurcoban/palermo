@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import FadeUp from "../ui/FadeUp";
 import { useTranslations } from "next-intl";
+import { useIsMobile } from "@/hooks/menu/useIsMobile";
 
 type Props = {
   lunchData: LunchConfiguration;
@@ -17,6 +18,7 @@ export const Lunch = forwardRef<HTMLDivElement, Props>(({ lunchData }, ref) => {
   const locale = useGetLocale();
   const t = useTranslations("Lunch");
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { isMobile } = useIsMobile();
 
   if (!lunchData) {
     return (
@@ -86,16 +88,18 @@ export const Lunch = forwardRef<HTMLDivElement, Props>(({ lunchData }, ref) => {
   return (
     <div className="w-full" id="lunch" data-scroll-target="lunch" ref={ref}>
       <FadeUp delay={0.9}>
-        <div className="w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px]">
+        <div
+          className={`w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px] ${isMobile ? "h-[calc(100dvh-var(--bottombar-height)-var(--navbar-height)+20px)]" : ""}`}
+        >
           <div
             style={{
               boxShadow: "inset 0 0 6px 1px rgba(0, 0, 0, 0.2)",
             }}
-            className="menu-height flex flex-col px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:px-20"
+            className={`flex flex-col px-3 pb-4 pt-6 sm:px-5 sm:pb-8 sm:pt-8 md:px-10 lg:px-20 ${isMobile ? "h-full" : "menu-height"}`}
           >
             <Tabs
               defaultValue={defaultTab}
-              className="flex flex-col h-full w-full"
+              className="flex h-full w-full flex-col"
               onValueChange={handleTabChange}
             >
               <TabsList className="mb-3 grid h-auto w-full grid-cols-3 gap-1 rounded-full p-1 sm:mb-6 sm:gap-2 sm:p-2">
@@ -131,8 +135,8 @@ export const Lunch = forwardRef<HTMLDivElement, Props>(({ lunchData }, ref) => {
                 )}
               </TabsList>
 
-              <div 
-                className="flex-1 overflow-y-scroll pb-24 lg:pb-0" 
+              <div
+                className={`flex-1 overflow-y-auto ${isMobile ? "pb-4" : "pb-24 lg:pb-0"}`}
                 ref={scrollRef}
                 tabIndex={0}
                 role="region"

@@ -100,7 +100,7 @@ const MenuContent: React.FC<Props> = ({
         disableAnimations={disableAnimations}
         delay={0}
         variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
-        className={`w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:flex md:min-h-0 md:flex-1 md:flex-col md:border-[12px] ${isMobile ? "h-[calc(100dvh-var(--bottombar-height)-var(--navbar-height))]" : "h-full"}`}
+        className={`w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:flex md:min-h-0 md:flex-1 md:flex-col md:border-[12px] ${isMobile ? "h-[calc(100dvh-var(--bottombar-height)-var(--navbar-height)+20px)]" : "h-full"}`}
         data-scroll-target="menu"
         onlyInitial={true}
       >
