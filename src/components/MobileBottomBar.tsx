@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, ChefHat, Utensils } from "lucide-react";
+import { Home, Utensils, CookingPot } from "lucide-react";
 import { usePathname } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useGetLocale } from "@/config";
@@ -33,13 +33,13 @@ const MobileBottomBar = () => {
     },
     {
       href: "/menu" as AppPathnames,
-      icon: ChefHat,
+      icon: Utensils,
       label: t("menu"),
       isActive: pathname === "/menu" || pathname.includes("/meny"),
     },
     {
       href: "/lunch" as AppPathnames,
-      icon: Utensils,
+      icon: CookingPot,
       label: t("lunch"),
       isActive: pathname === "/lunch",
     },
