@@ -91,14 +91,13 @@ const MenuContent: React.FC<Props> = ({
   const showGlassLabels = useHysteresis(shouldShowGlassLabelsRaw, 1500);
 
   return (
-    <div className="border-image w-full">
+    <div id="menu" className="border-image w-full">
       <AnimationWrapper
         hasSeenAnimation={hasSeenAnimation}
         disableAnimations={disableAnimations}
         delay={0}
         variants={{ initial: { scaleY: 0 }, animate: { scaleY: 1 } }}
         className="w-full rounded border-4 bg-white dark:bg-card sm:border-8 md:border-[12px]"
-        id="menu"
         data-scroll-target="menu"
         onlyInitial={true}
       >
