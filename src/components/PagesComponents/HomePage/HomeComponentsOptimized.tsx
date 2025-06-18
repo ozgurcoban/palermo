@@ -23,7 +23,7 @@ const FAQ = dynamic(
   },
 );
 
-// Dynamic import for Menu to prevent FOUC and hydration issues
+// Dynamic import for Menu with SSR enabled for better iOS compatibility
 const Menu = dynamic(
   () =>
     import("@/components/Menu").then((mod) => ({
@@ -31,7 +31,7 @@ const Menu = dynamic(
     })),
   {
     loading: () => <MenuSkeleton />,
-    ssr: false, // Disable SSR to prevent hydration mismatch
+    ssr: true, // Enable SSR for better iOS browser compatibility
   },
 );
 
