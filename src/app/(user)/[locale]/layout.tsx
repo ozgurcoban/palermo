@@ -20,7 +20,6 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import { LanguageSwitchChecker } from "@/components/LanguageSwitchChecker";
 import { criticalCSS } from "@/lib/critical-css";
 import MobileBottomBar from "@/components/MobileBottomBar";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../globals.css";
 
 type Props = {
@@ -60,7 +59,7 @@ export default async function LocaleLayout({
   const lunchData = await client.fetch<LunchConfiguration>(LUNCH_QUERY);
 
   const restaurantSchema = generateRestaurantSchema(locale as "sv" | "en");
-  
+
   // Check for language switch cookie
   const cookieStore = cookies();
   const isLanguageSwitching = cookieStore.get("langSwitch")?.value === "true";
@@ -75,17 +74,20 @@ export default async function LocaleLayout({
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        <script dangerouslySetInnerHTML={{__html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
           // Check for language switch immediately before React hydration
           if (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('langSwitch') === 'true') {
             document.documentElement.classList.add('no-animations');
             // Don't remove here - let React component handle it properly
           }
-        `}} />
+        `,
+          }}
+        />
       </head>
       <body className="overflow-x-hidden">
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
-        <SpeedInsights />
         <Script
           id="restaurant-schema"
           type="application/ld+json"
@@ -103,14 +105,16 @@ export default async function LocaleLayout({
             <Navbar />
             <main>
               {children}
-              <ContactInfoSectionLazy contactData={contactData} lunchData={lunchData} />
+              <ContactInfoSectionLazy
+                contactData={contactData}
+                lunchData={lunchData}
+              />
             </main>
             <Footer contactData={contactData} />
             <MobileBottomBar />
             <CookieBanner />
           </IntlProvider>
         </ThemeProvider>
-        <SpeedInsights />
       </body>
     </html>
   );
