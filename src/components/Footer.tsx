@@ -14,6 +14,7 @@ import { useGetLocale } from "@/config";
 import Localization from "./localization";
 import { useTranslations } from "next-intl";
 import React from "react";
+import { formatSwedishPhone } from "@/lib/formatPhone";
 
 export default function Footer({ contactData }: { contactData?: Contact }) {
   const locale = useGetLocale();
@@ -59,12 +60,12 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
         {contact_infos?.telephone && (
           <div className="mb-10 flex justify-center">
             <a
-              href={`tel:+4618131820`}
+              href={`tel:${contact_infos.telephone.replace(/\s/g, '')}`}
               className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-lg font-medium text-primary-foreground shadow-lg transition-all duration-300 hover:scale-105 hover:bg-primary/90"
               onClick={() => trackPhoneClick()}
             >
               <PhoneIcon className="h-5 w-5" />
-              <Localization text="Footer.orderByPhone" />: 018-13 18 20
+              <Localization text="Footer.orderByPhone" />: {formatSwedishPhone(contact_infos.telephone)}
             </a>
           </div>
         )}
@@ -192,7 +193,7 @@ export default function Footer({ contactData }: { contactData?: Contact }) {
                   {contact_infos.telephone && (
                     <li className="flex items-center gap-3 text-sm transition-all duration-300 hover:text-[#F5E6D3] dark:hover:text-primary">
                       <PhoneIcon className="h-4 w-4 flex-shrink-0" />
-                      <a href={`tel:+4618131820`}>018-13 18 20</a>
+                      <a href={`tel:${contact_infos.telephone.replace(/\s/g, '')}`}>{formatSwedishPhone(contact_infos.telephone)}</a>
                     </li>
                   )}
                   {contact_infos.email && (

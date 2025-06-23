@@ -22,6 +22,7 @@ import {
   trackEmailClick,
   trackAddressClick,
 } from "@/lib/gtag";
+import { formatSwedishPhone } from "@/lib/formatPhone";
 
 export default function ContactInfoSection({
   contactData,
@@ -91,12 +92,12 @@ export default function ContactInfoSection({
                         <div className="flex items-center gap-3 transition-all duration-300 hover:text-accent">
                           <ChatBubbleIcon className="size-5 text-accent" />
                           <Link
-                            href={`tel:+4618131820`}
+                            href={`tel:${contact_infos.telephone.replace(/\s/g, '')}`}
                             className="text-base"
                             onClick={trackPhoneClick}
                           >
                             <Localization text="ContactSection.phone" />
-                            :&nbsp; 018-13 18 20
+                            :&nbsp; {formatSwedishPhone(contact_infos.telephone)}
                           </Link>
                         </div>
                       )}

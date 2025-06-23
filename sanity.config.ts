@@ -1,6 +1,5 @@
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
 import { presentationTool } from "sanity/presentation";
 import { schema } from "./sanity/schemas";
 import { getDefaultDocumentNode } from "./structur";
@@ -18,10 +17,10 @@ const commonConfig = {
           .title("Base")
           .items([
             S.listItem()
-              .title("Pages")
+              .title("Sidor")
               .child(
                 S.list()
-                  .title("Pages")
+                  .title("Sidor")
                   .items([
                     S.listItem()
                       .title("Home Page")
@@ -41,40 +40,56 @@ const commonConfig = {
               ),
             S.divider(),
             S.listItem()
-              .title("Menu")
+              .title("À la carte")
               .child(
                 S.list()
-                  .title("Menu")
+                  .title("À la carte")
                   .items([
                     S.listItem()
-                      .title("Food Items")
+                      .title("Menyobjekt")
                       .child(
                         S.documentList()
-                          .title("Food Items")
+                          .title("Menyobjekt")
                           .filter('_type == "foods"'),
                       ),
                     S.listItem()
-                      .title("Wines")
+                      .title("Viner")
                       .child(
                         S.documentList()
-                          .title("Wine Item")
+                          .title("Viner")
                           .filter('_type == "wines"'),
                       ),
                     S.listItem()
-                      .title("Sub Categories")
+                      .title("Subkategorier")
                       .child(
                         S.documentList()
-                          .title("Sub Categories List")
+                          .title("Subkategorier")
                           .filter('_type == "subcategories"'),
                       ),
                     S.listItem()
-                      .title("Categories")
+                      .title("Kategorier")
                       .child(
                         S.documentList()
-                          .title("Categories List")
+                          .title("Kategorier")
                           .filter('_type == "categories"'),
                       ),
                   ]),
+              ),
+            S.divider(),
+            S.listItem()
+              .title("Kontakt & öppettider")
+              .child(
+                S.documentList()
+                  .title("Kontakt & öppettider")
+                  .filter('_type == "contact"')
+              ),
+            S.divider(),
+            S.listItem()
+              .title("FAQ - Vanliga frågor")
+              .child(
+                S.documentList()
+                  .title("FAQ - Vanliga frågor")
+                  .filter('_type == "faq"')
               ),
             S.divider(),
 
@@ -87,6 +102,8 @@ const commonConfig = {
                   "categories",
                   "wines",
                   "lunch",
+                  "contact",
+                  "faq",
                 ].includes(listItem?.getId()!),
             ),
           ]),
