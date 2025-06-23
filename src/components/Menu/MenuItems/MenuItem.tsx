@@ -4,33 +4,32 @@ import { SlashIcon } from "@radix-ui/react-icons";
 import { Badge } from "@/components/ui/badge";
 
 const MenuItem: React.FC<{ item: SubCategory | Food | Wine }> = ({ item }) => {
-  // console.log("item", item, "type", item._type);
-
   const locale = useGetLocale();
 
   if (item._type === "foods") return <MenuFoodItem {...(item as Food)} />;
   if (item._type === "wines") return <MenuWineItem {...(item as Wine)} />;
-  if (item._type === "subcategories") return (
-    <li className="flex flex-col items-center gap-2 text-center">
-      <h3 className="w-full font-recoleta text-2xl font-medium tracking-tight">
-        {(item as SubCategory).title[locale]}
-      </h3>
-      {item.description && (
-        <span className="w-full font-lato text-sm text-muted-foreground">
-          {item.description[locale]}
-        </span>
-      )}
-      <ul className="mt-3 flex w-full flex-col gap-5 border-y py-6">
-        {(item as SubCategory).menu_list?.map((item) =>
-          item._type === "wines" ? (
-            <MenuWineItem key={item._id} {...(item as Wine)} />
-          ) : (
-            <MenuFoodItem key={item._id} {...(item as Food)} />
-          ),
+  if (item._type === "subcategories")
+    return (
+      <li className="flex flex-col items-center gap-2 text-center">
+        <h3 className="w-full font-recoleta text-2xl font-medium tracking-tight">
+          {(item as SubCategory).title[locale]}
+        </h3>
+        {item.description && (
+          <span className="w-full font-lato text-sm text-muted-foreground">
+            {item.description[locale]}
+          </span>
         )}
-      </ul>
-    </li>
-  );
+        <ul className="mt-3 flex w-full flex-col gap-5 border-y py-6">
+          {(item as SubCategory).menu_list?.map((item) =>
+            item._type === "wines" ? (
+              <MenuWineItem key={item._id} {...(item as Wine)} />
+            ) : (
+              <MenuFoodItem key={item._id} {...(item as Food)} />
+            ),
+          )}
+        </ul>
+      </li>
+    );
 };
 
 const MenuFoodItem: React.FC<Food> = ({
@@ -39,8 +38,6 @@ const MenuFoodItem: React.FC<Food> = ({
   description,
   badge,
 }) => {
-  // console.log(price);
-
   const locale = useGetLocale();
   return (
     <li className="flex flex-col gap-2">
@@ -51,13 +48,13 @@ const MenuFoodItem: React.FC<Food> = ({
 
         <div className="mx-2 mt-3 h-[1px] flex-1 bg-accent/50" />
         <div>
-          <span className="text-md whitespace-nowrap font-recoletta text-primary">
+          <span className="text-md font-recoletta whitespace-nowrap text-primary">
             {price} {!takeawayPrice ? <span>kr</span> : null}
           </span>
           {takeawayPrice && (
             <>
               <SlashIcon className="ml-[-4px] inline-block h-6" />
-              <span className="text-md whitespace-nowrap font-lobster text-gray-500">
+              <span className="text-md font-lobster whitespace-nowrap text-gray-500">
                 {takeawayPrice} <span>kr</span>
               </span>
             </>
@@ -70,7 +67,10 @@ const MenuFoodItem: React.FC<Food> = ({
         </span>
       )}
       {badge && badge[locale] && badge[locale].trim() && (
-        <Badge variant="secondary" className="self-start text-xs font-medium uppercase">
+        <Badge
+          variant="secondary"
+          className="self-start text-xs font-medium uppercase"
+        >
           {badge[locale]}
         </Badge>
       )}
@@ -83,8 +83,6 @@ const MenuWineItem: React.FC<Wine> = ({
   description,
   badge,
 }) => {
-  // console.log(price);
-
   const locale = useGetLocale();
   return (
     <li className="flex flex-col gap-2">
@@ -108,9 +106,11 @@ const MenuWineItem: React.FC<Wine> = ({
               {carafePrice}
             </span>
           ) : (
-            <span className="whitespace-nowrap text-sm text-muted-foreground">N/A</span>
+            <span className="whitespace-nowrap text-sm text-muted-foreground">
+              N/A
+            </span>
           )}
-          <span className="ml-1 text-md font-lato text-primary">kr</span>
+          <span className="text-md ml-1 font-lato text-primary">kr</span>
         </div>
       </div>
       {description && (
@@ -119,7 +119,10 @@ const MenuWineItem: React.FC<Wine> = ({
         </span>
       )}
       {badge && badge[locale] && badge[locale].trim() && (
-        <Badge variant="secondary" className="ml-1 self-start text-xs font-medium uppercase">
+        <Badge
+          variant="secondary"
+          className="ml-1 self-start text-xs font-medium uppercase"
+        >
           {badge[locale]}
         </Badge>
       )}

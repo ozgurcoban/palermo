@@ -48,7 +48,6 @@ const MenuTabs: React.FC<MenuTabs> = ({
   // const windowWidth: number = useWindowWidth();
   const locale = useGetLocale();
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
-  // console.log(tabs);
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth < 768);

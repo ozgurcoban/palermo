@@ -49,22 +49,6 @@ const isDevelopment =
   (isVercel && process.env.VERCEL_ENV !== "production") || // Vercel non-production
   (isVercel && process.env.VERCEL_GIT_COMMIT_REF !== "main"); // Vercel non-main branch
 
-// Debug logging (remove in production)
-if (typeof window === "undefined") {
-  console.log("Environment check:", {
-    NODE_ENV: process.env.NODE_ENV,
-    NETLIFY: process.env.NETLIFY,
-    NETLIFY_BUILD_BASE: process.env.NETLIFY_BUILD_BASE,
-    DEPLOY_URL: process.env.DEPLOY_URL,
-    URL: process.env.URL,
-    VERCEL: process.env.VERCEL,
-    VERCEL_ENV: process.env.VERCEL_ENV,
-    VERCEL_GIT_COMMIT_REF: process.env.VERCEL_GIT_COMMIT_REF,
-    isNetlify,
-    isVercel,
-    isDevelopment,
-  });
-}
 
 type MetadataConfig = {
   title: string;

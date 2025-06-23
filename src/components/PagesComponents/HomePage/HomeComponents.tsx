@@ -96,9 +96,6 @@ const HomeComponents: React.FC<Props> = ({
   const { gallery_section, intro_section } = homeData;
   const t = useTranslations("Home");
 
-  // Debug log to verify intro_section data
-  console.log("intro_section data:", intro_section);
-
   return (
     <>
       <Script
