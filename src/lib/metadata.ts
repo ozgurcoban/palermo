@@ -4,6 +4,11 @@ export const siteConfig = {
   name: "Restaurang Palermo",
   url: "https://palermo-uppsala.se",
   ogImage: "/hero.webp",
+  ogImages: {
+    default: "/hero.webp",
+    menu: "/images/hero/menu-hero.webp",
+    lunch: "/images/hero/lunch-hero-exterior.webp",
+  },
   links: {
     facebook: "https://www.facebook.com/profile.php?id=100046443356150",
     instagram: "https://www.instagram.com/palermo_uppsala",
@@ -55,6 +60,7 @@ type MetadataConfig = {
   locale: string;
   image?: string;
   noIndex?: boolean;
+  canonicalPath?: string;
 };
 
 export function constructMetadata({
@@ -63,7 +69,13 @@ export function constructMetadata({
   locale,
   image = siteConfig.ogImage,
   noIndex = false,
+  canonicalPath,
 }: MetadataConfig): Metadata {
+  // Build canonical URL
+  const canonicalUrl = canonicalPath
+    ? new URL(canonicalPath, siteConfig.url).toString()
+    : undefined;
+
   return {
     title,
     description,
@@ -116,6 +128,7 @@ export function constructMetadata({
         en: "/en",
         sv: "/sv",
       },
+      canonical: canonicalUrl,
     },
     icons: {
       icon: "/favicon.ico",

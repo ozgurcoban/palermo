@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     const token = request.nextUrl.searchParams.get('token')
     
     if (!REVALIDATE_TOKEN) {
-      console.error('REVALIDATE_TOKEN not configured')
+      // Token not configured
       return NextResponse.json(
         { message: 'Revalidation token not configured' },
         { status: 500 }
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (token !== REVALIDATE_TOKEN) {
-      console.error('Invalid revalidation token')
+      // Invalid token received
       return NextResponse.json(
         { message: 'Invalid token' },
         { status: 401 }
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     // Extract document type and ID from Sanity webhook payload
     const { _type, _id, slug } = body
 
-    console.log('Revalidation request received:', { _type, _id, slug })
+    // Process revalidation request for document type: _type
 
     // Define paths to revalidate based on content type
     const pathsToRevalidate: string[] = []
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
       default:
         // For unknown types, revalidate all main pages to be safe
         pathsToRevalidate.push('/', '/en', '/menu', '/en/menu', '/lunch', '/en/lunch')
-        console.log(`Unknown document type: ${_type}, revalidating all pages`)
+        // Unknown document type, revalidating all pages
     }
 
     // Perform revalidation
@@ -79,11 +79,11 @@ export async function POST(request: NextRequest) {
       try {
         revalidatePath(path, 'page')
         results.push({ path, status: 'success' })
-        console.log(`Revalidated path: ${path}`)
+        // Path revalidated successfully
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error)
         results.push({ path, status: 'error', error: errorMessage })
-        console.error(`Failed to revalidate path ${path}:`, error)
+        // Failed to revalidate path
       }
     }
 
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
     })
 
   } catch (error) {
-    console.error('Revalidation error:', error)
+    // Revalidation failed
     const errorMessage = error instanceof Error ? error.message : String(error)
     return NextResponse.json(
       { 

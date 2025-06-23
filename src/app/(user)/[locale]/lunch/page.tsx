@@ -9,7 +9,7 @@ import PreviewLunchPage from "@/components/PagesComponents/LunchPage/PreviewLunc
 import { locales } from "@/config";
 import { notFound } from "next/navigation";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import { constructMetadata } from "@/lib/metadata";
+import { constructMetadata, siteConfig } from "@/lib/metadata";
 
 type Props = {
   params: { locale: string };
@@ -22,6 +22,8 @@ export async function generateMetadata({ params: { locale } }: Props) {
     title: t("title"),
     description: t("description"),
     locale,
+    canonicalPath: locale === "sv" ? "/lunch" : `/${locale}/lunch`,
+    image: siteConfig.ogImages.lunch,
   });
 }
 

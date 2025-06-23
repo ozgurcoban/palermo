@@ -12,19 +12,19 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 async function verifyRecaptcha(token: string | undefined) {
   // Skip reCAPTCHA verification in development
   if (process.env.NODE_ENV === 'development') {
-    console.log("Development mode: skipping reCAPTCHA verification");
+    // Development mode: skipping reCAPTCHA verification
     return { success: true };
   }
 
   if (!token || token === "") {
     // Allow empty token for when reCAPTCHA is still loading
-    console.log("No reCAPTCHA token provided, skipping verification");
+    // No reCAPTCHA token provided, skipping verification
     return { success: true };
   }
 
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   if (!secretKey) {
-    console.error("reCAPTCHA secret key not configured");
+    // reCAPTCHA secret key not configured
     return { success: false, error: "reCAPTCHA not configured" };
   }
 
@@ -41,19 +41,19 @@ async function verifyRecaptcha(token: string | undefined) {
     const data = await response.json();
 
     if (!data.success) {
-      console.error("reCAPTCHA verification failed:", data);
+      // reCAPTCHA verification failed
       return { success: false, error: "reCAPTCHA verification failed" };
     }
 
     // Check score for v3 (0.0 - 1.0, where 1.0 is very likely a good interaction)
     if (data.score && data.score < 0.5) {
-      console.warn("Low reCAPTCHA score:", data.score);
+      // Low reCAPTCHA score detected
       return { success: false, error: "Suspicious activity detected" };
     }
 
     return { success: true };
   } catch (error) {
-    console.error("reCAPTCHA verification error:", error);
+    // reCAPTCHA verification error
     return { success: false, error: "Failed to verify reCAPTCHA" };
   }
 }
@@ -85,7 +85,7 @@ export async function sendMail(data: ContactFormInputs) {
       });
 
       if (adminEmail.error) {
-        console.error("Admin email error:", adminEmail.error);
+        // Admin email error
         return {
           success: false,
           error: adminEmail.error.message || "Failed to send admin email",
@@ -108,13 +108,13 @@ export async function sendMail(data: ContactFormInputs) {
       });
 
       if (customerEmail.error) {
-        console.error("Customer email error:", customerEmail.error);
+        // Customer email error
         // Vi loggar fel men låter det gå igenom om admin-mejlet gick
       }
 
       return { success: true, data: adminEmail };
     } catch (error) {
-      console.error("Send mail error:", error);
+      // Send mail error
       return {
         success: false,
         error:

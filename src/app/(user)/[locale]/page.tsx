@@ -20,6 +20,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     title: t("title"),
     description: t("description"),
     locale,
+    canonicalPath: locale === "sv" ? "/" : `/${locale}`,
   });
 }
 

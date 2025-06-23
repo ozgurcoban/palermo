@@ -8,7 +8,7 @@ import MenuComponents from "@/components/PagesComponents/MenuPage/MenuComponents
 import { notFound } from "next/navigation";
 import { locales } from "@/config";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import { constructMetadata } from "@/lib/metadata";
+import { constructMetadata, siteConfig } from "@/lib/metadata";
 
 type Props = {
   params: { locale: string };
@@ -21,6 +21,8 @@ export async function generateMetadata({ params: { locale } }: Props) {
     title: t("title"),
     description: t("description"),
     locale,
+    canonicalPath: locale === "sv" ? "/menu" : `/${locale}/menu`,
+    image: siteConfig.ogImages.menu,
   });
 }
 
