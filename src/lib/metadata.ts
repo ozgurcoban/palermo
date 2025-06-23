@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Palermo Uppsala",
+  name: "Restaurang Palermo",
   url: "https://palermo-uppsala.se",
   ogImage: "/hero.webp",
   links: {
@@ -48,7 +48,6 @@ const isDevelopment =
   isNetlify || // Netlify is always preview
   (isVercel && process.env.VERCEL_ENV !== "production") || // Vercel non-production
   (isVercel && process.env.VERCEL_GIT_COMMIT_REF !== "main"); // Vercel non-main branch
-
 
 type MetadataConfig = {
   title: string;
@@ -170,7 +169,7 @@ export function generateRestaurantSchema(locale: "sv" | "en") {
         closes: "01:00",
       },
     ],
-    servesCuisine: ["Italian", "Pizza", "European", "Comfort Food"],
+    servesCuisine: ["Pizza", "Swedish", "Pub Food", "European"],
     menu: `${siteConfig.url}/${locale}/menu`,
     acceptsReservations: "False",
     sameAs: [siteConfig.links.facebook, siteConfig.links.instagram],

@@ -2,7 +2,7 @@
   "Home": {
     "HomeHero": {
       "title": "Palermo",
-      "description": "Uppsala's most charming neighborhood pub & pizzeria | Bar & restaurant",
+      "description": "Uppsala's most charming local spot | Restaurant, pizzeria & bar",
       "badge": {
         "main": "UPPSALAS (UNOFFICIAL) 14",
         "suffix": "th NATION"
@@ -98,10 +98,10 @@
     "location": "Sysslomansgatan 7, Uppsala"
   },
   "Metadata": {
-    "title": "Palermo Uppsala – Laid-back neighborhood spot & pizzeria",
+    "title": "Palermo Uppsala - Casual Restaurant, Pizza & Bar",
     "home": {
-      "title": "Palermo Uppsala – Laid-back Restaurant & Pizzeria",
-      "description": "Uppsala's most charming neighborhood spot on Sysslomansgatan – pizza, comfort food and cold beer in a laid-back atmosphere. Come for the pizza, stay for the vibe!"
+      "title": "Palermo Uppsala - Casual Restaurant, Pizza & Bar",
+      "description": "Uppsala's favorite local spot – pizza, a la carte & cold beer. Come for the pizza, stay for the vibe! ☎️ 018-13 18 20"
     },
     "menu": {
       "title": "Palermo Uppsala Menu – Pizza, pasta & meat dishes",
