@@ -8,18 +8,18 @@ export default defineType({
   fields: [
     defineField({
       name: 'contact_infos',
-      title: 'Contact Us Information',
+      title: 'Kontaktinformation',
       type: 'object',
       validation: Rule => Rule.required(),
       fields: [
         defineField({
           name: 'address',
-          title: 'Address',
+          title: 'Adress',
           type: 'string',
         }),
         defineField({
           name: 'telephone',
-          title: 'Telephone',
+          title: 'Telefon',
           type: 'string',
           description: 'Svenskt telefonnummer med landskod (t.ex. +46 18 13 18 20)',
           initialValue: '+46 ',
@@ -43,7 +43,7 @@ export default defineType({
         }),
         defineField({
           name: 'email',
-          title: 'Email',
+          title: 'E-post',
           type: 'string',
           description: 'E-postadress (t.ex. info@palermo.se)',
           validation: Rule => Rule.required()
@@ -65,19 +65,19 @@ export default defineType({
         }),
         defineField({
           name: 'facebook',
-          title: 'Facebook Link',
+          title: 'Facebook-länk',
           type: 'string',
         }),
         defineField({
           name: 'instagram',
-          title: 'Instagram Link',
+          title: 'Instagram-länk',
           type: 'string',
         }),
       ],
     }),
     defineField({
       name: 'opening_hours',
-      title: 'Opening Hours',
+      title: 'Öppettider',
       type: 'array',
       of: [
         defineArrayMember({
@@ -85,12 +85,12 @@ export default defineType({
           fields: [
             defineField({
               name: 'day',
-              title: 'Day',
-              description: 'Enter the day, e.g: Mon or Tue - Fri',
+              title: 'Dag',
+              description: 'Ange dag, t.ex: Mån eller Tis - Fre',
               type: 'object',
               fieldsets: [
                 {
-                  title: 'Translations',
+                  title: 'Översättningar',
                   name: 'translations',
                   options: {collapsible: true},
                 },
@@ -108,8 +108,8 @@ export default defineType({
             }),
             defineField({
               name: 'time',
-              title: 'Time',
-              description: 'Enter the time, e.g: 11:00 - 01:00 or 11:00 - 03:00',
+              title: 'Tid',
+              description: 'Ange tid, t.ex: 11:00 - 01:00 eller 11:00 - 03:00',
               type: 'string',
               validation: (Rule) => Rule.required(),
             }),
@@ -124,8 +124,8 @@ export default defineType({
       fields: [
         defineField({
           name: 'days',
-          title: 'Days',
-          description: 'When is Happy Hours? e.g. "Every day" or "Mon-Fri"',
+          title: 'Dagar',
+          description: 'När är Happy Hours? t.ex. "Varje dag" eller "Mån-Fre"',
           type: 'object',
           fieldsets: [
             {
@@ -147,14 +147,14 @@ export default defineType({
         defineField({
           name: 'time',
           title: 'Time',
-          description: 'Happy Hours time, e.g: 15:00 - 22:00',
+          description: 'Happy Hours-tid, t.ex: 15:00 - 22:00',
           type: 'string',
           validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: 'description',
-          title: 'Description',
-          description: 'Short description of Happy Hours offers',
+          title: 'Beskrivning',
+          description: 'Kort beskrivning av Happy Hours-erbjudanden',
           type: 'object',
           fieldsets: [
             {

@@ -3,16 +3,16 @@ import {supportedLanguages} from './lang-config'
 
 export default defineType({
   name: 'lunch',
-  title: 'Lunch Page',
+  title: 'Lunchsida',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Rubrik',
       type: 'object',
       fieldsets: [
         {
-          title: 'Translations',
+          title: 'Översättningar',
           name: 'translations',
           options: {collapsible: true},
         },
@@ -29,16 +29,16 @@ export default defineType({
     }),
     defineField({
       name: 'timeInfo',
-      title: 'Time Information',
+      title: 'Tidsinformation',
       type: 'object',
       fields: [
         defineField({
           name: 'days',
-          title: 'Days',
+          title: 'Dagar',
           type: 'object',
           fieldsets: [
             {
-              title: 'Translations',
+              title: 'Översättningar',
               name: 'translations',
               options: {collapsible: true},
             },
@@ -55,7 +55,7 @@ export default defineType({
         }),
         defineField({
           name: 'hours',
-          title: 'Hours',
+          title: 'Tider',
           type: 'string',
           initialValue: '11:00 - 15:00',
         }),
@@ -69,11 +69,11 @@ export default defineType({
       fields: [
         defineField({
           name: 'title',
-          title: 'Title',
+          title: 'Rubrik',
           type: 'object',
           fieldsets: [
             {
-              title: 'Translations',
+              title: 'Översättningar',
               name: 'translations',
               options: {collapsible: true},
             },
@@ -90,11 +90,11 @@ export default defineType({
         }),
         defineField({
           name: 'description',
-          title: 'Description',
+          title: 'Beskrivning',
           type: 'object',
           fieldsets: [
             {
-              title: 'Translations',
+              title: 'Översättningar',
               name: 'translations',
               options: {collapsible: true},
             },
@@ -114,7 +114,7 @@ export default defineType({
         }),
         defineField({
           name: 'price',
-          title: 'Price',
+          title: 'Pris',
           type: 'number',
           initialValue: 119,
           validation: (Rule) => Rule.required().positive(),
@@ -122,7 +122,7 @@ export default defineType({
         }),
         defineField({
           name: 'items',
-          title: 'Lunch Items',
+          title: 'Lunchrätter',
           type: 'array',
           validation: (Rule) => Rule.required().min(1),
           of: [
@@ -131,11 +131,11 @@ export default defineType({
               fields: [
                 defineField({
                   name: 'title',
-                  title: 'Title',
+                  title: 'Rubrik',
                   type: 'object',
                   fieldsets: [
                     {
-                      title: 'Translations',
+                      title: 'Översättningar',
                       name: 'translations',
                       options: {collapsible: true},
                     },
@@ -152,11 +152,11 @@ export default defineType({
                 }),
                 defineField({
                   name: 'description',
-                  title: 'Description',
+                  title: 'Beskrivning',
                   type: 'object',
                   fieldsets: [
                     {
-                      title: 'Translations',
+                      title: 'Översättningar',
                       name: 'translations',
                       options: {collapsible: true},
                     },
@@ -197,11 +197,11 @@ export default defineType({
       fields: [
         defineField({
           name: 'title',
-          title: 'Title',
+          title: 'Rubrik',
           type: 'object',
           fieldsets: [
             {
-              title: 'Translations',
+              title: 'Översättningar',
               name: 'translations',
               options: {collapsible: true},
             },
@@ -218,11 +218,11 @@ export default defineType({
         }),
         defineField({
           name: 'description',
-          title: 'Description',
+          title: 'Beskrivning',
           type: 'object',
           fieldsets: [
             {
-              title: 'Translations',
+              title: 'Översättningar',
               name: 'translations',
               options: {collapsible: true},
             },
@@ -239,17 +239,17 @@ export default defineType({
         }),
         defineField({
           name: 'price',
-          title: 'Price',
+          title: 'Pris',
           type: 'number',
           validation: (Rule) => Rule.required().positive(),
           initialValue: 119,
         }),
         defineField({
           name: 'subcategoryRef',
-          title: 'Pizza Subcategory',
+          title: 'Pizza underkategori',
           type: 'reference',
           to: [{type: 'subcategories'}],
-          description: 'Select the standard pizza subcategory',
+          description: 'Välj standardpizza underkategori',
           validation: (Rule) => Rule.required(),
         }),
       ],
@@ -262,7 +262,7 @@ export default defineType({
       fields: [
         defineField({
           name: 'title',
-          title: 'Title',
+          title: 'Rubrik',
           type: 'object',
           fields: supportedLanguages.map((lang) =>
             defineField({
@@ -275,11 +275,11 @@ export default defineType({
         }),
         defineField({
           name: 'description',
-          title: 'Description',
+          title: 'Beskrivning',
           type: 'object',
           fieldsets: [
             {
-              title: 'Translations',
+              title: 'Översättningar',
               name: 'translations',
               options: {collapsible: true},
             },
@@ -299,19 +299,19 @@ export default defineType({
         }),
         defineField({
           name: 'price',
-          title: 'Price',
+          title: 'Pris',
           type: 'number',
           validation: (Rule) => Rule.positive(), // Ta bort required
           initialValue: 159,
         }),
         defineField({
           name: 'dish',
-          title: 'Dish',
+          title: 'Rätt',
           type: 'object',
           fields: [
             defineField({
               name: 'title',
-              title: 'Title',
+              title: 'Rubrik',
               type: 'object',
               fields: supportedLanguages.map((lang) =>
                 defineField({
@@ -324,7 +324,7 @@ export default defineType({
             }),
             defineField({
               name: 'description',
-              title: 'Description',
+              title: 'Beskrivning',
               type: 'object',
               fields: supportedLanguages.map((lang) =>
                 defineField({
@@ -343,7 +343,7 @@ export default defineType({
   preview: {
     prepare() {
       return {
-        title: 'Lunch Configuration',
+        title: 'Lunchkonfiguration',
       }
     },
   },

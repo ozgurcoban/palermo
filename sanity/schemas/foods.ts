@@ -3,16 +3,16 @@ import { supportedLanguages } from "./lang-config";
 
 export default defineType({
   name: "foods",
-  title: "Food Items",
+  title: "Maträtter",
   type: "document",
   fields: [
     defineField({
-      title: "Title",
+      title: "Rubrik",
       name: "title",
       type: "object",
       fieldsets: [
         {
-          title: "Translations",
+          title: "Översättningar",
           name: "translations",
           options: { collapsible: true },
         },
@@ -30,12 +30,12 @@ export default defineType({
       ),
     }),
     defineField({
-      title: "Description",
+      title: "Beskrivning",
       name: "description",
       type: "object",
       fieldsets: [
         {
-          title: "Translations",
+          title: "Översättningar",
           name: "translations",
           options: { collapsible: true },
         },
@@ -53,25 +53,25 @@ export default defineType({
     defineField({
       type: "object",
       name: "priceSection",
-      title: "Prices",
+      title: "Priser",
       validation: Rule =>
         Rule.custom(fields => {
           if (!fields?.price) {
-            return "Please add a price";
+            return "Vänligen ange ett pris";
           }
           return true;
         }),
       fields: [
         defineField({
-          title: "Price",
-          description: "Enter the price per unit",
+          title: "Pris",
+          description: "Ange pris per enhet",
           name: "price",
           type: "number",
           validation: Rule => Rule.required(),
         }),
         defineField({
-          title: "Takeaway price",
-          description: "Enter the price per unit",
+          title: "Hämtpris",
+          description: "Ange pris per enhet",
           name: "takeawayPrice",
           type: "number",
         }),
@@ -79,12 +79,12 @@ export default defineType({
     }),
 
     defineField({
-      title: "Badge",
+      title: "Märke",
       name: "badge",
       type: "object",
       fieldsets: [
         {
-          title: "Translations",
+          title: "Översättningar",
           name: "translations",
           options: { collapsible: true },
         },
@@ -98,7 +98,7 @@ export default defineType({
           fieldset: lang.isDefault ? undefined : "translations",
         })
       ),
-      description: "Enter a special badge for the food",
+      description: "Ange ett speciellt märke för rätten",
     }),
   ],
   preview: {

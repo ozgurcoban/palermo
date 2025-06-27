@@ -3,16 +3,16 @@ import { supportedLanguages } from "./lang-config";
 
 export default defineType({
   name: "subcategories",
-  title: "Menu Sub Categories",
+  title: "Meny underkategorier",
   type: "document",
   fields: [
     defineField({
       name: "title",
-      title: "Title",
+      title: "Rubrik",
       type: "object",
       fieldsets: [
         {
-          title: "Translations",
+          title: "Översättningar",
           name: "translations",
           options: { collapsible: true },
         },
@@ -30,11 +30,11 @@ export default defineType({
     }),
     defineField({
       name: "description",
-      title: "Description",
+      title: "Beskrivning",
       type: "object",
       fieldsets: [
         {
-          title: "Translations",
+          title: "Översättningar",
           name: "translations",
           options: { collapsible: true },
         },
@@ -51,8 +51,8 @@ export default defineType({
     }),
     defineField({
       name: "menu_list",
-      title: "Menu List",
-      description: "Add the foods that belongs to this sub-category (optional)",
+      title: "Menylista",
+      description: "Lägg till maträtter som tillhör denna underkategori (valfritt)",
       type: "array",
       of: [{ type: "reference", to: [{ type: "foods" }, { type: "wines" }] }],
       validation: Rule =>
@@ -61,7 +61,7 @@ export default defineType({
             ? true
             : {
                 message:
-                  "The menu list is required, please add at least one item",
+                  "Menylistan är obligatorisk, vänligen lägg till minst en artikel",
               }
         ),
     }),

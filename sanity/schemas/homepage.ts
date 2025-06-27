@@ -3,90 +3,23 @@ import {supportedLanguages} from './lang-config'
 
 export default defineType({
   name: 'home',
-  title: 'Home Page',
+  title: 'Startsida',
   type: 'document',
   fields: [
-    // Define the gallery section
-    defineField({
-      name: 'gallery_section',
-      title: 'Gallery Section',
-      type: 'object',
-      description: 'Enter the gallery section data',
-      fields: [
-        defineField({
-          name: 'title',
-          title: 'Title',
-          type: 'object',
-          fieldsets: [
-            {
-              title: 'Translations',
-              name: 'translations',
-              options: {collapsible: true},
-            },
-          ],
-          // Dynamically define one field per language
-          fields: supportedLanguages.map((lang) =>
-            defineField({
-              title: lang.title,
-              name: lang.id,
-              type: 'string',
-              fieldset: lang.isDefault ? undefined : 'translations',
-            }),
-          ),
-        }),
-        defineField({
-          name: 'description',
-          title: 'Description',
-          type: 'object',
-          fieldsets: [
-            {
-              title: 'Translations',
-              name: 'translations',
-              options: {collapsible: true},
-            },
-          ],
-          // Dynamically define one field per language
-          fields: supportedLanguages.map((lang) =>
-            defineField({
-              title: lang.title,
-              name: lang.id,
-              type: 'string',
-              fieldset: lang.isDefault ? undefined : 'translations',
-            }),
-          ),
-        }),
-        defineField({
-          name: 'images',
-          title: 'Gallery Images',
-          type: 'array',
-          description: 'Enter the gallery images',
-          of: [
-            defineArrayMember({
-              type: 'image',
-              name: 'image',
-              title: 'Image',
-              options: {
-                hotspot: true,
-              },
-            }),
-          ],
-        }),
-      ],
-    }),
-    // Define the intro section
+    // Definiera introduktionssektionen
     defineField({
       name: 'intro_section',
-      title: 'Intro Section',
+      title: 'Introduktionssektion',
       type: 'object',
-      description: 'Intro section with text and image',
+      description: 'Introduktionssektion med text och bild',
       fields: [
         defineField({
           name: 'title',
-          title: 'Title',
+          title: 'Rubrik',
           type: 'object',
           fieldsets: [
             {
-              title: 'Translations',
+              title: 'Översättningar',
               name: 'translations',
               options: {collapsible: true},
             },
@@ -102,9 +35,9 @@ export default defineType({
         }),
         defineField({
           name: 'highlights',
-          title: 'Highlights',
+          title: 'Höjdpunkter',
           type: 'array',
-          description: 'Add 3 highlights with subtitle and description',
+          description: 'Lägg till 3 höjdpunkter med underrubrik och beskrivning',
           validation: Rule => Rule.required().min(3).max(3),
           of: [
             defineArrayMember({
@@ -113,11 +46,11 @@ export default defineType({
               fields: [
                 defineField({
                   name: 'subtitle',
-                  title: 'Subtitle',
+                  title: 'Underrubrik',
                   type: 'object',
                   fieldsets: [
                     {
-                      title: 'Translations',
+                      title: 'Översättningar',
                       name: 'translations',
                       options: {collapsible: true},
                     },
@@ -133,11 +66,11 @@ export default defineType({
                 }),
                 defineField({
                   name: 'description',
-                  title: 'Description',
+                  title: 'Beskrivning',
                   type: 'object',
                   fieldsets: [
                     {
-                      title: 'Translations',
+                      title: 'Översättningar',
                       name: 'translations',
                       options: {collapsible: true},
                     },
@@ -164,7 +97,7 @@ export default defineType({
         }),
         defineField({
           name: 'image',
-          title: 'Image',
+          title: 'Bild',
           type: 'image',
           options: {
             hotspot: true,
@@ -172,12 +105,12 @@ export default defineType({
           fields: [
             defineField({
               name: 'alt',
-              title: 'Alternative text',
+              title: 'Alternativ text',
               type: 'object',
-              description: 'Important for SEO and accessibility.',
+              description: 'Viktigt för SEO och tillgänglighet.',
               fieldsets: [
                 {
-                  title: 'Translations',
+                  title: 'Översättningar',
                   name: 'translations',
                   options: {collapsible: true},
                 },
@@ -195,10 +128,77 @@ export default defineType({
         }),
       ],
     }),
+    // Definiera gallerisektionen
+    defineField({
+      name: 'gallery_section',
+      title: 'Gallerisektion',
+      type: 'object',
+      description: 'Ange data för gallerisektionen',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Rubrik',
+          type: 'object',
+          fieldsets: [
+            {
+              title: 'Översättningar',
+              name: 'translations',
+              options: {collapsible: true},
+            },
+          ],
+          // Definiera dynamiskt ett fält per språk
+          fields: supportedLanguages.map((lang) =>
+            defineField({
+              title: lang.title,
+              name: lang.id,
+              type: 'string',
+              fieldset: lang.isDefault ? undefined : 'translations',
+            }),
+          ),
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description',
+          type: 'object',
+          fieldsets: [
+            {
+              title: 'Översättningar',
+              name: 'translations',
+              options: {collapsible: true},
+            },
+          ],
+          // Definiera dynamiskt ett fält per språk
+          fields: supportedLanguages.map((lang) =>
+            defineField({
+              title: lang.title,
+              name: lang.id,
+              type: 'string',
+              fieldset: lang.isDefault ? undefined : 'translations',
+            }),
+          ),
+        }),
+        defineField({
+          name: 'images',
+          title: 'Galleriblider',
+          type: 'array',
+          description: 'Lägg till galleriblider',
+          of: [
+            defineArrayMember({
+              type: 'image',
+              name: 'image',
+              title: 'Bild',
+              options: {
+                hotspot: true,
+              },
+            }),
+          ],
+        }),
+      ],
+    }),
   ],
   preview: {
     prepare(selection) {
-      return {...selection, title: 'Home Page Content'}
+      return {...selection, title: 'Startsidans innehåll'}
     },
   },
 })

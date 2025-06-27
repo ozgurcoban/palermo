@@ -3,7 +3,7 @@
 // of languages to determine which fields to define.
 export const supportedLanguages = [
   { id: "en", title: "English" },
-  { id: "sv", title: "Swedish", isDefault: true },
+  { id: "sv", title: "Svenska", isDefault: true },
 ];
 
 export const baseLanguage = supportedLanguages.find(l => l.isDefault);
