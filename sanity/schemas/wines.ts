@@ -102,8 +102,8 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: "title.en",
-      subtitle: "description.en",
+      title: "title.sv",
+      subtitle: "description.sv",
     },
   },
 });
