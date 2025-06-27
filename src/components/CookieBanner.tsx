@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { useConsent } from "@/providers/ConsentProvider";
+import { trackCookieConsent, trackCookieSettingsOpen } from "@/lib/gtag";
 
 interface CookiePreferences {
   necessary: boolean;
@@ -25,67 +27,58 @@ interface CookiePreferences {
 
 export function CookieBanner() {
   const t = useTranslations("Cookies");
+  const { consent, acceptAll: acceptAllConsent, rejectAll: rejectAllConsent, updateConsent, hasConsented } = useConsent();
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [isAccepting, setIsAccepting] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>({
     necessary: true,
-    analytics: false,
+    analytics: consent.analytics,
   });
 
   useEffect(() => {
+    // Update preferences when consent changes
+    setPreferences({
+      necessary: true,
+      analytics: consent.analytics,
+    });
+  }, [consent]);
+
+  useEffect(() => {
     // Check if user has already made a choice
-    const cookieConsent = localStorage.getItem("cookie-consent");
-    if (!cookieConsent) {
+    if (!hasConsented) {
       // Show banner after hero animation completes
       const timer = setTimeout(() => setIsVisible(true), 2500);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [hasConsented]);
 
   const acceptAll = () => {
     setIsAccepting(true);
-    const allAccepted = {
-      necessary: true,
-      analytics: true,
-      timestamp: Date.now(),
-    };
-    localStorage.setItem("cookie-consent", JSON.stringify(allAccepted));
+    acceptAllConsent();
+    trackCookieConsent("accept_all");
 
     // Small delay for smooth animation
     setTimeout(() => {
       setIsVisible(false);
       setIsAccepting(false);
     }, 300);
-
-    // Trigger analytics loading dynamically
-    window.dispatchEvent(new Event("cookie-consent-updated"));
   };
 
   const acceptSelected = () => {
-    const selectedPreferences = {
-      ...preferences,
-      timestamp: Date.now(),
-    };
-    localStorage.setItem("cookie-consent", JSON.stringify(selectedPreferences));
+    updateConsent(preferences);
+    trackCookieConsent("accept_selected", preferences.analytics);
     setShowSettings(false);
 
     // Small delay for smooth animation
     setTimeout(() => {
       setIsVisible(false);
     }, 100);
-
-    // Trigger analytics loading dynamically
-    window.dispatchEvent(new Event("cookie-consent-updated"));
   };
 
   const rejectAll = () => {
-    const rejected = {
-      necessary: true,
-      analytics: false,
-      timestamp: Date.now(),
-    };
-    localStorage.setItem("cookie-consent", JSON.stringify(rejected));
+    rejectAllConsent();
+    trackCookieConsent("reject_all");
 
     // Small delay for smooth animation
     setTimeout(() => {
@@ -162,6 +155,7 @@ export function CookieBanner() {
                         <Button
                           variant="outline"
                           className="flex-1 border-accent/30 hover:bg-accent/5"
+                          onClick={() => trackCookieSettingsOpen()}
                         >
                           <SettingsIcon className="mr-2 h-4 w-4" />
                           {t("banner.settings", {

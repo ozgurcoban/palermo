@@ -1,8 +1,8 @@
 "use client";
 
 import Script from "next/script";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useState, Suspense } from "react";
+import { Suspense } from "react";
+import { useConsent } from "@/providers/ConsentProvider";
 
 declare global {
   interface Window {
@@ -12,59 +12,11 @@ declare global {
 }
 
 function GoogleAnalyticsScript() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [shouldLoadGA, setShouldLoadGA] = useState(false);
+  const { consent } = useConsent();
+  const shouldLoadGA = consent.analytics === true;
 
-  // Check initial consent and listen for updates
-  useEffect(() => {
-    const checkConsent = () => {
-      const consent = localStorage.getItem("cookie-consent");
-      if (consent) {
-        const consentData = JSON.parse(consent);
-        const analyticsEnabled = consentData.analytics === true;
-        setShouldLoadGA(analyticsEnabled);
-        
-        // Update gtag consent if GA is already loaded
-        if (window.gtag) {
-          window.gtag('consent', 'update', {
-            analytics_storage: consentData.analytics ? 'granted' : 'denied'
-          });
-        }
-      } else {
-        setShouldLoadGA(false);
-      }
-    };
-
-    // Check initial consent
-    checkConsent();
-
-    // Listen for consent updates
-    const handleConsentUpdate = () => checkConsent();
-    window.addEventListener('cookie-consent-updated', handleConsentUpdate);
-    window.addEventListener('storage', handleConsentUpdate);
-
-    return () => {
-      window.removeEventListener('cookie-consent-updated', handleConsentUpdate);
-      window.removeEventListener('storage', handleConsentUpdate);
-    };
-  }, []);
-
-  // Track page views when pathname changes
-  useEffect(() => {
-    if (pathname && window.gtag && shouldLoadGA) {
-      const url =
-        pathname +
-        (searchParams?.toString() ? `?${searchParams.toString()}` : "");
-      
-      // Send page view event
-      window.gtag("event", "page_view", {
-        page_path: url,
-        page_location: window.location.href,
-        page_title: document.title
-      });
-    }
-  }, [pathname, searchParams, shouldLoadGA]);
+  // GA4 automatically tracks page views through the config command
+  // No need for manual page_view tracking which causes double counting
 
 
   // Check if GA ID is set
@@ -88,6 +40,7 @@ function GoogleAnalyticsScript() {
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
         onLoad={() => {
+          console.log('[GA] Google Analytics script loaded successfully');
         }}
         onError={(e) => {
           console.error('[GA] Failed to load Google Analytics:', e);
@@ -97,6 +50,7 @@ function GoogleAnalyticsScript() {
         id="google-analytics"
         strategy="afterInteractive"
         onReady={() => {
+          console.log('[GA] Google Analytics initialized successfully');
         }}
         dangerouslySetInnerHTML={{
           __html: `
@@ -104,21 +58,23 @@ function GoogleAnalyticsScript() {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             
-            // Check current consent status
-            const consent = localStorage.getItem("cookie-consent");
-            const analyticsConsent = consent ? JSON.parse(consent).analytics : false;
-            
+            // Set default consent state to denied for all regions
             gtag('consent', 'default', {
-              analytics_storage: analyticsConsent ? 'granted' : 'denied'
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'wait_for_update': 500 // Wait up to 500ms for consent update
             });
             
-            // Update consent to granted since this script only loads when consent is given
+            // Since this script only loads when analytics consent is true,
+            // immediately update to granted
             gtag('consent', 'update', {
-              analytics_storage: 'granted'
+              'analytics_storage': 'granted'
             });
             
+            console.log('[GA] Configuring GA with automatic page view tracking and consent mode');
             gtag('config', '${GA_ID}', {
               page_path: window.location.pathname,
+              anonymize_ip: true // Extra privacy protection
             });
             
             // Test function for debugging

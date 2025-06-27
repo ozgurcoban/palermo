@@ -17,6 +17,7 @@ import Script from "next/script";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ConsentProvider } from "@/providers/ConsentProvider";
 import { LanguageSwitchChecker } from "@/components/LanguageSwitchChecker";
 import { criticalCSS } from "@/lib/critical-css";
 import MobileBottomBar from "@/components/MobileBottomBar";
@@ -74,6 +75,10 @@ export default async function LocaleLayout({
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -87,7 +92,6 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="overflow-x-hidden">
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
         <Script
           id="restaurant-schema"
           type="application/ld+json"
@@ -99,21 +103,24 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <IntlProvider params={{ locale }}>
-            <LanguageSwitchChecker />
-            <Toaster />
-            <Navbar />
-            <main>
-              {children}
-              <ContactInfoSectionLazy
-                contactData={contactData}
-                lunchData={lunchData}
-              />
-            </main>
-            <Footer contactData={contactData} />
-            <MobileBottomBar />
-            <CookieBanner />
-          </IntlProvider>
+          <ConsentProvider>
+            {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics />}
+            <IntlProvider params={{ locale }}>
+              <LanguageSwitchChecker />
+              <Toaster />
+              <Navbar />
+              <main>
+                {children}
+                <ContactInfoSectionLazy
+                  contactData={contactData}
+                  lunchData={lunchData}
+                />
+              </main>
+              <Footer contactData={contactData} />
+              <MobileBottomBar />
+              <CookieBanner />
+            </IntlProvider>
+          </ConsentProvider>
         </ThemeProvider>
       </body>
     </html>

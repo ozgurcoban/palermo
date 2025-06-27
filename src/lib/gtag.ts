@@ -1,26 +1,28 @@
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!;
 
-// Check if we should track (not in dev/preview)
+// Check if we should track (only in production with analytics consent)
 export const canTrack = () => {
-  return (
-    typeof window !== "undefined" &&
-    GA_TRACKING_ID &&
-    (process.env.NODE_ENV === "production" ||
-      process.env.NODE_ENV === "development") &&
-    process.env.VERCEL_ENV !== "preview"
-  );
-};
-
-// Log page views
-export const pageview = (url: string) => {
-  if (!canTrack()) return;
-
-  // Check if gtag is available
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("config", GA_TRACKING_ID, {
-      page_path: url,
-    });
+  if (
+    typeof window === "undefined" ||
+    !GA_TRACKING_ID ||
+    process.env.NODE_ENV !== "production" ||
+    process.env.VERCEL_ENV === "preview"
+  ) {
+    return false;
   }
+
+  // Check for analytics consent
+  try {
+    const consent = localStorage.getItem("cookie-consent");
+    if (consent) {
+      const consentData = JSON.parse(consent);
+      return consentData.analytics === true;
+    }
+  } catch (error) {
+    console.error("[GA] Error checking consent:", error);
+  }
+
+  return false;
 };
 
 // GA4 event tracking
@@ -38,145 +40,154 @@ export const event = (
 
 // Restaurant-specific events
 export const trackMenuView = (categoryName: string) => {
-  event("view_menu_category", {
-    category_name: categoryName,
-    engagement_time_msec: Date.now(),
+  event("view_item_list", {
+    item_list_id: "menu",
+    item_list_name: categoryName,
+    items: [{ item_category: categoryName }],
   });
 };
 
 export const trackContactFormSubmit = () => {
-  event("form_submitted", {
-    event_category: "Form",
-    event_label: "Contact Form Sent",
-    form_type: "contact",
+  event("form_submit", {
+    form_name: "contact",
+    form_destination: "email",
   });
 };
 
 export const trackContactFormStart = () => {
-  event("form_started", {
-    event_category: "Form",
-    event_label: "Contact Form Begun",
-    form_type: "contact",
+  event("form_start", {
+    form_name: "contact",
+    form_destination: "email",
   });
 };
 
 export const trackPhoneClick = () => {
-  event("footer_phone_clicked", {
-    event_category: "Footer",
-    event_label: "Phone Number",
-    contact_method: "phone",
+  event("click", {
+    link_id: "phone_number",
+    link_text: "Phone",
+    link_domain: "tel",
+    link_classes: "contact_phone",
+    outbound: false,
   });
 };
 
 export const trackEmailClick = () => {
-  event("email_clicked", {
-    event_category: "Contact",
-    event_label: "Email Address",
-    contact_method: "email",
+  event("click", {
+    link_id: "email_address",
+    link_text: "Email",
+    link_domain: "mailto",
+    link_classes: "contact_email",
+    outbound: false,
   });
 };
 
 export const trackAddressClick = () => {
-  event("address_clicked", {
-    event_category: "Contact",
-    event_label: "Physical Address",
-    contact_method: "address",
+  event("click", {
+    link_id: "physical_address",
+    link_text: "Address",
+    link_url: "https://maps.google.com",
+    link_classes: "contact_address",
+    outbound: true,
   });
 };
 
 export const trackDeliveryAppClick = (appName: string) => {
-  event(`${appName.toLowerCase().replace(/\s+/g, "_")}_clicked`, {
-    event_category: "External Link",
-    event_label: `${appName} Delivery App`,
-    app_name: appName,
-    link_domain: appName.toLowerCase().replace(" ", ""),
-    conversion_event: true,
-    outbound_link: true,
+  event("click", {
+    link_id: `delivery_app_${appName.toLowerCase().replace(/\s+/g, "_")}`,
+    link_text: appName,
+    link_url: `${appName.toLowerCase()}.com`,
+    link_classes: "delivery_app",
+    outbound: true,
+    custom_parameter: {
+      app_name: appName,
+      conversion_event: true,
+    },
   });
 };
 
 export const trackLunchTabView = (tabName: string) => {
   event("select_content", {
     content_type: "lunch_tab",
-    item_id: tabName.toLowerCase().replace(" ", "_"),
+    content_id: tabName.toLowerCase().replace(" ", "_"),
+    item_list_name: "lunch_menu",
   });
 };
 
 export const trackHomeHeroMenuClick = () => {
-  event("home_hero_menu_click", {
-    event_category: "CTA",
-    event_label: "Menu - Home Hero",
-    action: "scroll_to_menu",
+  event("click", {
+    link_id: "hero_menu_cta",
+    link_text: "View Menu",
+    link_url: "#menu",
+    link_classes: "cta_button hero",
+    outbound: false,
   });
 };
 
 export const trackLunchCTAClick = () => {
-  event("hero_lunch_click", {
-    event_category: "CTA",
-    event_label: "Lunch - Hero",
-    action: "navigate_to_lunch",
+  event("click", {
+    link_id: "hero_lunch_cta",
+    link_text: "View Lunch",
+    link_url: "/lunch",
+    link_classes: "cta_button hero",
+    outbound: false,
   });
 };
 
 export const trackLunchPageCTAClick = () => {
-  event("lunch_page_cta_click", {
-    event_category: "CTA",
-    event_label: "Lunch Page Hero CTA",
-    action: "scroll_to_lunch",
+  event("click", {
+    link_id: "lunch_page_cta",
+    link_text: "View Lunch Menu",
+    link_url: "#lunch",
+    link_classes: "cta_button lunch_page",
+    outbound: false,
   });
 };
 
 export const trackLunchOpeningHoursClick = () => {
-  event("lunch_hours_click", {
-    event_category: "Contact",
-    event_label: "Lunch Hours",
-    action: "view_info",
+  event("view_item", {
+    item_id: "lunch_hours",
+    item_name: "Lunch Opening Hours",
+    item_category: "information",
   });
 };
 
 export const trackMenuPageCTAClick = () => {
-  event("menu_page_cta_click", {
-    event_category: "CTA",
-    event_label: "Menu Page Hero CTA",
-    action: "scroll_to_menu",
+  event("click", {
+    link_id: "menu_page_cta",
+    link_text: "View Menu",
+    link_url: "#menu",
+    link_classes: "cta_button menu_page",
+    outbound: false,
   });
 };
 
 export const trackThemeToggle = (fromTheme: string, toTheme: string) => {
-  event(`theme_${toTheme}`, {
-    event_category: "UI",
-    event_label: `${fromTheme} → ${toTheme}`,
+  event("theme_change", {
     from_theme: fromTheme,
     to_theme: toTheme,
+    method: "toggle_button",
   });
 };
 
 export const trackFAQClick = (index: number) => {
-  event(`faq_${index + 1}`, {
-    event_category: "Content",
-    event_label: `FAQ Question ${index + 1}`,
-    faq_index: index,
+  event("select_content", {
+    content_type: "faq",
+    content_id: `faq_question_${index + 1}`,
+    item_list_name: "faq_list",
   });
 };
 
 export const trackSocialClick = (platform: string, location?: string) => {
-  const eventName = location ? `${platform}_${location}_clicked` : `${platform}_clicked`;
-  const label = location ? `${platform} Link - ${location}` : `${platform} Link`;
-  
-  event(eventName, {
-    event_category: "Social",
-    event_label: label,
-    platform: platform,
-    location: location || 'unknown'
-  });
-};
-
-export const trackScrollDepth = (percentage: number, pageName: string) => {
-  event(`scroll_${percentage}_${pageName}`, {
-    event_category: "Engagement",
-    event_label: `${pageName} - ${percentage}%`,
-    scroll_depth: percentage,
-    page_name: pageName,
+  event("click", {
+    link_id: `social_${platform}`,
+    link_text: platform,
+    link_url: `${platform}.com`,
+    link_classes: `social_link ${location || "unknown"}`,
+    outbound: true,
+    custom_parameter: {
+      platform: platform,
+      location: location || "unknown",
+    },
   });
 };
 
@@ -185,13 +196,16 @@ export const trackFAQCTAClick = (
   ctaType: string,
   destination: string,
 ) => {
-  event(`faq_cta_click`, {
-    event_category: "CTA",
-    event_label: `FAQ ${faqIndex + 1} - ${ctaType}`,
-    faq_index: faqIndex,
-    cta_type: ctaType,
-    destination: destination,
-    action: "navigate",
+  event("click", {
+    link_id: `faq_cta_${faqIndex + 1}`,
+    link_text: ctaType,
+    link_url: destination,
+    link_classes: "faq_cta",
+    outbound: destination.startsWith("http"),
+    custom_parameter: {
+      faq_index: faqIndex,
+      cta_type: ctaType,
+    },
   });
 };
 
@@ -200,11 +214,59 @@ export const trackMobileBottomNavClick = (
   label: string,
   fromPage: string,
 ) => {
-  event("mobile_bottom_nav_click", {
-    event_category: "Navigation",
-    event_label: `Mobile Bottom Bar: ${label}`,
-    destination: destination,
-    from_page: fromPage,
-    navigation_method: "mobile_bottom_bar",
+  event("click", {
+    link_id: "mobile_bottom_nav",
+    link_text: label,
+    link_url: destination,
+    link_classes: "mobile_navigation",
+    outbound: false,
+    custom_parameter: {
+      from_page: fromPage,
+      navigation_method: "mobile_bottom_bar",
+    },
+  });
+};
+
+// Cookie consent tracking - Special handling for consent events
+// These events are important for compliance and should be tracked
+// even before full analytics consent, using GA's consent mode
+export const trackCookieConsent = (
+  action: "accept_all" | "reject_all" | "accept_selected",
+  analyticsEnabled?: boolean,
+) => {
+  // Always try to send consent events if gtag exists
+  // GA Consent Mode will handle them appropriately based on consent state
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "cookie_consent", {
+      consent_action: action,
+      analytics_consent:
+        analyticsEnabled !== undefined
+          ? analyticsEnabled
+          : action === "accept_all",
+      consent_method: "banner",
+    });
+
+    // Update GA consent state based on the user's choice
+    if (
+      action === "accept_all" ||
+      (action === "accept_selected" && analyticsEnabled)
+    ) {
+      window.gtag("consent", "update", {
+        analytics_storage: "granted",
+      });
+    } else {
+      window.gtag("consent", "update", {
+        analytics_storage: "denied",
+      });
+    }
+  }
+};
+
+export const trackCookieSettingsOpen = () => {
+  // Only track if user has already consented
+  event("view_item", {
+    item_id: "cookie_settings",
+    item_name: "Cookie Settings Dialog",
+    item_category: "privacy",
   });
 };
