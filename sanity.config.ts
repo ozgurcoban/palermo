@@ -23,17 +23,17 @@ const commonConfig = {
                   .title("Sidor")
                   .items([
                     S.listItem()
-                      .title("Home Page")
+                      .title("Förstasidan")
                       .child(
                         S.documentList()
-                          .title("Home Page")
+                          .title("Förstasidan")
                           .filter('_type == "home"'),
                       ),
                     S.listItem()
-                      .title("Lunch Page")
+                      .title("Lunchsidan")
                       .child(
                         S.documentList()
-                          .title("Lunch Configuration")
+                          .title("Lunchkonfiguration")
                           .filter('_type == "lunch"'),
                       ),
                   ]),
@@ -81,7 +81,7 @@ const commonConfig = {
               .child(
                 S.documentList()
                   .title("Kontakt & öppettider")
-                  .filter('_type == "contact"')
+                  .filter('_type == "contact"'),
               ),
             S.divider(),
             S.listItem()
@@ -89,7 +89,7 @@ const commonConfig = {
               .child(
                 S.documentList()
                   .title("FAQ - Vanliga frågor")
-                  .filter('_type == "faq"')
+                  .filter('_type == "faq"'),
               ),
             S.divider(),
 
@@ -125,7 +125,9 @@ const isDevelopment = dataset === "development";
 
 export default defineConfig({
   basePath: isDevelopment ? "/studio/development" : "/studio/production",
-  name: isDevelopment ? "PALERMO_STUDIO_DEVELOPMENT" : "PALERMO_STUDIO_PRODUCTION",
+  name: isDevelopment
+    ? "PALERMO_STUDIO_DEVELOPMENT"
+    : "PALERMO_STUDIO_PRODUCTION",
   title: isDevelopment ? "Palermo Studio Development" : "Palermo Studio",
   projectId,
   dataset,
