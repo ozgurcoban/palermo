@@ -28,6 +28,7 @@
     "@sanity/client": "^6.10.0",
     "@sanity/icons": "^2.11.8",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/locale-sv-se": "^1.2.21",
     "@sanity/overlays": "^2.3.0",
     "@sanity/react-loader": "^1.6.4",
     "@sanity/vision": "^3.23.4",

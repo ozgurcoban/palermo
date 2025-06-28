@@ -7,9 +7,11 @@ import { apiVersion, projectId, dataset } from "./sanity/env";
 import { myTheme } from "./theme";
 import { structureTool } from "sanity/structure";
 import { RobotIcon, RocketIcon } from "@sanity/icons";
+import { svSELocale } from "@sanity/locale-sv-se";
 
 const commonConfig = {
   plugins: [
+    svSELocale(),
     structureTool({
       defaultDocumentNode: getDefaultDocumentNode,
       structure: (S) =>
@@ -28,13 +30,6 @@ const commonConfig = {
                         S.documentList()
                           .title("Förstasidan")
                           .filter('_type == "home"'),
-                      ),
-                    S.listItem()
-                      .title("Lunchsidan")
-                      .child(
-                        S.documentList()
-                          .title("Lunchkonfiguration")
-                          .filter('_type == "lunch"'),
                       ),
                   ]),
               ),
@@ -74,6 +69,14 @@ const commonConfig = {
                           .filter('_type == "categories"'),
                       ),
                   ]),
+              ),
+            S.divider(),
+            S.listItem()
+              .title("Lunchmeny")
+              .child(
+                S.documentList()
+                  .title("Lunchkonfiguration")
+                  .filter('_type == "lunch"'),
               ),
             S.divider(),
             S.listItem()
