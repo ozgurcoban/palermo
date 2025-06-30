@@ -20,6 +20,7 @@ export default async function middleware(request: NextRequest) {
     locales,
     pathnames,
     localePrefix,
+    localeDetection: false, // Disable automatic locale detection
   });
   const response = handleI18nRouting(request);
   
@@ -49,6 +50,16 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico).*)',
-  ],
+    // Enable a redirect to a matching locale at the root
+    '/',
+
+    // Set a cookie to remember the previous locale for
+    // all requests that have a locale prefix
+    '/(sv|en)/:path*',
+
+    // Enable redirects that add a locale prefix if there is no
+    // explicit locale prefix and it's not the default locale.
+    // Also, skip paths that should not be internationalized.
+    '/((?!api|_next/static|_next/image|favicon.ico|studio).*)'
+  ]
 };

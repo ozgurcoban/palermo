@@ -16,10 +16,8 @@ export const pathnames = {
     en: "/menu",
     sv: "/meny",
   },
-  "/lunch": {
-    en: "/lunch",
-    sv: "/lunch",
-  },
+  // Simplified since the path is the same for all locales
+  "/lunch": "/lunch",
 } satisfies Pathnames<typeof locales>;
 
 export const localePrefix = "as-needed";

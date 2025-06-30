@@ -3,7 +3,13 @@ const withNextIntl = require("next-intl/plugin")();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
-    return [];
+    return [
+      {
+        source: '/menu',
+        destination: '/meny',
+        permanent: true, // Use true for SEO benefits since this is a permanent change
+      },
+    ];
   },
   images: {
     remotePatterns: [

@@ -1,23 +1,18 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import FadeUp from "@/components/ui/FadeUp";
-import { Home, Pizza, Coffee, ArrowLeft, MapPin, Clock } from "lucide-react";
-import { useGetLocale } from "@/config";
+import { Home, Pizza, Coffee, MapPin, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
+import { NotFoundClient } from "@/components/NotFoundClient";
 
 // Note that `app/[locale]/[...rest]/page.tsx`
 // is necessary for this page to render.
 
-export default function NotFoundPage() {
-  const t = useTranslations("NotFoundPage");
-  const locale = useGetLocale();
-  const router = useRouter();
+export default async function NotFoundPage() {
+  const t = await getTranslations("NotFoundPage");
 
   return (
     <main className="flex min-h-[calc(100vh-200px)] items-center justify-center px-4 py-16">
@@ -43,19 +38,14 @@ export default function NotFoundPage() {
           {/* Header */}
           <FadeUp delay={0.1}>
             <h2 className="font-recoleta text-3xl text-foreground sm:text-4xl">
-              {t("title", {
-                defaultValue: "Oj! Den pizzan finns inte på menyn",
-              })}
+              {t("title")}
             </h2>
           </FadeUp>
 
           {/* Description */}
           <FadeUp delay={0.2}>
             <p className="mx-auto max-w-md text-lg text-muted-foreground">
-              {t("description", {
-                defaultValue:
-                  "Antingen har du beställt något vi inte har, eller så har du hamnat på fel ställe. Oroa dig inte, vi har gott om andra alternativ!",
-              })}
+              {t("description")}
             </p>
           </FadeUp>
 
@@ -66,9 +56,7 @@ export default function NotFoundPage() {
               className="text-accent-foreground border-accent/30 bg-accent/10 px-4 py-2"
             >
               <Coffee className="mr-2 inline h-4 w-4" />
-              {t("joke", {
-                defaultValue: "Ta en kaffe medan du funderar på vart du skulle",
-              })}
+              {t("joke")}
             </Badge>
           </FadeUp>
 
@@ -77,15 +65,7 @@ export default function NotFoundPage() {
           {/* Action Buttons */}
           <FadeUp delay={0.4}>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button
-                onClick={() => router.back()}
-                variant="outline"
-                size="lg"
-                className="group border-2"
-              >
-                <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                {t("goBack", { defaultValue: "Gå tillbaka" })}
-              </Button>
+              <NotFoundClient goBackText={t("goBack")}/>
 
               <Link href="/">
                 <Button
@@ -93,14 +73,14 @@ export default function NotFoundPage() {
                   className="group bg-accent hover:bg-accent/90"
                 >
                   <Home className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                  {t("goHome", { defaultValue: "Till startsidan" })}
+                  {t("goHome")}
                 </Button>
               </Link>
 
               <Link href="/menu">
                 <Button variant="outline" size="lg" className="group border-2">
                   <Pizza className="mr-2 h-4 w-4 transition-transform group-hover:rotate-12" />
-                  {t("viewMenu", { defaultValue: "Se menyn" })}
+                  {t("viewMenu")}
                 </Button>
               </Link>
             </div>
@@ -110,7 +90,7 @@ export default function NotFoundPage() {
           <FadeUp delay={0.5}>
             <div className="mt-8 space-y-4 border-t border-border pt-8">
               <p className="text-sm text-muted-foreground">
-                {t("quickLinks", { defaultValue: "Eller kolla in:" })}
+                {t("quickLinks")}
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <Link href="/lunch">
@@ -119,7 +99,7 @@ export default function NotFoundPage() {
                     className="cursor-pointer transition-colors hover:bg-accent/10"
                   >
                     <Clock className="mr-1 h-3 w-3" />
-                    {t("lunch", { defaultValue: "Dagens lunch" })}
+                    {t("lunch")}
                   </Badge>
                 </Link>
                 <a
@@ -132,9 +112,7 @@ export default function NotFoundPage() {
                     className="cursor-pointer transition-colors hover:bg-accent/10"
                   >
                     <MapPin className="mr-1 h-3 w-3" />
-                    {t("location", {
-                      defaultValue: "Sysslomansgatan 7, Uppsala",
-                    })}
+                    {t("location")}
                   </Badge>
                 </a>
               </div>

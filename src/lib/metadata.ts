@@ -63,6 +63,36 @@ type MetadataConfig = {
   canonicalPath?: string;
 };
 
+// Helper function to generate correct alternate URLs based on as-needed locale prefix
+function generateAlternateLanguages(canonicalPath?: string) {
+  if (!canonicalPath) return undefined;
+  
+  // For root paths
+  if (canonicalPath === '/' || canonicalPath === '/en') {
+    return {
+      sv: '/',
+      en: '/en',
+    };
+  }
+  
+  // Remove any existing locale prefix from the path
+  const cleanPath = canonicalPath.replace(/^\/(en|sv)/, '');
+  
+  // Handle special Swedish URL mappings
+  let swedishPath = cleanPath;
+  if (cleanPath === '/menu') {
+    swedishPath = '/meny';
+  }
+  // Note: '/lunch' stays the same in Swedish
+  
+  return {
+    // Swedish (default locale) - no prefix, with special mappings
+    sv: swedishPath || '/',
+    // English - with prefix
+    en: `/en${cleanPath}`,
+  };
+}
+
 export function constructMetadata({
   title,
   description,
@@ -124,10 +154,7 @@ export function constructMetadata({
             },
           },
     alternates: {
-      languages: {
-        en: "/en",
-        sv: "/sv",
-      },
+      languages: generateAlternateLanguages(canonicalPath),
       canonical: canonicalUrl,
     },
     icons: {
