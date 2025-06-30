@@ -171,7 +171,8 @@
     "title": "Get Palermo delivered in Uppsala",
     "description": "Too comfy to leave home? We're on all major delivery apps. Same great food, same fair prices - delivered across Uppsala.",
     "orderVia": "Order via {app}",
-    "deliveryAreas": "We deliver to: Centrum, Löten, Årsta, Fålhagen, Luthagen, Eriksberg, Gottsunda and all of Uppsala."
+    "deliveryAreas": "We deliver to: Centrum, Löten, Årsta, Fålhagen, Luthagen, Eriksberg, Gottsunda and all of Uppsala.",
+    "opensInNewTab": "(opens in new tab)"
   },
   "MobileBottomBar": {
     "home": "Home",
