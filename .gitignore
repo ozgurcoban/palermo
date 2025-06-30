@@ -42,4 +42,4 @@ next-env.d.ts
 
 lighthouse/
 sanity-backups/
-servers/
+/servers/

@@ -34,15 +34,6 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params: { locale },
-}: Omit<Props, "children">) {
-  const t = await getTranslations({ locale, namespace: "Metadata" });
-
-  return {
-    title: t("title"),
-  };
-}
 
 export default async function LocaleLayout({
   children,
