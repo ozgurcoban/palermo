@@ -15,7 +15,7 @@ import { CONTACT_QUERY, LUNCH_QUERY, FAQ_QUERY } from "../../../sanity/lib/queri
 import { Link, useRouter } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { trackFAQCTAClick } from "@/lib/gtag";
+import { trackFAQCTAClick, trackFAQClick } from "@/lib/gtag";
 
 export function FAQ() {
   const locale = useGetLocale();
@@ -200,7 +200,12 @@ export function FAQ() {
           <Accordion type="single" collapsible className="mx-auto max-w-3xl">
             {processedFAQs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left text-base md:text-lg">
+                <AccordionTrigger 
+                  className="text-left text-base md:text-lg"
+                  onClick={() => {
+                    trackFAQClick(index);
+                  }}
+                >
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-base leading-relaxed text-muted-foreground">
@@ -212,7 +217,9 @@ export function FAQ() {
                           variant="outline"
                           size="sm"
                           className="group"
-                          onClick={() => trackFAQCTAClick(index, "lunch", "/lunch")}
+                          onClick={() => {
+                            trackFAQCTAClick(index, "lunch", "/lunch");
+                          }}
                         >
                           {faq.ctaText || 
                            (locale === "sv" ? "Se lunchmenyn" : "View lunch menu")}
@@ -240,7 +247,9 @@ export function FAQ() {
                           variant="outline"
                           size="sm"
                           className="group"
-                          onClick={() => trackFAQCTAClick(index, "menu", "/menu")}
+                          onClick={() => {
+                            trackFAQCTAClick(index, "menu", "/menu");
+                          }}
                         >
                           {faq.ctaText || 
                            (locale === "sv" ? "Utforska menyn" : "Explore menu")}
@@ -254,9 +263,9 @@ export function FAQ() {
                           variant="outline"
                           size="sm"
                           className="group"
-                          onClick={() =>
-                            trackFAQCTAClick(index, "contact", "#contact")
-                          }
+                          onClick={() => {
+                            trackFAQCTAClick(index, "contact", "#contact");
+                          }}
                         >
                           {faq.ctaText || 
                            (locale === "sv" ? "Kontakta oss" : "Contact us")}

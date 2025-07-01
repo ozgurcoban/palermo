@@ -184,7 +184,9 @@ export default function ContactInfoSection({
                             <IntlLink
                               href="/lunch"
                               className="group -mx-2 block rounded-md px-2 pb-2 pt-2 transition-all duration-300 hover:bg-accent/5"
-                              onClick={trackLunchOpeningHoursClick}
+                              onClick={() => {
+                                trackLunchOpeningHoursClick();
+                              }}
                             >
                               <div className="mb-2 flex items-center justify-between">
                                 <div className="flex items-center gap-2">

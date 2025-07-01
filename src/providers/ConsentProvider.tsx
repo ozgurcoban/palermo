@@ -14,6 +14,7 @@ interface ConsentContextType {
   acceptAll: () => void;
   rejectAll: () => void;
   hasConsented: boolean;
+  isLoading: boolean;
 }
 
 const ConsentContext = createContext<ConsentContextType | undefined>(undefined);
@@ -26,6 +27,7 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
     analytics: false,
   });
   const [hasConsented, setHasConsented] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Load consent from localStorage on mount
   useEffect(() => {
@@ -38,6 +40,8 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
       }
     } catch (error) {
       console.error('[Consent] Error loading consent:', error);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -55,10 +59,20 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
       localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(updatedConsent));
       
       // Update gtag consent if available
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('consent', 'update', {
-          analytics_storage: updatedConsent.analytics ? 'granted' : 'denied'
-        });
+      // Use setTimeout to ensure gtag is loaded
+      if (typeof window !== 'undefined') {
+        const updateGtagConsent = () => {
+          if (window.gtag) {
+            window.gtag('consent', 'update', {
+              analytics_storage: updatedConsent.analytics ? 'granted' : 'denied'
+            });
+            console.info('[Consent] Updated GA consent to:', updatedConsent.analytics ? 'granted' : 'denied');
+          } else {
+            // Retry after a short delay if gtag is not yet available
+            setTimeout(updateGtagConsent, 100);
+          }
+        };
+        updateGtagConsent();
       }
       
       // Dispatch event for backward compatibility
@@ -89,6 +103,7 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
       acceptAll,
       rejectAll,
       hasConsented,
+      isLoading,
     }}>
       {children}
     </ConsentContext.Provider>

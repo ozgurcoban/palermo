@@ -150,6 +150,7 @@ export default function ContactForm() {
                         type="email"
                         placeholder={t("emailPlaceholder")}
                         className="h-12 border border-border bg-background px-4 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"
+                        onFocus={handleFormStart}
                         {...field}
                       />
                     </FormControl>
@@ -172,6 +173,7 @@ export default function ContactForm() {
                     <Textarea
                       placeholder={t("messagePlaceholder")}
                       className="min-h-[140px] resize-none border border-border bg-background p-4 text-base focus:border-accent focus:ring-2 focus:ring-accent/20"
+                      onFocus={handleFormStart}
                       {...field}
                     />
                   </FormControl>

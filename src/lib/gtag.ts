@@ -1,11 +1,25 @@
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!;
 
+// Debug mode check
+const isDebugMode = () => {
+  if (typeof window !== "undefined") {
+    return window.location.search.includes('ga_debug=true');
+  }
+  return false;
+};
+
 // Check if we should track (only in production with analytics consent)
 export const canTrack = () => {
+  // Always allow in debug mode
+  if (isDebugMode()) {
+    console.info('[GA] Debug mode active - tracking enabled');
+    return true;
+  }
+
   if (
     typeof window === "undefined" ||
     !GA_TRACKING_ID ||
-    process.env.NODE_ENV !== "production" ||
+    (process.env.NODE_ENV !== "production" && !isDebugMode()) ||
     process.env.VERCEL_ENV === "preview"
   ) {
     return false;
@@ -30,11 +44,23 @@ export const event = (
   eventName: string,
   parameters: Record<string, any> = {},
 ) => {
-  if (!canTrack()) return;
+  if (!canTrack()) {
+    if (isDebugMode()) {
+      console.info(`[GA] Event blocked (no consent): ${eventName}`, parameters);
+    }
+    return;
+  }
 
   // Check if gtag is available
   if (typeof window !== "undefined" && window.gtag) {
+    if (isDebugMode()) {
+      console.info(`[GA] Sending event: ${eventName}`, parameters);
+    }
     window.gtag("event", eventName, parameters);
+  } else {
+    if (isDebugMode() || process.env.NODE_ENV === 'development') {
+      console.warn('[GA] gtag not available - event not sent:', eventName);
+    }
   }
 };
 
@@ -144,10 +170,12 @@ export const trackLunchPageCTAClick = () => {
 };
 
 export const trackLunchOpeningHoursClick = () => {
-  event("view_item", {
-    item_id: "lunch_hours",
-    item_name: "Lunch Opening Hours",
-    item_category: "information",
+  event("click", {
+    link_id: "contact_lunch_hours",
+    link_text: "Lunch Opening Hours",
+    link_url: "/lunch",
+    link_classes: "contact_lunch_link",
+    outbound: false,
   });
 };
 
@@ -166,6 +194,16 @@ export const trackThemeToggle = (fromTheme: string, toTheme: string) => {
     from_theme: fromTheme,
     to_theme: toTheme,
     method: "toggle_button",
+  });
+};
+
+export const trackNavbarContactClick = () => {
+  event("click", {
+    link_id: "navbar_contact_cta",
+    link_text: "Contact",
+    link_url: "#contact",
+    link_classes: "cta_button navbar",
+    outbound: false,
   });
 };
 

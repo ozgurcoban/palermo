@@ -7,7 +7,7 @@ import NavLinks from "./NavLinks";
 import { Link } from "@/navigation";
 import { useCallback } from "react";
 import { Button } from "../ui/button";
-import { event } from "@/lib/gtag";
+import { trackNavbarContactClick } from "@/lib/gtag";
 import ThemeToggle from "../ui/theme-toggle";
 
 export function Navbar() {
@@ -15,11 +15,11 @@ export function Navbar() {
     clickEvent.preventDefault();
 
     // Track the CTA click
-    event('navbar_contact_click', {
-      event_category: 'CTA',
-      event_label: 'Contact - Navbar',
-      action: 'scroll_to_section'
-    });
+    try {
+      trackNavbarContactClick();
+    } catch (error) {
+      console.error('[Navbar] Tracking error:', error);
+    }
 
     const contactElement = document.getElementById("contact");
     if (contactElement) {
