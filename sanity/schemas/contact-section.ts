@@ -24,9 +24,7 @@ export default defineType({
           description: 'Svenskt telefonnummer med landskod (t.ex. +46 18 13 18 20)',
           initialValue: '+46 ',
           validation: (Rule) =>
-            Rule.required()
-              .error('Telefonnummer är obligatoriskt')
-              .custom((value) => {
+            Rule.custom((value) => {
                 if (!value || value.trim() === '' || value.trim() === '+46') {
                   return 'Telefonnummer är obligatoriskt'
                 }
@@ -46,9 +44,7 @@ export default defineType({
           title: 'E-post',
           type: 'string',
           description: 'E-postadress (t.ex. info@palermo.se)',
-          validation: Rule => Rule.required()
-            .error('E-postadress är obligatorisk')
-            .custom((value) => {
+          validation: Rule => Rule.custom((value) => {
               if (!value || value.trim() === '') {
                 return 'E-postadress är obligatorisk'
               }
