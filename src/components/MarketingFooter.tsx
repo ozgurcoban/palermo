@@ -55,10 +55,10 @@ export default function MarketingFooter() {
   const t = useTranslations();
 
   const handleClick = () => {
-    event("click", {
+    event("click_outbound", {
       link_id: "marketing_footer_anpassad_webb",
       link_text: "Anpassad Webb",
-      link_url: "https://anpassadwebb.se",
+      link_url: "https://anpassadwebb.se/?utm_source=palermo&utm_medium=referral&utm_campaign=footer",
       link_classes: "marketing_footer",
       outbound: true,
       custom_parameter: {
@@ -71,7 +71,7 @@ export default function MarketingFooter() {
   return (
     <div className="border-t border-border/50 bg-muted/30 pb-32 dark:bg-background/50 md:pb-0">
       <a
-        href="https://anpassadwebb.se"
+        href="https://anpassadwebb.se/?utm_source=palermo&utm_medium=referral&utm_campaign=footer"
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleClick}
