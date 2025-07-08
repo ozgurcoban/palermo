@@ -6,6 +6,7 @@ import { locales } from "@/config";
 import { cookies } from "next/headers";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MarketingFooter from "@/components/MarketingFooter";
 import { lato, recoleta, graduate } from "@/lib/fonts";
 import IntlProvider from "@/providers/IntlProvider";
 import ContactInfoSectionLazy from "@/components/Contact/ContactInfoSectionLazy";
@@ -108,6 +109,7 @@ export default async function LocaleLayout({
                 />
               </main>
               <Footer contactData={contactData} />
+              <MarketingFooter />
               <MobileBottomBar />
               <CookieBanner />
             </IntlProvider>

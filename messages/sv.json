@@ -132,6 +132,12 @@
     "copyright": "© {year} Palermo Uppsala. Alla rättigheter förbehållna.",
     "backToTop": "Till toppen"
   },
+  "MarketingFooter": {
+    "title": "Vill du också ranka som Palermo?",
+    "description": "Deras hemsida gick från plats 25 till 4 för \"pizza uppsala\".",
+    "cta": "Läs mer om hur vi gjorde",
+    "poweredBy": "Hemsida av"
+  },
   "Lunch": {
     "hero": {
       "badge": "Vardagar 11:00-15:00",

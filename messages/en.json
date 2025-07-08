@@ -132,6 +132,12 @@
     "copyright": "© {year} Palermo Uppsala. All rights reserved.",
     "backToTop": "Back to top"
   },
+  "MarketingFooter": {
+    "title": "Want to rank like Palermo?",
+    "description": "Their website went from position 25 to 4 for \"pizza uppsala\".",
+    "cta": "Read more about how we did it",
+    "poweredBy": "Website by"
+  },
   "Lunch": {
     "hero": {
       "badge": "Weekdays 11:00-15:00",
